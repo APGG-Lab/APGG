@@ -6,6 +6,11 @@ World::World()
 {
 }
 
+void World::Init()
+{
+    std::cout << "[APGG] Init" << std::endl;
+}
+
 void World::Tick()
 {
 	unsigned int cooperation = 0;
@@ -26,9 +31,9 @@ void World::Tick()
 	}
 	int defectors = width * height - cooperation;
 	float percentage = static_cast<float>(cooperation) / static_cast<float>(width*height);
-	std::cout << " Num Cooperators: " << cooperation 
-			  << "\tNum Defectors: " <<defectors
-		      << "\tPercentage: " << percentage*100 << std::endl;
+	//std::cout << " Num Cooperators: " << cooperation 
+	//		  << "\tNum Defectors: " <<defectors
+	//	      << "\tPercentage: " << percentage*100 << std::endl;
 
 	float fitness = percentage;
 
@@ -47,6 +52,11 @@ void World::Tick()
 	//	std::cout << m_grid.getOrganism(i).m_fitness << std::endl;
 	}
 
+}
+
+void World::Fini()
+{
+    std::cout << "[APGG] Fini" << std::endl;
 }
 
 void World::Evolve()

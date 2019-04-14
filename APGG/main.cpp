@@ -8,23 +8,39 @@ typedef std::chrono::duration<double> fsec;
 
 int main() {	
 	World myCoolWorld;
-	
+    myCoolWorld.Init();
+
     auto t_start = HighResClock::now();
+    auto t_last = HighResClock::now();
+    auto t_now = HighResClock::now();
+    fsec fs;
+    ms timeDelta;
+    int exponent = 10;
 
+    while (myCoolWorld.m_generation < 10000)
+    {
 
-	while (myCoolWorld.m_generation < 10000)
-	{
-		std::cout << "Num of Gen: " << myCoolWorld.m_generation;
-		myCoolWorld.Tick();
-		myCoolWorld.Evolve();
+        myCoolWorld.Tick();
+        myCoolWorld.Evolve();
 
+        if (myCoolWorld.m_generation > exponent - 1) {
+            t_now = HighResClock::now();
+            fs = t_now - t_start;
+            t_last = t_now;
+            timeDelta = std::chrono::duration_cast<ms>(fs);
 
+            exponent *= 10;
+
+            std::cout << "Num of Gen: " << myCoolWorld.m_generation
+                      << " took " <<  timeDelta.count() << "ms" << std::endl;
+        }
 
 	}
 
-    auto t_end = HighResClock::now();
-    fsec fs = t_end - t_start;
-    ms timeDelta = std::chrono::duration_cast<ms>(fs);
+    myCoolWorld.Fini();
+
+    fs = t_now - t_start;
+    timeDelta = std::chrono::duration_cast<ms>(fs);
 
     std::cout << "Done (took " << timeDelta.count() << " ms)";
     getchar();
