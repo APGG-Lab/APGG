@@ -79,8 +79,8 @@ void World::Tick()
 			m_grid.getOrganism(i).m_fitness =  fitness + 1;
 
 		}
-	//	std::cout << m_grid.getOrganism(i).m_fitness << std::endl;
 	}
+
     printStatus();
 }
 
