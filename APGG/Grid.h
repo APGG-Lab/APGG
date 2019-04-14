@@ -1,7 +1,7 @@
 #pragma once
+#include <cassert>
 
 #include "Organism.h"
-#include <cassert>
 
 constexpr unsigned int width = 32;
 constexpr unsigned int height = 32;

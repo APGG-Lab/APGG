@@ -1,7 +1,7 @@
 #pragma once
+#include <iostream>
 
 #include "Grid.h"
-#include <iostream>
 
 class World
 {
