@@ -2,9 +2,6 @@
 #include <chrono>
 #include "World.h"
 
-typedef std::chrono::high_resolution_clock HighResClock;
-typedef std::chrono::milliseconds ms;
-typedef std::chrono::duration<double> fsec;
 
 int main() {	
 	World myCoolWorld;

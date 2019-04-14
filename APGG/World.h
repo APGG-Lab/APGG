@@ -1,10 +1,25 @@
 #pragma once
 #include <iostream>
+#include <chrono>
 
 #include "Grid.h"
 
+typedef std::chrono::high_resolution_clock HighResClock;
+typedef std::chrono::milliseconds ms;
+typedef std::chrono::duration<double> fsec;
+
+
 class World
 {
+private:
+    std::chrono::time_point<std::chrono::steady_clock> m_clock_start;
+    std::chrono::time_point<std::chrono::steady_clock> m_clock_now;
+    std::chrono::time_point<std::chrono::steady_clock> m_clock_last;
+    void printStatus();
+    int m_exponent; ///Exponential logging (0-10,10,20,30,100,200,300,1000,2000,3000,....)
+
+    unsigned int m_cooperation;
+    float m_percentage;
 public:
 	World();
 
