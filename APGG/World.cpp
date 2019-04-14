@@ -95,7 +95,7 @@ void World::Evolve()
 {
 	m_grid.sortByFitness();
 	unsigned int eliminateCount = 20;
-	for (int i = width * height - 1; i > width*height - eliminateCount; i--) {
+	for (unsigned int i = width * height - 1; i > width*height - eliminateCount; i--) {
 		float cooperationValue = static_cast <float> (rand()) / static_cast <float> (RAND_MAX);
 
 		m_grid.getOrganism(i).m_genomes[0] = cooperationValue;
