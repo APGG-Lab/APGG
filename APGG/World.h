@@ -19,7 +19,7 @@ private:
     int m_exponent; ///Exponential logging (0-10,10,20,30,100,200,300,1000,2000,3000,....)
 
     unsigned int m_cooperation;
-    float m_percentage;
+    float m_fitness;
 public:
 	World();
 

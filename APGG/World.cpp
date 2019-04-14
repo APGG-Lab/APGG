@@ -17,7 +17,7 @@ void World::printStatus()
     std::cout << "Generation:" << m_generation
               << "\tNum Cooperators: " << m_cooperation
               << "\tNum Defectors: " << (width * height - m_cooperation)
-              << "\tPercentage: " << m_percentage
+              << "\tPercentage: " << m_fitness
               << "\ttook: " << timeDelta.count() << " ms" << std::endl;
 
     if (m_generation >= m_exponent * 10) {
@@ -39,13 +39,13 @@ void World::Init()
     m_clock_start = m_clock_now = m_clock_last = HighResClock::now();
     m_exponent = 1;
     m_cooperation = 0;
-    m_percentage = 0.0f;
+    m_fitness = 0.0f;
 }
 
 void World::Tick()
 {
     m_cooperation = 0;
-    m_percentage = 0.0f;
+    m_fitness = 0.0f;
 
 	for (int i = 0; i < width * height; i++) 
 	{
@@ -61,22 +61,19 @@ void World::Tick()
 			m_grid.getOrganism(i).m_cooperated = false;
 		}
 	}
-	int defectors = width * height - m_cooperation;
-	m_percentage = static_cast<float>(m_cooperation) / static_cast<float>(width*height);
 
-
-	float fitness = m_percentage;
+	m_fitness = static_cast<float>(m_cooperation) / (width*height);
 
 	// calculate adaption
 	for (int i = 0; i < width * height; i++)
 	{
 		if (m_grid.getOrganism(i).m_cooperated)
 		{
-			m_grid.getOrganism(i).m_fitness =  fitness;
+			m_grid.getOrganism(i).m_fitness = m_fitness;
 		}
 		else
 		{
-			m_grid.getOrganism(i).m_fitness =  fitness + 1;
+			m_grid.getOrganism(i).m_fitness = m_fitness + 1;
 
 		}
 	}
