@@ -1,21 +1,21 @@
 #include <iostream>
-#include "World.h"
 
+#include "World.h"
 
 
 int main() {	
 	World myCoolWorld;
-	
-	while (myCoolWorld.m_generation < 10000)
-	{
-		std::cout << "Num of Gen: " << myCoolWorld.m_generation;
-		myCoolWorld.Tick();
-		myCoolWorld.Evolve();
+    myCoolWorld.Init();
 
+    while (myCoolWorld.m_generation < 10000)
+    {
 
-
+        myCoolWorld.Tick();
+        myCoolWorld.Evolve();
 	}
-	std::cout << "Done";
-	getchar();
+
+    myCoolWorld.Fini();
+
+    getchar();
 	return 0;
 }
