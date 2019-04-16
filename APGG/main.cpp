@@ -28,5 +28,6 @@ int main() {
 
     std::cout << "Done (took " << timeDelta.count() << " ms)";
     getchar();
+	system("python3 Visualize.py");
 	return 0;
 }

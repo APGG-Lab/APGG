@@ -4,6 +4,12 @@
 
 World::World()
 {
+	myfile.open("Score.csv");
+}
+
+World::~World()
+{
+	myfile.close();
 }
 
 void World::Tick()
@@ -46,7 +52,7 @@ void World::Tick()
 		}
 	//	std::cout << m_grid.getOrganism(i).m_fitness << std::endl;
 	}
-
+	World::Archive(fitness, cooperation, defectors);
 }
 
 void World::Evolve()
@@ -61,4 +67,7 @@ void World::Evolve()
 	m_generation++;
 }
 
-
+void World::Archive(float fitness, int cooperation, int defectors)
+{
+	myfile << m_generation << ";" << fitness << ";" << cooperation << ";" << defectors << std::endl;
+}
