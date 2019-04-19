@@ -1,32 +1,21 @@
 #include <iostream>
-#include <chrono>
+
 #include "World.h"
 
-typedef std::chrono::high_resolution_clock HighResClock;
-typedef std::chrono::milliseconds ms;
-typedef std::chrono::duration<double> fsec;
 
 int main() {	
 	World myCoolWorld;
-	
-    auto t_start = HighResClock::now();
+    myCoolWorld.Init();
 
+    while (myCoolWorld.m_generation < 10000)
+    {
 
-	while (myCoolWorld.m_generation < 10000)
-	{
-		std::cout << "Num of Gen: " << myCoolWorld.m_generation;
-		myCoolWorld.Tick();
-		myCoolWorld.Evolve();
-
-
-
+        myCoolWorld.Tick();
+        myCoolWorld.Evolve();
 	}
 
-    auto t_end = HighResClock::now();
-    fsec fs = t_end - t_start;
-    ms timeDelta = std::chrono::duration_cast<ms>(fs);
+    myCoolWorld.Fini();
 
-    std::cout << "Done (took " << timeDelta.count() << " ms)";
     getchar();
 	system("python3 Visualize.py");
 	return 0;

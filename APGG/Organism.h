@@ -1,7 +1,7 @@
 #pragma once
+#include <array>
 
 #include "Genome.h"
-#include <array>
 
 constexpr unsigned int nrGenomes = 1;
 
