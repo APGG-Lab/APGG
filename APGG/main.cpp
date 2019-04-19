@@ -17,5 +17,6 @@ int main() {
     myCoolWorld.Fini();
 
     getchar();
+	system("python3 Visualize.py");
 	return 0;
 }

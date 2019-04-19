@@ -9,6 +9,8 @@ typedef std::chrono::milliseconds ms;
 typedef std::chrono::duration<double> fsec;
 
 
+#include <fstream>
+
 class World
 {
 private:
@@ -28,6 +30,8 @@ public:
     void Fini();
 
 	void Evolve();
+	void Archive(float fitness, int cooperation, int defectors);
+	std::ofstream myfile;
 	Grid m_grid;
 	int m_generation = 0;
 };

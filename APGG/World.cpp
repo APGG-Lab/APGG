@@ -40,6 +40,8 @@ void World::Init()
     m_exponent = 1;
     m_cooperation = 0;
     m_fitness = 0.0f;
+
+	myfile.open("Score.csv");
 }
 
 void World::Tick()
@@ -77,7 +79,7 @@ void World::Tick()
 
 		}
 	}
-
+	World::Archive(m_fitness, m_cooperation, (width * height - m_cooperation));
     printStatus();
 }
 
@@ -86,6 +88,8 @@ void World::Fini()
     fsec fs = m_clock_now - m_clock_start;
     ms timeDelta = std::chrono::duration_cast<ms>(fs);
     std::cout << "[APGG] Fini (took " << timeDelta.count() << " ms)" << std::endl;
+
+	myfile.close();
 }
 
 void World::Evolve()
@@ -100,4 +104,7 @@ void World::Evolve()
 	m_generation++;
 }
 
-
+void World::Archive(float fitness, int cooperation, int defectors)
+{
+	myfile << m_generation << ";" << fitness << ";" << cooperation << ";" << defectors << std::endl;
+}
