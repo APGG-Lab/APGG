@@ -44,5 +44,8 @@
     <ClInclude Include="World.h">
       <Filter>Headerdateien</Filter>
     </ClInclude>
+    <ClInclude Include="random.h">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

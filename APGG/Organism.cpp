@@ -2,10 +2,6 @@
 
 Organism::Organism()
 {
-	for (auto & genome : m_genomes)
-	{
-		genome.setValue(static_cast <float> (rand()) / static_cast <float> (RAND_MAX));
-	}
 }
 
 bool Organism::operator>(const Organism & rhs) const

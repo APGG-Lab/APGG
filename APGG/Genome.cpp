@@ -2,7 +2,7 @@
 
 
 
-Genome::Genome()
+Genome::Genome() : m_value(getRandomFloat())
 {
 }
 
@@ -14,5 +14,10 @@ float Genome::getValue() const
 void Genome::setValue(const float value)
 {
 	m_value = value;
+}
+
+void Genome::shuffle()
+{
+	m_value = getRandomFloat();
 }
 

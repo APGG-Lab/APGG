@@ -1,4 +1,7 @@
 #pragma once
+
+#include "random.h"
+
 class Genome 
 {
 private:
@@ -8,5 +11,6 @@ public:
 	Genome(const float value) : m_value(value) {};
 	float getValue() const;
 	void setValue(const float value);
+	void shuffle();
 };
 
