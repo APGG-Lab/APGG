@@ -53,7 +53,7 @@ void World::Tick()
 	{
 		float cooperationValue = static_cast <float> (rand()) / static_cast <float> (RAND_MAX);
 
-		if (m_grid.getOrganism(i).m_genomes[0].m_value > 0.5)
+		if (m_grid.getOrganism(i).m_genomes[0].getValue() > 0.5)
 		{
 			m_cooperation++;
 			m_grid.getOrganism(i).m_cooperated = true;

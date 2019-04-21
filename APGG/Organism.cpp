@@ -4,7 +4,7 @@ Organism::Organism()
 {
 	for (auto & genome : m_genomes)
 	{
-		genome.m_value = static_cast <float> (rand()) / static_cast <float> (RAND_MAX);
+		genome.setValue(static_cast <float> (rand()) / static_cast <float> (RAND_MAX));
 	}
 }
 
