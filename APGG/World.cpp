@@ -16,7 +16,7 @@ void World::printStatus()
 
     std::cout << "Generation:" << m_generation
               << "\tNum Cooperators: " << m_cooperation
-              << "\tNum Defectors: " << (width * height - m_cooperation)
+              << "\tNum Defectors: " << (Config::getInstance().width * Config::getInstance().height - m_cooperation)
               << "\tPercentage: " << m_fitness
               << "\ttook: " << timeDelta.count() << " ms" << std::endl;
 
@@ -49,7 +49,7 @@ void World::Tick()
     m_cooperation = 0;
     m_fitness = 0.0f;
 
-	for (int i = 0; i < width * height; i++) 
+	for (int i = 0; i < Config::getInstance().width * Config::getInstance().height; i++)
 	{
 		float cooperationValue = static_cast <float> (rand()) / static_cast <float> (RAND_MAX);
 
@@ -64,10 +64,10 @@ void World::Tick()
 		}
 	}
 
-	m_fitness = static_cast<float>(m_cooperation) / (width*height);
+	m_fitness = static_cast<float>(m_cooperation) / (Config::getInstance().width* Config::getInstance().height);
 
 	// calculate adaption
-	for (int i = 0; i < width * height; i++)
+	for (int i = 0; i < Config::getInstance().width * Config::getInstance().height; i++)
 	{
 		if (m_grid.getOrganism(i).m_cooperated)
 		{
@@ -79,7 +79,7 @@ void World::Tick()
 
 		}
 	}
-	World::Archive(m_fitness, m_cooperation, (width * height - m_cooperation));
+	World::Archive(m_fitness, m_cooperation, (Config::getInstance().width * Config::getInstance().height - m_cooperation));
     printStatus();
 }
 
@@ -95,8 +95,8 @@ void World::Fini()
 void World::Evolve()
 {
 	m_grid.sortByFitness();
-	unsigned int eliminateCount = 20;
-	for (unsigned int i = width * height - 1; i > width*height - eliminateCount; i--) {
+	for (unsigned int i = Config::getInstance().width * Config::getInstance().height - 1;
+		i > Config::getInstance().width* Config::getInstance().height - Config::getInstance().eliminationCount; i--) {
 		m_grid.getOrganism(i).m_genomes[0].shuffle();
 	}
 	m_generation++;

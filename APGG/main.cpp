@@ -1,4 +1,7 @@
 #include <iostream>
+#include <string>
+#include <sstream>
+#include <fstream>
 
 #include "World.h"
 
@@ -15,7 +18,12 @@ template <size_t ColumnNumber> std::vector<std::array<std::string, ColumnNumber>
 	// Read the Data from the file 
 	// as String Vector 
 	std::vector<std::string> row;
-	std::string line, word, temp;
+	std::string line, word;
+
+	// Skip the first line, which details the content of the columns
+	{
+		std::getline(fin, line);
+	}
 
 	if (!fin.is_open())
 	{
@@ -34,7 +42,7 @@ template <size_t ColumnNumber> std::vector<std::array<std::string, ColumnNumber>
 		int i = 0;
 		// getline only continues if there is still something to parse
 		while (i < ColumnNumber && std::getline(ss, word, ';')) {
-			std::cout << word << std::endl;
+			//std::cout << word << std::endl;
 
 			// is this inefficent? should the getline write into the array index immediatley?
 			row[i] = word;
@@ -48,20 +56,38 @@ template <size_t ColumnNumber> std::vector<std::array<std::string, ColumnNumber>
 }
 
 int main() {	
-	World myCoolWorld;
-    myCoolWorld.Init();
+	auto configs = parseCSV<9>("configs.csv");
+	for (auto config : configs)
+	{
+		Config::getInstance().numGenerations = stoi(config[0]);
+		Config::getInstance().eliminationCount = stoi(config[1]);
+		Config::getInstance().groupSize = stoi(config[2]);
+		Config::getInstance().width = stoi(config[3]);
+		Config::getInstance().height = stoi(config[4]);
+		Config::getInstance().matchupType = stoi(config[5]);
+		Config::getInstance().showAllGenerations = stoi(config[6]);
+		Config::getInstance().logOutput = stoi(config[7]);
+		Config::getInstance().visualize = stoi(config[8]);
+		
 
-    while (myCoolWorld.m_generation < 10000)
-    {
+		World myCoolWorld;
+		myCoolWorld.Init();
 
-        myCoolWorld.Tick();
-        myCoolWorld.Evolve();
+		while (myCoolWorld.m_generation < stoi(config[0]))
+		{
+
+			myCoolWorld.Tick();
+			myCoolWorld.Evolve();
+		}
+
+		myCoolWorld.Fini();
+
+		getchar();
+		if (Config::getInstance().visualize)
+			system("python3 Visualize.py");
+		
 	}
-
-    myCoolWorld.Fini();
-
-    getchar();
-	system("python3 Visualize.py");
+	getchar();
 	return 0;
 }
 

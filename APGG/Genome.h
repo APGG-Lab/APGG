@@ -1,6 +1,7 @@
 #pragma once
 
 #include "random.h"
+#include "Config.h"
 
 class Genome 
 {

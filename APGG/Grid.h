@@ -4,8 +4,6 @@
 #include "Organism.h"
 #include <algorithm>
 
-constexpr unsigned int width = 32;
-constexpr unsigned int height = 32;
 
 class Grid
 {
@@ -16,7 +14,7 @@ public:
 	Organism & getOrganism(const int index);
 	void sortByFitness();
 private:
-	std::array<Organism, width*height> m_grid;
+	std::vector<Organism> m_grid;
 
 
 };
