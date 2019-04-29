@@ -26,6 +26,16 @@ Organism & Grid::getOrganism(const int index)
 	return m_grid[index];
 }
 
+std::vector<Organism> Grid::data()
+{
+    return m_grid;
+}
+
+void Grid::data(const std::vector<Organism>& data)
+{
+    m_grid = data;
+}
+
 void Grid::sortByFitness()
 {
 	std::sort(m_grid.begin(), m_grid.end(), [](const Organism &a, const Organism &b) {
