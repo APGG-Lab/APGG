@@ -34,7 +34,7 @@ World::World()
 
 void World::Init()
 {
-    std::cout << "[APGG] Init" << std::endl;
+    std::cout << "[APGG] Init ...";
 
     m_clock_start = m_clock_now = m_clock_last = HighResClock::now();
     m_exponent = 1;
@@ -42,6 +42,12 @@ void World::Init()
     m_fitness = 0.0f;
 
 	myfile.open("Score.csv");
+
+    m_clock_now = HighResClock::now();
+    fsec fs = m_clock_now - m_clock_last;
+    m_clock_last = m_clock_now;
+    ms timeDelta = std::chrono::duration_cast<ms>(fs);
+    std::cout << "took " << timeDelta.count() << " ms" << std::endl;
 }
 
 void World::Tick()
@@ -51,7 +57,7 @@ void World::Tick()
 
 	for (int i = 0; i < Config::getInstance().width * Config::getInstance().height; i++)
 	{
-		float cooperationValue = static_cast <float> (rand()) / static_cast <float> (RAND_MAX);
+		float cooperationValue = getRandomFloat();
 
 		if (m_grid.getOrganism(i).m_genomes[0].getValue() > 0.5)
 		{
