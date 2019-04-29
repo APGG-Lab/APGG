@@ -5,6 +5,8 @@
 
 constexpr unsigned int nrGenomes = 1;
 
+enum GenomeNames { GENOME_COOPERATION = 0, GENOME_PUNISH, GENOME_HISTORY1, GENOME_HISTORY2, GENOME_HISTORY3} ;
+
 class Organism
 {
 public:
@@ -17,6 +19,8 @@ public:
 
 	bool operator>(const Organism &rhs) const;
 	bool operator<(const Organism &rhs) const;
+
+    bool assignProfession(const float cooperationValue);
 
 };
 

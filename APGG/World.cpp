@@ -80,15 +80,11 @@ void World::Tick()
     for (int i = 0; i < groups.size(); i++) {
         localCooperation = 0;
         for (pOrganism organism : groups[i]) {
-            if(organism->m_genomes[0].getValue() > 0.5)
+            float cooperationValue = getRandomFloat();
+            if(organism->assignProfession(cooperationValue))
             {
                 localCooperation++;
                 m_cooperation++;
-                organism->m_cooperated = true;
-            }
-            else
-            {
-                organism->m_cooperated = false;
             }
         }
 
