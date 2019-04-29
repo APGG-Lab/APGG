@@ -3,6 +3,7 @@
 #include <chrono>
 
 #include "Grid.h"
+#include "MatchupGenerator.h"
 
 typedef std::chrono::high_resolution_clock HighResClock;
 typedef std::chrono::milliseconds ms;
@@ -22,6 +23,8 @@ private:
 
     unsigned int m_cooperation;
     float m_fitness;
+
+    MatchupGenerator m_matchupGenerator;
 public:
 	World();
 
@@ -32,7 +35,7 @@ public:
 	void Evolve();
 	void Archive(float fitness, int cooperation, int defectors);
 	std::ofstream myfile;
-	Grid m_grid;
+	std::shared_ptr<Grid> m_grid;
 	int m_generation = 0;
 };
 

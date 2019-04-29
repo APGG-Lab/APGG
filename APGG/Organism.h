@@ -1,6 +1,6 @@
 #pragma once
 #include <array>
-
+#include <memory>
 #include "Genome.h"
 
 constexpr unsigned int nrGenomes = 1;
@@ -19,4 +19,6 @@ public:
 	bool operator<(const Organism &rhs) const;
 
 };
+
+typedef std::shared_ptr<Organism> pOrganism;
 
