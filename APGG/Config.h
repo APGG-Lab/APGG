@@ -13,6 +13,7 @@ public:
 	unsigned int groupSize = 1;
 	unsigned int width = 32;
 	unsigned int height = 32;
+    unsigned int synergyFactor = 1;
 	unsigned int matchupType = 0;
 	bool showAllGenerations = 0;
 	bool archiveData = 1;

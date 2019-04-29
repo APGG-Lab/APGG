@@ -70,7 +70,7 @@ void World::Tick()
     m_cooperation = 0;
     m_fitness = 0.0f;
     int localCooperation = 0;
-    float localFitness = 0;
+    float localPayoff = 0;
     m_matchupGenerator.generateGroups();
 
     std::vector<Group> groups = m_matchupGenerator.getGroups();
@@ -87,17 +87,17 @@ void World::Tick()
             }
         }
 
-        localFitness = static_cast<float>(localCooperation) / (groups[i].size());
+        localPayoff = Config::getInstance().synergyFactor * static_cast<float>(localCooperation) / (groups[i].size());
 
         // calculate adaption
         for (pOrganism organism : groups[i]) {
             if (organism->m_cooperated)
             {
-                organism->m_fitness = m_fitness;
+                organism->setPayoff(localPayoff);
             }
             else
             {
-                organism->m_fitness = m_fitness + 1;
+                organism->setPayoff(localPayoff + 1);
             }
         }
     }

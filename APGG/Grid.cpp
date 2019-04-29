@@ -39,7 +39,7 @@ void Grid::data(const std::vector<pOrganism> data)
 void Grid::sortByFitness()
 {
 	std::sort(m_grid.begin(), m_grid.end(), [](const pOrganism &a, const pOrganism &b) {
-		return a->m_fitness > b->m_fitness;
+		return a->m_payoff > b->m_payoff;
 	});
 }
 

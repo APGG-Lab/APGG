@@ -15,13 +15,14 @@ public:
 	std::array<Genome, nrGenomes> m_genomes;
 
 	bool m_cooperated;
-	float m_fitness = 1;
+    //@todo startvalue?
+	float m_payoff = 1;
 
 	bool operator>(const Organism &rhs) const;
 	bool operator<(const Organism &rhs) const;
 
     bool assignProfession(const float cooperationValue);
-
+    void setPayoff(const float payoff);
 };
 
 typedef std::shared_ptr<Organism> pOrganism;
