@@ -43,16 +43,27 @@ void World::Init()
 
     m_grid = std::make_shared<Grid>();
 
-	myfile.open("Score.csv");
-
+    {
+        //Generate new filename
+        std::time_t t = std::chrono::system_clock::to_time_t(std::chrono::system_clock::now());
+        std::tm buf;
+        localtime_s(&buf, &t);
+        std::stringstream ssTp;
+        ssTp << std::put_time(&buf, "experiments/score_%Y_%m_%d_%H_%M_%S.csv");
+        myfile.open(ssTp.str());
+    }
+    
     m_matchupGenerator.setGroupSize(32);
     m_matchupGenerator.setGrid(m_grid);
 
-    m_clock_now = HighResClock::now();
-    fsec fs = m_clock_now - m_clock_last;
-    m_clock_last = m_clock_now;
-    ms timeDelta = std::chrono::duration_cast<ms>(fs);
-    std::cout << "took " << timeDelta.count() << " ms" << std::endl;
+    {
+        //Show timedelta for init
+        m_clock_now = HighResClock::now();
+        fsec fs = m_clock_now - m_clock_last;
+        m_clock_last = m_clock_now;
+        ms timeDelta = std::chrono::duration_cast<ms>(fs);
+        std::cout << "took " << timeDelta.count() << " ms" << std::endl;
+    }
 }
 
 void World::Tick()
