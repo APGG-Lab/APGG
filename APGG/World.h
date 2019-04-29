@@ -1,7 +1,9 @@
 #pragma once
 #include <iostream>
 #include <chrono>
-
+#include <ctime>
+#include <iomanip>
+#include <sstream>
 #include "Grid.h"
 
 typedef std::chrono::high_resolution_clock HighResClock;
