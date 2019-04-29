@@ -15,7 +15,7 @@ public:
 	unsigned int height = 32;
 	unsigned int matchupType = 0;
 	bool showAllGenerations = 0;
-	bool logOutput = 1;
+	bool archiveData = 1;
 	bool visualize = 1;
 
 private:

@@ -4,8 +4,7 @@
 
 void World::printStatus()
 {
-
-    if (m_generation % m_exponent != 0) {
+    if (m_generation % m_exponent != 0 && !Config::getInstance().showAllGenerations) {
         return;
     }
 
@@ -53,7 +52,7 @@ void World::Init()
         myfile.open(ssTp.str());
     }
     
-    m_matchupGenerator.setGroupSize(32);
+    m_matchupGenerator.setGroupSize(Config::getInstance().groupSize);
     m_matchupGenerator.setGrid(m_grid);
 
     {
@@ -104,7 +103,9 @@ void World::Tick()
     }
 
     m_fitness = static_cast<float>(m_cooperation) / (Config::getInstance().width * Config::getInstance().height);
-	World::Archive(m_fitness, m_cooperation, (Config::getInstance().width * Config::getInstance().height - m_cooperation));
+    if (Config::getInstance().archiveData) {
+        World::Archive(m_fitness, m_cooperation, (Config::getInstance().width * Config::getInstance().height - m_cooperation));
+    }
     printStatus();
 }
 

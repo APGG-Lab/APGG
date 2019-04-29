@@ -66,7 +66,7 @@ int main() {
 		Config::getInstance().height = stoi(config[4]);
 		Config::getInstance().matchupType = stoi(config[5]);
 		Config::getInstance().showAllGenerations = stoi(config[6]);
-		Config::getInstance().logOutput = stoi(config[7]);
+		Config::getInstance().archiveData = stoi(config[7]);
 		Config::getInstance().visualize = stoi(config[8]);
 		
 
