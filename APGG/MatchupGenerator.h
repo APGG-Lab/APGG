@@ -4,8 +4,8 @@
 
 #include "Grid.h"
 #include "Organism.h"
-
-typedef std::vector<pOrganism> Group;
+#include "Group.h"
+//typedef std::vector<pOrganism> Group;
 
 class MatchupGenerator
 {

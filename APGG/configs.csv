@@ -1,3 +1,2 @@
-numGenerations;eliminationCount;groupSize;width;height;matchupType;showAllGenerations;archiveData;visualize
-10000;20;32;32;32;0;0;0;1
-2000;200;32;32;32;0;1;0;1
+numGenerations;eliminationCount;groupSize;width;height;synergyFactor;punishmentCost;punishmentFine;matchupType;showAllGenerations;archiveData;visualize
+1000000;100;100;100;100;44;10;10;0;1;0;1

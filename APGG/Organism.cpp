@@ -20,6 +20,12 @@ bool Organism::assignProfession(const float cooperationValue)
     return m_cooperated;
 }
 
+bool Organism::assignMorals(const float moralValue)
+{
+    m_moralist = m_genomes[GENOME_MORALS].getValue() >= moralValue;
+    return m_moralist;
+}
+
 void Organism::setPayoff(const float payoff)
 {
     m_payoff = payoff;

@@ -36,6 +36,9 @@
     <ClCompile Include="MatchupGenerator.cpp">
       <Filter>Quelldateien</Filter>
     </ClCompile>
+    <ClCompile Include="Group.cpp">
+      <Filter>Quelldateien</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Genome.h">
@@ -57,6 +60,9 @@
       <Filter>Headerdateien</Filter>
     </ClInclude>
     <ClInclude Include="MatchupGenerator.h">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
+    <ClInclude Include="Group.h">
       <Filter>Headerdateien</Filter>
     </ClInclude>
   </ItemGroup>

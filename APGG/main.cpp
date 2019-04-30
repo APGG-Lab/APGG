@@ -56,7 +56,7 @@ template <size_t ColumnNumber> std::vector<std::array<std::string, ColumnNumber>
 }
 
 int main() {	
-	auto configs = parseCSV<9>("configs.csv");
+	auto configs = parseCSV<11>("configs.csv");
 	for (auto config : configs)
 	{
 		Config::getInstance().numGenerations = stoi(config[0]);
@@ -64,10 +64,13 @@ int main() {
 		Config::getInstance().groupSize = stoi(config[2]);
 		Config::getInstance().width = stoi(config[3]);
 		Config::getInstance().height = stoi(config[4]);
-		Config::getInstance().matchupType = stoi(config[5]);
-		Config::getInstance().showAllGenerations = stoi(config[6]);
-		Config::getInstance().archiveData = stoi(config[7]);
-		Config::getInstance().visualize = stoi(config[8]);
+		Config::getInstance().synergyFactor = stoi(config[4]);
+		Config::getInstance().punishmentCost = stoi(config[5]);
+		Config::getInstance().punishmentFine = stoi(config[6]);
+		Config::getInstance().matchupType = stoi(config[7]);
+		Config::getInstance().showAllGenerations = stoi(config[8]);
+		Config::getInstance().archiveData = stoi(config[9]);
+		Config::getInstance().visualize = stoi(config[10]);
 		
 
 		World myCoolWorld;

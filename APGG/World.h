@@ -23,7 +23,10 @@ private:
     void printStatus();
     int m_exponent; ///Exponential logging (0-10,10,20,30,100,200,300,1000,2000,3000,....)
 
-    unsigned int m_cooperation;
+    unsigned int m_countCM;
+    unsigned int m_countCIM;
+    unsigned int m_countDM;
+    unsigned int m_countDIM;
     float m_fitness;
 
     MatchupGenerator m_matchupGenerator;
