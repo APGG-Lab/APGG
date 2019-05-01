@@ -61,3 +61,8 @@ unsigned int Group::getNumImmoralists()
     }
     return counter;
 }
+
+unsigned int Group::size()
+{
+    return m_group.size();
+}

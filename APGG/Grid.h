@@ -15,6 +15,7 @@ public:
     std::vector<pOrganism> data();
     void data(const std::vector<pOrganism> data);
 	void sortByFitness();
+    unsigned int size();
 private:
 	std::vector<pOrganism> m_grid;
 };

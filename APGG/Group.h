@@ -14,6 +14,7 @@ public:
     unsigned int getNumDefectors();
     unsigned int getNumMoralists();
     unsigned int getNumImmoralists();
+    unsigned int size();
     ~Group();
 };
 

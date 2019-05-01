@@ -43,3 +43,8 @@ void Grid::sortByFitness()
 	});
 }
 
+unsigned int Grid::size()
+{
+    return m_grid.size();
+}
+
