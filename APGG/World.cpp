@@ -77,46 +77,44 @@ void World::Tick()
     m_matchupGenerator.generateGroups();
 
     std::vector<Group> groups = m_matchupGenerator.getGroups();
+    std::array<unsigned int, 4> factionCount;
 
     //@todo for(group:groups) could be better. 
     for (int i = 0; i < groups.size(); i++) {
         localCooperation = 0;
+        std::fill(std::begin(factionCount), std::end(factionCount), 0);
+
         for (pOrganism organism : *groups[i].data()) {
             Faction faction = organism->assignFaction();
             m_count[faction]++;
+            factionCount[faction]++;
         }
 
-        int numDefectors = groups[i].getNumDefectors();
-        float punishmentCost = numDefectors * Config::getInstance().punishmentCost;
+
+        //Precalculate costs, fines and payoffs
+        float punishmentCost = (factionCount[FACTION_DEFECTOR] + factionCount[FACTION_MORALIST])
+                                    * Config::getInstance().punishmentCost;
+
+        float punishmentFine = (factionCount[FACTION_MORALIST] + factionCount[FACTION_IMMORALIST])
+            * Config::getInstance().punishmentFine;
+
+        localPayoff = Config::getInstance().synergyFactor *
+            static_cast<float>(factionCount[FACTION_COOPERATOR] + factionCount[FACTION_MORALIST]) / (groups[i].data()->size());
+
+        //Apply costs, fines and payoffs to organisms
         for (pOrganism organism : *groups[i].data()) {
-            if (!organism->m_moralist) continue;
-            organism->m_payoff -= punishmentCost;
-        }
+            organism->m_payoff += localPayoff;
 
-        int numMoralists = groups[i].getNumMoralists();
-        float punishmentFine = numMoralists * Config::getInstance().punishmentFine;
-        for (pOrganism organism : *groups[i].data()) {
-            if (!organism->m_cooperated) continue;
-            organism->m_payoff -= punishmentFine;
-        }
+            if (organism->m_moralist) { //Subtract punishment costs from moralists/immoralists
+                organism->m_payoff -= punishmentCost;
+            };
 
-        localPayoff = Config::getInstance().synergyFactor * 
-            static_cast<float>(groups[i].getNumCooperators()) / (groups[i].data()->size());
-
-        // calculate adaption
-        for (pOrganism& organism : *groups[i].data()) {
-            if (organism->m_cooperated)
-            {
-                organism->m_payoff += localPayoff - 1;
-             //   organism->setPayoff(localPayoff);
+            if (!organism->m_cooperated) {//Substract punishment fine from defectors/immoralists
+                organism->m_payoff -= punishmentFine;
             }
-            else
-            {
-                organism->m_payoff += localPayoff;
-              //  organism->setPayoff(localPayoff + 1);
+            else {
+                organism->m_payoff -= 1; //Substract 1 from cooperators / moralists
             }
-        //    std::cout << organism->m_payoff << std::endl;
-
         }
     }
 
