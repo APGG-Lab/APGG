@@ -44,7 +44,12 @@ void World::Init()
 
     m_grid = std::make_shared<Grid>();
 
-    
+    if (m_grid->size() % Config::getInstance().groupSize != 0) {
+        std::cerr << std::endl << "[APGG Error] invalid group size. Gridsize (height*width) % Groupsize must be 0";
+        std::cin.get();
+        std::quick_exit(1);
+    }
+
     m_matchupGenerator.setGroupSize(Config::getInstance().groupSize);
     m_matchupGenerator.setGrid(m_grid);
 

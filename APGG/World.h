@@ -3,6 +3,7 @@
 #include <chrono>
 #include <ctime>
 #include <sstream>
+#include <cstdlib>
 #include "Grid.h"
 #include "MatchupGenerator.h"
 #include "Archiver.h"
