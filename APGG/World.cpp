@@ -53,9 +53,6 @@ void World::Init()
     m_matchupGenerator.setGroupSize(Config::getInstance().groupSize);
     m_matchupGenerator.setGrid(m_grid);
 
-    auto logSuffix = Config::getInstance().logSuffix;
-    auto folderName = Config::getInstance().folderName;
-
     m_archiver.setFolderName(Config::getInstance().folderName);
     m_archiver.applyTimestampToFolder(false);
     m_archiver.setFileStuffix(Config::getInstance().logSuffix);
