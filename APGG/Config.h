@@ -1,4 +1,5 @@
 #pragma once
+#include <string>
 
 class Config
 {
@@ -20,7 +21,8 @@ public:
 	bool showAllGenerations = 0;
 	bool archiveData = 1;
 	bool visualize = 1;
-
+    std::string folderName = "";
+    std::string logSuffix = "";
 private:
 	Config();
 };

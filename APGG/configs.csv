@@ -1,2 +1,5 @@
-numGenerations;eliminationCount;groupSize;width;height;synergyFactor;punishmentCost;punishmentFine;matchupType;showAllGenerations;archiveData;visualize
-1000000;100;100;100;100;44;10;10;0;1;0;1
+numGenerations;eliminationCount;groupSize;width;height;synergyFactor;punishmentCost;punishmentFine;matchupType;showAllGenerations;archiveData;visualize;folderName;logSuffix
+10000;100;32;32;32;1;2;10;0;0;1;1;experiment1;test1
+10000;100;32;32;32;1;2;10;0;0;1;1;experiment1;test2
+10000;100;32;32;32;1;2;10;0;0;1;1;experiment2;test1
+10000;100;32;32;32;1;2;10;0;0;1;1;experiment2;test2

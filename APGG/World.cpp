@@ -15,10 +15,10 @@ void World::printStatus()
     float size = static_cast<float>(Config::getInstance().width) * Config::getInstance().height;
 
     std::cout << "Generation:" << m_generation
-              << "\tC(%): " << m_countCIM << "(" << m_countCIM/size*100 << ")"
-              << "\tD(%): " << m_countDIM << "(" << m_countDIM /size * 100 << ")"
-              << "\tM(%): " << m_countCM << "(" << m_countCM/size * 100 << ")"
-              << "\tIM(%): " << m_countDM << "(" << m_countDM /size * 100 << ")"
+              << "\tC(%): " << m_countC << "(" << m_countC/size*100 << ")"
+              << "\tD(%): " << m_countD << "(" << m_countD /size * 100 << ")"
+              << "\tM(%): " << m_countM << "(" << m_countM/size * 100 << ")"
+              << "\tI(%): " << m_countI << "(" << m_countI /size * 100 << ")"
               << "\ttook: " << timeDelta.count() << " ms" << std::endl;
 
     if (m_generation >= m_exponent * 10) {
@@ -39,23 +39,23 @@ void World::Init()
 
     m_clock_start = m_clock_now = m_clock_last = HighResClock::now();
     m_exponent = 1;
-    m_countCM = m_countCIM = m_countDM = m_countDIM = 0;
+    m_countM = m_countC = m_countI = m_countD = 0;
     m_fitness = 0.0f;
 
     m_grid = std::make_shared<Grid>();
 
-    {
-        //Generate new filename
-        std::time_t t = std::chrono::system_clock::to_time_t(std::chrono::system_clock::now());
-        std::tm buf;
-        localtime_s(&buf, &t);
-        std::stringstream ssTp;
-        ssTp << std::put_time(&buf, "experiments/score_%Y_%m_%d_%H_%M_%S.csv");
-        myfile.open(ssTp.str());
-    }
     
     m_matchupGenerator.setGroupSize(Config::getInstance().groupSize);
     m_matchupGenerator.setGrid(m_grid);
+
+    auto logSuffix = Config::getInstance().logSuffix;
+    auto folderName = Config::getInstance().folderName;
+
+    m_archiver.setFolderName(Config::getInstance().folderName);
+    m_archiver.applyTimestampToFolder(false);
+    m_archiver.setFileStuffix(Config::getInstance().logSuffix);
+    m_archiver.applyTimestampToFile(true);
+    m_archiver.open();
 
     {
         //Show timedelta for init
@@ -69,7 +69,7 @@ void World::Init()
 
 void World::Tick()
 {
-    m_countCM = m_countCIM = m_countDM = m_countDIM = 0;
+    m_countM = m_countC = m_countI = m_countD = 0;
     int localCooperation = 0;
     float localPayoff = 0;
     m_matchupGenerator.generateGroups();
@@ -84,10 +84,10 @@ void World::Tick()
             float moralValue = getRandomFloat();
             bool coop = organism->assignProfession(cooperationValue);
             bool moral = organism->assignMorals(moralValue);
-            if (coop && moral) m_countCM++;
-            else if (coop && !moral) m_countCIM++;
-            else if (!coop && moral) m_countDM++;
-            else m_countDIM++;
+            if (coop && moral) m_countM++;
+            else if (coop && !moral) m_countC++;
+            else if (!coop && moral) m_countI++;
+            else m_countD++;
         }
 
         int numDefectors = groups[i].getNumDefectors();
@@ -126,7 +126,7 @@ void World::Tick()
 
    // m_fitness = static_cast<float>(m_cooperation) / (Config::getInstance().width * Config::getInstance().height);
     if (Config::getInstance().archiveData) {
-      //  World::Archive(m_fitness, m_cooperation, (Config::getInstance().width * Config::getInstance().height - m_cooperation));
+        m_archiver.archive(m_generation, m_countC, m_countD, m_countM, m_countI);
     }
     printStatus();
 }
@@ -137,7 +137,7 @@ void World::Fini()
     ms timeDelta = std::chrono::duration_cast<ms>(fs);
     std::cout << "[APGG] Fini (took " << timeDelta.count() << " ms)" << std::endl;
 
-	myfile.close();
+    m_archiver.close();
 }
 
 void World::Evolve()

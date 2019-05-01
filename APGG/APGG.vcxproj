@@ -127,6 +127,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Archiver.cpp" />
     <ClCompile Include="Config.cpp" />
     <ClCompile Include="Genome.cpp" />
     <ClCompile Include="Grid.cpp" />
@@ -134,9 +135,11 @@
     <ClCompile Include="main.cpp" />
     <ClCompile Include="MatchupGenerator.cpp" />
     <ClCompile Include="Organism.cpp" />
+    <ClCompile Include="SimpleArchiver.cpp" />
     <ClCompile Include="World.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Archiver.h" />
     <ClInclude Include="Config.h" />
     <ClInclude Include="Genome.h" />
     <ClInclude Include="Grid.h" />
@@ -144,6 +147,7 @@
     <ClInclude Include="MatchupGenerator.h" />
     <ClInclude Include="Organism.h" />
     <ClInclude Include="random.h" />
+    <ClInclude Include="SimpleArchiver.h" />
     <ClInclude Include="World.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

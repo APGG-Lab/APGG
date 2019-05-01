@@ -2,10 +2,11 @@
 #include <iostream>
 #include <chrono>
 #include <ctime>
-#include <iomanip>
 #include <sstream>
 #include "Grid.h"
 #include "MatchupGenerator.h"
+#include "Archiver.h"
+#include "SimpleArchiver.h"
 
 typedef std::chrono::high_resolution_clock HighResClock;
 typedef std::chrono::milliseconds ms;
@@ -23,13 +24,14 @@ private:
     void printStatus();
     int m_exponent; ///Exponential logging (0-10,10,20,30,100,200,300,1000,2000,3000,....)
 
-    unsigned int m_countCM;
-    unsigned int m_countCIM;
-    unsigned int m_countDM;
-    unsigned int m_countDIM;
+    unsigned int m_countM;
+    unsigned int m_countC;
+    unsigned int m_countI;
+    unsigned int m_countD;
     float m_fitness;
 
     MatchupGenerator m_matchupGenerator;
+    SimpleArchiver m_archiver;
 public:
 	World();
 
