@@ -15,10 +15,10 @@ void World::printStatus()
     float size = static_cast<float>(Config::getInstance().width) * Config::getInstance().height;
 
     std::cout << "Generation:" << m_generation
-              << "\tC(%): " << m_countC << "(" << m_countC/size*100 << ")"
-              << "\tD(%): " << m_countD << "(" << m_countD /size * 100 << ")"
-              << "\tM(%): " << m_countM << "(" << m_countM/size * 100 << ")"
-              << "\tI(%): " << m_countI << "(" << m_countI /size * 100 << ")"
+              << "\tC(%): " << m_count[FACTION_COOPERATOR] << "(" << m_count[FACTION_COOPERATOR] /size*100 << ")"
+              << "\tD(%): " << m_count[FACTION_DEFECTOR] << "(" << m_count[FACTION_DEFECTOR] /size * 100 << ")"
+              << "\tM(%): " << m_count[FACTION_MORALIST] << "(" << m_count[FACTION_MORALIST] /size * 100 << ")"
+              << "\tI(%): " << m_count[FACTION_IMMORALIST] << "(" << m_count[FACTION_IMMORALIST] /size * 100 << ")"
               << "\ttook: " << timeDelta.count() << " ms" << std::endl;
 
     if (m_generation >= m_exponent * 10) {
@@ -39,7 +39,7 @@ void World::Init()
 
     m_clock_start = m_clock_now = m_clock_last = HighResClock::now();
     m_exponent = 1;
-    m_countM = m_countC = m_countI = m_countD = 0;
+    std::fill(std::begin(m_count), std::end(m_count), 0);
     m_fitness = 0.0f;
 
     m_grid = std::make_shared<Grid>();
@@ -74,7 +74,7 @@ void World::Init()
 
 void World::Tick()
 {
-    m_countM = m_countC = m_countI = m_countD = 0;
+    std::fill(std::begin(m_count), std::end(m_count), 0);
     int localCooperation = 0;
     float localPayoff = 0;
     m_matchupGenerator.generateGroups();
@@ -85,14 +85,8 @@ void World::Tick()
     for (int i = 0; i < groups.size(); i++) {
         localCooperation = 0;
         for (pOrganism organism : *groups[i].data()) {
-            float cooperationValue = getRandomFloat();
-            float moralValue = getRandomFloat();
-            bool coop = organism->assignProfession(cooperationValue);
-            bool moral = organism->assignMorals(moralValue);
-            if (coop && moral) m_countM++;
-            else if (coop && !moral) m_countC++;
-            else if (!coop && moral) m_countI++;
-            else m_countD++;
+            Faction faction = organism->assignFaction();
+            m_count[faction]++;
         }
 
         int numDefectors = groups[i].getNumDefectors();
@@ -131,7 +125,7 @@ void World::Tick()
 
    // m_fitness = static_cast<float>(m_cooperation) / (Config::getInstance().width * Config::getInstance().height);
     if (Config::getInstance().archiveData) {
-        m_archiver.archive(m_generation, m_countC, m_countD, m_countM, m_countI);
+        m_archiver.archive(m_generation, m_count[FACTION_COOPERATOR], m_count[FACTION_DEFECTOR], m_count[FACTION_MORALIST], m_count[FACTION_IMMORALIST]);
     }
     printStatus();
 }

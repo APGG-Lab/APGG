@@ -29,6 +29,7 @@ private:
     unsigned int m_countC;
     unsigned int m_countI;
     unsigned int m_countD;
+    std::array<unsigned int, 4> m_count;
     float m_fitness;
 
     MatchupGenerator m_matchupGenerator;
