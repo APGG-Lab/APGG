@@ -84,7 +84,7 @@ void World::Tick()
         localCooperation = 0;
         std::fill(std::begin(factionCount), std::end(factionCount), 0);
 
-        for (pOrganism organism : *groups[i].data()) {
+        for (pOrganism& organism : groups[i].data()) {
             Faction faction = organism->assignFaction();
             m_count[faction]++;
             factionCount[faction]++;
@@ -99,10 +99,10 @@ void World::Tick()
             * static_cast<float>(Config::getInstance().punishmentFine);
 
         localPayoff = Config::getInstance().synergyFactor *
-            static_cast<float>(factionCount[FACTION_COOPERATOR] + factionCount[FACTION_MORALIST]) / (groups[i].data()->size());
+            static_cast<float>(factionCount[FACTION_COOPERATOR] + factionCount[FACTION_MORALIST]) / (groups[i].size());
 
         //Apply costs, fines and payoffs to organisms
-        for (pOrganism organism : *groups[i].data()) {
+        for (pOrganism& organism : groups[i].data()) {
             organism->m_payoff += localPayoff;
 
             if (organism->m_moralist) { //Subtract punishment costs from moralists/immoralists
@@ -141,7 +141,7 @@ void World::Evolve()
 		i > Config::getInstance().width* Config::getInstance().height - Config::getInstance().eliminationCount; i--) {
 		m_grid->getOrganism(i)->m_genomes[0].shuffle();
         m_grid->getOrganism(i)->m_genomes[1].shuffle();
-        m_grid->getOrganism(i)->m_payoff = 100.0f;
+        m_grid->getOrganism(i)->m_payoff = 1.0f;
 	}
 	m_generation++;
 }

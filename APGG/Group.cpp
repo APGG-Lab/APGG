@@ -16,9 +16,9 @@ void Group::add(const pOrganism& organism)
     m_group.push_back(organism);
 }
 
-std::vector<pOrganism>* Group::data()
+std::vector<pOrganism> Group::data()
 {
-    return &m_group;
+    return m_group;
 }
 
 void Group::data(const std::vector<pOrganism> data)
