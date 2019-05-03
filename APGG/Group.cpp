@@ -26,6 +26,10 @@ void Group::data(const std::vector<pOrganism> data)
     m_group = data;
 }
 
+void Group::predacheNumbers()
+{
+}
+
 unsigned int Group::getNumCooperators()
 {
     unsigned int counter = 0;
@@ -64,5 +68,5 @@ unsigned int Group::getNumImmoralists()
 
 unsigned int Group::size()
 {
-    return m_group.size();
+    return static_cast<unsigned int>(m_group.size());
 }

@@ -5,7 +5,7 @@
 Grid::Grid()
 {
 	m_grid.reserve(Config::getInstance().width * Config::getInstance().height);
-	for (int i = 0; i < Config::getInstance().width * Config::getInstance().height; i++)
+	for (unsigned int i = 0; i < Config::getInstance().width * Config::getInstance().height; i++)
 	{
 		m_grid.emplace_back(std::make_shared<Organism>());
 	}
@@ -22,7 +22,7 @@ pOrganism Grid::getOrganism(const unsigned int x, const unsigned int y)
 
 pOrganism Grid::getOrganism(const int index)
 {
-	assert(index < Config::getInstance().width* Config::getInstance().height&&"Index out of bounds!");
+//	assert(index < Config::getInstance().width* Config::getInstance().height&&"Index out of bounds!");
 	return m_grid[index];
 }
 
@@ -45,6 +45,6 @@ void Grid::sortByFitness()
 
 unsigned int Grid::size()
 {
-    return m_grid.size();
+    return static_cast<unsigned int>(m_grid.size());
 }
 

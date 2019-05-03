@@ -93,10 +93,10 @@ void World::Tick()
 
         //Precalculate costs, fines and payoffs
         float punishmentCost = (factionCount[FACTION_DEFECTOR] + factionCount[FACTION_MORALIST])
-                                    * Config::getInstance().punishmentCost;
+                                    * static_cast<float>(Config::getInstance().punishmentCost);
 
         float punishmentFine = (factionCount[FACTION_MORALIST] + factionCount[FACTION_IMMORALIST])
-            * Config::getInstance().punishmentFine;
+            * static_cast<float>(Config::getInstance().punishmentFine);
 
         localPayoff = Config::getInstance().synergyFactor *
             static_cast<float>(factionCount[FACTION_COOPERATOR] + factionCount[FACTION_MORALIST]) / (groups[i].data()->size());
