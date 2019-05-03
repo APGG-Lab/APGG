@@ -1,18 +1,5 @@
 #include "Organism.h"
 
-Organism::Organism()
-{
-}
-
-bool Organism::operator>(const Organism & rhs) const
-{
-	return m_payoff > rhs.m_payoff;
-}
-
-bool Organism::operator<(const Organism & rhs) const
-{
-	return m_payoff < rhs.m_payoff;
-}
 
 bool Organism::assignProfession(const float cooperationValue)
 {

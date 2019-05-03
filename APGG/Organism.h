@@ -11,18 +11,13 @@ enum Faction { FACTION_COOPERATOR = 0, FACTION_DEFECTOR, FACTION_MORALIST, FACTI
 class Organism
 {
 public:
-	Organism();
-
 	std::array<Genome, nrGenomes> m_genomes;
 
 	bool m_cooperated;
     bool m_moralist;
     Faction m_faction;
     //@todo startvalue?
-	float m_payoff = 100;
-
-	bool operator>(const Organism &rhs) const;
-	bool operator<(const Organism &rhs) const;
+	float m_payoff = 1;
 
     bool assignProfession(const float cooperationValue);
     bool assignMorals(const float moralValue);

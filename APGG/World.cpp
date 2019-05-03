@@ -117,7 +117,6 @@ void World::Tick()
         }
     }
 
-   // m_fitness = static_cast<float>(m_cooperation) / (Config::getInstance().width * Config::getInstance().height);
     if (Config::getInstance().archiveData) {
         m_archiver.archive(m_generation, m_count[FACTION_COOPERATOR], m_count[FACTION_DEFECTOR], m_count[FACTION_MORALIST], m_count[FACTION_IMMORALIST]);
     }
