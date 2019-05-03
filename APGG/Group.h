@@ -9,7 +9,7 @@ private:
 public:
     Group(const unsigned int size);
     void add(const pOrganism& organism);
-    std::vector<pOrganism> data();
+    std::vector<pOrganism> data() const;
     void data(const std::vector<pOrganism> data);
     unsigned int size();
     ~Group();
