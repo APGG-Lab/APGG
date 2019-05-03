@@ -137,8 +137,8 @@ void World::Fini()
 void World::Evolve()
 {
 	m_grid->sortByFitness();
-	for (unsigned int i = Config::getInstance().width * Config::getInstance().height - 1;
-		i > Config::getInstance().width* Config::getInstance().height - Config::getInstance().eliminationCount; i--) {
+	for (unsigned int i = m_grid->size() - 1; i > m_grid->size() - 1 - Config::getInstance().eliminationCount; i--) {
+        //Reset organism
 		m_grid->getOrganism(i)->m_genomes[0].shuffle();
         m_grid->getOrganism(i)->m_genomes[1].shuffle();
         m_grid->getOrganism(i)->m_payoff = 1.0f;
