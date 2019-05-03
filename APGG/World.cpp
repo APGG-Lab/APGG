@@ -40,7 +40,6 @@ void World::Init()
     m_clock_start = m_clock_now = m_clock_last = HighResClock::now();
     m_exponent = 1;
     std::fill(std::begin(m_count), std::end(m_count), 0);
-    m_fitness = 0.0f;
 
     m_grid = std::make_shared<Grid>();
 
@@ -144,9 +143,4 @@ void World::Evolve()
         m_grid->getOrganism(i)->m_payoff = 1.0f;
 	}
 	m_generation++;
-}
-
-void World::Archive(float fitness, int cooperation, int defectors)
-{
-	myfile << m_generation << ";" << fitness << ";" << cooperation << ";" << defectors << std::endl;
 }

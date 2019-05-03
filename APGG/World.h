@@ -25,12 +25,7 @@ private:
     void printStatus();
     int m_exponent; ///Exponential logging (0-10,10,20,30,100,200,300,1000,2000,3000,....)
 
-    unsigned int m_countM;
-    unsigned int m_countC;
-    unsigned int m_countI;
-    unsigned int m_countD;
     std::array<unsigned int, 4> m_count;
-    float m_fitness;
 
     MatchupGenerator m_matchupGenerator;
     SimpleArchiver m_archiver;
@@ -42,8 +37,6 @@ public:
     void Fini();
 
 	void Evolve();
-	void Archive(float fitness, int cooperation, int defectors);
-	std::ofstream myfile;
 	std::shared_ptr<Grid> m_grid;
 	int m_generation = 0;
 };
