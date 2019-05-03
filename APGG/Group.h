@@ -11,11 +11,6 @@ public:
     void add(const pOrganism& organism);
     std::vector<pOrganism> data();
     void data(const std::vector<pOrganism> data);
-    void predacheNumbers();
-    unsigned int getNumCooperators();
-    unsigned int getNumDefectors();
-    unsigned int getNumMoralists();
-    unsigned int getNumImmoralists();
     unsigned int size();
     ~Group();
 };
