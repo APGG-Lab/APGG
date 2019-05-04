@@ -63,6 +63,10 @@ void World::Init()
     m_payoffCalculator.setPunishmentBaseCost(static_cast<float>(Config::getInstance().punishmentCost));
     m_payoffCalculator.setPunishmentBaseFine(static_cast<float>(Config::getInstance().punishmentFine));
 
+    m_optimizer.setGrid(m_grid);
+    m_optimizer.setSelector(std::make_shared<EliteSelector>(Config::getInstance().eliminationCount));
+    m_optimizer.setRepopulator(std::make_shared<RandomRepopulator>());
+
     {
         //Show timedelta for init
         m_clock_now = HighResClock::now();
@@ -116,12 +120,7 @@ void World::Fini()
 
 void World::Evolve()
 {
-	m_grid->sortByFitness();
-	for (unsigned int i = m_grid->size() - 1; i > m_grid->size() - 1 - Config::getInstance().eliminationCount; i--) {
-        //Reset organism
-		m_grid->getOrganism(i)->m_genomes[0].shuffle();
-        m_grid->getOrganism(i)->m_genomes[1].shuffle();
-        m_grid->getOrganism(i)->m_payoff = 1.0f;
-	}
+    m_optimizer.optmize();
+	
 	m_generation++;
 }
