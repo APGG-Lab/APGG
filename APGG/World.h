@@ -8,6 +8,7 @@
 #include "MatchupGenerator.h"
 #include "Archiver.h"
 #include "SimpleArchiver.h"
+#include "PayOffCalculator.h"
 
 typedef std::chrono::high_resolution_clock HighResClock;
 typedef std::chrono::milliseconds ms;
@@ -28,6 +29,7 @@ private:
     std::array<unsigned int, 4> m_count;
 
     MatchupGenerator m_matchupGenerator;
+    PayOffCalculator m_payoffCalculator;
     SimpleArchiver m_archiver;
 public:
 	World();

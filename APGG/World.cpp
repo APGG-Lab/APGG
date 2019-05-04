@@ -58,6 +58,11 @@ void World::Init()
     m_archiver.applyTimestampToFile(true);
     m_archiver.open();
 
+    m_payoffCalculator.setCooperationCost(1.0f);
+    m_payoffCalculator.setSynergyFactor(static_cast<float>(Config::getInstance().synergyFactor));
+    m_payoffCalculator.setPunishmentBaseCost(static_cast<float>(Config::getInstance().punishmentCost));
+    m_payoffCalculator.setPunishmentBaseFine(static_cast<float>(Config::getInstance().punishmentFine));
+
     {
         //Show timedelta for init
         m_clock_now = HighResClock::now();
@@ -89,32 +94,9 @@ void World::Tick()
             factionCount[faction]++;
         }
 
-
-        //Precalculate costs, fines and payoffs
-        float punishmentCost = (factionCount[FACTION_DEFECTOR] + factionCount[FACTION_MORALIST])
-                                    * static_cast<float>(Config::getInstance().punishmentCost);
-
-        float punishmentFine = (factionCount[FACTION_MORALIST] + factionCount[FACTION_IMMORALIST])
-            * static_cast<float>(Config::getInstance().punishmentFine);
-
-        localPayoff = Config::getInstance().synergyFactor *
-            static_cast<float>(factionCount[FACTION_COOPERATOR] + factionCount[FACTION_MORALIST]) / (groups[i].size());
-
-        //Apply costs, fines and payoffs to organisms
-        for (pOrganism& organism : groups[i].data()) {
-            organism->m_payoff += localPayoff;
-
-            if (organism->m_moralist) { //Subtract punishment costs from moralists/immoralists
-                organism->m_payoff -= punishmentCost;
-            };
-
-            if (!organism->m_cooperated) {//Substract punishment fine from defectors/immoralists
-                organism->m_payoff -= punishmentFine;
-            }
-            else {
-                organism->m_payoff -= 1; //Substract 1 from cooperators / moralists
-            }
-        }
+        m_payoffCalculator.setCounters(factionCount);
+        m_payoffCalculator.calculateCosts(groups[i].size());
+        m_payoffCalculator.applyPayoff(groups[i]);
     }
 
     if (Config::getInstance().archiveData) {

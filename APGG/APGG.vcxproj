@@ -135,6 +135,7 @@
     <ClCompile Include="main.cpp" />
     <ClCompile Include="MatchupGenerator.cpp" />
     <ClCompile Include="Organism.cpp" />
+    <ClCompile Include="PayOffCalculator.cpp" />
     <ClCompile Include="SimpleArchiver.cpp" />
     <ClCompile Include="World.cpp" />
   </ItemGroup>
@@ -146,6 +147,7 @@
     <ClInclude Include="Group.h" />
     <ClInclude Include="MatchupGenerator.h" />
     <ClInclude Include="Organism.h" />
+    <ClInclude Include="PayOffCalculator.h" />
     <ClInclude Include="random.h" />
     <ClInclude Include="SimpleArchiver.h" />
     <ClInclude Include="World.h" />
