@@ -9,7 +9,7 @@
 #include "Archiver.h"
 #include "SimpleArchiver.h"
 #include "PayOffCalculator.h"
-#include "Optimizer.h"
+#include "optimizer/Optimizer.h"
 
 typedef std::chrono::high_resolution_clock HighResClock;
 typedef std::chrono::milliseconds ms;

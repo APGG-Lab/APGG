@@ -48,19 +48,19 @@
     <ClCompile Include="PayOffCalculator.cpp">
       <Filter>Quelldateien</Filter>
     </ClCompile>
-    <ClCompile Include="Optimizer.cpp">
+    <ClCompile Include="optimizer\repopulators\RandomRepopulator.cpp">
       <Filter>Quelldateien</Filter>
     </ClCompile>
-    <ClCompile Include="Selector.cpp">
+    <ClCompile Include="optimizer\repopulators\Repopulator.cpp">
       <Filter>Quelldateien</Filter>
     </ClCompile>
-    <ClCompile Include="Repopulator.cpp">
+    <ClCompile Include="optimizer\selectors\EliteSelector.cpp">
       <Filter>Quelldateien</Filter>
     </ClCompile>
-    <ClCompile Include="EliteSelector.cpp">
+    <ClCompile Include="optimizer\selectors\Selector.cpp">
       <Filter>Quelldateien</Filter>
     </ClCompile>
-    <ClCompile Include="RandomRepopulator.cpp">
+    <ClCompile Include="optimizer\Optimizer.cpp">
       <Filter>Quelldateien</Filter>
     </ClCompile>
   </ItemGroup>
@@ -98,19 +98,19 @@
     <ClInclude Include="PayOffCalculator.h">
       <Filter>Headerdateien</Filter>
     </ClInclude>
-    <ClInclude Include="Optimizer.h">
+    <ClInclude Include="optimizer\repopulators\RandomRepopulator.h">
       <Filter>Headerdateien</Filter>
     </ClInclude>
-    <ClInclude Include="Selector.h">
+    <ClInclude Include="optimizer\repopulators\Repopulator.h">
       <Filter>Headerdateien</Filter>
     </ClInclude>
-    <ClInclude Include="Repopulator.h">
+    <ClInclude Include="optimizer\selectors\EliteSelector.h">
       <Filter>Headerdateien</Filter>
     </ClInclude>
-    <ClInclude Include="EliteSelector.h">
+    <ClInclude Include="optimizer\selectors\Selector.h">
       <Filter>Headerdateien</Filter>
     </ClInclude>
-    <ClInclude Include="RandomRepopulator.h">
+    <ClInclude Include="optimizer\Optimizer.h">
       <Filter>Headerdateien</Filter>
     </ClInclude>
   </ItemGroup>

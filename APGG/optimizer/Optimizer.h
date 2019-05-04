@@ -1,10 +1,12 @@
 #pragma once
 #include <memory>
-#include "Grid.h"
-#include "Selector.h"
-#include "Repopulator.h"
-#include "EliteSelector.h"
-#include "RandomRepopulator.h"
+
+#include "../Grid.h"
+
+#include "selectors/Selector.h"
+#include "repopulators/Repopulator.h"
+#include "selectors/EliteSelector.h"
+#include "repopulators/RandomRepopulator.h"
 
 class Optimizer
 {

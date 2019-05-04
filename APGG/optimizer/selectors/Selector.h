@@ -1,7 +1,7 @@
 #pragma once
 #include <vector>
-#include "Organism.h"
-#include "Grid.h"
+#include "../../Organism.h"
+#include "../../Grid.h"
 class Selector
 {
 protected:
