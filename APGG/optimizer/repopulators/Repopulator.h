@@ -5,5 +5,5 @@
 class Repopulator
 {
 public:
-    virtual void repopulate(std::shared_ptr<Grid>& grid, std::vector<pOrganism>& selection) = 0;
+    virtual void repopulate(std::shared_ptr<Grid>& grid, std::vector<rOrganism>& selection) = 0;
 };

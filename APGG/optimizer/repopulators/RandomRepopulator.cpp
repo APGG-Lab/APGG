@@ -1,10 +1,10 @@
 #include "RandomRepopulator.h"
 
-void RandomRepopulator::repopulate(std::shared_ptr<Grid>& grid, std::vector<pOrganism>& selection)
+void RandomRepopulator::repopulate(std::shared_ptr<Grid>& grid, std::vector<rOrganism>& selection)
 {
-    for (pOrganism& organism : selection) {
-        organism->m_genomes[0].shuffle();
-        organism->m_genomes[1].shuffle();
-        organism->m_payoff = 1.0f;
+    for (rOrganism& organism : selection) {
+        organism.get().m_genomes[0].shuffle();
+        organism.get().m_genomes[1].shuffle();
+        organism.get().m_payoff = 1.0f;
     }
 }

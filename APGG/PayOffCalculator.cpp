@@ -45,24 +45,26 @@ void PayOffCalculator::calculateCosts(const int groupSize)
     m_payoff = m_synergyFactor * nCooperators / groupSize;
 }
 
-void PayOffCalculator::applyPayoff(pOrganism & organism)
+void PayOffCalculator::applyPayoff(rOrganism & organism)
 {
-    organism->m_payoff += m_payoff;
+    auto& pOrganism = organism.get();
+        
+    pOrganism.m_payoff += m_payoff;
 
-    if (organism->m_moralist) { //Subtract punishment costs from moralists/immoralists
-        organism->m_payoff -= m_punishmentCost;
+    if (pOrganism.m_moralist) { //Subtract punishment costs from moralists/immoralists
+        pOrganism.m_payoff -= m_punishmentCost;
     };
 
-    if (!organism->m_cooperated) {//Substract punishment fine from defectors/immoralists
-        organism->m_payoff -= m_punishmentFine;
+    if (!pOrganism.m_cooperated) {//Substract punishment fine from defectors/immoralists
+        pOrganism.m_payoff -= m_punishmentFine;
     } else {
-        organism->m_payoff -= m_cooperationCost; //Substract 1 from cooperators / moralists
+        pOrganism.m_payoff -= m_cooperationCost; //Substract 1 from cooperators / moralists
     }
 }
 
 void PayOffCalculator::applyPayoff(Group & group)
 {
-    for (pOrganism& organism : group.data()) {
+    for (rOrganism& organism : group.data()) {
         applyPayoff(organism);
     }
 }
