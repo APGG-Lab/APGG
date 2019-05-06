@@ -44,6 +44,6 @@ namespace APGG {
 
         void Evolve();
         std::shared_ptr<Grid> m_grid;
-        int m_generation = 0;
+        unsigned int m_generation = 0;
     };
 }
