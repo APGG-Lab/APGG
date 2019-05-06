@@ -1,4 +1,4 @@
-#include "ProportionateRepupoluator.h"
+#include "ProportionateRepopulator.h"
 
 namespace APGG {
 

@@ -63,10 +63,10 @@
     <ClCompile Include="SimpleArchiver.cpp">
       <Filter>Quelldateien</Filter>
     </ClCompile>
-    <ClCompile Include="optimizer\repopulators\ProportionateRepupoluator.cpp">
+    <ClCompile Include="optimizer\selectors\RandomSelector.cpp">
       <Filter>Quelldateien</Filter>
     </ClCompile>
-    <ClCompile Include="optimizer\selectors\RandomSelector.cpp">
+    <ClCompile Include="optimizer\repopulators\ProportionateRepopulator.cpp">
       <Filter>Quelldateien</Filter>
     </ClCompile>
   </ItemGroup>
@@ -119,10 +119,10 @@
     <ClInclude Include="SimpleArchiver.h">
       <Filter>Headerdateien</Filter>
     </ClInclude>
-    <ClInclude Include="optimizer\repopulators\ProportionateRepupoluator.h">
+    <ClInclude Include="optimizer\selectors\RandomSelector.h">
       <Filter>Headerdateien</Filter>
     </ClInclude>
-    <ClInclude Include="optimizer\selectors\RandomSelector.h">
+    <ClInclude Include="optimizer\repopulators\ProportionateRepopulator.h">
       <Filter>Headerdateien</Filter>
     </ClInclude>
   </ItemGroup>
