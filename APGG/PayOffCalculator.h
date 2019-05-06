@@ -10,6 +10,7 @@ private:
     float m_punishmentCostBase;
     float m_punishmentFineBase;
     float m_cooperationCost;
+    bool m_allowPayoffBelowZero;
 
     float m_punishmentCost;
     float m_punishmentFine;
@@ -22,6 +23,7 @@ public:
     void setPunishmentBaseCost(const float cost);
     void setPunishmentBaseFine(const float factor);
     void setCooperationCost(const float cost);
+    void allowPayoffBelowZero(const bool status);
     //@todo finde better name
     void setCounters(const std::array<unsigned int, 4>& counter);
     void calculateCosts(const int groupSize);

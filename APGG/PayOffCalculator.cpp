@@ -2,7 +2,7 @@
 
 
 
-PayOffCalculator::PayOffCalculator() : m_synergyFactor(1), m_punishmentCostBase(1.0f), m_punishmentFineBase(1.0f)
+PayOffCalculator::PayOffCalculator() : m_synergyFactor(1), m_punishmentCostBase(1.0f), m_punishmentFineBase(1.0f), m_allowPayoffBelowZero(true)
 {
 }
 
@@ -24,6 +24,11 @@ void PayOffCalculator::setPunishmentBaseFine(const float fine)
 void PayOffCalculator::setCooperationCost(const float cost)
 {
     m_cooperationCost = cost;
+}
+
+void PayOffCalculator::allowPayoffBelowZero(const bool status)
+{
+    m_allowPayoffBelowZero = status;
 }
 
 void PayOffCalculator::setCounters(const std::array<unsigned int, 4>& counter)
@@ -59,6 +64,10 @@ void PayOffCalculator::applyPayoff(rOrganism & organism)
         pOrganism.m_payoff -= m_punishmentFine;
     } else {
         pOrganism.m_payoff -= m_cooperationCost; //Substract 1 from cooperators / moralists
+    }
+
+    if (!m_allowPayoffBelowZero && pOrganism.m_payoff < 0) {
+        pOrganism.m_payoff = 0;
     }
 }
 
