@@ -17,30 +17,32 @@ typedef std::chrono::duration<double> fsec;
 
 #include <fstream>
 
-class World
-{
-private:
-    std::chrono::time_point<std::chrono::steady_clock> m_clock_start;
-    std::chrono::time_point<std::chrono::steady_clock> m_clock_now;
-    std::chrono::time_point<std::chrono::steady_clock> m_clock_last;
-    void printStatus();
-    int m_exponent; ///Exponential logging (0-10,10,20,30,100,200,300,1000,2000,3000,....)
+namespace APGG {
 
-    std::array<unsigned int, 4> m_count;
+    class World
+    {
+    private:
+        std::chrono::time_point<std::chrono::steady_clock> m_clock_start;
+        std::chrono::time_point<std::chrono::steady_clock> m_clock_now;
+        std::chrono::time_point<std::chrono::steady_clock> m_clock_last;
+        void printStatus();
+        int m_exponent; ///Exponential logging (0-10,10,20,30,100,200,300,1000,2000,3000,....)
 
-    MatchupGenerator m_matchupGenerator;
-    PayOffCalculator m_payoffCalculator;
-    SimpleArchiver m_archiver;
-    Optimizer m_optimizer;
-public:
-	World();
+        std::array<unsigned int, 4> m_count;
 
-    void Init();
-	void Tick();
-    void Fini();
+        MatchupGenerator m_matchupGenerator;
+        PayOffCalculator m_payoffCalculator;
+        SimpleArchiver m_archiver;
+        Optimizer m_optimizer;
+    public:
+        World();
 
-	void Evolve();
-	std::shared_ptr<Grid> m_grid;
-	int m_generation = 0;
-};
+        void Init();
+        void Tick();
+        void Fini();
 
+        void Evolve();
+        std::shared_ptr<Grid> m_grid;
+        int m_generation = 0;
+    };
+}

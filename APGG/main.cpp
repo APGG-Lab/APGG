@@ -5,6 +5,8 @@
 
 #include "World.h"
 
+using namespace APGG;
+
 template <size_t ColumnNumber> std::vector<std::array<std::string, ColumnNumber>> parseCSV(std::string filePath)
 {
 	std::vector<std::array<std::string, ColumnNumber>> output;

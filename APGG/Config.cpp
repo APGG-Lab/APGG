@@ -1,12 +1,16 @@
 #include "Config.h"
 
-Config::Config()
-{
+namespace APGG {
 
-}
+    Config::Config()
+    {
 
-Config& Config::getInstance()
-{
-	static Config instance;
-	return instance;
+    }
+
+    Config& Config::getInstance()
+    {
+        static Config instance;
+        return instance;
+    }
+
 }

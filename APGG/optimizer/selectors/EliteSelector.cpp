@@ -1,23 +1,28 @@
 #include "EliteSelector.h"
 
-EliteSelector::EliteSelector() : Selector()
-{
-}
+namespace APGG {
 
-EliteSelector::EliteSelector(const unsigned int eliminationCount) : Selector(eliminationCount)
-{
-}
 
-std::vector<rOrganism> EliteSelector::select(std::shared_ptr<Grid>& grid)
-{
-    m_selection.clear();
-
-    auto gridData = grid->data();
-
-    grid->sortByFitness();
-    for (unsigned int i = grid->size() - 1; i > grid->size() - 1 - Config::getInstance().eliminationCount; i--) {
-        m_selection.emplace_back(gridData[i]);
+    EliteSelector::EliteSelector() : Selector()
+    {
     }
 
-    return m_selection;
+    EliteSelector::EliteSelector(const unsigned int eliminationCount) : Selector(eliminationCount)
+    {
+    }
+
+    std::vector<rOrganism> EliteSelector::select(std::shared_ptr<Grid>& grid)
+    {
+        m_selection.clear();
+
+        auto gridData = grid->data();
+
+        grid->sortByFitness();
+        for (unsigned int i = grid->size() - 1; i > grid->size() - 1 - Config::getInstance().eliminationCount; i--) {
+            m_selection.emplace_back(gridData[i]);
+        }
+
+        return m_selection;
+    }
+
 }
