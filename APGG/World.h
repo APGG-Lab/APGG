@@ -6,9 +6,9 @@
 #include <cstdlib>
 #include "Grid.h"
 #include "MatchupGenerator.h"
-#include "Archiver.h"
-#include "SimpleArchiver.h"
 #include "PayOffCalculator.h"
+#include "SimpleArchiver.h"
+#include "optimizer/Optimizer.h"
 
 typedef std::chrono::high_resolution_clock HighResClock;
 typedef std::chrono::milliseconds ms;
@@ -31,6 +31,7 @@ private:
     MatchupGenerator m_matchupGenerator;
     PayOffCalculator m_payoffCalculator;
     SimpleArchiver m_archiver;
+    Optimizer m_optimizer;
 public:
 	World();
 

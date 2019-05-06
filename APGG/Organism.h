@@ -12,7 +12,7 @@ class Organism
 {
 public:
 	std::array<Genome, nrGenomes> m_genomes;
-
+    unsigned int ID;
 	bool m_cooperated;
     bool m_moralist;
     Faction m_faction;
@@ -23,9 +23,11 @@ public:
     bool assignMorals(const float moralValue);
     Faction assignFaction();
     Faction getFaction();
+	float getNormalizedPayoff(const float min, const float max);
 
     void setPayoff(const float payoff);
 };
 
-typedef std::shared_ptr<Organism> pOrganism;
+typedef std::unique_ptr<Organism> pOrganism;
+typedef std::reference_wrapper<Organism> rOrganism;
 

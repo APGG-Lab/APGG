@@ -40,3 +40,8 @@ void Organism::setPayoff(const float payoff)
     }
 }
 
+float Organism::getNormalizedPayoff(const float min, const float max)
+{
+	auto payoff =  (m_payoff + std::abs(min)) / (max + std::abs(min));
+    return payoff;
+}

@@ -42,6 +42,7 @@ void World::Init()
     std::fill(std::begin(m_count), std::end(m_count), 0);
 
     m_grid = std::make_shared<Grid>();
+    m_grid->rebuildCache();
 
     if (m_grid->size() % Config::getInstance().groupSize != 0) {
         std::cerr << std::endl << "[APGG Error] invalid group size. Gridsize (height*width) % Groupsize must be 0";
@@ -52,6 +53,7 @@ void World::Init()
     m_matchupGenerator.setGroupSize(Config::getInstance().groupSize);
     m_matchupGenerator.setGrid(m_grid);
 
+    
     m_archiver.setFolderName(Config::getInstance().folderName);
     m_archiver.applyTimestampToFolder(false);
     m_archiver.setFileStuffix(Config::getInstance().logSuffix);
@@ -62,6 +64,10 @@ void World::Init()
     m_payoffCalculator.setSynergyFactor(static_cast<float>(Config::getInstance().synergyFactor));
     m_payoffCalculator.setPunishmentBaseCost(static_cast<float>(Config::getInstance().punishmentCost));
     m_payoffCalculator.setPunishmentBaseFine(static_cast<float>(Config::getInstance().punishmentFine));
+
+    m_optimizer.setGrid(m_grid);
+    m_optimizer.setSelector(std::make_shared<RandomSelector>(Config::getInstance().eliminationCount));
+    m_optimizer.setRepopulator(std::make_shared<ProportionateRepupoluator>());
 
     {
         //Show timedelta for init
@@ -76,8 +82,8 @@ void World::Init()
 void World::Tick()
 {
     std::fill(std::begin(m_count), std::end(m_count), 0);
-    int localCooperation = 0;
-    float localPayoff = 0;
+    //int localCooperation = 0;
+    //float localPayoff = 0;
     m_matchupGenerator.generateGroups();
 
     std::vector<Group> groups = m_matchupGenerator.getGroups();
@@ -85,11 +91,10 @@ void World::Tick()
 
     //@todo for(group:groups) could be better. 
     for (int i = 0; i < groups.size(); i++) {
-        localCooperation = 0;
         std::fill(std::begin(factionCount), std::end(factionCount), 0);
 
-        for (pOrganism& organism : groups[i].data()) {
-            Faction faction = organism->assignFaction();
+        for (rOrganism organism : groups[i].data()) {
+            Faction faction = organism.get().assignFaction();
             m_count[faction]++;
             factionCount[faction]++;
         }
@@ -111,17 +116,12 @@ void World::Fini()
     ms timeDelta = std::chrono::duration_cast<ms>(fs);
     std::cout << "[APGG] Fini (took " << timeDelta.count() << " ms)" << std::endl;
 
-    m_archiver.close();
+  //  m_archiver.close();
 }
 
 void World::Evolve()
 {
-	m_grid->sortByFitness();
-	for (unsigned int i = m_grid->size() - 1; i > m_grid->size() - 1 - Config::getInstance().eliminationCount; i--) {
-        //Reset organism
-		m_grid->getOrganism(i)->m_genomes[0].shuffle();
-        m_grid->getOrganism(i)->m_genomes[1].shuffle();
-        m_grid->getOrganism(i)->m_payoff = 1.0f;
-	}
+    m_optimizer.optmize();
+    m_grid->rebuildCache();
 	m_generation++;
 }
