@@ -76,6 +76,9 @@
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
+      <FloatingPointModel>Fast</FloatingPointModel>
+      <OpenMPSupport>false</OpenMPSupport>
+      <LanguageStandard>stdcpp17</LanguageStandard>
     </ClCompile>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -84,6 +87,9 @@
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
+      <FloatingPointModel>Fast</FloatingPointModel>
+      <OpenMPSupport>false</OpenMPSupport>
+      <LanguageStandard>stdcpp17</LanguageStandard>
     </ClCompile>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -94,6 +100,9 @@
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
+      <FloatingPointModel>Fast</FloatingPointModel>
+      <OpenMPSupport>false</OpenMPSupport>
+      <LanguageStandard>stdcpp17</LanguageStandard>
     </ClCompile>
     <Link>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
@@ -108,6 +117,9 @@
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
+      <FloatingPointModel>Fast</FloatingPointModel>
+      <OpenMPSupport>false</OpenMPSupport>
+      <LanguageStandard>stdcpp17</LanguageStandard>
     </ClCompile>
     <Link>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
@@ -115,16 +127,43 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Archiver.cpp" />
+    <ClCompile Include="Config.cpp" />
     <ClCompile Include="Genome.cpp" />
     <ClCompile Include="Grid.cpp" />
+    <ClCompile Include="Group.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="MatchupGenerator.cpp" />
+    <ClCompile Include="optimizer\Optimizer.cpp" />
+    <ClCompile Include="optimizer\repopulators\ProportionateRepopulator.cpp" />
+    <ClCompile Include="optimizer\repopulators\RandomRepopulator.cpp" />
+    <ClCompile Include="optimizer\repopulators\Repopulator.cpp" />
+    <ClCompile Include="optimizer\selectors\EliteSelector.cpp" />
+    <ClCompile Include="optimizer\selectors\RandomSelector.cpp" />
+    <ClCompile Include="optimizer\selectors\Selector.cpp" />
     <ClCompile Include="Organism.cpp" />
+    <ClCompile Include="PayOffCalculator.cpp" />
+    <ClCompile Include="SimpleArchiver.cpp" />
     <ClCompile Include="World.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Archiver.h" />
+    <ClInclude Include="Config.h" />
     <ClInclude Include="Genome.h" />
     <ClInclude Include="Grid.h" />
+    <ClInclude Include="Group.h" />
+    <ClInclude Include="MatchupGenerator.h" />
+    <ClInclude Include="optimizer\Optimizer.h" />
+    <ClInclude Include="optimizer\repopulators\ProportionateRepopulator.h" />
+    <ClInclude Include="optimizer\repopulators\RandomRepopulator.h" />
+    <ClInclude Include="optimizer\repopulators\Repopulator.h" />
+    <ClInclude Include="optimizer\selectors\EliteSelector.h" />
+    <ClInclude Include="optimizer\selectors\RandomSelector.h" />
+    <ClInclude Include="optimizer\selectors\Selector.h" />
     <ClInclude Include="Organism.h" />
+    <ClInclude Include="PayOffCalculator.h" />
+    <ClInclude Include="random.h" />
+    <ClInclude Include="SimpleArchiver.h" />
     <ClInclude Include="World.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

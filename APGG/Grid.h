@@ -1,22 +1,30 @@
 #pragma once
-
-#include "Organism.h"
 #include <cassert>
 
-constexpr unsigned int width = 32;
-constexpr unsigned int height = 32;
+#include "Organism.h"
+#include <algorithm>
 
-class Grid
-{
-public:
-	Grid();
-	
-	Organism & getOrganism(const unsigned int x, const unsigned int y);
-	Organism & getOrganism(const int index);
-	void sortByFitness();
-private:
-	std::array<Organism, width*height> m_grid;
+namespace APGG {
 
+    class Grid
+    {
+    public:
+        Grid();
 
-};
+        pOrganism& getOrganism(const unsigned int x, const unsigned int y);
+        pOrganism& getOrganism(const int index);
+        const std::vector<rOrganism> data();
+        void data(const std::vector<pOrganism> data);
+        void rebuildCache();
+        void sortByFitness();
+        float getMinPayoff();
+        float getMaxPayoff();
+        unsigned int size();
+        rOrganism getRandomOrganism() const;
+        rOrganism getRandomOrganism(const std::vector<rOrganism>& blacklist) const;
+    private:
+        std::vector<pOrganism> m_grid;
+        std::vector<rOrganism> m_gridCache;
+    };
 
+}
