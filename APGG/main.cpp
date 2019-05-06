@@ -97,7 +97,8 @@ int main() {
 
 		myCoolWorld.Fini();
 
-        if (configs.size() == 1 && Config::getInstance().visualize) {
+        if (configs.size() == 1 && Config::getInstance().visualize && false) {
+            //todo find better way to open the python script automatically
             system("python3 Visualize.py");
         }
 		

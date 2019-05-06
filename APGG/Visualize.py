@@ -1,39 +1,32 @@
-from matplotlib import pyplot as plt 
-from matplotlib import pyplot as plttest
+import matplotlib
+import matplotlib.pyplot as plt
 from matplotlib import style
 import numpy as np
+import sys
+
 
 spacing = 0.5
 
-plt.subplots_adjust(left=None, bottom=None, right=None, top=None, wspace=spacing, hspace=spacing)
+#plt.subplots_adjust(left=None, bottom=None, right=None, top=None, wspace=spacing, hspace=spacing)
 
 style.use('ggplot')
 
-generation,fitness, coop, defect =  np.loadtxt('Score.csv',
-                unpack = True,
-                delimiter = ';')
+generation,c,d,m,i =  np.loadtxt(sys.argv[1],
+                                unpack = True,
+                                skiprows = 1,
+                                delimiter = ';')
 
 
+x = generation;
+y = np.vstack([c, d, m, i])
 
-plt.subplot(2,2,1)
-plt.plot(generation, fitness)
-plt.title('Fitness')
-plt.ylabel('Fitness')
-plt.xlabel('Generation')
+labels = ["C", "D", "M", "I"]
 
+fig, ax = plt.subplots()
+ax.stackplot(generation, c, d, m, i, labels=labels)
+ax.legend(loc='upper left')
+plt.show()
 
-plt.subplot(2,2,2)
-plt.plot(generation, defect)
-plt.title('Defectors')
-plt.ylabel('Defectors')
-plt.xlabel('Generation')
-
-
-plt.subplot(2,2,3)
-plt.plot(generation, defect)
-plt.title('Cooperators')
-plt.ylabel('Cooperators')
-plt.xlabel('Generation')
-
-
+fig, ax = plt.subplots()
+ax.stackplot(x, y)
 plt.show()
