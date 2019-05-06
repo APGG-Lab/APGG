@@ -7,7 +7,10 @@ Grid::Grid()
 	m_grid.reserve(Config::getInstance().width * Config::getInstance().height);
 	for (unsigned int i = 0; i < Config::getInstance().width * Config::getInstance().height; i++)
 	{
-		m_grid.emplace_back(std::make_shared<Organism>());
+        auto organism = std::make_shared<Organism>();
+        organism->ID = i;
+		m_grid.emplace_back(organism);
+
 	}
 }
 
@@ -71,13 +74,13 @@ float Grid::getMaxPayoff()
 }
 
 pOrganism Grid::getRandomOrganism() const {
-	int rand = std::rand() % m_grid.size();
+	int rand = getRandomNumber() % m_grid.size();
 	return m_grid[rand];
 }
 
 pOrganism Grid::getRandomOrganism(const std::vector<pOrganism>& blacklist) const {
 	
-	int rand = std::rand() % m_grid.size();
+	int rand = getRandomNumber() % m_grid.size();
 	auto returnOrganism = m_grid[rand];
 
 	for (const pOrganism organism : blacklist) {
