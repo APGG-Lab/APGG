@@ -48,3 +48,45 @@ unsigned int Grid::size()
     return static_cast<unsigned int>(m_grid.size());
 }
 
+float Grid::getMinPayoff()
+{
+	float tempMin = std::numeric_limits<float>::max();
+	for(pOrganism& org : m_grid)
+	{ 
+		if (org->m_payoff <= tempMin)
+			tempMin = org->m_payoff;
+	}
+	return tempMin;
+}
+
+float Grid::getMaxPayoff()
+{
+	float tempMax = std::numeric_limits<float>::min();
+	for (pOrganism& org : m_grid)
+	{
+		if (org->m_payoff >= tempMax)
+			tempMax = org->m_payoff;
+	}
+	return tempMax;
+}
+
+pOrganism Grid::getRandomOrganism() const {
+	int rand = std::rand() % m_grid.size();
+	return m_grid[rand];
+}
+
+pOrganism Grid::getRandomOrganism(const std::vector<pOrganism>& blacklist) const {
+	
+	int rand = std::rand() % m_grid.size();
+	auto returnOrganism = m_grid[rand];
+
+	for (const pOrganism organism : blacklist) {
+		if (returnOrganism.get() == organism.get()) {
+			returnOrganism = getRandomOrganism(blacklist);
+			break;
+		}
+	}
+	//todo cool blacklist implementation;
+
+	return returnOrganism;
+}

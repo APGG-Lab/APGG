@@ -26,6 +26,7 @@ void Group::data(const std::vector<pOrganism> data)
     m_group = data;
 }
 
+
 unsigned int Group::size()
 {
     return static_cast<unsigned int>(m_group.size());

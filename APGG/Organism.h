@@ -23,6 +23,7 @@ public:
     bool assignMorals(const float moralValue);
     Faction assignFaction();
     Faction getFaction();
+	float getNormalizePayoff(const float min, const float max);
 
     void setPayoff(const float payoff);
 };

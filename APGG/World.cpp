@@ -64,8 +64,8 @@ void World::Init()
     m_payoffCalculator.setPunishmentBaseFine(static_cast<float>(Config::getInstance().punishmentFine));
 
     m_optimizer.setGrid(m_grid);
-    m_optimizer.setSelector(std::make_shared<EliteSelector>(Config::getInstance().eliminationCount));
-    m_optimizer.setRepopulator(std::make_shared<RandomRepopulator>());
+    m_optimizer.setSelector(std::make_shared<RandomSelector>(Config::getInstance().eliminationCount));
+    m_optimizer.setRepopulator(std::make_shared<ProportionateRepupoluator>());
 
     {
         //Show timedelta for init
