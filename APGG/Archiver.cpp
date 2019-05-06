@@ -58,6 +58,8 @@ namespace APGG {
 
         m_fileHandle.open(fullFolderName + fullFileName);
         m_fileHandle << m_header << std::endl;
+
+        m_fullFileName = fullFolderName + fullFileName;
     }
 
     void Archiver::close()
@@ -79,6 +81,11 @@ namespace APGG {
     void Archiver::applyTimestampToFolder(const bool & status)
     {
         m_appendTimestampToFolder = status;
+    }
+
+    std::string Archiver::getFullFilename() const
+    {
+        return m_fullFileName;
     }
 
     Archiver::~Archiver()

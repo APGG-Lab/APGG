@@ -57,24 +57,33 @@ template <size_t ColumnNumber> std::vector<std::array<std::string, ColumnNumber>
 	return output;
 }
 
-int main() {	
-	auto configs = parseCSV<14>("configs.csv");
+int main() {
+	auto configs = parseCSV<20>("configs.csv");
+    std::cout << "[APGG Init] loading " << configs.size() << " experiments" << std::endl;
+
 	for (auto config : configs)
 	{
-		Config::getInstance().numGenerations = stoi(config[0]);
-		Config::getInstance().eliminationCount = stoi(config[1]);
-		Config::getInstance().groupSize = stoi(config[2]);
-		Config::getInstance().width = stoi(config[3]);
-		Config::getInstance().height = stoi(config[4]);
-		Config::getInstance().synergyFactor = stoi(config[5]);
-		Config::getInstance().punishmentCost = stoi(config[6]);
-		Config::getInstance().punishmentFine = stoi(config[7]);
-		Config::getInstance().matchupType = stoi(config[8]);
-		Config::getInstance().showAllGenerations = stoi(config[9]);
-		Config::getInstance().archiveData = stoi(config[10]);
-		Config::getInstance().visualize = stoi(config[11]);
-        Config::getInstance().folderName = config[12];
-        Config::getInstance().logSuffix = config[13];
+        int i = 0;
+        Config::getInstance().numGenerations = stoi(config[i++]);
+		Config::getInstance().eliminationCount = stoi(config[i++]);
+		Config::getInstance().groupSize = stoi(config[i++]);
+		Config::getInstance().width = stoi(config[i++]);
+		Config::getInstance().height = stoi(config[i++]);
+		Config::getInstance().cooperateCost = stoi(config[i++]);
+		Config::getInstance().synergyFactor = stoi(config[i++]);
+		Config::getInstance().punishmentCost = stoi(config[i++]);
+		Config::getInstance().punishmentFine = stoi(config[i++]);
+		Config::getInstance().matchupType = stoi(config[i++]);
+        Config::getInstance().selectorType = stoi(config[i++]);
+        Config::getInstance().repopulatorType = stoi(config[i++]);
+		Config::getInstance().showAllGenerations = stoi(config[i++]);
+		Config::getInstance().archiveData = stoi(config[i++]);
+		Config::getInstance().visualize = stoi(config[i++]);
+        Config::getInstance().folderName = config[i++];
+        Config::getInstance().logSuffix = config[i++];
+        Config::getInstance().timeToFile = stoi(config[i++]);
+        Config::getInstance().timeToFolder = stoi(config[i++]);
+        Config::getInstance().consoleOutExponent = stoi(config[i++]);
 
 		World myCoolWorld;
 		myCoolWorld.Init();
@@ -88,9 +97,9 @@ int main() {
 
 		myCoolWorld.Fini();
 
-		getchar();
-		if (Config::getInstance().visualize)
-			system("python3 Visualize.py");
+        if (configs.size() == 1 && Config::getInstance().visualize) {
+            system("python3 Visualize.py");
+        }
 		
 	}
 	getchar();

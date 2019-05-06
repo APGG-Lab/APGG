@@ -22,12 +22,40 @@ namespace APGG {
             << "\tI(%): " << m_count[FACTION_IMMORALIST] << "(" << m_count[FACTION_IMMORALIST] / size * 100 << ")"
             << "\ttook: " << timeDelta.count() << " ms" << std::endl;
 
-        if (m_generation >= m_exponent * 10) {
+        if (m_generation >= m_exponent * Config::getInstance().consoleOutExponent) {
             //Only increase the exponent, when m_generation reaches m_exponent
             //otherwise we'll print only at 1,10,100,1000,...
 
-            m_exponent *= 10;
+            m_exponent *= Config::getInstance().consoleOutExponent;
         }
+    }
+
+    void World::printInitMessage()
+    {
+
+        std::cout << std::endl << "-------------------------------------------------------------------------------------------------------------------------------------" << std::endl
+                  << "You're currently running " << m_archiver.getFullFilename() << " with the following parameters:" << std::endl
+                  << "numGenerations - " << Config::getInstance().numGenerations << std::endl
+                  << "eliminationCount - " << Config::getInstance().eliminationCount << std::endl
+                  << "groupSize - " << Config::getInstance().groupSize << std::endl
+                  << "width - " << Config::getInstance().width << std::endl
+                  << "height - " << Config::getInstance().height << std::endl
+                  << "cooperateCost - " << Config::getInstance().cooperateCost << std::endl
+                  << "synergyFactor - " << Config::getInstance().synergyFactor << std::endl
+                  << "punishmentCost - " << Config::getInstance().punishmentCost << std::endl
+                  << "punishmentFine - " << Config::getInstance().punishmentFine << std::endl
+                  << "matchupType - " << Config::getInstance().matchupType << std::endl
+                  << "selectorType - " << Config::getInstance().selectorType << std::endl
+                  << "repopulatorType - " << Config::getInstance().repopulatorType << std::endl
+                  << "showAllGenerations - " << Config::getInstance().showAllGenerations << std::endl
+                  << "archiveData - " << Config::getInstance().archiveData << std::endl
+                  << "visualize - " << Config::getInstance().visualize << std::endl
+                  << "folderName - " << Config::getInstance().folderName << std::endl
+                  << "logSuffix - " << Config::getInstance().logSuffix << std::endl
+                  << "timeToFile - " << Config::getInstance().timeToFile << std::endl
+                  << "timeToFolder - " << Config::getInstance().timeToFolder << std::endl
+                  << "consoleOutExponent - " << Config::getInstance().consoleOutExponent << std::endl
+                  << "-------------------------------------------------------------------------------------------------------------------------------------" << std::endl << std::endl;
     }
 
     World::World()
@@ -51,24 +79,66 @@ namespace APGG {
             std::quick_exit(1);
         }
 
-        m_matchupGenerator.setGroupSize(Config::getInstance().groupSize);
-        m_matchupGenerator.setGrid(m_grid);
 
+        {
+            m_matchupGenerator.setGroupSize(Config::getInstance().groupSize);
+            m_matchupGenerator.setGrid(m_grid);
+        }
 
-        m_archiver.setFolderName(Config::getInstance().folderName);
-        m_archiver.applyTimestampToFolder(false);
-        m_archiver.setFileStuffix(Config::getInstance().logSuffix);
-        m_archiver.applyTimestampToFile(true);
-        m_archiver.open();
+        {
+            if (!Config::getInstance().timeToFile && !Config::getInstance().timeToFolder) {
+                std::cerr << std::endl << "[APGG Warning] timeToFile disabled. You may overwrite your previous experiments";
+                std::cin.get();
+            }
+            m_archiver.setFolderName(Config::getInstance().folderName);
+            m_archiver.applyTimestampToFolder(Config::getInstance().timeToFolder);
+            m_archiver.setFileStuffix(Config::getInstance().logSuffix);
+            m_archiver.applyTimestampToFile(Config::getInstance().timeToFile);
+            m_archiver.open();
+        }
 
-        m_payoffCalculator.setCooperationCost(1.0f);
-        m_payoffCalculator.setSynergyFactor(static_cast<float>(Config::getInstance().synergyFactor));
-        m_payoffCalculator.setPunishmentBaseCost(static_cast<float>(Config::getInstance().punishmentCost));
-        m_payoffCalculator.setPunishmentBaseFine(static_cast<float>(Config::getInstance().punishmentFine));
+        {
+            m_payoffCalculator.setCooperationCost(static_cast<float>(Config::getInstance().cooperateCost));
+            m_payoffCalculator.setSynergyFactor(static_cast<float>(Config::getInstance().synergyFactor));
+            m_payoffCalculator.setPunishmentBaseCost(static_cast<float>(Config::getInstance().punishmentCost));
+            m_payoffCalculator.setPunishmentBaseFine(static_cast<float>(Config::getInstance().punishmentFine));
+        }
 
         m_optimizer.setGrid(m_grid);
-        m_optimizer.setSelector(std::make_shared<RandomSelector>(Config::getInstance().eliminationCount));
-        m_optimizer.setRepopulator(std::make_shared<ProportionateRepupoluator>());
+        {
+            if (Config::getInstance().selectorType >= nSelectorTypes) {
+                std::cerr << std::endl << "[APGG Error] invalid selector type. selectorType must be < " << nSelectorTypes;
+                std::cin.get();
+                std::quick_exit(1);
+            }
+
+            switch (Config::getInstance().selectorType) {
+            case SELECTOR_ELITE:
+                m_optimizer.setSelector(std::make_shared<EliteSelector>(Config::getInstance().eliminationCount));
+                break;
+            default:
+            case SELECTOR_RANDOM:
+                m_optimizer.setSelector(std::make_shared<RandomSelector>(Config::getInstance().eliminationCount));
+                break;
+            }
+        }
+        {
+            if (Config::getInstance().repopulatorType >= nRepopulatorTypes) {
+                std::cerr << std::endl << "[APGG Error] invalid repopulator type. repopulatorType must be < " << nRepopulatorTypes;
+                std::cin.get();
+                std::quick_exit(1);
+            }
+
+            switch (Config::getInstance().repopulatorType) {
+            case REPOPULATOR_RANDOM:
+                m_optimizer.setRepopulator(std::make_shared<RandomRepopulator>());
+                break;
+            default:
+            case REPOPULATOR_PROPORTIONATE:
+                m_optimizer.setRepopulator(std::make_shared<ProportionateRepupoluator>());
+                break;
+            }
+        }
 
         {
             //Show timedelta for init
@@ -78,6 +148,8 @@ namespace APGG {
             ms timeDelta = std::chrono::duration_cast<ms>(fs);
             std::cout << "took " << timeDelta.count() << " ms" << std::endl;
         }
+
+        printInitMessage();
     }
 
     void World::Tick()

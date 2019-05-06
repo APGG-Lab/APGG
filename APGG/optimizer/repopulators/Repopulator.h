@@ -4,6 +4,9 @@
 
 namespace APGG {
 
+    constexpr unsigned int nRepopulatorTypes = 2;
+    enum RepopulatorTypes {REPOPULATOR_RANDOM, REPOPULATOR_PROPORTIONATE};
+
     class Repopulator
     {
     public:

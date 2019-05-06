@@ -23,6 +23,7 @@ namespace APGG {
         std::ofstream m_fileHandle;
 
         std::string getTimestamp();
+        std::string m_fullFileName; //@todo : better var name
     public:
         Archiver();
         Archiver(const std::string& folderName, const std::string& m_fileSuffix);
@@ -34,6 +35,7 @@ namespace APGG {
         void archive();
         void applyTimestampToFile(const bool& status);
         void applyTimestampToFolder(const bool& status);
+        std::string getFullFilename() const;
         ~Archiver();
     };
 

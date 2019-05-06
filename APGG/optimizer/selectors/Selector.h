@@ -5,6 +5,9 @@
 
 namespace APGG {
 
+    constexpr unsigned int nSelectorTypes = 2;
+    enum SelectorTypes { SELECTOR_ELITE , SELECTOR_RANDOM};
+
     class Selector
     {
     protected:
