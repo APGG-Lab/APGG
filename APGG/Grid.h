@@ -16,7 +16,11 @@ public:
     void data(const std::vector<pOrganism> data);
     void rebuildCache();
 	void sortByFitness();
+	float getMinPayoff();
+	float getMaxPayoff();
     unsigned int size();
+	rOrganism getRandomOrganism() const;
+	rOrganism getRandomOrganism(const std::vector<rOrganism>& blacklist) const;
 private:
 	std::vector<pOrganism> m_grid;
     std::vector<rOrganism> m_gridCache;

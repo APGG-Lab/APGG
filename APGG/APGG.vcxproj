@@ -138,9 +138,11 @@
     <ClCompile Include="optimizer\repopulators\RandomRepopulator.cpp" />
     <ClCompile Include="optimizer\repopulators\Repopulator.cpp" />
     <ClCompile Include="optimizer\selectors\EliteSelector.cpp" />
+    <ClCompile Include="optimizer\selectors\RandomSelector.cpp" />
     <ClCompile Include="optimizer\selectors\Selector.cpp" />
     <ClCompile Include="Organism.cpp" />
     <ClCompile Include="PayOffCalculator.cpp" />
+    <ClCompile Include="optimizer\repopulators\ProportionateRepupoluator.cpp" />
     <ClCompile Include="SimpleArchiver.cpp" />
     <ClCompile Include="World.cpp" />
   </ItemGroup>
@@ -155,9 +157,11 @@
     <ClInclude Include="optimizer\repopulators\RandomRepopulator.h" />
     <ClInclude Include="optimizer\repopulators\Repopulator.h" />
     <ClInclude Include="optimizer\selectors\EliteSelector.h" />
+    <ClInclude Include="optimizer\selectors\RandomSelector.h" />
     <ClInclude Include="optimizer\selectors\Selector.h" />
     <ClInclude Include="Organism.h" />
     <ClInclude Include="PayOffCalculator.h" />
+    <ClInclude Include="optimizer\repopulators\ProportionateRepupoluator.h" />
     <ClInclude Include="random.h" />
     <ClInclude Include="SimpleArchiver.h" />
     <ClInclude Include="World.h" />

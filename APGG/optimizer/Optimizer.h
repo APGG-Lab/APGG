@@ -7,6 +7,8 @@
 #include "repopulators/Repopulator.h"
 #include "selectors/EliteSelector.h"
 #include "repopulators/RandomRepopulator.h"
+#include "repopulators/ProportionateRepupoluator.h"
+#include "selectors/RandomSelector.h"
 
 class Optimizer
 {

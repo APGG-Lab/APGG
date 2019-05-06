@@ -7,7 +7,10 @@ Grid::Grid()
 	m_grid.reserve(Config::getInstance().width * Config::getInstance().height);
 	for (unsigned int i = 0; i < Config::getInstance().width * Config::getInstance().height; i++)
 	{
-		m_grid.emplace_back(std::make_unique<Organism>());
+        auto organism = std::make_unique<Organism>();
+        organism->ID = i;
+		m_grid.emplace_back(std::move(organism));
+
 	}
 }
 
@@ -58,3 +61,45 @@ unsigned int Grid::size()
     return static_cast<unsigned int>(m_grid.size());
 }
 
+float Grid::getMinPayoff()
+{
+	float tempMin = std::numeric_limits<float>::max();
+	for(pOrganism& org : m_grid)
+	{ 
+		if (org->m_payoff <= tempMin)
+			tempMin = org->m_payoff;
+	}
+	return tempMin;
+}
+
+float Grid::getMaxPayoff()
+{
+	float tempMax = std::numeric_limits<float>::min();
+	for (pOrganism& org : m_grid)
+	{
+		if (org->m_payoff >= tempMax)
+			tempMax = org->m_payoff;
+	}
+	return tempMax;
+}
+
+rOrganism Grid::getRandomOrganism() const {
+	int rand = getRandomNumber() % m_grid.size();
+	return m_gridCache[rand];
+}
+
+rOrganism Grid::getRandomOrganism(const std::vector<rOrganism>& blacklist) const {
+	
+	int rand = getRandomNumber() % m_grid.size();
+	auto returnOrganism = m_gridCache[rand];
+
+	for (const rOrganism& organism : blacklist) {
+		if (returnOrganism.get().ID == organism.get().ID) {
+			returnOrganism = getRandomOrganism(blacklist);
+			break;
+		}
+	}
+	//todo cool blacklist implementation;
+
+	return returnOrganism;
+}

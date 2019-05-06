@@ -63,6 +63,12 @@
     <ClCompile Include="SimpleArchiver.cpp">
       <Filter>Quelldateien</Filter>
     </ClCompile>
+    <ClCompile Include="optimizer\repopulators\ProportionateRepupoluator.cpp">
+      <Filter>Quelldateien</Filter>
+    </ClCompile>
+    <ClCompile Include="optimizer\selectors\RandomSelector.cpp">
+      <Filter>Quelldateien</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Genome.h">
@@ -111,6 +117,12 @@
       <Filter>Headerdateien</Filter>
     </ClInclude>
     <ClInclude Include="SimpleArchiver.h">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
+    <ClInclude Include="optimizer\repopulators\ProportionateRepupoluator.h">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
+    <ClInclude Include="optimizer\selectors\RandomSelector.h">
       <Filter>Headerdateien</Filter>
     </ClInclude>
   </ItemGroup>
