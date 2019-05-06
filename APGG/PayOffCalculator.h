@@ -25,7 +25,7 @@ public:
     //@todo finde better name
     void setCounters(const std::array<unsigned int, 4>& counter);
     void calculateCosts(const int groupSize);
-    void applyPayoff(pOrganism& organism);
+    void applyPayoff(rOrganism& organism);
     void applyPayoff(Group& group);
 };
 

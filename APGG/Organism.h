@@ -28,5 +28,6 @@ public:
     void setPayoff(const float payoff);
 };
 
-typedef std::shared_ptr<Organism> pOrganism;
+typedef std::unique_ptr<Organism> pOrganism;
+typedef std::reference_wrapper<Organism> rOrganism;
 

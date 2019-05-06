@@ -7,36 +7,46 @@ Grid::Grid()
 	m_grid.reserve(Config::getInstance().width * Config::getInstance().height);
 	for (unsigned int i = 0; i < Config::getInstance().width * Config::getInstance().height; i++)
 	{
-        auto organism = std::make_shared<Organism>();
+        auto organism = std::make_unique<Organism>();
         organism->ID = i;
-		m_grid.emplace_back(organism);
+		m_grid.emplace_back(std::move(organism));
 
 	}
 }
 
-pOrganism Grid::getOrganism(const unsigned int x, const unsigned int y)
+pOrganism& Grid::getOrganism(const unsigned int x, const unsigned int y)
 {
 	//assert(x < width&&"X out of bounds!");
 	//assert(y < height&&"Y out of bounds!");
 
 	unsigned int index = x + y * Config::getInstance().width;
 	return m_grid[index];
+
 }
 
-pOrganism Grid::getOrganism(const int index)
+pOrganism& Grid::getOrganism(const int index)
 {
 //	assert(index < Config::getInstance().width* Config::getInstance().height&&"Index out of bounds!");
 	return m_grid[index];
 }
 
-std::vector<pOrganism> Grid::data()
+const std::vector<rOrganism> Grid::data()
 {
-    return m_grid;
+    return m_gridCache;
 }
 
 void Grid::data(const std::vector<pOrganism> data)
 {
-    m_grid = data;
+  // m_grid = data;
+}
+
+void Grid::rebuildCache()
+{
+    m_gridCache.clear();
+    m_gridCache.reserve(size());
+    for (auto &ptr : m_grid) {
+        m_gridCache.push_back(std::ref(*ptr));
+    }
 }
 
 void Grid::sortByFitness()
@@ -73,18 +83,18 @@ float Grid::getMaxPayoff()
 	return tempMax;
 }
 
-pOrganism Grid::getRandomOrganism() const {
+rOrganism Grid::getRandomOrganism() const {
 	int rand = getRandomNumber() % m_grid.size();
-	return m_grid[rand];
+	return m_gridCache[rand];
 }
 
-pOrganism Grid::getRandomOrganism(const std::vector<pOrganism>& blacklist) const {
+rOrganism Grid::getRandomOrganism(const std::vector<rOrganism>& blacklist) const {
 	
 	int rand = getRandomNumber() % m_grid.size();
-	auto returnOrganism = m_grid[rand];
+	auto returnOrganism = m_gridCache[rand];
 
-	for (const pOrganism organism : blacklist) {
-		if (returnOrganism.get() == organism.get()) {
+	for (const rOrganism& organism : blacklist) {
+		if (returnOrganism.get().ID == organism.get().ID) {
 			returnOrganism = getRandomOrganism(blacklist);
 			break;
 		}

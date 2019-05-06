@@ -19,7 +19,7 @@ void Optimizer::setRepopulator(const std::shared_ptr<Repopulator> & repopulator)
 
 void Optimizer::optmize()
 {
-    std::vector<pOrganism> selection = m_selector->select(m_grid);
+    std::vector<rOrganism> selection = m_selector->select(m_grid);
     m_repopulator->repopulate(m_grid, selection);
 }
 

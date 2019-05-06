@@ -3,6 +3,6 @@
 class ProportionateRepupoluator : public Repopulator
 {
 public:
-	void repopulate(std::shared_ptr<Grid>& grid, std::vector<pOrganism>& selection);
+	void repopulate(std::shared_ptr<Grid>& grid, std::vector<rOrganism>& selection);
 };
 

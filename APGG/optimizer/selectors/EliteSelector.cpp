@@ -8,13 +8,15 @@ EliteSelector::EliteSelector(const unsigned int eliminationCount) : Selector(eli
 {
 }
 
-std::vector<pOrganism> EliteSelector::select(std::shared_ptr<Grid>& grid)
+std::vector<rOrganism> EliteSelector::select(std::shared_ptr<Grid>& grid)
 {
     m_selection.clear();
 
+    auto gridData = grid->data();
+
     grid->sortByFitness();
     for (unsigned int i = grid->size() - 1; i > grid->size() - 1 - Config::getInstance().eliminationCount; i--) {
-        m_selection.push_back(grid->data()[i]);
+        m_selection.emplace_back(gridData[i]);
     }
 
     return m_selection;

@@ -20,7 +20,7 @@ void MatchupGenerator::generateGroups()
 {
     m_groups.clear();
   
-    std::vector<pOrganism> gridData = m_grid->data();
+    std::vector<rOrganism> gridData = m_grid->data();
     std::shuffle(gridData.begin(), gridData.end(), std::mt19937());
 
     for (unsigned int i = 0; i < gridData.size(); i += m_groupSize) {

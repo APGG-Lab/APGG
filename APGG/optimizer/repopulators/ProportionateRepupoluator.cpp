@@ -1,18 +1,18 @@
 #include "ProportionateRepupoluator.h"
 
 
-void ProportionateRepupoluator::repopulate(std::shared_ptr<Grid>& grid, std::vector<pOrganism>& selection)
+void ProportionateRepupoluator::repopulate(std::shared_ptr<Grid>& grid, std::vector<rOrganism>& selection)
 {
 	float min = grid->getMinPayoff();
 	float max = grid->getMaxPayoff();
-	for (pOrganism& organism : selection)
+	for (rOrganism& organism : selection)
 	{
-		pOrganism donatorOrganism = grid->getRandomOrganism(selection);
+		rOrganism donatorOrganism = grid->getRandomOrganism(selection);
 
-        float payoff = donatorOrganism->getNormalizedPayoff(min, max);
+        float payoff = donatorOrganism.get().getNormalizedPayoff(min, max);
 		if (payoff >= getRandomFloat())
 		{
-			organism->m_genomes = donatorOrganism->m_genomes;
+			organism.get().m_genomes = donatorOrganism.get().m_genomes;
 		}
 	}
 }

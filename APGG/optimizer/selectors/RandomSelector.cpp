@@ -8,7 +8,7 @@ RandomSelector::RandomSelector(const unsigned int eliminationCount) : Selector(e
 {
 }
 
-std::vector<pOrganism> RandomSelector::select(std::shared_ptr<Grid>& grid)
+std::vector<rOrganism> RandomSelector::select(std::shared_ptr<Grid>& grid)
 {
     m_selection.clear();
 	while (m_selection.size() < m_eliminationCount) {
