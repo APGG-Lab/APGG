@@ -41,8 +41,8 @@ namespace APGG {
     {
         //Precalculate costs, fines and payoffs
 
-        int nPunishers = m_counter[FACTION_DEFECTOR] + m_counter[FACTION_MORALIST];
-        m_punishmentCost = m_punishmentCostBase * nPunishers;
+        int nPunished = m_counter[FACTION_DEFECTOR] + m_counter[FACTION_IMMORALIST];
+        m_punishmentCost = m_punishmentCostBase * nPunished;
 
         int nMoralists = m_counter[FACTION_MORALIST] + m_counter[FACTION_IMMORALIST];
         m_punishmentFine = m_punishmentFineBase * nMoralists;
