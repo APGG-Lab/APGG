@@ -340,6 +340,13 @@ ASALocalRun/
 # BeatPulse healthcheck temp database
 healthchecksdb
 
+# VisualCode 
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+
 # Backup folder for Package Reference Convert tool in Visual Studio 2017
 MigrationBackup/
 /APGG/Score.csv
