@@ -8,8 +8,10 @@ namespace APGG {
         m_grid.reserve(Config::getInstance().width * Config::getInstance().height);
         for (unsigned int i = 0; i < Config::getInstance().width * Config::getInstance().height; i++)
         {
-            auto organism = std::make_unique<Organism>();
-            organism->ID = i;
+            auto organism = std::make_shared<Organism>();
+            organism->ID = getID();
+			organism->m_generation = getGeneration();
+			organism->m_history += "(C," + std::to_string(m_generation) + "," + std::to_string(organism->ID) + ")|";
             m_grid.emplace_back(std::move(organism));
 
         }
@@ -84,15 +86,15 @@ namespace APGG {
         return tempMax;
     }
 
-    rOrganism Grid::getRandomOrganism() const {
+    rOrganism& Grid::getRandomOrganism() {
         int rand = getRandomNumber() % m_grid.size();
         return m_gridCache[rand];
     }
 
-    rOrganism Grid::getRandomOrganism(const std::vector<rOrganism>& blacklist) const {
+    rOrganism& Grid::getRandomOrganism(const std::vector<rOrganism>& blacklist) {
 
         int rand = getRandomNumber() % m_grid.size();
-        auto returnOrganism = m_gridCache[rand];
+        auto& returnOrganism = m_gridCache[rand];
 
         for (const rOrganism& organism : blacklist) {
             if (returnOrganism.get().ID == organism.get().ID) {
@@ -100,9 +102,15 @@ namespace APGG {
                 break;
             }
         }
+
         //todo cool blacklist implementation;
 
         return returnOrganism;
     }
+
+	int Grid::getID()
+	{
+		return m_IDCounter++;
+	}
 
 }

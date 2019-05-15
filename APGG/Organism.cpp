@@ -42,10 +42,63 @@ namespace APGG {
         }
     }
 
+	void Organism::copyTo(pOrganism& copyOrganism)
+	{
+		copyOrganism->m_cooperated = m_cooperated;
+		copyOrganism->m_faction = m_faction;
+		//copyOrganism->m_genomes = m_genomes;
+		copyOrganism->m_moralist = m_moralist;
+		copyOrganism->m_payoff = m_payoff;
+		copyOrganism->m_status = STATUS_CLONE;
+		copyOrganism->ID = ID;
+		copyOrganism->m_children = m_children;
+		copyOrganism->m_parent = m_parent;
+		for (int i = 0; i < m_genomes.size(); i++) {
+			copyOrganism->m_genomes[i].setValue(m_genomes[i].getValue());
+		}
+	}
+
+	pOrganism Organism::getPtr()
+	{
+		return shared_from_this();
+	}
+
     float Organism::getNormalizedPayoff(const float min, const float max)
     {
         auto payoff = (m_payoff + std::abs(min)) / (max + std::abs(min));
         return payoff;
     }
+
+    void Organism::removeAndCleanupChildLists(pOrganism& organism){
+        if (!organism->m_children.empty()) {
+#ifdef DEBUG_EXTREME
+            std::cout << "Cleanup organism is not dead: " << "Ptr:" << organism.get() << " ID: " << organism->ID << " Parent: " << organism->getParentID() << " Children: " << organism->getChildIDs() << std::endl;
+#endif
+            return;
+        }
+
+        if (organism->m_parent.get() == nullptr) {
+#ifdef DEBUG_EXTREME
+            std::cout << "Cleanup organism origin reached: " << "Ptr:" << organism.get() << " ID: " << organism->ID << " Parent: " << organism->getParentID() << " Children: " << organism->getChildIDs() << " Gen:" << organism->m_generation << std::endl;
+#endif
+            return;
+        }
+
+        if (organism->m_parent->m_status != STATUS_CLONE) {
+#ifdef DEBUG_EXTREME
+            std::cout << "Cleanup organism is not a clone: " << "Ptr:" << organism.get() << " ID: " << organism->ID << " Parent: " << organism->getParentID() << " Children: " << organism->getChildIDs() << std::endl;
+#endif // DEBUG_EXTREME
+            return;
+        }
+
+        organism->m_children.clear();
+        removeAndCleanupChildLists(organism->m_parent);
+        organism->m_parent = nullptr;
+
+#ifdef DEBUG_EXTREME
+        std::cout << "Cleanup organism done: " << "Ptr:" << organism.get() << " ID: " << organism->ID << " Parent: " << organism->getParentID() << " Children: " << organism->getChildIDs() << " Gen:" << organism->m_generation << std::endl;
+#endif // DEBUG_EXTREME
+
+	}
 
 }

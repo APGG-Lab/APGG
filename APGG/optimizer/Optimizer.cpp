@@ -21,8 +21,14 @@ namespace APGG {
     void Optimizer::optmize()
     {
         std::vector<rOrganism> selection = m_selector->select(m_grid);
+		m_lod->LODebug(m_grid, selection);
         m_repopulator->repopulate(m_grid, selection);
     }
+
+	void Optimizer::setLOD(const std::shared_ptr<LOD>& lod) {
+		m_lod = lod;
+	}
+
 
     Optimizer::Optimizer()
     {

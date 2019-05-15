@@ -43,6 +43,7 @@ namespace APGG {
         void Fini();
 
         void Evolve();
+		void printLOD(const pOrganism& organism);
         std::shared_ptr<Grid> m_grid;
         unsigned int m_generation = 0;
     };

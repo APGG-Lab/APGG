@@ -138,6 +138,8 @@ namespace APGG {
                 m_optimizer.setRepopulator(std::make_shared<ProportionateRepupoluator>());
                 break;
             }
+
+			m_optimizer.setLOD(std::make_shared<LOD>());
         }
 
         {
@@ -185,6 +187,10 @@ namespace APGG {
 
     void World::Fini()
     {
+		m_grid->sortByFitness();
+		auto topOragnism = m_grid->data()[0].get().getPtr();
+		printLOD(topOragnism);
+
         fsec fs = m_clock_now - m_clock_start;
         ms timeDelta = std::chrono::duration_cast<ms>(fs);
         std::cout << "[APGG] Fini (took " << timeDelta.count() << " ms)" << std::endl;
@@ -196,7 +202,24 @@ namespace APGG {
     {
         m_optimizer.optmize();
         m_grid->rebuildCache();
+		//int parentCount = 0;
+		//for (auto test : m_grid->data()) {
+		//	if (test.get().m_parent != nullptr) {
+		//		parentCount++;
+		//	}
+		//}
+		//std::cout << "ParentCount : " << parentCount << std::endl;
         m_generation++;
+		m_grid->setGeneration(m_generation);
     }
+
+	void World::printLOD(const pOrganism& organism)
+	{
+		std::cout << "ID " << organism->ID << " Payoff:" << organism->m_payoff << std::endl;
+	
+		if (organism->m_parent.get() != nullptr) {
+			printLOD(organism->m_parent);
+		}
+	}
 
 }

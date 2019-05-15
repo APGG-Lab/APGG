@@ -132,6 +132,7 @@
     <ClCompile Include="Genome.cpp" />
     <ClCompile Include="Grid.cpp" />
     <ClCompile Include="Group.cpp" />
+    <ClCompile Include="optimizer\LOD.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="MatchupGenerator.cpp" />
     <ClCompile Include="optimizer\Optimizer.cpp" />
@@ -152,6 +153,7 @@
     <ClInclude Include="Genome.h" />
     <ClInclude Include="Grid.h" />
     <ClInclude Include="Group.h" />
+    <ClInclude Include="optimizer\LOD.h" />
     <ClInclude Include="MatchupGenerator.h" />
     <ClInclude Include="optimizer\Optimizer.h" />
     <ClInclude Include="optimizer\repopulators\ProportionateRepopulator.h" />
