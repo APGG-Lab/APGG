@@ -183,6 +183,7 @@
     <ClCompile Include="Grid.cpp" />
     <ClCompile Include="Group.cpp" />
     <ClCompile Include="LODArchiver.cpp" />
+    <ClCompile Include="optimizer\Mutator.cpp" />
     <ClCompile Include="optimizer\LOD.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="MatchupGenerator.cpp" />
@@ -205,6 +206,7 @@
     <ClInclude Include="Grid.h" />
     <ClInclude Include="Group.h" />
     <ClInclude Include="LODArchiver.h" />
+    <ClInclude Include="optimizer\Mutator.h" />
     <ClInclude Include="optimizer\LOD.h" />
     <ClInclude Include="MatchupGenerator.h" />
     <ClInclude Include="optimizer\Optimizer.h" />

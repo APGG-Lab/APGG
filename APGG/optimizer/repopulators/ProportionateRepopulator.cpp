@@ -34,6 +34,7 @@ namespace APGG {
 			//Copy genomes && reset organism
             deadOrganism.get().m_genomes = rParent.get().m_genomes;
             deadOrganism.get().m_status = STATUS_ORIGINAL;
+            deadOrganism.get().m_mutated = false;
             deadOrganism.get().clearChildren();
             deadOrganism.get().m_generation = grid->getGeneration();
 

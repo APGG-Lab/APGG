@@ -47,6 +47,7 @@ namespace APGG {
                   << "matchupType - " << Config::getInstance().matchupType << std::endl
                   << "selectorType - " << Config::getInstance().selectorType << std::endl
                   << "repopulatorType - " << Config::getInstance().repopulatorType << std::endl
+                  << "mutationRate - " << Config::getInstance().mutationRate << "%" << std::endl
                   << "showAllGenerations - " << Config::getInstance().showAllGenerations << std::endl
                   << "archiveData - " << Config::getInstance().archiveData << std::endl
                   << "visualize - " << Config::getInstance().visualize << std::endl
@@ -138,6 +139,11 @@ namespace APGG {
                 m_optimizer.setRepopulator(std::make_shared<ProportionateRepupoluator>());
                 break;
             }
+
+            std::shared_ptr<Mutator> mutator = std::make_shared<Mutator>();
+            mutator->setMutationRate(Config::getInstance().mutationRate);
+            m_optimizer.setMutator(std::make_shared<Mutator>());
+            
 
             std::unique_ptr<LODArchiver> lodArchiver = std::make_unique<LODArchiver>();
             lodArchiver->setFolderName(Config::getInstance().folderName);
