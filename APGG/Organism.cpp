@@ -58,10 +58,6 @@ namespace APGG {
 		}
 	}
 
-	pOrganism Organism::getPtr()
-	{
-		return shared_from_this();
-	}
 
     float Organism::getNormalizedPayoff(const float min, const float max)
     {

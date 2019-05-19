@@ -6,43 +6,66 @@ namespace APGG {
     {
         float min = grid->getMinPayoff();
         float max = grid->getMaxPayoff();
+
+      // grid->refCountCheck();
+
+        rOrganism rParent = grid->getRandomOrganism(selection);
+       // grid->refCountCheck();
+
         for (rOrganism& deadOrganism : selection)
         {
-			pOrganism pDeadOrganism = deadOrganism.get().getPtr();
-
 			float payoff = std::numeric_limits<float>::min();
-			pOrganism pParent;
+			
 			while (payoff <= getRandomFloat()) {
-				rOrganism rParent = grid->getRandomOrganism(selection);
-				pParent = rParent.get().getPtr();
+                rParent = grid->getRandomOrganism(selection);
 
-				if (min == max) {
-					//Min == Max => Difference equals 0
-					break;
-				}
+                if (min == max) {
+                    //Min == Max => Difference equals 0
+                    break;
+                }
 
-				payoff = pParent->getNormalizedPayoff(min, max);
+				payoff = rParent.get().getNormalizedPayoff(min, max);
 			}
+
+         //   grid->refCountCheck();
 
 #ifdef DEBUG_EXTREME
             assert(pParent->ID != pDeadOrganism->ID && "repopulate SAME ID FOR PARENT AND CHILD");
             assert(pParent.get() != pDeadOrganism.get() && "repopulate SAME PTR FOR PARENT AND CHILD");
 #endif
 
-			//Set child in parent
-			pParent->m_children.push_back(pDeadOrganism);
+            pOrganism ptr = deadOrganism.get().getPtr();
+
+
+			////Set child in parent
 			//Set parent in child
-			pDeadOrganism->m_parent = pParent;
+            if (deadOrganism.get().m_parent != nullptr) {
+                deadOrganism.get().m_parent->removeChild(ptr);
+            }
+
+            if (!deadOrganism.get().m_children.empty()) {
+                int test = 0;
+            }
+            deadOrganism.get().m_parent = nullptr;
+
+
+            deadOrganism.get().m_parent = rParent.get().getPtr();
+            deadOrganism.get().m_parent->addChild(ptr);
+            ptr.reset();
+
+            //grid->refCountCheck();
 
 			//Copy genomes && reset organism
-			pDeadOrganism->m_genomes = pParent->m_genomes;
-			pDeadOrganism->m_status = STATUS_OFFSPRING;
+            deadOrganism.get().m_genomes = rParent.get().m_genomes;
+            deadOrganism.get().m_status = STATUS_ORIGINAL;
 			//pDeadOrganism->m_history += "(R," + std::to_string(grid->getGeneration()) + "," + std::to_string(pDeadOrganism->ID) + ")|";
-			pDeadOrganism->m_children.clear();
-			pDeadOrganism->m_generation = grid->getGeneration();
+            deadOrganism.get().clearChilds();
+            deadOrganism.get().m_generation = grid->getGeneration();
 
 			//Assign new ID
-			pDeadOrganism->ID = grid->getID();
+			deadOrganism.get().ID = grid->getID();
+
+           // grid->refCountCheck();
 
 #ifdef DEBUG_EXTREME
             std::cout << "Repopulator: created offspring " << pDeadOrganism->ID << " ParentPTR: " << pDeadOrganism->m_parent.get() << " ID:" << pDeadOrganism->getParentID() << std::endl;

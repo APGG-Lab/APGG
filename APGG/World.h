@@ -19,6 +19,7 @@ typedef std::chrono::duration<double> fsec;
 
 namespace APGG {
 
+
     class World
     {
     private:
@@ -35,6 +36,7 @@ namespace APGG {
         PayOffCalculator m_payoffCalculator;
         SimpleArchiver m_archiver;
         Optimizer m_optimizer;
+        std::shared_ptr<LOD> m_lod;
     public:
         World();
 

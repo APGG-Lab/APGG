@@ -12,13 +12,12 @@ namespace APGG {
 
     enum GenomeNames { GENOME_COOPERATION = 0, GENOME_MORALS, GENOME_HISTORY1, GENOME_HISTORY2, GENOME_HISTORY3 };
     enum Faction { FACTION_COOPERATOR = 0, FACTION_DEFECTOR, FACTION_MORALIST, FACTION_IMMORALIST };
-	enum Status { STATUS_ORIGINAL, STATUS_CLONE, STATUS_OFFSPRING };
+	enum Status { STATUS_ORIGINAL, STATUS_CLONE, STATUS_OFFSPRING, STATUS_DELETED };
 	enum ParentStatus { PARENT_ORIGINAL, PARENT_MODIFIED };
 
 	class Organism;
 	typedef std::shared_ptr<Organism> pOrganism;
 	typedef std::reference_wrapper<Organism> rOrganism;
-
 
     class Organism : public std::enable_shared_from_this<Organism>
     {
@@ -28,18 +27,22 @@ namespace APGG {
 		pOrganism m_parent = nullptr;
 		std::string m_history = "";
 
-#ifdef DEBUG_EXTREME
+
 		~Organism() { 
-			if (STATUS_ORIGINAL) {
+			if (m_status == STATUS_ORIGINAL) {
                 std::cout << "Organism delete " 
                  << "original Gen" << m_generation << " ID: " << ID << " Parent: " << getParentID() << " Children: " << getChildIDs() << std::endl;
 			}
+            else if(m_status == STATUS_DELETED) {
+              //  std::cout << "Organism delete "
+              //      << "STATUS DELETED Gen" << m_generation << " ID: " << ID << " Parent: " << getParentID() << " Children: " << getChildIDs() << std::endl;
+            }
 			else {
-                std::cout << "Organism delete "
-                    << "copy Gen" << m_generation << " ID: " << ID << " Parent: " << getParentID() << " Children: " << getChildIDs() << std::endl;
+              //  std::cout << "Organism delete "
+              //      << "copy Gen" << m_generation << " ID: " << ID << " Parent: " << getParentID() << " Children: " << getChildIDs() << std::endl;
             }
 		}
-#endif
+
 
         unsigned int ID;
         bool m_cooperated;
@@ -61,13 +64,41 @@ namespace APGG {
 
         void setPayoff(const float payoff);
 		void copyTo(pOrganism& copyOrganism);
-		pOrganism getPtr();
+        pOrganism getPtr() { return shared_from_this(); };
+        void clearChilds() {
+            if(m_status > 2){
+                int test = 0;
+            }
+            if (m_status < 2) {
+                int test = 0;
+            }
+            m_children.clear();
+        }
+        void removeChild(const pOrganism& organism) { 
+            if (m_status > 2) {
+                int test = 0;
+            }
+            m_children.remove(organism);
+        }
+        void addChild(const pOrganism& organism) {
+            if (m_status > 2) {
+                int test = 0;
+            }
+            for (const auto& child : m_children) {
+                if (child.get() == organism.get()) {
+                    int test = 0;
+                    return;
+                }
+            }
+            m_children.push_back(organism);
+        }
         std::string getParentID() {
-            if (m_parent.get() == nullptr) { return "-1"; }
-            else { return std::to_string(m_parent->ID); }
+           // if (m_parent.get() == nullptr) { return "-1"; }
+         //   else { return std::to_string(m_parent->ID); }
+            return "";
         }
         std::string getChildIDs() {
-            if (m_children.empty()) { return "(-1)"; }
+          /*  if (m_children.empty()) { return "(-1)"; }
             else {
                 std::string ret = "(";
                 for (auto& child : m_children) {
@@ -75,7 +106,8 @@ namespace APGG {
                 }
                 ret += ")";
                 return ret;
-            }
+            }*/
+            return "";
         }
 
 		static void removeAndCleanupChildLists(pOrganism& organism);

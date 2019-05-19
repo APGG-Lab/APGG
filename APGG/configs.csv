@@ -1,8 +1,2 @@
 numGenerations;eliminationCount;groupSize;width;height;cooperateCost;synergyFactor;punishmentCost;punishmentFine;matchupType;selectorType;repopulationType;showAllGenerations;archiveData;visualize;folderName;logSuffix;timeToFile;timeToFolder;consoleOutExponent
 10000;100;32;32;32;1;20;0;0;0;1;1;0;1;0;experiment1;test1;1;0;10
-10000;100;32;32;32;1;20;0;0;0;1;1;0;1;0;experiment1;test1;1;0;10
-10000;100;32;32;32;1;20;0;0;0;1;1;0;1;0;experiment1;test1;1;0;10
-10000;100;32;32;32;1;20;0;0;0;1;1;0;1;0;experiment1;test1;1;0;10
-10000;100;32;32;32;1;20;0;0;0;1;1;0;1;0;experiment1;test1;1;0;10
-10000;100;32;32;32;1;20;0;0;0;1;1;0;1;0;experiment1;test1;1;0;10
-10000;100;32;32;32;1;20;0;0;0;1;1;0;1;0;experiment1;test1;1;0;10

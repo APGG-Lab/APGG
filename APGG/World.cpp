@@ -139,7 +139,8 @@ namespace APGG {
                 break;
             }
 
-			m_optimizer.setLOD(std::make_shared<LOD>());
+            m_lod = std::make_shared<LOD>();
+			m_optimizer.setLOD(m_lod);
         }
 
         {
@@ -159,6 +160,7 @@ namespace APGG {
         std::fill(std::begin(m_count), std::end(m_count), 0);
         //int localCooperation = 0;
         //float localPayoff = 0;
+
         m_matchupGenerator.generateGroups();
 
         std::vector<Group> groups = m_matchupGenerator.getGroups();
@@ -173,12 +175,10 @@ namespace APGG {
                 m_count[faction]++;
                 factionCount[faction]++;
             }
-
             m_payoffCalculator.setCounters(factionCount);
             m_payoffCalculator.calculateCosts(groups[i].size());
             m_payoffCalculator.applyPayoff(groups[i]);
         }
-
         if (Config::getInstance().archiveData) {
             m_archiver.archive(m_generation, m_count[FACTION_COOPERATOR], m_count[FACTION_DEFECTOR], m_count[FACTION_MORALIST], m_count[FACTION_IMMORALIST]);
         }
@@ -188,13 +188,24 @@ namespace APGG {
     void World::Fini()
     {
 		m_grid->sortByFitness();
-		auto topOragnism = m_grid->data()[0].get().getPtr();
+		pOrganism topOragnism = m_grid->data()[0].get().getPtr();
 		printLOD(topOragnism);
 
+        topOragnism.reset();
+        m_grid->wipe();
+        m_lod->wipe();
+        //int j = 0;
+        //for (int i = 0; i < m_grid->getID(); i++) {
+        //    if (validator[i] == 0) {
+        //        std::cout << i << std::endl;
+        //        j++;
+        //    }
+        //}
+        //std::cout << "Found " << j << " buggy objects" << std::endl;
         fsec fs = m_clock_now - m_clock_start;
         ms timeDelta = std::chrono::duration_cast<ms>(fs);
         std::cout << "[APGG] Fini (took " << timeDelta.count() << " ms)" << std::endl;
-
+        getchar();
         //  m_archiver.close();
     }
 
@@ -202,6 +213,10 @@ namespace APGG {
     {
         m_optimizer.optmize();
         m_grid->rebuildCache();
+
+        //Ref Count check
+        //m_grid->refCountCheck();
+
 		//int parentCount = 0;
 		//for (auto test : m_grid->data()) {
 		//	if (test.get().m_parent != nullptr) {
@@ -211,13 +226,15 @@ namespace APGG {
 		//std::cout << "ParentCount : " << parentCount << std::endl;
         m_generation++;
 		m_grid->setGeneration(m_generation);
+      //  m_grid->refCountCheck();
+
     }
 
 	void World::printLOD(const pOrganism& organism)
 	{
 		std::cout << "ID " << organism->ID << " Payoff:" << organism->m_payoff << std::endl;
 	
-		if (organism->m_parent.get() != nullptr) {
+		if (organism->m_parent != nullptr) {
 			printLOD(organism->m_parent);
 		}
 	}

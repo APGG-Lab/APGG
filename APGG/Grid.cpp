@@ -8,7 +8,7 @@ namespace APGG {
         m_grid.reserve(Config::getInstance().width * Config::getInstance().height);
         for (unsigned int i = 0; i < Config::getInstance().width * Config::getInstance().height; i++)
         {
-            auto organism = std::make_shared<Organism>();
+            auto organism = std::make_unique<Organism>();
             organism->ID = getID();
 			organism->m_generation = getGeneration();
 			organism->m_history += "(C," + std::to_string(m_generation) + "," + std::to_string(organism->ID) + ")|";
