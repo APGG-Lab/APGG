@@ -65,6 +65,26 @@ namespace APGG {
         return payoff;
     }
 
+    std::string Organism::getDebugString()
+    {
+        std::string debugString = "";
+        debugString += "ID: " + std::to_string(ID) + ":" + std::to_string(m_generation) + " ";
+        debugString += ("Parent: " + ((m_parent != nullptr) ? (std::to_string(m_parent->ID) + ":" + std::to_string(m_parent->m_generation)) : " -1") + " ");
+        debugString += "Children: ";
+        if (m_children.empty()) {
+            debugString += " (-1)";
+        }
+        else {
+            debugString += "(";
+            for (const pOrganism& child : m_children) {
+                debugString += std::to_string(child->ID) + ":" + std::to_string(child->m_generation) +  ",";
+            }
+            debugString += ")";
+        }
+
+        return debugString;
+    }
+
     void Organism::removeAndCleanupChildLists(pOrganism& organism){
         if (!organism->m_children.empty()) {
 #ifdef DEBUG_EXTREME

@@ -6,6 +6,14 @@
 #include <iostream>
 #include "Genome.h"
 
+#ifdef DEBUG_EXTREME
+#define DEBUG_MSG(str) do { std::cout << "[APGG DEBUG] " << str << std::endl; } while( false )
+#else
+#define DEBUG_MSG(str) do { } while ( false )
+#endif
+//info about do while: https://stackoverflow.com/questions/3371540/c-enable-disable-debug-messages-of-stdcouts-on-the-fly#comment11259287_3371577
+
+
 namespace APGG {
 
     constexpr unsigned int nrGenomes = 2;
@@ -110,6 +118,7 @@ namespace APGG {
             return "";
         }
 
+        std::string getDebugString();
 		static void removeAndCleanupChildLists(pOrganism& organism);
     };
 

@@ -29,10 +29,6 @@ namespace APGG {
 
          //   grid->refCountCheck();
 
-#ifdef DEBUG_EXTREME
-            assert(pParent->ID != pDeadOrganism->ID && "repopulate SAME ID FOR PARENT AND CHILD");
-            assert(pParent.get() != pDeadOrganism.get() && "repopulate SAME PTR FOR PARENT AND CHILD");
-#endif
 
             pOrganism ptr = deadOrganism.get().getPtr();
 
@@ -67,10 +63,8 @@ namespace APGG {
 
            // grid->refCountCheck();
 
-#ifdef DEBUG_EXTREME
-            std::cout << "Repopulator: created offspring " << pDeadOrganism->ID << " ParentPTR: " << pDeadOrganism->m_parent.get() << " ID:" << pDeadOrganism->getParentID() << std::endl;
-            std::cout << "Repopulator: from " << pParent->ID << " ParentPTR: " << pParent->m_parent.get() << " ID:" << pParent->getParentID() << std::endl;
-#endif
+            DEBUG_MSG("Repopulator: created offspring " + deadOrganism.get().getDebugString());
+            DEBUG_MSG("Repopulator: from parent " + rParent.get().getDebugString());
         }
     }
 }

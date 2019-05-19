@@ -116,38 +116,30 @@ namespace APGG {
         pOrganism organismLODCopy = std::make_shared<Organism>();
 
         organism.copyTo(organismLODCopy);
-        #ifdef DEBUG_EXTREME
-                std::cout << "LOD: Original is " << "Ptr:" << organism.get()  << " ID: " << organism->ID   << " Parent: " << organism->getParentID() << " Children: " << organism->getChildIDs() << std::endl;
-                std::cout << "LOD: Copy     is " << "Ptr:" << organismLODCopy.get() << " ID: " << organismLODCopy->ID   << " Parent: " << organismLODCopy->getParentID() << " Children: " << organismLODCopy->getChildIDs() << std::endl;
-        #endif
-        		organismLODCopy->m_generation = m_grid->getGeneration();
+
+        DEBUG_MSG("LOD: Original is " + organism.getDebugString());
+        DEBUG_MSG("LOD: Copy     is " + organismLODCopy->getDebugString());
+
+        //@todo : think about removing this line. Copy should have same ID and Generation
+        organismLODCopy->m_generation = m_grid->getGeneration();
         
-        		if (organism.m_parent != nullptr)
-        		{
-        #ifdef DEBUG_EXTREME
-                    std::cout << "LOD: Remove child from parent. Before ParentChildsize: " << organismLODCopy->m_parent->m_children.size();
-        #endif
-                    organismLODCopy->m_parent->removeChild(organism.getPtr());
-        			organismLODCopy->m_parent->addChild(organismLODCopy);
-        #ifdef DEBUG_EXTREME
-                    std::cout << " After ParentChildSize:" << organismLODCopy->m_parent->m_children.size() << std::endl;
-        #endif
-        
-        		}
+        if (organism.m_parent != nullptr)
+        {
+            DEBUG_MSG("LOD: Remove old organism from parent and add the new one");
+
+            organismLODCopy->m_parent->removeChild(organism.getPtr());
+        	organismLODCopy->m_parent->addChild(organismLODCopy);
+        }
         		for (pOrganism& child : organism.m_children) {
-        #ifdef DEBUG_EXTREME
-                    std::cout << "LOD: Set new parent PTR for child: " << child->ID << " Before ParentPTR: " << child->m_parent.get() << " ID:" << child->getParentID();
-        #endif
+                    DEBUG_MSG("LOD: Set new paraent for child before: " + child->getDebugString());
+
         			child->m_parent = organismLODCopy;
         			child->ParentStatus = PARENT_MODIFIED;
-        #ifdef DEBUG_EXTREME
-                    std::cout << " After ParentPTR: " << child->m_parent.get() << " ID:" << child->getParentID() << std::endl;
-        #endif
+
+                    DEBUG_MSG("LOD: Set new paraent for child after: " + child->getDebugString());
         		}
         
-        #ifdef DEBUG_EXTREME
-                std::cout << "LOD: Remove references to parent and children: " << std::endl;
-        #endif
+                DEBUG_MSG("LOD: Remove references to parent and children");
         
         		organism.m_parent.reset();
                 for (auto& child : organism.m_children) {
@@ -159,9 +151,7 @@ namespace APGG {
                 organism.m_status = STATUS_ORIGINAL;
                 organism.ParentStatus = PARENT_ORIGINAL;
         
-        #ifdef DEBUG_EXTREME
-                std::cout << "LOD: Original is " << "Ptr:" << organism.get() << " ID: " << organism->ID << " Parent: " << organism->getParentID() << " Children: " << organism->getChildIDs() << std::endl;
-        #endif
+                DEBUG_MSG("LOD: Original after lodCopy: " + organism.getDebugString());
 
               //  m_externalList.push_back(organismLODCopy);        
         		//organism->m_history += "(F," + std::to_string(m_grid->getGeneration()) + "," + std::to_string(organism->ID) + ")|";
@@ -171,16 +161,12 @@ namespace APGG {
 
     void LOD::removeAndCleanupChildLists(pOrganism& organism) {
         if (!organism->m_children.empty()) {
-#ifdef DEBUG_EXTREME
-            std::cout << "Cleanup organism is not dead: " << "Ptr:" << organism.get() << " ID: " << organism->ID << " Parent: " << organism->getParentID() << " Children: " << organism->getChildIDs() << std::endl;
-#endif
+            DEBUG_MSG("LOD Cleanup: organism has children " + organism->getDebugString());
             return;
         }
         
         if (organism->m_parent == nullptr) {
-#ifdef DEBUG_EXTREME
-            std::cout << "Cleanup organism origin reached: " << "Ptr:" << organism.get() << " ID: " << organism->ID << " Parent: " << organism->getParentID() << " Children: " << organism->getChildIDs() << " Gen:" << organism->m_generation << std::endl;
-#endif
+            DEBUG_MSG("LOD Cleanup: found root organism " + organism->getDebugString());
             return;
         }
 
@@ -194,18 +180,13 @@ namespace APGG {
         parent->removeChild(organism);
         
         if (parent->m_status != STATUS_CLONE) {
-#ifdef DEBUG_EXTREME
-            std::cout << "Cleanup organism is not a clone: " << "Ptr:" << organism.get() << " ID: " << organism->ID << " Parent: " << organism->getParentID() << " Children: " << organism->getChildIDs() << std::endl;
-#endif // DEBUG_EXTREME
+            DEBUG_MSG("LOD Cleanup: organism is not a clone " + organism->getDebugString());
             return;
         }
 
         removeAndCleanupChildLists(parent);
         parent.reset();
 
-#ifdef DEBUG_EXTREME
-        std::cout << "Cleanup organism done: " << "Ptr:" << organism.get() << " ID: " << organism->ID << " Parent: " << organism->getParentID() << " Children: " << organism->getChildIDs() << " Gen:" << organism->m_generation << std::endl;
-#endif // DEBUG_EXTREME
-
+        DEBUG_MSG("LOD Cleanup: done " + organism->getDebugString());
     }
 }
