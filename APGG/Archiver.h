@@ -24,6 +24,7 @@ namespace APGG {
 
         std::string getTimestamp();
         std::string m_fullFileName; //@todo : better var name
+        std::string m_fileBaseName = "score";
     public:
         Archiver();
         Archiver(const std::string& folderName, const std::string& m_fileSuffix);

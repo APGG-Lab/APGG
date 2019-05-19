@@ -114,17 +114,23 @@ namespace APGG {
         }
     }
 
-    void LOD::printRecursive(const pOrganism& organism) {
+    void LOD::logRecursive(const pOrganism& organism) {
         if (organism->m_parent != nullptr) {
-            printRecursive(organism->m_parent);
+            logRecursive(organism->m_parent);
         }
 
         std::cout << "[APGG LOD] " << "Payoff: " << organism->m_payoff << " " << organism->getDebugString() << std::endl;
+        m_archiver->archive(organism);
     }
 
-    void LOD::printTop() {
+    void LOD::logTop() {
         m_grid->sortByFitness();
         pOrganism topOragnism = m_grid->data()[0].get().getPtr();
-        printRecursive(topOragnism);
+        logRecursive(topOragnism);
     }
+
+    void LOD::setArchiver(std::unique_ptr<LODArchiver>& archiver) {
+        m_archiver = std::move(archiver);
+    }
+
 }

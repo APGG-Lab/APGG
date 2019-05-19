@@ -4,20 +4,24 @@
 
 #include "../Organism.h"
 #include "../Grid.h"
+#include "../Archiver.h"
+#include "../LODArchiver.h"
 
 namespace APGG {
 	class LOD
 	{
 	private:
 		std::shared_ptr<Grid> m_grid;
-        void printRecursive(const pOrganism& organism);
+        void logRecursive(const pOrganism& organism);
+        std::unique_ptr<LODArchiver> m_archiver;
 	public:
+        void setArchiver(std::unique_ptr<LODArchiver>& archiver);
 		void setGrid(const std::shared_ptr<Grid>& grid);
 		void LODebug(std::vector<rOrganism>& organism);
 		void createLODCopy(rOrganism& organism);
         void removeAndCleanupChildLists(pOrganism& organism);
         void validate(const pOrganism& organism);
-        void printTop();
+        void logTop();
 	};
 }
 

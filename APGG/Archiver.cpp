@@ -50,7 +50,7 @@ namespace APGG {
             std::cout << "[Archiver] created folder: " << fullFolderName << std::endl;
         }
 
-        std::string fullFileName = "score";
+        std::string fullFileName = m_fileBaseName;
         if (m_appendTimestampToFile) {
             fullFileName += ("_" + getTimestamp());
         }

@@ -8,6 +8,7 @@
 #include "MatchupGenerator.h"
 #include "PayOffCalculator.h"
 #include "SimpleArchiver.h"
+#include "LODArchiver.h"
 #include "optimizer/Optimizer.h"
 
 typedef std::chrono::high_resolution_clock HighResClock;

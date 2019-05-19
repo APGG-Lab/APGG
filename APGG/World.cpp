@@ -139,8 +139,16 @@ namespace APGG {
                 break;
             }
 
+            std::unique_ptr<LODArchiver> lodArchiver = std::make_unique<LODArchiver>();
+            lodArchiver->setFolderName(Config::getInstance().folderName);
+            lodArchiver->applyTimestampToFolder(Config::getInstance().timeToFolder);
+            lodArchiver->setFileStuffix(Config::getInstance().logSuffix);
+            lodArchiver->applyTimestampToFile(Config::getInstance().timeToFile);
+            lodArchiver->open();
             m_lod = std::make_shared<LOD>();
             m_lod->setGrid(m_grid);
+            m_lod->setArchiver(lodArchiver);
+
 			m_optimizer.setLOD(m_lod);
         }
 
@@ -188,7 +196,7 @@ namespace APGG {
 
     void World::Fini()
     {
-        m_lod->printTop();
+        m_lod->logTop();
 
         m_grid->wipe();
 
