@@ -69,6 +69,12 @@
     <ClCompile Include="optimizer\repopulators\ProportionateRepopulator.cpp">
       <Filter>Quelldateien</Filter>
     </ClCompile>
+    <ClCompile Include="optimizer\LOD.cpp">
+      <Filter>Quelldateien</Filter>
+    </ClCompile>
+    <ClCompile Include="LODArchiver.cpp">
+      <Filter>Quelldateien</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Genome.h">
@@ -123,6 +129,12 @@
       <Filter>Headerdateien</Filter>
     </ClInclude>
     <ClInclude Include="optimizer\repopulators\ProportionateRepopulator.h">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
+    <ClInclude Include="optimizer\LOD.h">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
+    <ClInclude Include="LODArchiver.h">
       <Filter>Headerdateien</Filter>
     </ClInclude>
   </ItemGroup>

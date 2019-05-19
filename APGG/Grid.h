@@ -20,11 +20,41 @@ namespace APGG {
         float getMinPayoff();
         float getMaxPayoff();
         unsigned int size();
-        rOrganism getRandomOrganism() const;
-        rOrganism getRandomOrganism(const std::vector<rOrganism>& blacklist) const;
+        rOrganism& getRandomOrganism();
+        rOrganism& getRandomOrganism(const std::vector<rOrganism>& blacklist);
+		int getID();
+		unsigned int getGeneration() const { return m_generation; } ;
+		void setGeneration(const unsigned int generation) { m_generation = generation; };
+        void wipe() {
+            m_gridCache.clear();
+            std::list<pOrganism> myList;
+
+            for (auto& organism : m_grid) {
+                recursiveDelete(organism, myList);
+            }
+            for (auto& organism : myList) {
+                for (auto& child : organism->m_children) {
+                    child.reset();
+                }
+                organism->clearChildren();
+                organism->m_parent.reset();
+                organism->m_parent = nullptr;
+            }
+            myList.clear();
+            m_grid.clear();
+        }
+        void recursiveDelete(pOrganism& organism, std::list<pOrganism>& list) {
+            organism->clearChildren();
+            list.push_back(organism);
+            if (organism->m_parent != nullptr ) {
+                    recursiveDelete(organism->m_parent, list);
+            }
+        }
     private:
         std::vector<pOrganism> m_grid;
         std::vector<rOrganism> m_gridCache;
+		int m_IDCounter = 0;
+		unsigned int m_generation = 0;
     };
 
 }

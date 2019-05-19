@@ -138,6 +138,18 @@ namespace APGG {
                 m_optimizer.setRepopulator(std::make_shared<ProportionateRepupoluator>());
                 break;
             }
+
+            std::unique_ptr<LODArchiver> lodArchiver = std::make_unique<LODArchiver>();
+            lodArchiver->setFolderName(Config::getInstance().folderName);
+            lodArchiver->applyTimestampToFolder(Config::getInstance().timeToFolder);
+            lodArchiver->setFileStuffix(Config::getInstance().logSuffix);
+            lodArchiver->applyTimestampToFile(Config::getInstance().timeToFile);
+            lodArchiver->open();
+            m_lod = std::make_shared<LOD>();
+            m_lod->setGrid(m_grid);
+            m_lod->setArchiver(lodArchiver);
+
+			m_optimizer.setLOD(m_lod);
         }
 
         {
@@ -157,6 +169,7 @@ namespace APGG {
         std::fill(std::begin(m_count), std::end(m_count), 0);
         //int localCooperation = 0;
         //float localPayoff = 0;
+
         m_matchupGenerator.generateGroups();
 
         std::vector<Group> groups = m_matchupGenerator.getGroups();
@@ -171,12 +184,10 @@ namespace APGG {
                 m_count[faction]++;
                 factionCount[faction]++;
             }
-
             m_payoffCalculator.setCounters(factionCount);
             m_payoffCalculator.calculateCosts(groups[i].size());
             m_payoffCalculator.applyPayoff(groups[i]);
         }
-
         if (Config::getInstance().archiveData) {
             m_archiver.archive(m_generation, m_count[FACTION_COOPERATOR], m_count[FACTION_DEFECTOR], m_count[FACTION_MORALIST], m_count[FACTION_IMMORALIST]);
         }
@@ -185,10 +196,14 @@ namespace APGG {
 
     void World::Fini()
     {
+        m_lod->logTop();
+
+        m_grid->wipe();
+
         fsec fs = m_clock_now - m_clock_start;
         ms timeDelta = std::chrono::duration_cast<ms>(fs);
         std::cout << "[APGG] Fini (took " << timeDelta.count() << " ms)" << std::endl;
-
+        getchar();
         //  m_archiver.close();
     }
 
@@ -196,7 +211,14 @@ namespace APGG {
     {
         m_optimizer.optmize();
         m_grid->rebuildCache();
+
         m_generation++;
+		m_grid->setGeneration(m_generation);
     }
+
+	void World::printLOD(const pOrganism& organism)
+	{
+		
+	}
 
 }

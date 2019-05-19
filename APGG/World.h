@@ -8,6 +8,7 @@
 #include "MatchupGenerator.h"
 #include "PayOffCalculator.h"
 #include "SimpleArchiver.h"
+#include "LODArchiver.h"
 #include "optimizer/Optimizer.h"
 
 typedef std::chrono::high_resolution_clock HighResClock;
@@ -18,6 +19,7 @@ typedef std::chrono::duration<double> fsec;
 #include <fstream>
 
 namespace APGG {
+
 
     class World
     {
@@ -35,6 +37,7 @@ namespace APGG {
         PayOffCalculator m_payoffCalculator;
         SimpleArchiver m_archiver;
         Optimizer m_optimizer;
+        std::shared_ptr<LOD> m_lod;
     public:
         World();
 
@@ -43,6 +46,7 @@ namespace APGG {
         void Fini();
 
         void Evolve();
+		void printLOD(const pOrganism& organism);
         std::shared_ptr<Grid> m_grid;
         unsigned int m_generation = 0;
     };
