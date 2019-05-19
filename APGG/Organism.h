@@ -48,6 +48,7 @@ namespace APGG {
         //@todo startvalue?
         float m_payoff = 1;
 		int m_status = STATUS_ORIGINAL;
+        bool m_mutated = false;
 
         bool assignProfession(const float cooperationValue);
         bool assignMorals(const float moralValue);

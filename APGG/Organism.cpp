@@ -64,6 +64,7 @@ namespace APGG {
 		copyOrganism->m_payoff = m_payoff;
 		copyOrganism->m_status = STATUS_CLONE;
 		copyOrganism->ID = ID;
+        copyOrganism->m_mutated = m_mutated;
 		copyOrganism->m_children = m_children;
 		copyOrganism->m_parent = m_parent;
 		for (int i = 0; i < m_genomes.size(); i++) {

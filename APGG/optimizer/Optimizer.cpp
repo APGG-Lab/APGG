@@ -18,6 +18,11 @@ namespace APGG {
         m_repopulator = repopulator;
     }
 
+    void Optimizer::setMutator(const std::shared_ptr<Mutator>& mutator)
+    {
+        m_mutator = mutator;
+    }
+
     void Optimizer::optmize()
     {
         std::vector<rOrganism> selection = m_selector->select(m_grid);
@@ -25,6 +30,9 @@ namespace APGG {
 		m_lod->LODebug(selection);
 
         m_repopulator->repopulate(m_grid, selection);
+
+        m_mutator->mutate(selection);
+
 
     }
 

@@ -7,7 +7,7 @@ using namespace APGG;
 
 
 int main() {
-	constexpr unsigned int configColumnSize = 20;
+	constexpr unsigned int configColumnSize = 21;
 	auto configs = Config::parseCSV<configColumnSize>("configs.csv");
     std::cout << "[APGG Init] loading " << configs.size() << " experiments" << std::endl;
 

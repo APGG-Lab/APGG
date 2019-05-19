@@ -75,6 +75,9 @@
     <ClCompile Include="LODArchiver.cpp">
       <Filter>Quelldateien</Filter>
     </ClCompile>
+    <ClCompile Include="optimizer\Mutator.cpp">
+      <Filter>Quelldateien</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Genome.h">
@@ -135,6 +138,9 @@
       <Filter>Headerdateien</Filter>
     </ClInclude>
     <ClInclude Include="LODArchiver.h">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
+    <ClInclude Include="optimizer\Mutator.h">
       <Filter>Headerdateien</Filter>
     </ClInclude>
   </ItemGroup>
