@@ -142,7 +142,7 @@ namespace APGG {
 
             std::shared_ptr<Mutator> mutator = std::make_shared<Mutator>();
             mutator->setMutationRate(Config::getInstance().mutationRate);
-            m_optimizer.setMutator(std::make_shared<Mutator>());
+            m_optimizer.setMutator(mutator);
             
 
             std::unique_ptr<LODArchiver> lodArchiver = std::make_unique<LODArchiver>();
