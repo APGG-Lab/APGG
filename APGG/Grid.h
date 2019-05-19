@@ -36,7 +36,7 @@ namespace APGG {
                 for (auto& child : organism->m_children) {
                     child.reset();
                 }
-                organism->clearChilds();
+                organism->clearChildren();
                 organism->m_parent.reset();
                 organism->m_parent = nullptr;
             }
@@ -44,7 +44,7 @@ namespace APGG {
             m_grid.clear();
         }
         void recursiveDelete(pOrganism& organism, std::list<pOrganism>& list) {
-            organism->clearChilds();
+            organism->clearChildren();
             list.push_back(organism);
             if (organism->m_parent != nullptr ) {
                     recursiveDelete(organism->m_parent, list);

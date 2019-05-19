@@ -22,7 +22,7 @@ namespace APGG {
     {
         std::vector<rOrganism> selection = m_selector->select(m_grid);
 
-		m_lod->LODebug(m_grid, selection);
+		m_lod->LODebug(selection);
 
         m_repopulator->repopulate(m_grid, selection);
 

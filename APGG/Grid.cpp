@@ -11,7 +11,6 @@ namespace APGG {
             auto organism = std::make_unique<Organism>();
             organism->ID = getID();
 			organism->m_generation = getGeneration();
-			organism->m_history += "(C," + std::to_string(m_generation) + "," + std::to_string(organism->ID) + ")|";
             m_grid.emplace_back(std::move(organism));
 
         }

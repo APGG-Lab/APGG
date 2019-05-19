@@ -1,7 +1,20 @@
 #include "Organism.h"
 
 namespace APGG {
-
+#ifdef DEBUG_EXTREME
+    Organism::~Organism()
+    {
+        if (m_status == STATUS_ORIGINAL) {
+            DEBUG_MSG("Organism Destructor original: " + getDebugString());
+        }
+        else if (m_status == STATUS_DELETED) {
+            DEBUG_MSG("Organism Destructor deleted: " + getDebugString());
+        }
+        else {
+            DEBUG_MSG("Organism Destructor Copy: " + getDebugString());
+        }
+    }
+#endif // DEBUG_EXTREME
 
     bool Organism::assignProfession(const float cooperationValue)
     {
@@ -58,6 +71,31 @@ namespace APGG {
 		}
 	}
 
+    void Organism::clearChildren()
+    {
+        m_children.clear();
+    }
+
+    void Organism::removeChild(const pOrganism & organism)
+    {
+        m_children.remove(organism);
+    }
+
+    void Organism::addChild(const pOrganism & organism)
+    {
+#ifdef DEBUG_EXTREME
+        for (const auto& child : m_children) {
+            if (child.get() == organism.get()) {
+                DEBUG_MSG("Organism AddChild: organism already has this child " + getDebugString());
+                DEBUG_MSG("Organism AddChild Child: " + organism->getDebugString());
+                return;
+            }
+        }
+#endif // DEBUG_EXTREME
+
+        m_children.push_back(organism);
+    }
+
 
     float Organism::getNormalizedPayoff(const float min, const float max)
     {
@@ -84,37 +122,4 @@ namespace APGG {
 
         return debugString;
     }
-
-    void Organism::removeAndCleanupChildLists(pOrganism& organism){
-        if (!organism->m_children.empty()) {
-#ifdef DEBUG_EXTREME
-            std::cout << "Cleanup organism is not dead: " << "Ptr:" << organism.get() << " ID: " << organism->ID << " Parent: " << organism->getParentID() << " Children: " << organism->getChildIDs() << std::endl;
-#endif
-            return;
-        }
-
-        if (organism->m_parent.get() == nullptr) {
-#ifdef DEBUG_EXTREME
-            std::cout << "Cleanup organism origin reached: " << "Ptr:" << organism.get() << " ID: " << organism->ID << " Parent: " << organism->getParentID() << " Children: " << organism->getChildIDs() << " Gen:" << organism->m_generation << std::endl;
-#endif
-            return;
-        }
-
-        if (organism->m_parent->m_status != STATUS_CLONE) {
-#ifdef DEBUG_EXTREME
-            std::cout << "Cleanup organism is not a clone: " << "Ptr:" << organism.get() << " ID: " << organism->ID << " Parent: " << organism->getParentID() << " Children: " << organism->getChildIDs() << std::endl;
-#endif // DEBUG_EXTREME
-            return;
-        }
-
-        organism->m_children.clear();
-        removeAndCleanupChildLists(organism->m_parent);
-        organism->m_parent = nullptr;
-
-#ifdef DEBUG_EXTREME
-        std::cout << "Cleanup organism done: " << "Ptr:" << organism.get() << " ID: " << organism->ID << " Parent: " << organism->getParentID() << " Children: " << organism->getChildIDs() << " Gen:" << organism->m_generation << std::endl;
-#endif // DEBUG_EXTREME
-
-	}
-
 }
