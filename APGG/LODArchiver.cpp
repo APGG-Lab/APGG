@@ -5,14 +5,14 @@ namespace APGG {
 
     LODArchiver::LODArchiver() : Archiver()
     {
-        m_header = "ID;generation;payoff;faction;cooperated;moralist;nChildren";
+        m_header = "ID;generation;payoff;faction;cooperated;moralist;nChildren;genomeC;genomeM;";
         m_fileBaseName = "LOD";
 
     }
 
     LODArchiver::LODArchiver(const std::string & folderName, const std::string & fileSuffix) : Archiver(folderName, fileSuffix)
     {
-        m_header = "ID;generation;payoff;faction;cooperated;moralist;nChildren";
+        m_header = "ID;generation;payoff;faction;cooperated;moralist;nChildren;genomeC;genomeM;";
         m_fileBaseName = "LOD";
     }
 
@@ -26,6 +26,8 @@ namespace APGG {
                      << ((organism->m_cooperated) ? 1 : 0) << ";" 
                      << ((organism->m_moralist) ? 1 : 0) << ";" 
                      << organism->m_children.size() << ";" 
+                     << organism->m_genomes[GENOME_COOPERATION].getValue() << ";" 
+                     << organism->m_genomes[GENOME_MORALS].getValue() << ";"
                      << std::endl;
     }
 
