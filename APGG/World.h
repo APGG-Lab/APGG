@@ -9,6 +9,7 @@
 #include "PayOffCalculator.h"
 #include "SimpleArchiver.h"
 #include "LODArchiver.h"
+#include "ConfigArchiver.h"
 #include "optimizer/Optimizer.h"
 
 typedef std::chrono::high_resolution_clock HighResClock;
