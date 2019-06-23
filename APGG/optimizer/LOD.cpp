@@ -119,7 +119,9 @@ namespace APGG {
             logRecursive(organism->m_parent);
         }
 
+#ifdef DEBUG_EXTREME
         std::cout << "[APGG LOD] " << "Payoff: " << organism->m_payoff << " " << organism->getDebugString() << std::endl;
+#endif
         m_archiver->archive(organism);
     }
 
