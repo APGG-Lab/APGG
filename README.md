@@ -31,6 +31,8 @@ Code for asymetric public goods games
 |matchupType | int | unused |
 |selectorType| int  (0-1) |  0 = EliteSelector / 1 = RandomSelector (recommended by Dr. Hintze) |
 |repopulatorType | int  (0-1) | 0 = RandomPopulator / 1 = ProportionateRepopulator (recommended by Dr. Hintze) |
+|mutatorType | int  (0-1) | 0 = RandomMutator / 1 = ThresholdMutator (recommended by Dr. Hintze) |
+|mutationRate | int  (0-100) | Mutationrate. 0 = no Mutation, 100 = every Organism will mutate every round |
 |showAllGenerations | int  (0-1)  | Log all generations to std. out |
 |archiveData | int  (0-1) | Archive data to csv | 
 |visualize | int (0-1) | Open python3 script after experiment (unused) | 
