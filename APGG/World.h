@@ -7,7 +7,6 @@
 #include "Grid.h"
 #include "MatchupGenerator.h"
 #include "PayOffCalculator.h"
-#include "AsymmetricPayOffCalculator.h"
 #include "SimpleArchiver.h"
 #include "LODArchiver.h"
 #include "ConfigArchiver.h"
@@ -36,7 +35,7 @@ namespace APGG {
         std::array<unsigned int, 4> m_count;
 
         MatchupGenerator m_matchupGenerator;
-        AsymmetricPayOffCalculator m_payoffCalculator;
+        PayOffCalculator m_payoffCalculator;
         SimpleArchiver m_archiver;
         Optimizer m_optimizer;
         std::shared_ptr<LOD> m_lod;

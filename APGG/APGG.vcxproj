@@ -178,7 +178,6 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Archiver.cpp" />
-    <ClCompile Include="AsymmetricPayOffCalculator.cpp" />
     <ClCompile Include="Config.cpp" />
     <ClCompile Include="ConfigArchiver.cpp" />
     <ClCompile Include="Genome.cpp" />
@@ -203,7 +202,6 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Archiver.h" />
-    <ClInclude Include="AsymmetricPayOffCalculator.h" />
     <ClInclude Include="Config.h" />
     <ClInclude Include="ConfigArchiver.h" />
     <ClInclude Include="Genome.h" />
