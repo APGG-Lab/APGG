@@ -171,6 +171,17 @@ namespace APGG {
             m_optimizer.setLOD(m_lod);
         }
 
+		{
+			ConfigArchiver configarchiver = ConfigArchiver();
+			configarchiver.setFolderName(Config::getInstance().folderName);
+			configarchiver.applyTimestampToFolder(Config::getInstance().timeToFolder);
+			configarchiver.setFileStuffix(Config::getInstance().logSuffix);
+			configarchiver.applyTimestampToFile(Config::getInstance().timeToFile);
+			configarchiver.open();
+			configarchiver.archive(Config::getInstance());
+			configarchiver.close();
+		}
+
         {
             //Show timedelta for init
             m_clock_now = HighResClock::now();
@@ -222,8 +233,7 @@ namespace APGG {
         fsec fs = m_clock_now - m_clock_start;
         ms timeDelta = std::chrono::duration_cast<ms>(fs);
         std::cout << "[APGG] Fini (took " << timeDelta.count() << " ms)" << std::endl;
-        getchar();
-        //  m_archiver.close();
+        m_archiver.close();
     }
 
     void World::Evolve()

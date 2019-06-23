@@ -84,6 +84,9 @@
     <ClCompile Include="optimizer\mutators\ThresholdMutator.cpp">
       <Filter>Quelldateien</Filter>
     </ClCompile>
+    <ClCompile Include="ConfigArchiver.cpp">
+      <Filter>Quelldateien</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Genome.h">
@@ -153,6 +156,9 @@
       <Filter>Headerdateien</Filter>
     </ClInclude>
     <ClInclude Include="optimizer\mutators\ThresholdMutator.h">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
+    <ClInclude Include="ConfigArchiver.h">
       <Filter>Headerdateien</Filter>
     </ClInclude>
   </ItemGroup>
