@@ -9,7 +9,10 @@
 #include "repopulators/RandomRepopulator.h"
 #include "repopulators/ProportionateRepopulator.h"
 #include "selectors/RandomSelector.h"
-#include "Mutator.h"
+
+#include "mutators/Mutator.h"
+#include "mutators/RandomMutator.h"
+#include "mutators/ThresholdMutator.h"
 
 #include "LOD.h"
 
@@ -19,9 +22,9 @@ namespace APGG {
     {
     protected:
         std::shared_ptr<Grid> m_grid;
-        std::shared_ptr<Selector> m_selector;
-        std::shared_ptr<Repopulator> m_repopulator;
-        std::shared_ptr<Mutator> m_mutator;
+        std::shared_ptr<Selector> m_selector = nullptr;
+        std::shared_ptr<Repopulator> m_repopulator = nullptr;
+        std::shared_ptr<Mutator> m_mutator = nullptr;
 		std::shared_ptr<LOD> m_lod;
 
     public:

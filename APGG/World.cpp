@@ -47,6 +47,7 @@ namespace APGG {
                   << "matchupType - " << Config::getInstance().matchupType << std::endl
                   << "selectorType - " << Config::getInstance().selectorType << std::endl
                   << "repopulatorType - " << Config::getInstance().repopulatorType << std::endl
+                  << "mutatorType - " << Config::getInstance().mutatorType << std::endl
                   << "mutationRate - " << Config::getInstance().mutationRate << "%" << std::endl
                   << "showAllGenerations - " << Config::getInstance().showAllGenerations << std::endl
                   << "archiveData - " << Config::getInstance().archiveData << std::endl
@@ -139,12 +140,24 @@ namespace APGG {
                 m_optimizer.setRepopulator(std::make_shared<ProportionateRepupoluator>());
                 break;
             }
+        }
 
-            std::shared_ptr<Mutator> mutator = std::make_shared<Mutator>();
-            mutator->setMutationRate(Config::getInstance().mutationRate);
+        {
+            std::shared_ptr<Mutator> mutator = nullptr;
+            switch (Config::getInstance().mutatorType) {
+            case MUTATOR_RANDOM:
+                mutator = std::make_shared<RandomMutator>();
+                break;
+            default:
+            case MUTATOR_THRESHOLD:
+                mutator = std::make_shared<ThresholdMutator>();
+                break;
+            }
+            mutator->setMutationRate(static_cast<float>(Config::getInstance().mutationRate));
             m_optimizer.setMutator(mutator);
-            
+        }
 
+        {
             std::unique_ptr<LODArchiver> lodArchiver = std::make_unique<LODArchiver>();
             lodArchiver->setFolderName(Config::getInstance().folderName);
             lodArchiver->applyTimestampToFolder(Config::getInstance().timeToFolder);
@@ -155,7 +168,7 @@ namespace APGG {
             m_lod->setGrid(m_grid);
             m_lod->setArchiver(lodArchiver);
 
-			m_optimizer.setLOD(m_lod);
+            m_optimizer.setLOD(m_lod);
         }
 
         {

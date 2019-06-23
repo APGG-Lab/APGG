@@ -28,6 +28,7 @@ namespace APGG {
         unsigned int matchupType = 0;
         unsigned int selectorType = 0;
         unsigned int repopulatorType = 0;
+        unsigned int mutatorType = 0;
         unsigned int mutationRate = 0;
 
 
@@ -66,6 +67,7 @@ namespace APGG {
 		Config::getInstance().matchupType = stoi(config[i++]);
 		Config::getInstance().selectorType = stoi(config[i++]);
 		Config::getInstance().repopulatorType = stoi(config[i++]);
+        Config::getInstance().mutatorType = stoi(config[i++]);
 		Config::getInstance().mutationRate = stoi(config[i++]);
 		Config::getInstance().showAllGenerations = stoi(config[i++]);
 		Config::getInstance().archiveData = stoi(config[i++]);

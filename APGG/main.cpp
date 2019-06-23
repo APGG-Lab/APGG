@@ -7,7 +7,7 @@ using namespace APGG;
 
 
 int main() {
-	constexpr unsigned int configColumnSize = 21;
+	constexpr unsigned int configColumnSize = 22;
 	auto configs = Config::parseCSV<configColumnSize>("configs.csv");
     std::cout << "[APGG Init] loading " << configs.size() << " experiments" << std::endl;
 
@@ -18,7 +18,7 @@ int main() {
 		World myCoolWorld;
 		myCoolWorld.Init();
 
-		while (myCoolWorld.m_generation < stoi(config[0]))
+		while (myCoolWorld.m_generation < static_cast<unsigned int>(stoi(config[0])))
 		{
 
 			myCoolWorld.Tick();

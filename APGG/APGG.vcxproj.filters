@@ -75,7 +75,13 @@
     <ClCompile Include="LODArchiver.cpp">
       <Filter>Quelldateien</Filter>
     </ClCompile>
-    <ClCompile Include="optimizer\Mutator.cpp">
+    <ClCompile Include="optimizer\mutators\Mutator.cpp">
+      <Filter>Quelldateien</Filter>
+    </ClCompile>
+    <ClCompile Include="optimizer\mutators\RandomMutator.cpp">
+      <Filter>Quelldateien</Filter>
+    </ClCompile>
+    <ClCompile Include="optimizer\mutators\ThresholdMutator.cpp">
       <Filter>Quelldateien</Filter>
     </ClCompile>
   </ItemGroup>
@@ -140,7 +146,13 @@
     <ClInclude Include="LODArchiver.h">
       <Filter>Headerdateien</Filter>
     </ClInclude>
-    <ClInclude Include="optimizer\Mutator.h">
+    <ClInclude Include="optimizer\mutators\Mutator.h">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
+    <ClInclude Include="optimizer\mutators\RandomMutator.h">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
+    <ClInclude Include="optimizer\mutators\ThresholdMutator.h">
       <Filter>Headerdateien</Filter>
     </ClInclude>
   </ItemGroup>
