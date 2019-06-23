@@ -81,6 +81,9 @@
     <ClCompile Include="ConfigArchiver.cpp">
       <Filter>Quelldateien</Filter>
     </ClCompile>
+    <ClCompile Include="AsymmetricPayOffCalculator.cpp">
+      <Filter>Quelldateien</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Genome.h">
@@ -147,6 +150,9 @@
       <Filter>Headerdateien</Filter>
     </ClInclude>
     <ClInclude Include="ConfigArchiver.h">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
+    <ClInclude Include="AsymmetricPayOffCalculator.h">
       <Filter>Headerdateien</Filter>
     </ClInclude>
   </ItemGroup>

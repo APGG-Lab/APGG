@@ -28,10 +28,18 @@ namespace APGG {
         return m_moralist;
     }
 
+	void Organism::assignAsymmetricPayoff()
+	{
+		m_payoffMultiplicator = m_genomes[GENOME_ASYMMETRIC].getValue();
+	}
+
     Faction Organism::assignFaction()
     {
         assignProfession(getRandomFloat());
         assignMorals(getRandomFloat());
+
+		// TODO: find a better spot and name for this
+		assignAsymmetricPayoff();
 
         if (m_cooperated && !m_moralist) m_faction = FACTION_COOPERATOR;
         else if (m_cooperated && m_moralist) m_faction = FACTION_MORALIST;
@@ -59,7 +67,6 @@ namespace APGG {
 	{
 		copyOrganism->m_cooperated = m_cooperated;
 		copyOrganism->m_faction = m_faction;
-		//copyOrganism->m_genomes = m_genomes;
 		copyOrganism->m_moralist = m_moralist;
 		copyOrganism->m_payoff = m_payoff;
 		copyOrganism->m_status = STATUS_CLONE;

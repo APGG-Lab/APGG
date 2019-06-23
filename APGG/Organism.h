@@ -16,9 +16,9 @@
 
 namespace APGG {
 
-    constexpr unsigned int nrGenomes = 2;
+    constexpr unsigned int nrGenomes = 3;
 
-    enum GenomeNames { GENOME_COOPERATION = 0, GENOME_MORALS, GENOME_HISTORY1, GENOME_HISTORY2, GENOME_HISTORY3 };
+    enum GenomeNames { GENOME_COOPERATION = 0, GENOME_MORALS, GENOME_ASYMMETRIC, GENOME_HISTORY1, GENOME_HISTORY2, GENOME_HISTORY3 };
     enum Faction { FACTION_COOPERATOR = 0, FACTION_DEFECTOR, FACTION_MORALIST, FACTION_IMMORALIST };
 	enum Status { STATUS_ORIGINAL, STATUS_CLONE, STATUS_OFFSPRING, STATUS_DELETED };
 	enum ParentStatus { PARENT_ORIGINAL, PARENT_MODIFIED };
@@ -46,12 +46,14 @@ namespace APGG {
 		unsigned int m_generation;
 
         //@todo startvalue?
-        float m_payoff = 1;
+		float m_payoffMultiplicator = 1.f;
+        float m_payoff = 1.f;
 		int m_status = STATUS_ORIGINAL;
         bool m_mutated = false;
 
         bool assignProfession(const float cooperationValue);
         bool assignMorals(const float moralValue);
+		void assignAsymmetricPayoff();
         Faction assignFaction();
         Faction getFaction();
         float getNormalizedPayoff(const float min, const float max);

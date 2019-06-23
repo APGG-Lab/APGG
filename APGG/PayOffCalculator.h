@@ -7,7 +7,7 @@ namespace APGG {
 
     class PayOffCalculator
     {
-    private:
+    protected:
         float m_synergyFactor;
         float m_punishmentCostBase;
         float m_punishmentFineBase;
