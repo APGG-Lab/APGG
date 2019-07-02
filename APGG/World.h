@@ -12,7 +12,7 @@
 #include "ConfigArchiver.h"
 #include "optimizer/Optimizer.h"
 
-typedef std::chrono::high_resolution_clock HighResClock;
+typedef std::chrono::steady_clock HighResClock;
 typedef std::chrono::milliseconds ms;
 typedef std::chrono::duration<double> fsec;
 
