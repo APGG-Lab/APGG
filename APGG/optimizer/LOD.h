@@ -3,9 +3,9 @@
 #include <list>
 
 #include "../Organism.h"
-#include "../Grid.h"
-#include "../Archiver.h"
-#include "../LODArchiver.h"
+#include "../grids/Grid.h"
+#include "../archivers/Archiver.h"
+#include "../archivers/LODArchiver.h"
 
 namespace APGG {
 	class LOD

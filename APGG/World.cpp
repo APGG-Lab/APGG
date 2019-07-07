@@ -32,7 +32,6 @@ namespace APGG {
 
     void World::printInitMessage()
     {
-
         std::cout << std::endl << "-------------------------------------------------------------------------------------------------------------------------------------" << std::endl
                   << "You're currently running " << m_archiver.getFullFilename() << " with the following parameters:" << std::endl
                   << "numGenerations - " << Config::getInstance().numGenerations << std::endl
@@ -47,6 +46,8 @@ namespace APGG {
                   << "matchupType - " << Config::getInstance().matchupType << std::endl
                   << "selectorType - " << Config::getInstance().selectorType << std::endl
                   << "repopulatorType - " << Config::getInstance().repopulatorType << std::endl
+                  << "gridType - " << Config::getInstance().gridType << std::endl
+                  << "payoffType - " << Config::getInstance().payoffType << std::endl
                   << "mutatorType - " << Config::getInstance().mutatorType << std::endl
                   << "mutationRate - " << Config::getInstance().mutationRate << "%" << std::endl
                   << "showAllGenerations - " << Config::getInstance().showAllGenerations << std::endl

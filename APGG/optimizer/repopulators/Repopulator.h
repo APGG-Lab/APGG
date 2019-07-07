@@ -1,6 +1,6 @@
 #pragma once
 #include <vector>
-#include "../../Grid.h"
+#include "../../grids/Grid.h"
 
 namespace APGG {
 

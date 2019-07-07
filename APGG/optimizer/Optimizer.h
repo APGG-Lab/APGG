@@ -1,7 +1,7 @@
 #pragma once
 #include <memory>
 
-#include "../Grid.h"
+#include "../grids/Grid.h"
 
 #include "selectors/Selector.h"
 #include "repopulators/Repopulator.h"

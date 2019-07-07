@@ -1,8 +1,8 @@
 #pragma once
 #include <cassert>
-
-#include "Organism.h"
 #include <algorithm>
+
+#include "../Organism.h"
 
 namespace APGG {
 
@@ -50,7 +50,7 @@ namespace APGG {
                     recursiveDelete(organism->m_parent, list);
             }
         }
-    private:
+    protected:
         std::vector<pOrganism> m_grid;
         std::vector<rOrganism> m_gridCache;
 		int m_IDCounter = 0;

@@ -1,7 +1,7 @@
 #pragma once
 #include <vector>
 #include "../../Organism.h"
-#include "../../Grid.h"
+#include "../../grids/Grid.h"
 
 namespace APGG {
 

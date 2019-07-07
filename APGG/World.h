@@ -4,12 +4,12 @@
 #include <ctime>
 #include <sstream>
 #include <cstdlib>
-#include "Grid.h"
-#include "MatchupGenerator.h"
-#include "PayOffCalculator.h"
-#include "SimpleArchiver.h"
-#include "LODArchiver.h"
-#include "ConfigArchiver.h"
+#include "grids/DefaultGrid.h"
+#include "matchupgenerators/DefaultMatchupGenerator.h"
+#include "payoffcalculators/DefaultPayoffCalculator.h"
+#include "archivers/SimpleArchiver.h"
+#include "archivers/LODArchiver.h"
+#include "archivers/ConfigArchiver.h"
 #include "optimizer/Optimizer.h"
 
 typedef std::chrono::high_resolution_clock HighResClock;
@@ -34,8 +34,8 @@ namespace APGG {
 
         std::array<unsigned int, 4> m_count;
 
-        MatchupGenerator m_matchupGenerator;
-        PayOffCalculator m_payoffCalculator;
+        DefaultMatchupGenerator m_matchupGenerator;
+        DefaultPayOffCalculator m_payoffCalculator;
         SimpleArchiver m_archiver;
         Optimizer m_optimizer;
         std::shared_ptr<LOD> m_lod;

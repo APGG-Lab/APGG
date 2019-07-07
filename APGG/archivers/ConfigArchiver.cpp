@@ -29,6 +29,9 @@ namespace APGG {
 			<< "matchupType;" << config.matchupType << std::endl
 			<< "selectorType;" << config.selectorType << std::endl
 			<< "repopulatorType;" << config.repopulatorType << std::endl
+            << "gridType;" << config.gridType << std::endl
+            << "payoffType;" << config.payoffType << std::endl
+            << "mutatorType;" << config.mutatorType << std::endl
 			<< "mutationRate;" << config.mutationRate << "%" << std::endl
 			<< "showAllGenerations;" << config.showAllGenerations << std::endl
 			<< "archiveData;" << config.archiveData << std::endl
