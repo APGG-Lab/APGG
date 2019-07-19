@@ -47,13 +47,14 @@ namespace APGG {
 
 		switch (stoul(config.getValue("selectorType"))) {
 		case SELECTOR_ELITE:
-			m_selector = std::make_shared<EliteSelector>(stoul(config.getValue("eliminationCount")));
+			m_selector = std::make_shared<EliteSelector>();
 			break;
 		default:
 		case SELECTOR_RANDOM:
-			m_selector = std::make_shared<RandomSelector>(stoul(config.getValue("eliminationCount")));
+			m_selector = std::make_shared<RandomSelector>();
 			break;
 		}
+		m_selector->configure(config);
 	
 	
 		if (stoul(config.getValue("repopulationType")) >= nRepopulatorTypes) {
@@ -71,6 +72,7 @@ namespace APGG {
 			m_repopulator = std::make_shared<ProportionateRepupoluator>();
 			break;
 		}
+		m_repopulator->configure(config);
 	
 		std::shared_ptr<Mutator> mutator = nullptr;
 		switch (stoul(config.getValue("mutatorType"))) {
@@ -82,7 +84,7 @@ namespace APGG {
 			mutator = std::make_shared<ThresholdMutator>();
 			break;
 		}
-		mutator->setMutationRate(static_cast<float>(stof(config.getValue("mutationRate"))));
+		mutator->configure(config);
 		m_mutator = mutator;
 	}
 

@@ -2,5 +2,5 @@
 
 void APGG::Mutator::setMutationRate(const float rate)
 {
-    m_motationRate = rate; 
+    m_mutationRate = rate; 
 }

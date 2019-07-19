@@ -20,4 +20,9 @@ namespace APGG {
         return m_selection;
     }
 
+	void RandomSelector::configure(Config& config)
+	{
+		m_eliminationCount = stoul(config.getValue("eliminationCount"));
+	}
+
 }

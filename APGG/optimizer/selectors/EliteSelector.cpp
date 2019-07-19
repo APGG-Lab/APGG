@@ -25,4 +25,9 @@ namespace APGG {
         return m_selection;
     }
 
+	void EliteSelector::configure(Config& config)
+	{
+		m_eliminationCount = stoul(config.getValue("eliminationCount"));
+	}
+
 }

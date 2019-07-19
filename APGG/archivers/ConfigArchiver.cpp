@@ -28,7 +28,7 @@ namespace APGG {
 			<< "punishmentFine;" << config.getValue("punishmentFine") << std::endl
 			<< "matchupType;" << config.getValue("matchupType") << std::endl
 			<< "selectorType;" << config.getValue("selectorType") << std::endl
-			<< "repopulatorType;" << config.getValue("repopulatorType") << std::endl
+			<< "repopulatorType;" << config.getValue("repopulationType") << std::endl
             << "gridType;" << config.getValue("gridType") << std::endl
             << "payoffType;" << config.getValue("payoffType") << std::endl
             << "mutatorType;" << config.getValue("mutatorType") << std::endl

@@ -13,7 +13,7 @@ namespace APGG {
         fsec fs = m_clock_now - m_clock_last;
         m_clock_last = m_clock_now;
         ms timeDelta = std::chrono::duration_cast<ms>(fs);
-        float size = static_cast<float>(m_width) * m_height;
+        float size = static_cast<float>(m_grid->getWidth()) * m_grid->getHeight();
 
         std::cout << "Generation:" << m_generation
             << "\tC(%): " << m_count[FACTION_COOPERATOR] << "(" << m_count[FACTION_COOPERATOR] / size * 100 << ")"
@@ -76,6 +76,7 @@ namespace APGG {
         std::fill(std::begin(m_count), std::end(m_count), 0);
 
         m_grid = std::make_shared<Grid>();
+		m_grid->configure(config);
         m_grid->rebuildCache();
 
         if (m_grid->size() % stoul(config.getValue("groupSize")) != 0) {
@@ -132,8 +133,6 @@ namespace APGG {
         }
 
 		m_consoleOutExponent = stoul(config.getValue("consoleOutExponent"));
-		m_width = stoul(config.getValue("width"));
-		m_height = stoul(config.getValue("height"));
 		m_archiveData = stoi(config.getValue("archiveData"));
 		m_showAllGenerations = stoi(config.getValue("showAllGenerations"));
 

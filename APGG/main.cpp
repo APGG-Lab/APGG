@@ -5,8 +5,6 @@
 
 using namespace APGG;
 
-
-
 int main() {
 	constexpr unsigned int configColumnSize = 24;
 	auto configs = ConfigParserCSV::parseConfigs("configs.csv");
@@ -14,7 +12,6 @@ int main() {
 
 	for (auto & config : configs)
 	{
-
 		World myCoolWorld;
 		myCoolWorld.Init(config);
 
@@ -27,12 +24,12 @@ int main() {
 
 		myCoolWorld.Fini();
 
-		/*
-        if (configs.size() == 1 && stoi(config.getValue("visualize", "10"))) && false) {
+		
+        if (configs.size() == 1 && stoi(config.getValue("visualize", "0")) && false) {
             //todo find better way to open the python script automatically
             system("python3 Visualize.py");
         }
-		*/
+		
 		
 	}
 	getchar();
