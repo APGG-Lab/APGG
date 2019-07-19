@@ -1,14 +1,16 @@
 #pragma once
 #include <array>
+#include <string>
 #include "../Group.h"
 #include "../Organism.h"
+#include "../Configurable.h"
 
 namespace APGG {
 
     constexpr unsigned int nPayOffTypes = 1;
     enum PayOffTypes { PAYOFF_DEFAULT };
 
-    class PayOffCalculator
+    class PayOffCalculator : public Configurable
     {
     protected:
         float m_synergyFactor;

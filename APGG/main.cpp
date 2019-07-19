@@ -1,6 +1,7 @@
 #include <iostream>
 #include <string>
 #include "World.h"
+#include "ConfigParserCSV.h"
 
 using namespace APGG;
 
@@ -8,17 +9,16 @@ using namespace APGG;
 
 int main() {
 	constexpr unsigned int configColumnSize = 24;
-	auto configs = Config::parseCSV<configColumnSize>("configs.csv");
+	auto configs = ConfigParserCSV::parseConfigs("configs.csv");
     std::cout << "[APGG Init] loading " << configs.size() << " experiments" << std::endl;
 
-	for (auto config : configs)
+	for (auto & config : configs)
 	{
-		Config::getInstance().setCurrentConfig<configColumnSize>(config);
 
 		World myCoolWorld;
-		myCoolWorld.Init();
+		myCoolWorld.Init(config);
 
-		while (myCoolWorld.m_generation < static_cast<unsigned int>(stoi(config[0])))
+		while (myCoolWorld.m_generation < stoi(config.getValue("numGenerations", "10")))
 		{
 
 			myCoolWorld.Tick();
@@ -27,10 +27,12 @@ int main() {
 
 		myCoolWorld.Fini();
 
-        if (configs.size() == 1 && Config::getInstance().visualize && false) {
+		/*
+        if (configs.size() == 1 && stoi(config.getValue("visualize", "10"))) && false) {
             //todo find better way to open the python script automatically
             system("python3 Visualize.py");
         }
+		*/
 		
 	}
 	getchar();

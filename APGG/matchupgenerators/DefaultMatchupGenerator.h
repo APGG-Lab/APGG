@@ -15,6 +15,7 @@ namespace APGG {
 
     public:
         void generateGroups();
+		void configure(Config & config);
     };
 
 }

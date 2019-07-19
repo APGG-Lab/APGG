@@ -18,7 +18,7 @@
 
 namespace APGG {
 
-    class Optimizer
+    class Optimizer : public Configurable
     {
     protected:
         std::shared_ptr<Grid> m_grid;
@@ -36,6 +36,7 @@ namespace APGG {
 		void setLOD(const std::shared_ptr<LOD>& lod);
 
         void optmize();
+		void configure(Config& config);
     };
 
 }

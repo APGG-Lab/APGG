@@ -47,4 +47,11 @@ namespace APGG {
             applyPayoff(organism);
         }
     }
+	void DefaultPayOffCalculator::configure(Config& config)
+	{
+		m_cooperationCost = std::stof(config.getValue("cooperateCost"));
+		m_synergyFactor = std::stof(config.getValue("synergyFactor"));
+		m_punishmentCostBase = std::stof(config.getValue("punishmentCost"));
+		m_punishmentFineBase = std::stof(config.getValue("punishmentFine"));
+	}
 }

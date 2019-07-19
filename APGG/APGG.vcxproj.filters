@@ -96,6 +96,9 @@
     <ClCompile Include="grids\DefaultGrid.cpp">
       <Filter>Quelldateien</Filter>
     </ClCompile>
+    <ClCompile Include="ConfigParserCSV.cpp">
+      <Filter>Quelldateien</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Genome.h">
@@ -177,6 +180,12 @@
       <Filter>Headerdateien</Filter>
     </ClInclude>
     <ClInclude Include="grids\DefaultGrid.h">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
+    <ClInclude Include="ConfigParserCSV.h">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
+    <ClInclude Include="Configurable.h">
       <Filter>Headerdateien</Filter>
     </ClInclude>
   </ItemGroup>
