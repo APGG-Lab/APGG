@@ -1,4 +1,4 @@
-#include "DefaultPayOffCalculator.h"
+#include "DefaultPayoffCalculator.h"
 
 namespace APGG {
 

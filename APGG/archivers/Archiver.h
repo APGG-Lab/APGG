@@ -7,14 +7,11 @@
 #include <ctime>
 #include <sstream>
 #include <fstream>
-#ifdef __unix__
 #include <filesystem>
-namespace fs = std::filesystem;
-#else
-#include <experimental/filesystem> // or #include <filesystem>
+
 #include "../Configurable.h"
-namespace fs = std::experimental::filesystem;
-#endif
+
+namespace fs = std::filesystem;
 
 #ifdef __unix__
 #define localtime_s(x, y) localtime_r(y, x)
