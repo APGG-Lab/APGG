@@ -14,11 +14,11 @@ namespace APGG {
         return ss.str();
     }
 
-    Archiver::Archiver() : m_folderName(""), m_fileSuffix(""), m_appendTimestampToFolder(true), m_appendTimestampToFile(true)
+    Archiver::Archiver() : m_folderName(""), m_fileSuffix(""), m_header(""), m_appendTimestampToFile(true), m_appendTimestampToFolder(true)
     {
     }
 
-    Archiver::Archiver(const std::string& folderName, const std::string& fileSuffix) : m_folderName(folderName), m_fileSuffix(fileSuffix), m_appendTimestampToFolder(true), m_appendTimestampToFile(false)
+    Archiver::Archiver(const std::string& folderName, const std::string& fileSuffix) : m_folderName(folderName), m_fileSuffix(fileSuffix), m_header(""),m_appendTimestampToFile(false), m_appendTimestampToFolder(true)
     {
     }
 

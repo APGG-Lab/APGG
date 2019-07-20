@@ -34,9 +34,6 @@ namespace APGG {
 	}
 
     void LOD::createLODCopy(rOrganism & rorganism) {
-        if (rorganism.get().m_status >= 2) {
-            int test = 0;
-        }
         Organism& organism = rorganism.get();
         pOrganism organismLODCopy = std::make_shared<Organism>();
 

@@ -6,7 +6,6 @@
 using namespace APGG;
 
 int main() {
-	constexpr unsigned int configColumnSize = 24;
 	auto configs = ConfigParserCSV::parseConfigs("configs.csv");
     std::cout << "[APGG Init] loading " << configs.size() << " experiments" << std::endl;
 
@@ -15,7 +14,7 @@ int main() {
 		World myCoolWorld;
 		myCoolWorld.Init(config);
 
-		while (myCoolWorld.m_generation < stoi(config.getValue("numGenerations", "10")))
+		while (myCoolWorld.m_generation < static_cast<unsigned int>(stoi(config.getValue("numGenerations", "10"))))
 		{
 
 			myCoolWorld.Tick();

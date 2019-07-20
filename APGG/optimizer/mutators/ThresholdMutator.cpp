@@ -13,7 +13,7 @@ void APGG::ThresholdMutator::mutate(const std::vector<rOrganism>& selection)
             continue;
         }
 
-        for (int i = 0; i < org.get().m_genomes.size(); i++) {
+        for (size_t i = 0; i < org.get().m_genomes.size(); i++) {
             float randomFloat = getRandomFloat();
 
             float genomeBaseValue = org.get().m_genomes[i].getValue();

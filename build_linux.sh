@@ -4,15 +4,15 @@ echo Compiling C++-code ...
 
 cd bin
 
-g++  -O3 -std=c++17  -c ../APGG/*.cpp
-g++  -O3 -std=c++17  -c ../APGG/archivers/*.cpp
-g++  -O3 -std=c++17  -c ../APGG/grids/*.cpp
-g++  -O3 -std=c++17  -c ../APGG/matchupgenerators/*.cpp
-g++  -O3 -std=c++17  -c ../APGG/payoffcalculators/*.cpp
-g++  -O3 -std=c++17  -c ../APGG/optimizer/*.cpp
-g++  -O3 -std=c++17  -c ../APGG/optimizer/mutators/*.cpp
-g++  -O3 -std=c++17  -c ../APGG/optimizer/selectors/*.cpp
-g++  -O3 -std=c++17 -c ../APGG/optimizer/repopulators/*.cpp
+g++ -Wall -O3 -std=c++17  -c ../APGG/*.cpp
+g++ -Wall -O3 -std=c++17  -c ../APGG/archivers/*.cpp
+g++ -Wall -O3 -std=c++17  -c ../APGG/grids/*.cpp
+g++ -Wall -O3 -std=c++17  -c ../APGG/matchupgenerators/*.cpp
+g++ -Wall -O3 -std=c++17  -c ../APGG/payoffcalculators/*.cpp
+g++ -Wall -O3 -std=c++17  -c ../APGG/optimizer/*.cpp
+g++ -Wall -O3 -std=c++17  -c ../APGG/optimizer/mutators/*.cpp
+g++ -Wall -O3 -std=c++17  -c ../APGG/optimizer/selectors/*.cpp
+g++ -Wall -O3 -std=c++17 -c ../APGG/optimizer/repopulators/*.cpp
 
 cd ../
 

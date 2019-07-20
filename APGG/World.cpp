@@ -151,7 +151,7 @@ namespace APGG {
         std::array<unsigned int, 4> factionCount;
 
         //@todo for(group:groups) could be better. 
-        for (int i = 0; i < groups.size(); i++) {
+        for (size_t i = 0; i < groups.size(); i++) {
             std::fill(std::begin(factionCount), std::end(factionCount), 0);
 
             for (rOrganism organism : groups[i].data()) {
