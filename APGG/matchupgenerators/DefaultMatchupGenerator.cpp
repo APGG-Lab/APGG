@@ -1,24 +1,8 @@
-#include "MatchupGenerator.h"
+#include "DefaultMatchupGenerator.h"
 
 namespace APGG {
 
-    void MatchupGenerator::setGrid(std::shared_ptr<Grid> grid)
-    {
-        m_grid = grid;
-    }
-
-    void MatchupGenerator::setGroupSize(const unsigned int size)
-    {
-        m_groupSize = size;
-        m_groups.reserve(m_groupSize);
-    }
-
-    std::vector<Group> MatchupGenerator::getGroups() const
-    {
-        return m_groups;
-    }
-
-    void MatchupGenerator::generateGroups()
+    void DefaultMatchupGenerator::generateGroups()
     {
         m_groups.clear();
 
@@ -40,4 +24,8 @@ namespace APGG {
         }
     }
 
+	void DefaultMatchupGenerator::configure(Config& config)
+	{
+		setGroupSize(stoul(config.getValue("groupSize", "10")));
+	}
 }

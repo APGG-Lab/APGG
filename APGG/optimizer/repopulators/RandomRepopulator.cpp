@@ -10,4 +10,7 @@ namespace APGG {
             organism.get().m_payoff = 1.0f;
         }
     }
+	void RandomRepopulator::configure(Config& config)
+	{
+	}
 }

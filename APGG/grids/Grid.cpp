@@ -5,15 +5,6 @@ namespace APGG {
 
     Grid::Grid()
     {
-        m_grid.reserve(Config::getInstance().width * Config::getInstance().height);
-        for (unsigned int i = 0; i < Config::getInstance().width * Config::getInstance().height; i++)
-        {
-            auto organism = std::make_unique<Organism>();
-            organism->ID = getID();
-			organism->m_generation = getGeneration();
-            m_grid.emplace_back(std::move(organism));
-
-        }
     }
 
     pOrganism& Grid::getOrganism(const unsigned int x, const unsigned int y)
@@ -21,7 +12,7 @@ namespace APGG {
         //assert(x < width&&"X out of bounds!");
         //assert(y < height&&"Y out of bounds!");
 
-        unsigned int index = x + y * Config::getInstance().width;
+        unsigned int index = x + y * m_width;
         return m_grid[index];
 
     }
@@ -58,12 +49,22 @@ namespace APGG {
         });
     }
 
+	unsigned int Grid::getWidth() const
+	{
+		return m_width;
+	}
+
     unsigned int Grid::size()
     {
         return static_cast<unsigned int>(m_grid.size());
     }
 
-    float Grid::getMinPayoff()
+	unsigned int Grid::getHeight() const
+	{
+		return m_height;
+	}
+
+	float Grid::getMinPayoff()
     {
         float tempMin = std::numeric_limits<float>::max();
         for (pOrganism& org : m_grid)
@@ -110,6 +111,23 @@ namespace APGG {
 	int Grid::getID()
 	{
 		return m_IDCounter++;
+	}
+
+	void Grid::configure(Config& config)
+	{
+		m_width = stoul(config.getValue("width"));
+		m_height = stoul(config.getValue("height"));
+
+
+		m_grid.reserve(m_width * m_height);
+		for (unsigned int i = 0; i < m_width * m_height; i++)
+		{
+			auto organism = std::make_unique<Organism>();
+			organism->ID = getID();
+			organism->m_generation = getGeneration();
+			m_grid.emplace_back(std::move(organism));
+
+		}
 	}
 
 }

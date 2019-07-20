@@ -4,12 +4,12 @@
 #include <ctime>
 #include <sstream>
 #include <cstdlib>
-#include "Grid.h"
-#include "MatchupGenerator.h"
-#include "PayOffCalculator.h"
-#include "SimpleArchiver.h"
-#include "LODArchiver.h"
-#include "ConfigArchiver.h"
+#include "grids/DefaultGrid.h"
+#include "matchupgenerators/DefaultMatchupGenerator.h"
+#include "payoffcalculators/DefaultPayoffCalculator.h"
+#include "archivers/SimpleArchiver.h"
+#include "archivers/LODArchiver.h"
+#include "archivers/ConfigArchiver.h"
 #include "optimizer/Optimizer.h"
 
 typedef std::chrono::steady_clock HighResClock;
@@ -32,17 +32,21 @@ namespace APGG {
         void printInitMessage();
         int m_exponent; ///Exponential logging (0-10,10,20,30,100,200,300,1000,2000,3000,....)
 
+		unsigned int m_consoleOutExponent;
+		bool m_archiveData;
+		bool m_showAllGenerations;
+
         std::array<unsigned int, 4> m_count;
 
-        MatchupGenerator m_matchupGenerator;
-        PayOffCalculator m_payoffCalculator;
+        DefaultMatchupGenerator m_matchupGenerator;
+        DefaultPayOffCalculator m_payoffCalculator;
         SimpleArchiver m_archiver;
         Optimizer m_optimizer;
         std::shared_ptr<LOD> m_lod;
     public:
         World();
 
-        void Init();
+        void Init(Config & config);
         void Tick();
         void Fini();
 

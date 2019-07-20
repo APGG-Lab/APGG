@@ -35,4 +35,11 @@ namespace APGG {
     {
         m_fileHandle << line << std::endl;
     }
+	void LODArchiver::configure(Config& config)
+	{
+		m_folderName = config.getValue("folderName");
+		applyTimestampToFolder(stoi(config.getValue("timeToFolder")));
+		m_fileSuffix = config.getValue("logSuffix");
+		applyTimestampToFile(stoi(config.getValue("timeToFile")));
+	}
 }

@@ -9,5 +9,6 @@ namespace APGG {
 
         void setThreshold(const float threshold);
         void mutate(const std::vector<rOrganism>& selection);
+		void configure(Config& config);
     };
 }

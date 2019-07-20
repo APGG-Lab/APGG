@@ -46,4 +46,7 @@ namespace APGG {
             DEBUG_MSG("Repopulator: from parent " + rParent.get().getDebugString());
         }
     }
+	void ProportionateRepupoluator::configure(Config& config)
+	{
+	}
 }

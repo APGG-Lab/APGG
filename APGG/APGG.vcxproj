@@ -177,17 +177,20 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="Archiver.cpp" />
+    <ClCompile Include="archivers\Archiver.cpp" />
     <ClCompile Include="Config.cpp" />
-    <ClCompile Include="ConfigArchiver.cpp" />
+    <ClCompile Include="archivers\ConfigArchiver.cpp" />
+    <ClCompile Include="ConfigParserCSV.cpp" />
     <ClCompile Include="Genome.cpp" />
-    <ClCompile Include="Grid.cpp" />
+    <ClCompile Include="grids\DefaultGrid.cpp" />
+    <ClCompile Include="grids\Grid.cpp" />
     <ClCompile Include="Group.cpp" />
-    <ClCompile Include="LODArchiver.cpp" />
+    <ClCompile Include="archivers\LODArchiver.cpp" />
+    <ClCompile Include="matchupgenerators\DefaultMatchupGenerator.cpp" />
     <ClCompile Include="optimizer\mutators\Mutator.cpp" />
     <ClCompile Include="optimizer\LOD.cpp" />
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="MatchupGenerator.cpp" />
+    <ClCompile Include="matchupgenerators\MatchupGenerator.cpp" />
     <ClCompile Include="optimizer\Optimizer.cpp" />
     <ClCompile Include="optimizer\repopulators\ProportionateRepopulator.cpp" />
     <ClCompile Include="optimizer\repopulators\RandomRepopulator.cpp" />
@@ -196,23 +199,28 @@
     <ClCompile Include="optimizer\selectors\RandomSelector.cpp" />
     <ClCompile Include="optimizer\selectors\Selector.cpp" />
     <ClCompile Include="Organism.cpp" />
-    <ClCompile Include="PayOffCalculator.cpp" />
+    <ClCompile Include="payoffcalculators\DefaultPayoffCalculator.cpp" />
+    <ClCompile Include="payoffcalculators\PayOffCalculator.cpp" />
     <ClCompile Include="optimizer\mutators\RandomMutator.cpp" />
-    <ClCompile Include="SimpleArchiver.cpp" />
+    <ClCompile Include="archivers\SimpleArchiver.cpp" />
     <ClCompile Include="optimizer\mutators\ThresholdMutator.cpp" />
     <ClCompile Include="World.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Archiver.h" />
+    <ClInclude Include="archivers\Archiver.h" />
     <ClInclude Include="Config.h" />
-    <ClInclude Include="ConfigArchiver.h" />
+    <ClInclude Include="archivers\ConfigArchiver.h" />
+    <ClInclude Include="ConfigParserCSV.h" />
+    <ClInclude Include="Configurable.h" />
     <ClInclude Include="Genome.h" />
-    <ClInclude Include="Grid.h" />
+    <ClInclude Include="grids\DefaultGrid.h" />
+    <ClInclude Include="grids\Grid.h" />
     <ClInclude Include="Group.h" />
-    <ClInclude Include="LODArchiver.h" />
+    <ClInclude Include="archivers\LODArchiver.h" />
+    <ClInclude Include="matchupgenerators\DefaultMatchupGenerator.h" />
     <ClInclude Include="optimizer\mutators\Mutator.h" />
     <ClInclude Include="optimizer\LOD.h" />
-    <ClInclude Include="MatchupGenerator.h" />
+    <ClInclude Include="matchupgenerators\MatchupGenerator.h" />
     <ClInclude Include="optimizer\Optimizer.h" />
     <ClInclude Include="optimizer\repopulators\ProportionateRepopulator.h" />
     <ClInclude Include="optimizer\repopulators\RandomRepopulator.h" />
@@ -221,10 +229,11 @@
     <ClInclude Include="optimizer\selectors\RandomSelector.h" />
     <ClInclude Include="optimizer\selectors\Selector.h" />
     <ClInclude Include="Organism.h" />
-    <ClInclude Include="PayOffCalculator.h" />
+    <ClInclude Include="payoffcalculators\DefaultPayoffCalculator.h" />
+    <ClInclude Include="payoffcalculators\PayOffCalculator.h" />
     <ClInclude Include="random.h" />
     <ClInclude Include="optimizer\mutators\RandomMutator.h" />
-    <ClInclude Include="SimpleArchiver.h" />
+    <ClInclude Include="archivers\SimpleArchiver.h" />
     <ClInclude Include="optimizer\mutators\ThresholdMutator.h" />
     <ClInclude Include="World.h" />
   </ItemGroup>

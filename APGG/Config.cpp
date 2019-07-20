@@ -2,15 +2,24 @@
 
 namespace APGG {
 
-    Config::Config()
-    {
+	std::string Config::getValue(std::string key, std::string alternative)
+	{
+		std::unordered_map<std::string, std::string>::iterator i = m_configMap.find(key);
 
-    }
+		if (i == m_configMap.end())
+		{
+			//not found
+			return alternative;
+		}
+		else
+		{
+			return i->second;
+		}
+	}
 
-    Config& Config::getInstance()
-    {
-        static Config instance;
-        return instance;
-    }
+	std::unordered_map<std::string, std::string>& Config::getMapReference()
+	{
+		return m_configMap;
+	}
 
 }
