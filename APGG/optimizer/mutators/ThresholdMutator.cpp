@@ -9,7 +9,7 @@ void APGG::ThresholdMutator::mutate(const std::vector<rOrganism>& selection)
 {
     for (rOrganism org : selection)
     {
-        if (m_motationRate < getRandomFloat()) {
+        if (m_mutationRate < getRandomFloat()) {
             continue;
         }
 
@@ -26,4 +26,10 @@ void APGG::ThresholdMutator::mutate(const std::vector<rOrganism>& selection)
             }
         }
     }
+}
+
+void APGG::ThresholdMutator::configure(Config& config)
+{
+	m_mutationRate = stof(config.getValue("mutationRate"));
+	m_threshold = stof(config.getValue("mutationThreshold", "0.2"));
 }

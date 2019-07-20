@@ -24,4 +24,8 @@ namespace APGG {
         }
     }
 
+	void DefaultMatchupGenerator::configure(Config& config)
+	{
+		setGroupSize(stoul(config.getValue("groupSize", "10")));
+	}
 }

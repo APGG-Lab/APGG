@@ -8,11 +8,12 @@
 #include <sstream>
 #include <fstream>
 #include <experimental/filesystem> // or #include <filesystem>
+#include "../Configurable.h"
 namespace fs = std::experimental::filesystem;
 
 namespace APGG {
 
-    class Archiver
+    class Archiver : public Configurable
     {
     protected:
         std::string m_folderName;
@@ -38,6 +39,8 @@ namespace APGG {
         void applyTimestampToFolder(const bool& status);
         std::string getFullFilename() const;
         ~Archiver();
+
+		virtual void configure(Config& config) = 0;
     };
 
 }

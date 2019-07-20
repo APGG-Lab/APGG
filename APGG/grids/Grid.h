@@ -3,10 +3,11 @@
 #include <algorithm>
 
 #include "../Organism.h"
+#include "../Configurable.h"
 
 namespace APGG {
 
-    class Grid
+    class Grid : public Configurable
     {
     public:
         Grid();
@@ -17,6 +18,8 @@ namespace APGG {
         void data(const std::vector<pOrganism> data);
         void rebuildCache();
         void sortByFitness();
+		unsigned int getWidth() const;
+		unsigned int getHeight() const;
         float getMinPayoff();
         float getMaxPayoff();
         unsigned int size();
@@ -50,11 +53,15 @@ namespace APGG {
                     recursiveDelete(organism->m_parent, list);
             }
         }
+
+		void configure(Config& config);
     protected:
         std::vector<pOrganism> m_grid;
         std::vector<rOrganism> m_gridCache;
 		int m_IDCounter = 0;
 		unsigned int m_generation = 0;
+		unsigned int m_width;
+		unsigned int m_height;
     };
 
 }

@@ -5,11 +5,12 @@
 #include "../grids/DefaultGrid.h"
 #include "../Organism.h"
 #include "../Group.h"
+#include "../Configurable.h"
 //typedef std::vector<pOrganism> Group;
 
 namespace APGG {
 
-    class MatchupGenerator
+    class MatchupGenerator : public Configurable
     {
     protected:
         std::shared_ptr<Grid> m_grid;

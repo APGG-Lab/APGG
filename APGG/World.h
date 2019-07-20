@@ -32,6 +32,10 @@ namespace APGG {
         void printInitMessage();
         int m_exponent; ///Exponential logging (0-10,10,20,30,100,200,300,1000,2000,3000,....)
 
+		unsigned int m_consoleOutExponent;
+		bool m_archiveData;
+		bool m_showAllGenerations;
+
         std::array<unsigned int, 4> m_count;
 
         DefaultMatchupGenerator m_matchupGenerator;
@@ -42,7 +46,7 @@ namespace APGG {
     public:
         World();
 
-        void Init();
+        void Init(Config & config);
         void Tick();
         void Fini();
 

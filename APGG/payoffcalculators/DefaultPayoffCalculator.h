@@ -14,6 +14,7 @@ namespace APGG {
         void calculateCosts(const int groupSize);
         void applyPayoff(rOrganism& organism);
         void applyPayoff(Group& group);
+		void configure(Config& config);
     };
 
 }
