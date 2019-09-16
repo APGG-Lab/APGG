@@ -13,6 +13,7 @@ namespace APGG {
 	private:
 		std::shared_ptr<Grid> m_grid;
         void logRecursive(const pOrganism& organism);
+        void logIterative(pOrganism& organism);
         std::unique_ptr<LODArchiver> m_archiver;
 	public:
         void setArchiver(std::unique_ptr<LODArchiver>& archiver);

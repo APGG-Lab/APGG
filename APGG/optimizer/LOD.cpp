@@ -122,10 +122,28 @@ namespace APGG {
         m_archiver->archive(organism);
     }
 
+    void LOD::logIterative(pOrganism& organism) {
+        std::vector<pOrganism> organisms;
+
+        while (organism->m_parent != nullptr) {
+#ifdef DEBUG_EXTREME
+            std::cout << "[APGG LOD] " << "Payoff: " << organism->m_payoff << " " << organism->getDebugString() << std::endl;
+#endif
+            organisms.push_back(organism);
+            organism = organism->m_parent;
+        }
+
+        for (auto it = organisms.end(); it != organisms.begin(); --it) {
+            if (*it != nullptr) {
+                m_archiver->archive(*it);
+            }
+        }
+    }
+
     void LOD::logTop() {
         m_grid->sortByFitness();
         pOrganism topOragnism = m_grid->data()[0].get().getPtr();
-        logRecursive(topOragnism);
+        logIterative(topOragnism);
     }
 
     void LOD::setArchiver(std::unique_ptr<LODArchiver>& archiver) {
