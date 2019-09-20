@@ -33,7 +33,9 @@ namespace APGG {
 
         m_mutator->mutate(selection);
 
-
+		for (auto organsim : m_grid->data()) {
+			organsim.get().m_payoff = 0;
+		}
     }
 
 	//TODO: make mutators, repopulators and selectors configurable too
