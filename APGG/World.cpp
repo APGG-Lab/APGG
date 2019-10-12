@@ -171,9 +171,9 @@ namespace APGG {
 
     void World::Fini()
     {
-        m_lod->logTop();
+        // m_lod->logTop();
 
-        m_grid->wipe();
+        // m_grid->wipe();
 
         fsec fs = m_clock_now - m_clock_start;
         ms timeDelta = std::chrono::duration_cast<ms>(fs);
