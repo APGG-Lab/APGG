@@ -16,7 +16,7 @@ namespace APGG {
 			while (payoff <= getRandomFloat()) {
                 rParent = grid->getRandomOrganism(selection);
 
-                if (min == max) {
+                if (min == max || payoff == 0) {
                     //Min == Max => Difference equals 0
                     break;
                 }
