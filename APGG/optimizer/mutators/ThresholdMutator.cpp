@@ -9,7 +9,7 @@ void APGG::ThresholdMutator::mutate(const std::vector<rOrganism>& selection)
 {
     for (rOrganism org : selection)
     {
-        if (m_mutationRate < getRandomFloat()) {
+        if (getRandomFloat() < m_mutationRate  ) {
             continue;
         }
 
