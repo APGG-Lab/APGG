@@ -46,7 +46,7 @@ namespace APGG {
 		unsigned int m_generation;
 
         //@todo startvalue?
-        float m_payoff = 1;
+        float m_payoff = 0;
 		int m_status = STATUS_ORIGINAL;
         bool m_mutated = false;
 
