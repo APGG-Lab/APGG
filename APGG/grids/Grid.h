@@ -1,6 +1,7 @@
 #pragma once
 #include <cassert>
 #include <algorithm>
+#include <stack>
 
 #include "../Organism.h"
 #include "../Configurable.h"
@@ -33,8 +34,10 @@ namespace APGG {
             std::list<pOrganism> myList;
 
             for (auto& organism : m_grid) {
-                recursiveDelete(organism, myList);
+                //recursiveDelete(organism, myList);
+				iterativeDelete(organism, myList);
             }
+			std::cout << myList.size() << std::endl;
             for (auto& organism : myList) {
                 for (auto& child : organism->m_children) {
                     child.reset();
@@ -46,6 +49,7 @@ namespace APGG {
             myList.clear();
             m_grid.clear();
         }
+
         void recursiveDelete(pOrganism& organism, std::list<pOrganism>& list) {
             organism->clearChildren();
             list.push_back(organism);
@@ -53,6 +57,20 @@ namespace APGG {
                     recursiveDelete(organism->m_parent, list);
             }
         }
+
+		void iterativeDelete(pOrganism& startOrganism, std::list<pOrganism>& list) {
+			auto organism = startOrganism;
+			auto organismParent = startOrganism->m_parent;
+			while (organismParent != nullptr)
+			{
+				organism = organismParent;
+				organism->clearChildren();
+				list.push_back(organism);
+
+				organismParent = organism->m_parent;
+				organism->m_parent = nullptr;
+			}
+		}
 
 		void configure(Config& config);
     protected:
