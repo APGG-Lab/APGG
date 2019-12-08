@@ -30,7 +30,7 @@ namespace APGG {
 
 		m_folderName = config.getValue("folderName");
 		applyTimestampToFolder(stoi(config.getValue("timeToFolder")));
-		m_fileSuffix = config.getValue("timeToFile");
+		m_fileSuffix = config.getValue("logSuffix");
 		applyTimestampToFile(stoi(config.getValue("timeToFile")));
 	}
 }
