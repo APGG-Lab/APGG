@@ -5,7 +5,10 @@ namespace APGG {
 
     void World::printStatus()
     {
-        if (m_generation % m_exponent != 0 && !m_showAllGenerations) {
+#ifdef __DEGBUG
+
+
+        if (m_generation % 10 != 0) {
             return;
         }
 
@@ -28,40 +31,9 @@ namespace APGG {
 
             m_exponent *= m_consoleOutExponent;
         }
-    }
+#endif // !__DEGBUG
 
-    void World::printInitMessage()
-    {
-		/*
-        std::cout << std::endl << "-------------------------------------------------------------------------------------------------------------------------------------" << std::endl
-                  << "You're currently running " << m_archiver.getFullFilename() << " with the following parameters:" << std::endl
-                  << "numGenerations - " << Config::getInstance().numGenerations << std::endl
-                  << "eliminationCount - " << Config::getInstance().eliminationCount << std::endl
-                  << "groupSize - " << Config::getInstance().groupSize << std::endl
-                  << "width - " << Config::getInstance().width << std::endl
-                  << "height - " << Config::getInstance().height << std::endl
-                  << "cooperateCost - " << Config::getInstance().cooperateCost << std::endl
-                  << "synergyFactor - " << Config::getInstance().synergyFactor << std::endl
-                  << "punishmentCost - " << Config::getInstance().punishmentCost << std::endl
-                  << "punishmentFine - " << Config::getInstance().punishmentFine << std::endl
-                  << "matchupType - " << Config::getInstance().matchupType << std::endl
-                  << "selectorType - " << Config::getInstance().selectorType << std::endl
-                  << "repopulatorType - " << Config::getInstance().repopulatorType << std::endl
-                  << "gridType - " << Config::getInstance().gridType << std::endl
-                  << "payoffType - " << Config::getInstance().payoffType << std::endl
-                  << "mutatorType - " << Config::getInstance().mutatorType << std::endl
-                  << "mutationRate - " << Config::getInstance().mutationRate << "%" << std::endl
-                  << "showAllGenerations - " << Config::getInstance().showAllGenerations << std::endl
-                  << "archiveData - " << Config::getInstance().archiveData << std::endl
-                  << "visualize - " << Config::getInstance().visualize << std::endl
-                  << "folderName - " << Config::getInstance().folderName << std::endl
-                  << "logSuffix - " << Config::getInstance().logSuffix << std::endl
-                  << "timeToFile - " << Config::getInstance().timeToFile << std::endl
-                  << "timeToFolder - " << Config::getInstance().timeToFolder << std::endl
-                  << "consoleOutExponent - " << Config::getInstance().consoleOutExponent << std::endl
-                  << "-------------------------------------------------------------------------------------------------------------------------------------" << std::endl << std::endl;
-    */
-	}
+    }
 
     World::World()
     {
@@ -72,7 +44,6 @@ namespace APGG {
         std::cout << "[APGG] Init ...";
 
         m_clock_start = m_clock_now = m_clock_last = HighResClock::now();
-        m_exponent = 1;
         std::fill(std::begin(m_count), std::end(m_count), 0);
 
         m_grid = std::make_shared<Grid>();
@@ -84,7 +55,6 @@ namespace APGG {
             std::cin.get();
             std::quick_exit(1);
         }
-
 
         {
             m_matchupGenerator.configure(config);
@@ -132,11 +102,8 @@ namespace APGG {
             std::cout << "took " << timeDelta.count() << " ms" << std::endl;
         }
 
-		m_consoleOutExponent = stoul(config.getValue("consoleOutExponent"));
 		m_archiveData = stoi(config.getValue("archiveData"));
-		m_showAllGenerations = stoi(config.getValue("showAllGenerations"));
 
-        printInitMessage();
     }
 
     void World::Tick()
@@ -166,7 +133,12 @@ namespace APGG {
         if (m_archiveData) {
             m_archiver.archive(m_generation, m_count[FACTION_COOPERATOR], m_count[FACTION_DEFECTOR], m_count[FACTION_MORALIST], m_count[FACTION_IMMORALIST]);
         }
+
+#ifdef __DEBUG
+        //Only draw slow debug messages when in DEBUG mode
         printStatus();
+#endif // __DEBUG
+
     }
 
     void World::Fini()
