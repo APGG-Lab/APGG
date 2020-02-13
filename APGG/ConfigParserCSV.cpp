@@ -22,11 +22,13 @@ namespace APGG {
 			configMapKeys.emplace_back(word);
 		}
 
+		unsigned int experiment_counter = 0;
+
 		//parse config data rows
 		while (std::getline(fin, line)) {
 			std::istringstream configDataLine(line);
 
-			Config config;
+			Config config(experiment_counter++);
 			unsigned int rowIndex = 0;
 
 			while (rowIndex < configMapKeys.size() && std::getline(configDataLine, word, ';')) {

@@ -41,8 +41,6 @@ namespace APGG {
 
     void World::Init(Config& config)
     {
-        std::cout << "[APGG] Init ...";
-
         m_clock_start = m_clock_now = m_clock_last = HighResClock::now();
         std::fill(std::begin(m_count), std::end(m_count), 0);
 
@@ -99,7 +97,16 @@ namespace APGG {
             fsec fs = m_clock_now - m_clock_last;
             m_clock_last = m_clock_now;
             ms timeDelta = std::chrono::duration_cast<ms>(fs);
-            std::cout << "took " << timeDelta.count() << " ms" << std::endl;
+
+            std::stringstream ss;
+               ss <<
+                "[APGG] Init Experiment #" << std::setfill('0') << std::setw(5) << config.getID()
+                << "\t(Group " << config.getValue("folderName")
+                << " Exp:" << config.getValue("logSuffix")
+                << " Syn" << config.getValue("synergyFactor")
+                << ") [took " << timeDelta.count() << " ms]" << std::endl;
+
+            std::cout << ss.str() ;
         }
 
 		m_archiveData = stoi(config.getValue("archiveData"));
