@@ -22,11 +22,11 @@ namespace APGG {
 		return m_configMap;
 	}
 
-	Config::Config() : m_id(0)
+	Config::Config() : m_id(0), m_configMap(25)
 	{
 	}
 
-	Config::Config(const unsigned int id) : m_id(id)
+	Config::Config(const unsigned int id) : m_id(id), m_configMap(25)
 	{
 	}
 
