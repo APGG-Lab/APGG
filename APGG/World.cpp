@@ -35,10 +35,6 @@ namespace APGG {
 
     }
 
-    World::World()
-    {
-    }
-
     void World::Init(Config& config)
     {
         m_clock_start = m_clock_now = m_clock_last = HighResClock::now();

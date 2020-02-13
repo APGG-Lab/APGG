@@ -46,8 +46,6 @@ namespace APGG {
         Optimizer m_optimizer;
         std::shared_ptr<LOD> m_lod;
     public:
-        World();
-
         void Init(Config & config);
         void Tick();
         void Fini();
