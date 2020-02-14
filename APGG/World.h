@@ -11,7 +11,7 @@
 //#include "archivers/SimpleArchiver.h"
 //#include "archivers/LODArchiver.h"
 //#include "archivers/ConfigArchiver.h"
-//#include "optimizer/Optimizer.h"
+#include "optimizer/Optimizer.h"
 
 typedef std::chrono::steady_clock HighResClock;
 typedef std::chrono::milliseconds ms;
@@ -44,7 +44,7 @@ namespace APGG {
         DefaultMatchupGenerator m_matchupGenerator;
         DefaultPayOffCalculator m_payoffCalculator;
       //  SimpleArchiver m_archiver;
-      //  Optimizer m_optimizer;
+        Optimizer m_optimizer;
      //   std::shared_ptr<LOD> m_lod;
     public:
         void Init(Config & config);

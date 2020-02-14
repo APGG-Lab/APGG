@@ -3,7 +3,7 @@
 namespace APGG {
 
 
-    void Optimizer::setGrid(const std::shared_ptr<Grid>& grid)
+    void Optimizer::setGrid(Grid* grid)
     {
         m_grid = grid;
     }
@@ -23,71 +23,84 @@ namespace APGG {
         m_mutator = mutator;
     }
 
-    void Optimizer::optmize()
+    void Optimizer::optmize(Grid& grid)
     {
-        std::vector<rOrganism> selection = m_selector->select(m_grid);
+		std::unordered_set<unsigned int> selection = m_selector->select(grid);
+		bool test = 0;
+       // std::vector<rOrganism> selection = m_selector->select(m_grid);
 
-		m_lod->LODebug(selection);
+		//m_lod->LODebug(selection);
 
-        m_repopulator->repopulate(m_grid, selection);
+       // m_repopulator->repopulate(m_grid, selection);
 
-        m_mutator->mutate(selection);
+       // m_mutator->mutate(selection);
 
-		for (auto organsim : m_grid->data()) {
-			organsim.get().m_payoff = 0;
-		}
+		//for (auto organsim : m_grid->data()) {
+	//		organsim.get().m_payoff = 0;
+	//	}
     }
 
 	//TODO: make mutators, repopulators and selectors configurable too
 	void Optimizer::configure(Config& config)
 	{
-		if (stoul(config.getValue("selectorType")) >= nSelectorTypes) {
-			std::cerr << std::endl << "[APGG Error] invalid selector type. selectorType must be < " << nSelectorTypes;
+		SelectorType selectorType = static_cast<SelectorType>(stoul(config.getValue("selectorType")));
+		RepopulatorType repopulatorType = static_cast<RepopulatorType>(stoul(config.getValue("repopulationType")));
+		MutatorType mutatorType = static_cast<MutatorType>(stoul(config.getValue("mutatorType")));
+
+		if (selectorType >= SelectorType::Count) {
+			std::cerr << std::endl << "[APGG Error] invalid selector type. selectorType must be < " << static_cast<int>(SelectorType::Count);
 			std::cin.get();
 			std::quick_exit(1);
 		}
 
-		switch (stoul(config.getValue("selectorType"))) {
-		case SELECTOR_ELITE:
-			m_selector = std::make_shared<EliteSelector>();
+		if (repopulatorType >= RepopulatorType::Count) {
+			std::cerr << std::endl << "[APGG Error] invalid repopulator type. repopulatorType must be < " << static_cast<int>(RepopulatorType::Count);
+			std::cin.get();
+			std::quick_exit(1);
+		}
+
+		if (mutatorType >= MutatorType::Count) {
+			std::cerr << std::endl << "[APGG Error] invalid mutator type. mutatorType must be < " << static_cast<int>(MutatorType::Count);
+			std::cin.get();
+			std::quick_exit(1);
+		}
+
+		switch (selectorType) {
+		case SelectorType::Elite:
+			//m_selector = std::make_shared<EliteSelector>();
 			break;
 		default:
-		case SELECTOR_RANDOM:
+		case SelectorType::Random:
 			m_selector = std::make_shared<RandomSelector>();
 			break;
 		}
 		m_selector->configure(config);
 	
 	
-		if (stoul(config.getValue("repopulationType")) >= nRepopulatorTypes) {
-			std::cerr << std::endl << "[APGG Error] invalid repopulator type. repopulatorType must be < " << nRepopulatorTypes;
-			std::cin.get();
-			std::quick_exit(1);
-		}
-
-		switch (stoul(config.getValue("repopulationType"))) {
-		case REPOPULATOR_RANDOM:
-			m_repopulator = std::make_shared<RandomRepopulator>();
+		switch (repopulatorType) {
+		case RepopulatorType::Random:
+		//	m_repopulator = std::make_shared<RandomRepopulator>();
 			break;
 		default:
-		case REPOPULATOR_PROPORTIONATE:
-			m_repopulator = std::make_shared<ProportionateRepupoluator>();
+		case RepopulatorType::Proportionate:
+		//	m_repopulator = std::make_shared<ProportionateRepupoluator>();
 			break;
 		}
-		m_repopulator->configure(config);
+		//m_repopulator->configure(config);
 	
-		std::shared_ptr<Mutator> mutator = nullptr;
-		switch (stoul(config.getValue("mutatorType"))) {
-		case MUTATOR_RANDOM:
-			mutator = std::make_shared<RandomMutator>();
+
+	//	std::shared_ptr<Mutator> mutator = nullptr;
+		switch (mutatorType) {
+		case MutatorType::Random:
+			//mutator = std::make_shared<RandomMutator>();
 			break;
 		default:
-		case MUTATOR_THRESHOLD:
-			mutator = std::make_shared<ThresholdMutator>();
+		case MutatorType::Threshold:
+		//	mutator = std::make_shared<ThresholdMutator>();
 			break;
 		}
-		mutator->configure(config);
-		m_mutator = mutator;
+	//	mutator->configure(config);
+	//	m_mutator = mutator;
 	}
 
 	void Optimizer::setLOD(const std::shared_ptr<LOD>& lod) {

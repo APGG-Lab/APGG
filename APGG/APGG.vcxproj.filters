@@ -54,6 +54,15 @@
     <ClCompile Include="payoffcalculators\DefaultPayoffCalculator.cpp">
       <Filter>Quelldateien</Filter>
     </ClCompile>
+    <ClCompile Include="optimizer\Optimizer.cpp">
+      <Filter>Quelldateien</Filter>
+    </ClCompile>
+    <ClCompile Include="optimizer\selectors\RandomSelector.cpp">
+      <Filter>Quelldateien</Filter>
+    </ClCompile>
+    <ClCompile Include="optimizer\selectors\Selector.cpp">
+      <Filter>Quelldateien</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Genome.h">
@@ -96,6 +105,15 @@
       <Filter>Headerdateien</Filter>
     </ClInclude>
     <ClInclude Include="payoffcalculators\DefaultPayoffCalculator.h">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
+    <ClInclude Include="optimizer\Optimizer.h">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
+    <ClInclude Include="optimizer\selectors\RandomSelector.h">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
+    <ClInclude Include="optimizer\selectors\Selector.h">
       <Filter>Headerdateien</Filter>
     </ClInclude>
   </ItemGroup>

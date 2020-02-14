@@ -4,8 +4,7 @@
 
 namespace APGG
 {
-    constexpr unsigned int nMutatorTypes = 2;
-    enum MutatorTypes { MUTATOR_RANDOM, MUTATOR_THRESHOLD };
+    enum class MutatorType : uint8_t { Random = 0, Threshold, Count };
 
     class Mutator : public Configurable
     {

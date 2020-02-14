@@ -52,6 +52,9 @@ namespace APGG {
         //Setup the payoff calculator
         m_payoffCalculator.configure(config);
 
+      //  m_optimizer.setGrid(&m_grid);
+        m_optimizer.configure(config);
+
 
 
   //      {
@@ -62,9 +65,7 @@ namespace APGG {
         {
         }
 
-  //      m_optimizer.setGrid(m_grid);
-		//m_optimizer.configure(config);
-
+  
   //      {
   //          std::unique_ptr<LODArchiver> lodArchiver = std::make_unique<LODArchiver>();
 		//	lodArchiver->configure(config);
@@ -109,12 +110,8 @@ namespace APGG {
 
     void World::Tick()
     {
-        std::fill(std::begin(m_count), std::end(m_count), 0);
-//        //int localCooperation = 0;
-//        //float localPayoff = 0;
-//
         m_matchupGenerator.generateGroups();
-//
+
         std::vector<Group> groups = m_matchupGenerator.getGroups();
 
         for (Group& group : groups) {
@@ -127,19 +124,7 @@ namespace APGG {
             m_payoffCalculator.calculateCosts(group.size());
             m_payoffCalculator.applyPayoff(m_grid, group);
         }
-//
-//        //@todo for(group:groups) could be better. 
-//        for (size_t i = 0; i < groups.size(); i++) {
-//
-//            for (rOrganism organism : groups[i].data()) {
-//                Faction faction = organism.get().assignFaction();
-//                m_count[faction]++;
-//                factionCount[faction]++;
-//            }
-//            m_payoffCalculator.setCounters(factionCount);
-//            m_payoffCalculator.calculateCosts(groups[i].size());
-//            m_payoffCalculator.applyPayoff(groups[i]);
-//        }
+
 //        if (m_archiveData) {
 //            m_archiver.archive(m_generation, m_count[FACTION_COOPERATOR], m_count[FACTION_DEFECTOR], m_count[FACTION_MORALIST], m_count[FACTION_IMMORALIST]);
 //        }
@@ -165,10 +150,11 @@ namespace APGG {
 
     void World::Evolve()
     {
-      /*  m_optimizer.optmize();
-        m_grid->rebuildCache();
-
+        m_optimizer.optmize(m_grid);
         m_generation++;
+
+      /*  m_grid->rebuildCache();
+
 		m_grid->setGeneration(m_generation);*/
     }
 
