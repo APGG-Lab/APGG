@@ -27,7 +27,7 @@ namespace APGG {
 	typedef std::shared_ptr<Organism> pOrganism;
 	typedef std::reference_wrapper<Organism> rOrganism;
 
-    class Organism : public std::enable_shared_from_this<Organism>
+    class Organism
     {
     public:
         std::array<Genome, nrGenomes> m_genomes;
@@ -58,7 +58,7 @@ namespace APGG {
 
         void setPayoff(const float payoff);
 		void copyTo(pOrganism& copyOrganism);
-        pOrganism getPtr() { return shared_from_this(); };
+       // pOrganism getPtr() { return shared_from_this(); };
 
 
         void clearChildren();

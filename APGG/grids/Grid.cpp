@@ -2,132 +2,155 @@
 
 namespace APGG {
 
-
     Grid::Grid()
     {
     }
 
-    pOrganism& Grid::getOrganism(const unsigned int x, const unsigned int y)
+    void Grid::configure(Config& config)
     {
-        //assert(x < width&&"X out of bounds!");
-        //assert(y < height&&"Y out of bounds!");
+        m_width = stoi(config.getValue("width"));
+	    m_height = stoi(config.getValue("height"));
+        m_totalSize = m_width * m_height;
 
-        unsigned int index = x + y * m_width;
-        return m_grid[index];
+        if (m_grid.size() % stoi(config.getValue("groupSize")) != 0) {
+            std::cerr << std::endl << "[APGG Error] invalid group size. Gridsize (height*width) % Groupsize must be 0";
+            std::cin.get();
+            std::quick_exit(1);
+        };
 
+	    m_grid.reserve(m_totalSize);
+	    for (unsigned int i = 0; i < m_width * m_height; i++)
+	    {
+            Organism organism;
+		    organism.ID = m_IDCounter++;
+		    organism.m_generation = m_generation;
+		    m_grid.emplace_back(std::move(organism));
+	    }
     }
 
-    pOrganism& Grid::getOrganism(const int index)
+    void Grid::setGeneration(const unsigned int generation)
     {
-        //	assert(index < Config::getInstance().width* Config::getInstance().height&&"Index out of bounds!");
-        return m_grid[index];
+        m_generation = generation;
     }
 
-    const std::vector<rOrganism> Grid::data()
-    {
-        return m_gridCache;
-    }
+ //   pOrganism& Grid::getOrganism(const unsigned int x, const unsigned int y)
+ //   {
+ //       //assert(x < width&&"X out of bounds!");
+ //       //assert(y < height&&"Y out of bounds!");
 
-    void Grid::data(const std::vector<pOrganism> data)
-    {
-        // m_grid = data;
-    }
+ //       unsigned int index = x + y * m_width;
+ //       return m_grid[index];
 
-    void Grid::rebuildCache()
-    {
-        m_gridCache.clear();
-        m_gridCache.reserve(size());
-        for (auto &ptr : m_grid) {
-            m_gridCache.push_back(std::ref(*ptr));
-        }
-    }
+ //   }
 
-    void Grid::sortByFitness()
-    {
-        std::sort(m_grid.begin(), m_grid.end(), [](const pOrganism &a, const pOrganism &b) {
-            return a->m_payoff > b->m_payoff;
-        });
-    }
+ //   pOrganism& Grid::getOrganism(const int index)
+ //   {
+ //       //	assert(index < Config::getInstance().width* Config::getInstance().height&&"Index out of bounds!");
+ //       return m_grid[index];
+ //   }
 
-	unsigned int Grid::getWidth() const
-	{
-		return m_width;
-	}
+ //   const std::vector<rOrganism> Grid::data()
+ //   {
+ //       return m_gridCache;
+ //   }
 
-    unsigned int Grid::size()
-    {
-        return static_cast<unsigned int>(m_grid.size());
-    }
+ //   void Grid::data(const std::vector<pOrganism> data)
+ //   {
+ //       // m_grid = data;
+ //   }
 
-	unsigned int Grid::getHeight() const
-	{
-		return m_height;
-	}
+ //   void Grid::rebuildCache()
+ //   {
+ //       m_gridCache.clear();
+ //       m_gridCache.reserve(size());
+ //       for (auto &ptr : m_grid) {
+ //           m_gridCache.push_back(std::ref(*ptr));
+ //       }
+ //   }
 
-	float Grid::getMinPayoff()
-    {
-        float tempMin = std::numeric_limits<float>::max();
-        for (pOrganism& org : m_grid)
-        {
-            if (org->m_payoff <= tempMin)
-                tempMin = org->m_payoff;
-        }
-        return tempMin;
-    }
+ //   void Grid::sortByFitness()
+ //   {
+ //       std::sort(m_grid.begin(), m_grid.end(), [](const pOrganism &a, const pOrganism &b) {
+ //           return a->m_payoff > b->m_payoff;
+ //       });
+ //   }
 
-    float Grid::getMaxPayoff()
-    {
-        float tempMax = std::numeric_limits<float>::min();
-        for (pOrganism& org : m_grid)
-        {
-            if (org->m_payoff >= tempMax)
-                tempMax = org->m_payoff;
-        }
-        return tempMax;
-    }
+	//unsigned int Grid::getWidth() const
+	//{
+	//	return m_width;
+	//}
 
-    rOrganism& Grid::getRandomOrganism() {
-        int rand = getRandomNumber() % m_grid.size();
-        return m_gridCache[rand];
-    }
+ //   unsigned int Grid::size()
+ //   {
+ //       return static_cast<unsigned int>(m_grid.size());
+ //   }
 
-    rOrganism& Grid::getRandomOrganism(const std::vector<rOrganism>& blacklist) {
+	//unsigned int Grid::getHeight() const
+	//{
+	//	return m_height;
+	//}
 
-        int rand = getRandomNumber() % m_grid.size();
-        auto& returnOrganism = m_gridCache[rand];
+	//float Grid::getMinPayoff()
+ //   {
+ //       float tempMin = std::numeric_limits<float>::max();
+ //       for (pOrganism& org : m_grid)
+ //       {
+ //           if (org->m_payoff <= tempMin)
+ //               tempMin = org->m_payoff;
+ //       }
+ //       return tempMin;
+ //   }
 
-        for (const rOrganism& organism : blacklist) {
-            if (returnOrganism.get().ID == organism.get().ID) {
-                returnOrganism = getRandomOrganism(blacklist);
-                break;
-            }
-        }
+ //   float Grid::getMaxPayoff()
+ //   {
+ //       float tempMax = std::numeric_limits<float>::min();
+ //       for (pOrganism& org : m_grid)
+ //       {
+ //           if (org->m_payoff >= tempMax)
+ //               tempMax = org->m_payoff;
+ //       }
+ //       return tempMax;
+ //   }
 
-        //todo cool blacklist implementation;
+ //   rOrganism& Grid::getRandomOrganism() {
+ //       int rand = getRandomNumber() % m_grid.size();
+ //       return m_gridCache[rand];
+ //   }
 
-        return returnOrganism;
-    }
+ //   rOrganism& Grid::getRandomOrganism(const std::vector<rOrganism>& blacklist) {
 
-	int Grid::getID()
-	{
-		return m_IDCounter++;
-	}
+ //       int rand = getRandomNumber() % m_grid.size();
+ //       auto& returnOrganism = m_gridCache[rand];
 
-	void Grid::configure(Config& config)
-	{
-		m_width = stoul(config.getValue("width"));
-		m_height = stoul(config.getValue("height"));
+ //       for (const rOrganism& organism : blacklist) {
+ //           if (returnOrganism.get().ID == organism.get().ID) {
+ //               returnOrganism = getRandomOrganism(blacklist);
+ //               break;
+ //           }
+ //       }
+
+ //       //todo cool blacklist implementation;
+
+ //       return returnOrganism;
+ //   }
 
 
-		m_grid.reserve(m_width * m_height);
-		for (unsigned int i = 0; i < m_width * m_height; i++)
-		{
-			auto organism = std::make_unique<Organism>();
-			organism->ID = getID();
-			organism->m_generation = getGeneration();
-			m_grid.emplace_back(std::move(organism));
 
-		}
-	}
+	//void Grid::configure(Config& config)
+	//{
+	//	m_width = stoul(config.getValue("width"));
+	//	m_height = stoul(config.getValue("height"));
+
+
+	//	m_grid.reserve(m_width * m_height);
+	//	for (unsigned int i = 0; i < m_width * m_height; i++)
+	//	{
+	//		auto organism = std::make_unique<Organism>();
+	//		organism->ID = getID();
+	//		organism->m_generation = getGeneration();
+	//		m_grid.emplace_back(std::move(organism));
+
+	//	}
+	//}
 
 }

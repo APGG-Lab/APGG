@@ -1,16 +1,17 @@
 #pragma once
 #include <iostream>
+#include <iomanip> //setFill for init output
 #include <chrono>
 #include <ctime>
 #include <sstream>
 #include <cstdlib>
 #include "grids/DefaultGrid.h"
-#include "matchupgenerators/DefaultMatchupGenerator.h"
-#include "payoffcalculators/DefaultPayoffCalculator.h"
-#include "archivers/SimpleArchiver.h"
-#include "archivers/LODArchiver.h"
-#include "archivers/ConfigArchiver.h"
-#include "optimizer/Optimizer.h"
+//#include "matchupgenerators/DefaultMatchupGenerator.h"
+//#include "payoffcalculators/DefaultPayoffCalculator.h"
+//#include "archivers/SimpleArchiver.h"
+//#include "archivers/LODArchiver.h"
+//#include "archivers/ConfigArchiver.h"
+//#include "optimizer/Optimizer.h"
 
 typedef std::chrono::steady_clock HighResClock;
 typedef std::chrono::milliseconds ms;
@@ -40,11 +41,11 @@ namespace APGG {
 
         std::array<unsigned int, 4> m_count;
 
-        DefaultMatchupGenerator m_matchupGenerator;
-        DefaultPayOffCalculator m_payoffCalculator;
-        SimpleArchiver m_archiver;
-        Optimizer m_optimizer;
-        std::shared_ptr<LOD> m_lod;
+      //  DefaultMatchupGenerator m_matchupGenerator;
+      //  DefaultPayOffCalculator m_payoffCalculator;
+      //  SimpleArchiver m_archiver;
+      //  Optimizer m_optimizer;
+     //   std::shared_ptr<LOD> m_lod;
     public:
         void Init(Config & config);
         void Tick();

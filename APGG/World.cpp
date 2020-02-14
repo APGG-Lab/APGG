@@ -42,50 +42,43 @@ namespace APGG {
 
         m_grid = std::make_shared<Grid>();
 		m_grid->configure(config);
-        m_grid->rebuildCache();
 
-        if (m_grid->size() % stoul(config.getValue("groupSize")) != 0) {
-            std::cerr << std::endl << "[APGG Error] invalid group size. Gridsize (height*width) % Groupsize must be 0";
-            std::cin.get();
-            std::quick_exit(1);
-        }
+  //      {
+  //          m_matchupGenerator.configure(config);
+  //          m_matchupGenerator.setGrid(m_grid);
+  //      }
 
-        {
-            m_matchupGenerator.configure(config);
-            m_matchupGenerator.setGrid(m_grid);
-        }
+  //      {
+		//	m_archiver.configure(config);
+  //          m_archiver.open();
+  //      }
 
-        {
-			m_archiver.configure(config);
-            m_archiver.open();
-        }
+  //      {
+		//	m_payoffCalculator.configure(config);
+  //      }
 
-        {
-			m_payoffCalculator.configure(config);
-        }
+  //      m_optimizer.setGrid(m_grid);
+		//m_optimizer.configure(config);
 
-        m_optimizer.setGrid(m_grid);
-		m_optimizer.configure(config);
+  //      {
+  //          std::unique_ptr<LODArchiver> lodArchiver = std::make_unique<LODArchiver>();
+		//	lodArchiver->configure(config);
 
-        {
-            std::unique_ptr<LODArchiver> lodArchiver = std::make_unique<LODArchiver>();
-			lodArchiver->configure(config);
+  //          lodArchiver->open();
+  //          m_lod = std::make_shared<LOD>();
+  //          m_lod->setGrid(m_grid);
+  //          m_lod->setArchiver(lodArchiver);
 
-            lodArchiver->open();
-            m_lod = std::make_shared<LOD>();
-            m_lod->setGrid(m_grid);
-            m_lod->setArchiver(lodArchiver);
+  //          m_optimizer.setLOD(m_lod);
+  //      }
 
-            m_optimizer.setLOD(m_lod);
-        }
-
-		{
-			ConfigArchiver configarchiver = ConfigArchiver();
-			configarchiver.configure(config);
-			configarchiver.open();
-			configarchiver.archive(config);
-			configarchiver.close();
-		}
+		//{
+		//	ConfigArchiver configarchiver = ConfigArchiver();
+		//	configarchiver.configure(config);
+		//	configarchiver.open();
+		//	configarchiver.archive(config);
+		//	configarchiver.close();
+		//}
 
         {
             //Show timedelta for init
@@ -105,64 +98,64 @@ namespace APGG {
             std::cout << ss.str() ;
         }
 
-		m_archiveData = stoi(config.getValue("archiveData"));
+		//m_archiveData = stoi(config.getValue("archiveData"));
 
     }
 
     void World::Tick()
     {
-        std::fill(std::begin(m_count), std::end(m_count), 0);
-        //int localCooperation = 0;
-        //float localPayoff = 0;
-
-        m_matchupGenerator.generateGroups();
-
-        std::vector<Group> groups = m_matchupGenerator.getGroups();
-        std::array<unsigned int, 4> factionCount;
-
-        //@todo for(group:groups) could be better. 
-        for (size_t i = 0; i < groups.size(); i++) {
-            std::fill(std::begin(factionCount), std::end(factionCount), 0);
-
-            for (rOrganism organism : groups[i].data()) {
-                Faction faction = organism.get().assignFaction();
-                m_count[faction]++;
-                factionCount[faction]++;
-            }
-            m_payoffCalculator.setCounters(factionCount);
-            m_payoffCalculator.calculateCosts(groups[i].size());
-            m_payoffCalculator.applyPayoff(groups[i]);
-        }
-        if (m_archiveData) {
-            m_archiver.archive(m_generation, m_count[FACTION_COOPERATOR], m_count[FACTION_DEFECTOR], m_count[FACTION_MORALIST], m_count[FACTION_IMMORALIST]);
-        }
-
+//        std::fill(std::begin(m_count), std::end(m_count), 0);
+//        //int localCooperation = 0;
+//        //float localPayoff = 0;
+//
+//        m_matchupGenerator.generateGroups();
+//
+//        std::vector<Group> groups = m_matchupGenerator.getGroups();
+//        std::array<unsigned int, 4> factionCount;
+//
+//        //@todo for(group:groups) could be better. 
+//        for (size_t i = 0; i < groups.size(); i++) {
+//            std::fill(std::begin(factionCount), std::end(factionCount), 0);
+//
+//            for (rOrganism organism : groups[i].data()) {
+//                Faction faction = organism.get().assignFaction();
+//                m_count[faction]++;
+//                factionCount[faction]++;
+//            }
+//            m_payoffCalculator.setCounters(factionCount);
+//            m_payoffCalculator.calculateCosts(groups[i].size());
+//            m_payoffCalculator.applyPayoff(groups[i]);
+//        }
+//        if (m_archiveData) {
+//            m_archiver.archive(m_generation, m_count[FACTION_COOPERATOR], m_count[FACTION_DEFECTOR], m_count[FACTION_MORALIST], m_count[FACTION_IMMORALIST]);
+//        }
+//
 #ifdef __DEBUG
-        //Only draw slow debug messages when in DEBUG mode
-        printStatus();
+//        //Only draw slow debug messages when in DEBUG mode
+//        printStatus();
 #endif // __DEBUG
 
     }
 
     void World::Fini()
     {
-        m_lod->logTop();
+     /*   m_lod->logTop();
 
         m_grid->wipe();
 
         fsec fs = m_clock_now - m_clock_start;
         ms timeDelta = std::chrono::duration_cast<ms>(fs);
         std::cout << "[APGG] Fini (took " << timeDelta.count() << " ms)" << std::endl;
-        m_archiver.close();
+        m_archiver.close();*/
     }
 
     void World::Evolve()
     {
-        m_optimizer.optmize();
+      /*  m_optimizer.optmize();
         m_grid->rebuildCache();
 
         m_generation++;
-		m_grid->setGeneration(m_generation);
+		m_grid->setGeneration(m_generation);*/
     }
 
 	void World::printLOD(const pOrganism& organism)

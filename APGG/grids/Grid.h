@@ -10,76 +10,87 @@ namespace APGG {
 
     class Grid : public Configurable
     {
+    protected:
+        unsigned int m_width = 0;
+        unsigned int m_height = 0;
+        unsigned int m_totalSize = 0;
+        unsigned int m_generation = 0;
+
+        std::vector<Organism> m_grid;
+
+        //ID of the organism
+        unsigned int m_IDCounter = 0;
+
     public:
         Grid();
+        void configure(Config& config);
+        void setGeneration(const unsigned int generation);
 
-        pOrganism& getOrganism(const unsigned int x, const unsigned int y);
-        pOrganism& getOrganism(const int index);
-        const std::vector<rOrganism> data();
-        void data(const std::vector<pOrganism> data);
-        void rebuildCache();
-        void sortByFitness();
-		unsigned int getWidth() const;
-		unsigned int getHeight() const;
-        float getMinPayoff();
-        float getMaxPayoff();
-        unsigned int size();
-        rOrganism& getRandomOrganism();
-        rOrganism& getRandomOrganism(const std::vector<rOrganism>& blacklist);
-		int getID();
-		unsigned int getGeneration() const { return m_generation; } ;
-		void setGeneration(const unsigned int generation) { m_generation = generation; };
-        void wipe() {
-            m_gridCache.clear();
-            std::list<pOrganism> myList;
+        //void Grid::configure(Config& config)
+//{
 
-            for (auto& organism : m_grid) {
-                //recursiveDelete(organism, myList);
-				iterativeDelete(organism, myList);
-            }
-			std::cout << myList.size() << std::endl;
-            for (auto& organism : myList) {
-                for (auto& child : organism->m_children) {
-                    child.reset();
-                }
-                organism->clearChildren();
-                organism->m_parent.reset();
-                organism->m_parent = nullptr;
-            }
-            myList.clear();
-            m_grid.clear();
-        }
+//}
 
-        void recursiveDelete(pOrganism& organism, std::list<pOrganism>& list) {
-            organism->clearChildren();
-            list.push_back(organism);
-            if (organism->m_parent != nullptr ) {
-                    recursiveDelete(organism->m_parent, list);
-            }
-        }
+    //    pOrganism& getOrganism(const unsigned int x, const unsigned int y);
+    //    pOrganism& getOrganism(const int index);
+    //    const std::vector<rOrganism> data();
+    //    void data(const std::vector<pOrganism> data);
+    //    void rebuildCache();
+    //    void sortByFitness();
+    //    unsigned int getWidth() const;
+    //    unsigned int getHeight() const;
+    //    float getMinPayoff();
+    //    float getMaxPayoff();
+    //    unsigned int size();
+    //    rOrganism& getRandomOrganism();
+    //    rOrganism& getRandomOrganism(const std::vector<rOrganism>& blacklist);
+    //   
+    //    unsigned int getGeneration() const { return m_generation; };
+    //    
+    //    void wipe() {
+    //        m_gridCache.clear();
+    //        std::list<pOrganism> myList;
 
-		void iterativeDelete(pOrganism& startOrganism, std::list<pOrganism>& list) {
-			auto organism = startOrganism;
-			auto organismParent = startOrganism->m_parent;
-			while (organismParent != nullptr)
-			{
-				organism = organismParent;
-				organism->clearChildren();
-				list.push_back(organism);
+    //        for (auto& organism : m_grid) {
+    //            //recursiveDelete(organism, myList);
+    //            iterativeDelete(organism, myList);
+    //        }
+    //        std::cout << myList.size() << std::endl;
+    //        for (auto& organism : myList) {
+    //            for (auto& child : organism->m_children) {
+    //                child.reset();
+    //            }
+    //            organism->clearChildren();
+    //            organism->m_parent.reset();
+    //            organism->m_parent = nullptr;
+    //        }
+    //        myList.clear();
+    //        m_grid.clear();
+    //    }
 
-				organismParent = organism->m_parent;
-				organism->m_parent = nullptr;
-			}
-		}
+    //    void recursiveDelete(pOrganism& organism, std::list<pOrganism>& list) {
+    //        organism->clearChildren();
+    //        list.push_back(organism);
+    //        if (organism->m_parent != nullptr) {
+    //            recursiveDelete(organism->m_parent, list);
+    //        }
+    //    }
 
-		void configure(Config& config);
-    protected:
-        std::vector<pOrganism> m_grid;
-        std::vector<rOrganism> m_gridCache;
-		int m_IDCounter = 0;
-		unsigned int m_generation = 0;
-		unsigned int m_width;
-		unsigned int m_height;
+    //    void iterativeDelete(pOrganism& startOrganism, std::list<pOrganism>& list) {
+    //        auto organism = startOrganism;
+    //        auto organismParent = startOrganism->m_parent;
+    //        while (organismParent != nullptr)
+    //        {
+    //            organism = organismParent;
+    //            organism->clearChildren();
+    //            list.push_back(organism);
+
+    //            organismParent = organism->m_parent;
+    //            organism->m_parent = nullptr;
+    //        }
+    //    }
+
+
+    //}
     };
-
 }
