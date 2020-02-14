@@ -16,6 +16,5 @@ namespace APGG {
     void Selector::setEliminationCount(const unsigned int count)
     {
         m_eliminationCount = count;
-        m_selection.reserve(m_eliminationCount);
     }
 }

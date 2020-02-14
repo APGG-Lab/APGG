@@ -26,12 +26,11 @@ namespace APGG {
     void Optimizer::optmize(Grid& grid)
     {
 		std::unordered_set<unsigned int> selection = m_selector->select(grid);
-		bool test = 0;
        // std::vector<rOrganism> selection = m_selector->select(m_grid);
 
 		//m_lod->LODebug(selection);
 
-       // m_repopulator->repopulate(m_grid, selection);
+        m_repopulator->repopulate(grid, selection);
 
        // m_mutator->mutate(selection);
 
@@ -83,10 +82,10 @@ namespace APGG {
 			break;
 		default:
 		case RepopulatorType::Proportionate:
-		//	m_repopulator = std::make_shared<ProportionateRepupoluator>();
+			m_repopulator = std::make_shared<ProportionateRepupoluator>();
 			break;
 		}
-		//m_repopulator->configure(config);
+		m_repopulator->configure(config);
 	
 
 	//	std::shared_ptr<Mutator> mutator = nullptr;

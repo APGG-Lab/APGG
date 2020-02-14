@@ -52,7 +52,7 @@ namespace APGG {
 
         bool assignProfession(const float cooperationValue);
         bool assignMorals(const float moralValue);
-        Faction assignFaction();
+        Faction& assignFaction();
         Faction getFaction();
         float getNormalizedPayoff(const float min, const float max);
 

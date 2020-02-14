@@ -8,7 +8,7 @@ namespace APGG {
     public:
         RandomSelector();
         RandomSelector(const unsigned int eliminationCount);
-        std::unordered_set<unsigned int> select(Grid& grid);
+        std::unordered_set<unsigned int>& select(Grid& grid);
 		void configure(Config& config);
     };
 

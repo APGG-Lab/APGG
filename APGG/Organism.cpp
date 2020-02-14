@@ -28,7 +28,7 @@ namespace APGG {
         return m_moralist;
     }
 
-    Faction Organism::assignFaction()
+    Faction& Organism::assignFaction()
     {
         assignProfession(getRandomFloat());
         assignMorals(getRandomFloat());

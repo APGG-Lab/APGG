@@ -43,10 +43,62 @@ namespace APGG {
         return m_grid;
     }
 
+    unsigned int Grid::getGeneration() const
+    {
+        return m_generation;
+    }
+
 	Organism& Grid::operator[](unsigned int index)
     {
         return m_grid[index];
 	}
+
+   // float Grid::getMinPayoff()
+   //{
+   //    float tempMin = std::numeric_limits<float>::max();
+   //    for (const Organism& org : m_grid)
+   //    {
+   //        if (org->m_payoff <= tempMin)
+   //            tempMin = org->m_payoff;
+   //    }
+   //    return tempMin;
+   //}
+
+   //float Grid::getMaxPayoff()
+   //{
+   //    float tempMax = std::numeric_limits<float>::min();
+   //    for (const Organism& org : m_grid)
+   //    {
+   //        if (org->m_payoff >= tempMax)
+   //            tempMax = org->m_payoff;
+   //    }
+   //    return tempMax;
+   //}
+
+   std::pair<float, float> Grid::getMinMaxPayoff()
+   {
+       auto minmax = std::minmax_element(std::begin(m_grid), std::end(m_grid),
+           [](const Organism& s1, const Organism& s2) {
+               return s1.m_payoff < s2.m_payoff;
+           });
+
+       return std::make_pair(minmax.first->m_payoff, minmax.second->m_payoff);
+   }
+
+   unsigned int Grid::getRandomOrganismIndex()
+   {
+       unsigned int rand = getRandomNumber() % m_grid.size();
+       return rand;
+   }
+
+   unsigned int Grid::getRandomOrganismIndex(const std::unordered_set<unsigned int>& blacklist)
+   {
+       unsigned int rand = getRandomOrganismIndex();
+       while (blacklist.find(rand) != blacklist.end()) {
+           rand = getRandomOrganismIndex();
+       }
+       return rand;
+   }
 
  //   pOrganism& Grid::getOrganism(const unsigned int x, const unsigned int y)
  //   {
@@ -105,27 +157,7 @@ namespace APGG {
 	//	return m_height;
 	//}
 
-	//float Grid::getMinPayoff()
- //   {
- //       float tempMin = std::numeric_limits<float>::max();
- //       for (pOrganism& org : m_grid)
- //       {
- //           if (org->m_payoff <= tempMin)
- //               tempMin = org->m_payoff;
- //       }
- //       return tempMin;
- //   }
 
- //   float Grid::getMaxPayoff()
- //   {
- //       float tempMax = std::numeric_limits<float>::min();
- //       for (pOrganism& org : m_grid)
- //       {
- //           if (org->m_payoff >= tempMax)
- //               tempMax = org->m_payoff;
- //       }
- //       return tempMax;
- //   }
 
  //   rOrganism& Grid::getRandomOrganism() {
  //       int rand = getRandomNumber() % m_grid.size();

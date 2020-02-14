@@ -2,10 +2,10 @@
 #include <cassert>
 #include <algorithm>
 #include <stack>
+#include <unordered_set>
 
 #include "../Organism.h"
 #include "../Configurable.h"
-
 namespace APGG {
 
     class Grid : public Configurable
@@ -27,7 +27,15 @@ namespace APGG {
         void setGeneration(const unsigned int generation);
         unsigned int size() const;
         std::vector<Organism>& getData();
+        unsigned int getGeneration() const;
         Organism& operator[](unsigned int index);
+
+        //float getMinPayoff();
+        //float getMaxPayoff();
+        std::pair<float, float> getMinMaxPayoff();
+        unsigned int getRandomOrganismIndex();
+        unsigned int getRandomOrganismIndex(const std::unordered_set<unsigned int>& blacklist);
+
         void test() { m_grid[0].setPayoff(1000); }
         //void Grid::configure(Config& config)
 //{
@@ -42,10 +50,8 @@ namespace APGG {
     //    void sortByFitness();
     //    unsigned int getWidth() const;
     //    unsigned int getHeight() const;
-    //    float getMinPayoff();
-    //    float getMaxPayoff();
+
     //    unsigned int size();
-    //    rOrganism& getRandomOrganism();
     //    rOrganism& getRandomOrganism(const std::vector<rOrganism>& blacklist);
     //   
     //    unsigned int getGeneration() const { return m_generation; };

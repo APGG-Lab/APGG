@@ -10,23 +10,15 @@ namespace APGG {
     {
     }
 
-    std::unordered_set<unsigned int> RandomSelector::select(Grid& grid)
+    std::unordered_set<unsigned int>& RandomSelector::select(Grid& grid)
     {
-        std::unordered_set<unsigned int> selection(m_eliminationCount);
+        m_selection.clear();
 
-
-        while (selection.size() < m_eliminationCount) {
-            int randomIndex = getRandomNumber() % grid.size();
-
-            // The index already exists in our selection. Try again
-            if (selection.find(randomIndex) != selection.end()) {
-                continue;
-            }
-
-            selection.emplace(randomIndex);
+        while (m_selection.size() < m_eliminationCount) {
+            m_selection.emplace(grid.getRandomOrganismIndex(m_selection));
         }
 
-        return selection;
+        return m_selection;
     }
 
 	void RandomSelector::configure(Config& config)

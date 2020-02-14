@@ -8,7 +8,7 @@
 namespace APGG {
 
     constexpr unsigned int nPayOffTypes = 1;
-    enum PayOffTypes { PAYOFF_DEFAULT };
+    enum PayOffTypes { f };
 
     class PayOffCalculator : public Configurable
     {

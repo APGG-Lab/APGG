@@ -10,14 +10,14 @@ namespace APGG {
     class Selector : public Configurable
     {
     protected:
-        std::vector<rOrganism> m_selection;
-        std::vector<unsigned int> m_selection2;
+        std::unordered_set<unsigned int> m_selection;
+        //std::vector<unsigned int> m_selection2;
         unsigned int m_eliminationCount;
     public:
         Selector();
         Selector(const unsigned int count);
         void setEliminationCount(const unsigned int count);
-        virtual std::unordered_set<unsigned int> select(Grid& grid) = 0;
+        virtual std::unordered_set<unsigned int>& select(Grid& grid) = 0;
 		virtual void configure(Config& config) = 0;
     };
 }

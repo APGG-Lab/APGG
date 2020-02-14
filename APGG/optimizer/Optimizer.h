@@ -7,7 +7,7 @@
 #include "repopulators/Repopulator.h"
 //#include "selectors/EliteSelector.h"
 #include "repopulators/RandomRepopulator.h"
-//#include "repopulators/ProportionateRepopulator.h"
+#include "repopulators/ProportionateRepopulator.h"
 #include "selectors/RandomSelector.h"
 
 #include "mutators/Mutator.h"

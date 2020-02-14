@@ -42,7 +42,7 @@ namespace APGG {
 
     void DefaultPayOffCalculator::applyPayoff(Grid& grid, Group & group)
     {
-        for (const unsigned int index : group.data()) {
+        for (const unsigned int& index : group.data()) {
             applyPayoff(grid[index]);
         }
     }

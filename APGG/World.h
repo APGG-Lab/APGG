@@ -32,9 +32,9 @@ namespace APGG {
         void printStatus();
         void printInitMessage();
 
-#ifdef __DEBUG
-        int m_exponent; ///Exponential logging (0-10,10,20,30,100,200,300,1000,2000,3000,....)
-#endif // !__DEBUG
+//#ifdef __DEBUG
+        int m_exponent = 10; ///Exponential logging (0-10,10,20,30,100,200,300,1000,2000,3000,....)
+//#endif // !__DEBUG
 
 
 		bool m_archiveData;
