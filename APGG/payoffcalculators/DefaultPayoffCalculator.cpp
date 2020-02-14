@@ -9,19 +9,18 @@ namespace APGG {
     {
         //Precalculate costs, fines and payoffs
 
-        int nPunished = m_counter[FACTION_DEFECTOR] + m_counter[FACTION_IMMORALIST];
+        int nPunished = m_counter[Faction::Defector] + m_counter[Faction::Immoralist];
         m_punishmentCost = m_punishmentCostBase * nPunished;
 
-        int nMoralists = m_counter[FACTION_MORALIST] + m_counter[FACTION_IMMORALIST];
+        int nMoralists = m_counter[Faction::Moralist] + m_counter[Faction::Immoralist];
         m_punishmentFine = m_punishmentFineBase * nMoralists;
 
-        int nCooperators = m_counter[FACTION_COOPERATOR] + m_counter[FACTION_MORALIST];
+        int nCooperators = m_counter[Faction::Cooperator] + m_counter[Faction::Moralist];
         m_payoff = m_synergyFactor * nCooperators / groupSize;
     }
 
-    void DefaultPayOffCalculator::applyPayoff(rOrganism & rorganism)
+    void DefaultPayOffCalculator::applyPayoff(Organism & organism)
     {
-        auto& organism = rorganism.get();
 
         organism.m_payoff += m_payoff;
 
@@ -41,11 +40,11 @@ namespace APGG {
         }
     }
 
-    void DefaultPayOffCalculator::applyPayoff(Group & group)
+    void DefaultPayOffCalculator::applyPayoff(Grid& grid, Group & group)
     {
-     //   for (rOrganism& organism : group.data()) {
-    //        applyPayoff(organism);
-     //   }
+        for (const unsigned int index : group.data()) {
+            applyPayoff(grid[index]);
+        }
     }
 	void DefaultPayOffCalculator::configure(Config& config)
 	{

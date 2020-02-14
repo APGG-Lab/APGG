@@ -116,19 +116,16 @@ namespace APGG {
         m_matchupGenerator.generateGroups();
 //
         std::vector<Group> groups = m_matchupGenerator.getGroups();
-        std::array<unsigned int, 4> factionCount;
 
         for (Group& group : groups) {
-            std::fill(std::begin(factionCount), std::end(factionCount), 0);
-
             for (const unsigned int& index : group.data()) {
                 Faction faction = m_grid[index].assignFaction();
-                factionCount[faction]++;
+                group.increaseFactionCount(faction);
             }
 
-            m_payoffCalculator.setCounters(factionCount);
+            m_payoffCalculator.setCounters(group.getFactionCounter());
             m_payoffCalculator.calculateCosts(group.size());
-        //    m_payoffCalculator.applyPayoff(group);
+            m_payoffCalculator.applyPayoff(m_grid, group);
         }
 //
 //        //@todo for(group:groups) could be better. 

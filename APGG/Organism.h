@@ -19,7 +19,7 @@ namespace APGG {
     constexpr unsigned int nrGenomes = 2;
 
     enum GenomeNames { GENOME_COOPERATION = 0, GENOME_MORALS, GENOME_HISTORY1, GENOME_HISTORY2, GENOME_HISTORY3 };
-    enum Faction { FACTION_COOPERATOR = 0, FACTION_DEFECTOR, FACTION_MORALIST, FACTION_IMMORALIST };
+    enum Faction : uint8_t { Cooperator = 0, Defector, Moralist, Immoralist, Count };
 	enum Status { STATUS_ORIGINAL, STATUS_CLONE, STATUS_OFFSPRING, STATUS_DELETED };
 	enum ParentStatus { PARENT_ORIGINAL, PARENT_MODIFIED };
 

@@ -33,10 +33,10 @@ namespace APGG {
         assignProfession(getRandomFloat());
         assignMorals(getRandomFloat());
 
-        if (m_cooperated && !m_moralist) m_faction = FACTION_COOPERATOR;
-        else if (m_cooperated && m_moralist) m_faction = FACTION_MORALIST;
-        else if (!m_cooperated && !m_moralist) m_faction = FACTION_DEFECTOR;
-        else m_faction = FACTION_IMMORALIST;
+        if (m_cooperated && !m_moralist) m_faction = Faction::Cooperator;
+        else if (m_cooperated && m_moralist) m_faction = Faction::Moralist;
+        else if (!m_cooperated && !m_moralist) m_faction = Faction::Defector;
+        else m_faction = Faction::Immoralist;
 
         return m_faction;
     }

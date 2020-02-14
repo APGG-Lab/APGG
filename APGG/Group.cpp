@@ -25,4 +25,19 @@ namespace APGG {
         return static_cast<unsigned int>(m_group.size());
     }
 
+    std::array<unsigned int, Faction::Count>& Group::getFactionCounter()
+    {
+        return m_count;
+    }
+
+    void Group::increaseFactionCount(const Faction faction)
+    {
+        m_count[faction]++;
+    }
+
+    void Group::clearFactionCount()
+    {
+        std::fill(std::begin(m_count), std::end(m_count), 0);
+    }
+
 }
