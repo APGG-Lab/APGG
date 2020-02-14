@@ -4,7 +4,7 @@ namespace APGG {
     class RandomMutator : public Mutator
     {
     public:
-        void mutate(const std::vector<rOrganism>& selection);
+        void mutate(Grid& grid, const std::unordered_set<unsigned int>& selection);
 		void configure(Config& config);
     };
 }

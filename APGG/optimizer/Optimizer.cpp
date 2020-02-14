@@ -25,18 +25,13 @@ namespace APGG {
 
     void Optimizer::optmize(Grid& grid)
     {
-		std::unordered_set<unsigned int> selection = m_selector->select(grid);
-       // std::vector<rOrganism> selection = m_selector->select(m_grid);
+		std::unordered_set<unsigned int>& selection = m_selector->select(grid);
 
 		//m_lod->LODebug(selection);
 
         m_repopulator->repopulate(grid, selection);
 
-       // m_mutator->mutate(selection);
-
-		//for (auto organsim : m_grid->data()) {
-	//		organsim.get().m_payoff = 0;
-	//	}
+        m_mutator->mutate(grid, selection);
     }
 
 	//TODO: make mutators, repopulators and selectors configurable too
@@ -88,18 +83,16 @@ namespace APGG {
 		m_repopulator->configure(config);
 	
 
-	//	std::shared_ptr<Mutator> mutator = nullptr;
 		switch (mutatorType) {
 		case MutatorType::Random:
-			//mutator = std::make_shared<RandomMutator>();
+			m_mutator = std::make_shared<RandomMutator>();
 			break;
 		default:
 		case MutatorType::Threshold:
-		//	mutator = std::make_shared<ThresholdMutator>();
+		//	m_mutator = std::make_shared<ThresholdMutator>();
 			break;
 		}
-	//	mutator->configure(config);
-	//	m_mutator = mutator;
+		m_mutator->configure(config);
 	}
 
 	void Optimizer::setLOD(const std::shared_ptr<LOD>& lod) {

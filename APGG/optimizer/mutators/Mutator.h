@@ -1,6 +1,8 @@
 #pragma once
 #include "../../Organism.h"
 #include "../../Configurable.h"
+#include "../../grids/Grid.h"
+#include <unordered_set>
 
 namespace APGG
 {
@@ -12,7 +14,7 @@ namespace APGG
         float m_mutationRate;
     public:
         void setMutationRate(const float rate);
-        virtual void mutate(const std::vector<rOrganism>& selection) = 0;
+        virtual void mutate(Grid& grid, const std::unordered_set<unsigned int>& selection) = 0;
 		virtual void configure(Config& config) = 0;
     };
 }

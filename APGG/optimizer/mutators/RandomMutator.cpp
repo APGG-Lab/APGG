@@ -1,14 +1,17 @@
 #include "RandomMutator.h"
 
-void APGG::RandomMutator::mutate(const std::vector<rOrganism>& selection)
+void APGG::RandomMutator::mutate(Grid& grid, const std::unordered_set<unsigned int>& selection)
 {
-    for (rOrganism org : selection)
-    {
-        if (m_mutationRate > getRandomFloat())
-        {
-            org.get().m_genomes[getRandomNumber() % 2].shuffle();
-            org.get().m_mutated = true;
+    for (const unsigned int& index : selection) {
+        if (m_mutationRate < getRandomFloat()) {
+            continue;
         }
+
+        Organism& organism = grid[index];
+
+        //@todo: replace with % m_genomes.size()
+        organism.m_genomes[getRandomNumber() % 2].shuffle();
+        organism.m_mutated = true;
     }
 }
 
