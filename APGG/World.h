@@ -6,8 +6,8 @@
 #include <sstream>
 #include <cstdlib>
 #include "grids/DefaultGrid.h"
-//#include "matchupgenerators/DefaultMatchupGenerator.h"
-//#include "payoffcalculators/DefaultPayoffCalculator.h"
+#include "matchupgenerators/DefaultMatchupGenerator.h"
+#include "payoffcalculators/DefaultPayoffCalculator.h"
 //#include "archivers/SimpleArchiver.h"
 //#include "archivers/LODArchiver.h"
 //#include "archivers/ConfigArchiver.h"
@@ -41,8 +41,8 @@ namespace APGG {
 
         std::array<unsigned int, 4> m_count;
 
-      //  DefaultMatchupGenerator m_matchupGenerator;
-      //  DefaultPayOffCalculator m_payoffCalculator;
+        DefaultMatchupGenerator m_matchupGenerator;
+        DefaultPayOffCalculator m_payoffCalculator;
       //  SimpleArchiver m_archiver;
       //  Optimizer m_optimizer;
      //   std::shared_ptr<LOD> m_lod;
@@ -53,7 +53,7 @@ namespace APGG {
 
         void Evolve();
 		void printLOD(const pOrganism& organism);
-        std::shared_ptr<Grid> m_grid;
+        Grid m_grid;
         unsigned int m_generation = 0;
     };
 

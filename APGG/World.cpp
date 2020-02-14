@@ -40,22 +40,27 @@ namespace APGG {
         m_clock_start = m_clock_now = m_clock_last = HighResClock::now();
         std::fill(std::begin(m_count), std::end(m_count), 0);
 
-        m_grid = std::make_shared<Grid>();
-		m_grid->configure(config);
+        
+        //Setup the grid
+        m_grid = Grid();
+        m_grid.configure(config);
 
-  //      {
-  //          m_matchupGenerator.configure(config);
-  //          m_matchupGenerator.setGrid(m_grid);
-  //      }
+        //Setup the matchup/group generator
+        m_matchupGenerator.configure(config);
+        m_matchupGenerator.setGrid(&m_grid);
+
+        //Setup the payoff calculator
+        m_payoffCalculator.configure(config);
+
+
 
   //      {
 		//	m_archiver.configure(config);
   //          m_archiver.open();
   //      }
 
-  //      {
-		//	m_payoffCalculator.configure(config);
-  //      }
+        {
+        }
 
   //      m_optimizer.setGrid(m_grid);
 		//m_optimizer.configure(config);
@@ -104,18 +109,30 @@ namespace APGG {
 
     void World::Tick()
     {
-//        std::fill(std::begin(m_count), std::end(m_count), 0);
+        std::fill(std::begin(m_count), std::end(m_count), 0);
 //        //int localCooperation = 0;
 //        //float localPayoff = 0;
 //
-//        m_matchupGenerator.generateGroups();
+        m_matchupGenerator.generateGroups();
 //
-//        std::vector<Group> groups = m_matchupGenerator.getGroups();
-//        std::array<unsigned int, 4> factionCount;
+        std::vector<Group> groups = m_matchupGenerator.getGroups();
+        std::array<unsigned int, 4> factionCount;
+
+        for (Group& group : groups) {
+            std::fill(std::begin(factionCount), std::end(factionCount), 0);
+
+            for (const unsigned int& index : group.data()) {
+                Faction faction = m_grid[index].assignFaction();
+                factionCount[faction]++;
+            }
+
+            m_payoffCalculator.setCounters(factionCount);
+            m_payoffCalculator.calculateCosts(group.size());
+        //    m_payoffCalculator.applyPayoff(group);
+        }
 //
 //        //@todo for(group:groups) could be better. 
 //        for (size_t i = 0; i < groups.size(); i++) {
-//            std::fill(std::begin(factionCount), std::end(factionCount), 0);
 //
 //            for (rOrganism organism : groups[i].data()) {
 //                Faction faction = organism.get().assignFaction();

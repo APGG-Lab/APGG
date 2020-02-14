@@ -13,13 +13,15 @@ namespace APGG {
     class MatchupGenerator : public Configurable
     {
     protected:
-        std::shared_ptr<Grid> m_grid;
         unsigned int m_groupSize;
+        Grid* m_grid;
         std::vector<Group> m_groups;
     public:
-        void setGrid(std::shared_ptr<Grid> grid);
-        void setGroupSize(const unsigned int size);
-        std::vector<Group> getGroups() const;
+        void configure(Config& config);
+        virtual void setGrid(Grid* grid);
+        virtual void setGroupSize(const unsigned int size);
+        virtual std::vector<Group>& getGroups();
+
         virtual void generateGroups() = 0;
     };
 

@@ -25,7 +25,10 @@ namespace APGG {
         Grid();
         void configure(Config& config);
         void setGeneration(const unsigned int generation);
-
+        unsigned int size() const;
+        std::vector<Organism>& getData();
+        Organism& operator[](unsigned int index);
+        void test() { m_grid[0].setPayoff(1000); }
         //void Grid::configure(Config& config)
 //{
 

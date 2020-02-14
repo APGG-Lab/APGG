@@ -1,31 +1,39 @@
 #include "DefaultMatchupGenerator.h"
 
+
 namespace APGG {
 
     void DefaultMatchupGenerator::generateGroups()
     {
-        m_groups.clear();
+        //Fill vector with grid key numbers and shuffle them
+        std::vector<unsigned int> gridKeys(m_grid->size()); // vector with 1024 uints.
+        std::iota(std::begin(gridKeys), std::end(gridKeys), 0); // Fill with 0, 1, ..., 99.
+        std::shuffle(gridKeys.begin(), gridKeys.end(), std::mt19937());
 
-        std::vector<rOrganism> gridData = m_grid->data();
-        std::shuffle(gridData.begin(), gridData.end(), std::mt19937());
+        //determine number of groups
+        int numberOfGroups = (gridKeys.size() - 1) / m_groupSize + 1;
 
-        for (unsigned int i = 0; i < gridData.size(); i += m_groupSize) {
-            Group group(m_groupSize);
+        m_groups.resize(numberOfGroups);
 
-            for (unsigned int j = 0; j < m_groupSize; j++) {
-                group.add(gridData[i + j]);
-            }
+        // each iteration of this loop process next set of n elements
+        // and store it in a vector at i'th index in vec
+        for (int i = 0; i < numberOfGroups; ++i) {
+            // get range for next set of n elements
+            auto start_itr = std::next(gridKeys.cbegin(), i * m_groupSize);
+            auto end_itr = std::next(gridKeys.cbegin(), i * m_groupSize + m_groupSize);
 
-            ////@todo use std::move or std::copy
-            ////auto iterator = gridData.begin();
-            ////std::move(iterator + i, iterator + i + m_groupSize, group);
+            // allocate memory for the sub vector
+            m_groups[i].resize(m_groupSize);
 
-            m_groups.emplace_back(group);
+            // code to handle the last sub-vector as it might
+            // contain less elements (unused, because totalSize%groupSize = 0)
+            //    if (i * m_groupSize + m_groupSize > gridKeys.size()) {
+            //       end_itr = gridKeys.end();
+            //       m_groupsNew[i].reserve(gridKeys.size() - i * m_groupSize);
+            //    }
+
+            // copy elements from the input range to the sub-vector
+            std::copy(start_itr, end_itr, m_groups[i].begin());
         }
     }
-
-	void DefaultMatchupGenerator::configure(Config& config)
-	{
-		setGroupSize(stoul(config.getValue("groupSize", "10")));
-	}
 }

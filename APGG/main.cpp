@@ -38,7 +38,7 @@ int main() {
 
 	using namespace std::chrono_literals;
 	//TODO: make configurable
-	unsigned int concurentNumberThreads = 16;
+	unsigned int concurentNumberThreads = 1;
 	if (concurentNumberThreads > configs.size())
 	{
 		concurentNumberThreads = configs.size();

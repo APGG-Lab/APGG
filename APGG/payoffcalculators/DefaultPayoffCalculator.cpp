@@ -43,9 +43,9 @@ namespace APGG {
 
     void DefaultPayOffCalculator::applyPayoff(Group & group)
     {
-        for (rOrganism& organism : group.data()) {
-            applyPayoff(organism);
-        }
+     //   for (rOrganism& organism : group.data()) {
+    //        applyPayoff(organism);
+     //   }
     }
 	void DefaultPayOffCalculator::configure(Config& config)
 	{

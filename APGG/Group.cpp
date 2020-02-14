@@ -1,32 +1,24 @@
 #include "Group.h"
+#include "Group.h"
+#include "Group.h"
+#include "Group.h"
 
 namespace APGG {
 
-
-    Group::~Group()
+    void Group::resize(const unsigned int size)
     {
+        m_group.resize(size);
     }
 
-    Group::Group(const unsigned int size)
+    std::vector<unsigned int>::iterator Group::begin()
     {
-        m_group.reserve(size);
+        return m_group.begin();
     }
 
-    void Group::add(const rOrganism organism)
-    {
-        m_group.push_back(organism);
-    }
-
-    std::vector<rOrganism> Group::data() const
+    std::vector<unsigned int>& Group::data()
     {
         return m_group;
     }
-
-    void Group::data(const std::vector<rOrganism> data)
-    {
-        m_group = data;
-    }
-
 
     unsigned int Group::size()
     {

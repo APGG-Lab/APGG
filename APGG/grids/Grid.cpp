@@ -33,6 +33,21 @@ namespace APGG {
         m_generation = generation;
     }
 
+    unsigned int Grid::size() const
+    {
+        return m_totalSize;
+    }
+
+    std::vector<Organism>& Grid::getData()
+    {
+        return m_grid;
+    }
+
+	Organism& Grid::operator[](unsigned int index)
+    {
+        return m_grid[index];
+	}
+
  //   pOrganism& Grid::getOrganism(const unsigned int x, const unsigned int y)
  //   {
  //       //assert(x < width&&"X out of bounds!");
