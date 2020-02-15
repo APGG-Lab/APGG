@@ -27,7 +27,7 @@ namespace APGG {
     {
 		std::unordered_set<unsigned int>& selection = m_selector->select(grid);
 
-		//m_lod->LODebug(selection);
+		m_lod->LOD2(grid, selection);
 
         m_repopulator->repopulate(grid, selection);
 

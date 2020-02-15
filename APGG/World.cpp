@@ -71,11 +71,11 @@ namespace APGG {
 		//	lodArchiver->configure(config);
 
   //          lodArchiver->open();
-  //          m_lod = std::make_shared<LOD>();
+            m_lod = std::make_shared<LOD>();
   //          m_lod->setGrid(m_grid);
   //          m_lod->setArchiver(lodArchiver);
 
-  //          m_optimizer.setLOD(m_lod);
+            m_optimizer.setLOD(m_lod);
   //      }
 
 		//{
@@ -138,7 +138,8 @@ namespace APGG {
 
     void World::Fini()
     {
-
+        m_grid.sortByFitness();
+        m_lod->logIterative2(&m_grid[0]);
         std::cout << "Fini";
      /*   m_lod->logTop();
 

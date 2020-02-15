@@ -47,7 +47,7 @@ namespace APGG {
     //    const std::vector<rOrganism> data();
     //    void data(const std::vector<pOrganism> data);
     //    void rebuildCache();
-    //    void sortByFitness();
+        void sortByFitness();
     //    unsigned int getWidth() const;
     //    unsigned int getHeight() const;
 

@@ -34,6 +34,8 @@ namespace APGG {
 		std::list<pOrganism> m_children;
 		pOrganism m_parent = nullptr;
 
+        Organism* m_parent2 = nullptr;
+        std::list<Organism*> m_children2;
 #ifdef DEBUG_EXTREME
         //Custom destructor for extreme debugging
         ~Organism();
@@ -58,12 +60,17 @@ namespace APGG {
 
         void setPayoff(const float payoff);
 		void copyTo(pOrganism& copyOrganism);
+		void copyTo2(Organism* copyOrganism);
        // pOrganism getPtr() { return shared_from_this(); };
 
 
         void clearChildren();
         void removeChild(const pOrganism& organism);
         void addChild(const pOrganism& organism);
+
+        void clearChildren2();
+        void removeChild2(Organism* organsim);
+        void addChild2(Organism* organism);
 
         std::string getDebugString();
     };

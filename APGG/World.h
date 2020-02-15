@@ -45,7 +45,7 @@ namespace APGG {
         DefaultPayOffCalculator m_payoffCalculator;
       //  SimpleArchiver m_archiver;
         Optimizer m_optimizer;
-     //   std::shared_ptr<LOD> m_lod;
+        std::shared_ptr<LOD> m_lod;
     public:
         void Init(Config & config);
         void Tick();

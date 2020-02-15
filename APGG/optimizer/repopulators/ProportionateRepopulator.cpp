@@ -24,14 +24,14 @@ namespace APGG {
             }
 
 
-
-
-
             Organism& deadOrganism = grid[deadOrganismIndex];
 
-            deadOrganism.clearChildren();
+            deadOrganism.clearChildren2();
 
             //LOD STUFF
+            grid[parentOrganismIndex].addChild2(&deadOrganism);
+            deadOrganism.m_parent2 = &grid[parentOrganismIndex];
+
             //  deadOrganism.get().m_parent = rParent.get().getPtr();
             // deadOrganism.get().m_parent->addChild(ptr);
             //  deadOrganism.m_parent = grid[parentOrganismIndex]

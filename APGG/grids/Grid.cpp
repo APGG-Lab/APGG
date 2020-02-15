@@ -135,12 +135,12 @@ namespace APGG {
  //       }
  //   }
 
- //   void Grid::sortByFitness()
- //   {
- //       std::sort(m_grid.begin(), m_grid.end(), [](const pOrganism &a, const pOrganism &b) {
- //           return a->m_payoff > b->m_payoff;
- //       });
- //   }
+    void Grid::sortByFitness()
+    {
+        std::sort(m_grid.begin(), m_grid.end(), [](const Organism &a, const Organism &b) {
+            return a.m_payoff > b.m_payoff;
+        });
+    }
 
 	//unsigned int Grid::getWidth() const
 	//{

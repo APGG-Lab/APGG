@@ -72,6 +72,25 @@ namespace APGG {
 		}
 	}
 
+    void Organism::copyTo2(Organism* copyOrganism)
+    {
+        copyOrganism->m_cooperated = m_cooperated;
+        copyOrganism->m_faction = m_faction;
+        //copyOrganism->m_genomes = m_genomes;
+        copyOrganism->m_moralist = m_moralist;
+        copyOrganism->m_payoff = m_payoff;
+        copyOrganism->m_status = STATUS_CLONE;
+        copyOrganism->ID = ID;
+        copyOrganism->m_mutated = m_mutated;
+        copyOrganism->m_children = m_children;
+        copyOrganism->m_parent = m_parent;
+        copyOrganism->m_parent2 = m_parent2;
+        copyOrganism->m_children2 = m_children2;
+        for (size_t i = 0; i < m_genomes.size(); i++) {
+            copyOrganism->m_genomes[i].setValue(m_genomes[i].getValue());
+        }
+    }
+
     void Organism::clearChildren()
     {
         m_children.clear();
@@ -95,6 +114,21 @@ namespace APGG {
 #endif // DEBUG_EXTREME
 
         m_children.push_back(organism);
+    }
+
+    void Organism::clearChildren2()
+    {
+        m_children2.clear();
+    }
+
+    void Organism::removeChild2(Organism* organsim)
+    {
+        m_children2.remove(organsim);
+    }
+
+    void Organism::addChild2(Organism* organism)
+    {
+        m_children2.push_back(organism);
     }
 
 
