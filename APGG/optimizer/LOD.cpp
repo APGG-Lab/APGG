@@ -106,6 +106,9 @@ namespace APGG {
             organismCopy->m_parent2->removeChild2(&organism);
             organismCopy->m_parent2->addChild2(organismCopy);
         }
+        else if(organism.ID > 1024) {
+            int test = 0;
+        }
 
         for (Organism* child : organism.m_children2) {
             // We also have to change the parent of the children 
@@ -162,40 +165,34 @@ namespace APGG {
             // Use loop instead of a recursive function, because a recursive
             // function can crash the software, when the tree is too high
             while (organismPtr->m_children2.empty()) {  //Loop through until we find a organism with a child
+
                 if (organismPtr->m_parent2 == nullptr) {
+                    //Only root elements have a nullptr as m_parent
                     DEBUG_MSG("LOD Cleanup: found root organism " + organism->getDebugString());
                     return;
                 }
 
+                //Remove organismPtr from child/parent tree
                 parent = organismPtr->m_parent2;
-                parent->removeChild2(organismPtr); //Remove child from parent
+                parent->removeChild2(organismPtr);
+                organismPtr->m_parent2 == nullptr;
 
+                //Parent element is still in grid. We can't remove it. Stop loop here!
+                if (organismPtr->m_parent2->m_status != STATUS_CLONE) {
+                    return;
+                }
+                
+                // Organism is a clone (only true for the second iteration of this loop
+                // first iteration is always an organism on the grid.
+                // If it's a copy, we have to remove it, to avoid a fast growing memory leak
                 if (organismPtr->m_status == STATUS_CLONE) {
-                    delete organismPtr; //Delete pointer to avoid memory leak
+                    delete organismPtr;
                 }
 
-                //if (parent->m_status == STATUS_CLONE) {
-                    organismPtr->m_status = STATUS_DELETED;
-                    organismPtr->m_parent2 = nullptr;
-                    organismPtr = parent;
-               // }
-
-
-             //   else {
-             //       
-             //   }
-
+                //Swap actual organism with parent organism
+                organismPtr = parent;
 
             }
-
-
-            //Organism* parent = organism.m_parent2;
-            //parent->removeChild2(&organism);
-
-            //organism.m_status = STATUS_DELETED;
-            //organism.m_parent = nullptr;
-
-            //parent->removeChild(organism);
     }
 
     void LOD::validate(const pOrganism& organism) {
