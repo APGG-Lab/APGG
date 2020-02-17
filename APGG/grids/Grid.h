@@ -36,6 +36,8 @@ namespace APGG {
         unsigned int getRandomOrganismIndex();
         unsigned int getRandomOrganismIndex(const std::unordered_set<unsigned int>& blacklist);
 
+        unsigned int getID();
+
         void test() { m_grid[0].setPayoff(1000); }
         //void Grid::configure(Config& config)
 //{

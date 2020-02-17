@@ -100,6 +100,11 @@ namespace APGG {
        return rand;
    }
 
+   unsigned int Grid::getID()
+   {
+       return m_IDCounter++;
+   }
+
  //   pOrganism& Grid::getOrganism(const unsigned int x, const unsigned int y)
  //   {
  //       //assert(x < width&&"X out of bounds!");
