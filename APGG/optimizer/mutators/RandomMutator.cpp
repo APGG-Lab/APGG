@@ -11,7 +11,6 @@ void APGG::RandomMutator::mutate(Grid& grid, const std::unordered_set<unsigned i
 
         //@todo: replace with % m_genomes.size()
         organism.m_genomes[getRandomNumber() % 2].shuffle();
-        organism.m_mutated = true;
     }
 }
 

@@ -20,7 +20,7 @@ namespace APGG {
 
     enum GenomeNames { GENOME_COOPERATION = 0, GENOME_MORALS, GENOME_HISTORY1, GENOME_HISTORY2, GENOME_HISTORY3 };
     enum Faction : uint8_t { Cooperator = 0, Defector, Moralist, Immoralist, Count };
-	enum Status { STATUS_ORIGINAL, STATUS_CLONE, STATUS_OFFSPRING, STATUS_DELETED };
+	enum class Status : bool { Original = false, Copy = true };
 	enum ParentStatus { PARENT_ORIGINAL, PARENT_MODIFIED };
 
 	class Organism;
@@ -31,8 +31,6 @@ namespace APGG {
     {
     public:
         std::array<Genome, nrGenomes> m_genomes;
-		std::list<pOrganism> m_children;
-		pOrganism m_parent = nullptr;
 
         Organism* m_parent2 = nullptr;
         std::list<Organism*> m_children2;
@@ -41,20 +39,21 @@ namespace APGG {
         ~Organism();
 #endif
 
+#ifdef __DEBUG1
         unsigned int ID;
+        unsigned int m_generation;
+#endif __DEBUG 1
+
         bool m_cooperated;
         bool m_moralist;
-        Faction m_faction;
-		unsigned int m_generation;
 
         //@todo startvalue?
         float m_payoff = 0;
-		int m_status = STATUS_ORIGINAL;
-        bool m_mutated = false;
+        Status m_status = Status::Original;
 
         bool assignProfession(const float cooperationValue);
         bool assignMorals(const float moralValue);
-        Faction& assignFaction();
+        Faction assignFaction();
         Faction getFaction();
         float getNormalizedPayoff(const float min, const float max);
 

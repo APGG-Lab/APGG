@@ -58,7 +58,7 @@ namespace APGG {
 
                 organismPtr->m_parent2 = nullptr;
 
-                if (organismPtr->m_status == STATUS_CLONE) {
+                if (organismPtr->m_status == Status::Copy) {
                  //   m_organismPtr.erase(organismPtr);
                     delete organismPtr;
                 }

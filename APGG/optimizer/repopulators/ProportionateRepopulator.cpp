@@ -44,12 +44,13 @@ namespace APGG {
 
             //Normal Generation Stuff
             deadOrganism.m_genomes = grid[parentOrganismIndex].m_genomes;
-            deadOrganism.m_status = STATUS_ORIGINAL;
-            deadOrganism.m_mutated = false;
-            deadOrganism.m_generation = grid.getGeneration();
+            deadOrganism.m_status = Status::Original;
 
+#ifdef __DEBUG1
+            deadOrganism.m_generation = grid.getGeneration();
             //Assign new ID
             deadOrganism.ID = grid.getID();
+#endif
 
 
             DEBUG_MSG("Repopulator: created offspring " + deadOrganism.getDebugString());

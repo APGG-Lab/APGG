@@ -101,7 +101,6 @@ namespace APGG {
     //    m_organismPtr.insert(organismCopy);
 
         organism.copyTo2(organismCopy); //Copy all values to the new organism
-        organismCopy->m_generation = grid.getGeneration();
 
         // Only root nodes shoudln't have a parent. IF should be true
         // in 99% of the time
@@ -122,13 +121,14 @@ namespace APGG {
         //Cleanup the organism
         organism.m_parent2 = nullptr;
         organism.clearChildren2();
+#ifdef __DEBUG1
         organism.ID = -1;
-        organism.m_status = STATUS_DELETED;
+#endif
     }
 
 
     void LOD::removeAndCleanupChildLists(pOrganism& organism) {
-        if (!organism->m_children.empty()) {
+       /* if (!organism->m_children.empty()) {
             DEBUG_MSG("LOD Cleanup: organism has children " + organism->getDebugString());
             return;
         }
@@ -156,7 +156,7 @@ namespace APGG {
         removeAndCleanupChildLists(parent);
         parent.reset();
 
-        DEBUG_MSG("LOD Cleanup: done " + organism->getDebugString());
+        DEBUG_MSG("LOD Cleanup: done " + organism->getDebugString());*/
     }
 
     void LOD::removeAndCleanupChildLists2(Organism& organism)
@@ -165,7 +165,7 @@ namespace APGG {
             Organism* parent = nullptr;
             Organism* organismPtr = &organism;
 
-            if (organism.m_status != 0) {
+            if (organism.m_status != Status::Original) {
                 int test = 0;
             }
             
@@ -192,7 +192,7 @@ namespace APGG {
             // function can crash the software, when the tree is too high
             while (organismPtr->m_children2.empty()) {  //Loop through until we find a organism with a child
 
-                if (organismPtr->m_status == STATUS_ORIGINAL) {
+                if (organismPtr->m_status == Status::Original) {
                     return;
                 }
 
@@ -239,7 +239,7 @@ namespace APGG {
             }
 
 
-            if (organismPtr->m_status == STATUS_CLONE) {
+            if (organismPtr->m_status == Status::Copy) {
 
 
 
@@ -262,13 +262,13 @@ namespace APGG {
     }
 
     void LOD::validate(const pOrganism& organism) {
-        //Something is terribly wrong if you see these messages in your console
-        if (organism->m_children.size() > 0) {
-            DEBUG_MSG("LOD Validator: Dead Organism has children " + organism->getDebugString());
-        }
-        if (organism->m_parent != nullptr) {
-            DEBUG_MSG("LOD Validator: Dead Organism has a parent " + organism->getDebugString());
-        }
+        ////Something is terribly wrong if you see these messages in your console
+        //if (organism->m_children.size() > 0) {
+        //    DEBUG_MSG("LOD Validator: Dead Organism has children " + organism->getDebugString());
+        //}
+        //if (organism->m_parent != nullptr) {
+        //    DEBUG_MSG("LOD Validator: Dead Organism has a parent " + organism->getDebugString());
+        //}
     }
 
     void LOD::logRecursive(const pOrganism& organism) {
@@ -302,6 +302,7 @@ namespace APGG {
 
     void LOD::logIterative2(Organism* organism)
     {
+#ifdef __DEBUG1
         std::vector<Organism*> organisms;
 
         while (organism->m_parent2 != nullptr) {
@@ -317,6 +318,7 @@ namespace APGG {
         std::cout << organisms.size() << std::endl;
 
         int test = 0;
+#endif
 
     }
 

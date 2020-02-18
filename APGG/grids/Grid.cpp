@@ -22,8 +22,10 @@ namespace APGG {
 	    for (unsigned int i = 0; i < m_width * m_height; i++)
 	    {
             Organism organism;
+#ifdef __DEBUG1
 		    organism.ID = m_IDCounter++;
 		    organism.m_generation = m_generation;
+#endif
 		    m_grid.emplace_back(std::move(organism));
 	    }
     }

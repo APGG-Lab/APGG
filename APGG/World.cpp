@@ -40,7 +40,8 @@ namespace APGG {
         m_clock_start = m_clock_now = m_clock_last = HighResClock::now();
         std::fill(std::begin(m_count), std::end(m_count), 0);
 
-        
+        int val = sizeof(Organism);
+        int val2 = sizeof(Status);
         //Setup the grid
         m_grid = Grid();
         m_grid.configure(config);
@@ -116,7 +117,7 @@ namespace APGG {
 
         for (Group& group : groups) {
             for (const unsigned int& index : group.data()) {
-                Faction& faction = m_grid[index].assignFaction();
+                Faction faction = m_grid[index].assignFaction();
                 group.increaseFactionCount(faction);
             }
 
