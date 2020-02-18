@@ -2,7 +2,7 @@
 
 namespace APGG {
 
-    void ProportionateRepupoluator::repopulate(Grid& grid, std::unordered_set<unsigned int>& selection) 
+    void ProportionateRepupoluator::repopulate(Grid& grid, std::unordered_set<GridIndex>& selection)
     {
         auto minMaxPayoff = grid.getMinMaxPayoff();
 

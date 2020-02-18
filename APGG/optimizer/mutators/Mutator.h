@@ -14,7 +14,7 @@ namespace APGG
         float m_mutationRate;
     public:
         void setMutationRate(const float rate);
-        virtual void mutate(Grid& grid, const std::unordered_set<unsigned int>& selection) = 0;
+        virtual void mutate(Grid& grid, const std::unordered_set<GridIndex>& selection) = 0;
 		virtual void configure(Config& config) = 0;
     };
 }

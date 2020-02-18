@@ -10,7 +10,7 @@ namespace APGG {
     {
     }
 
-    std::unordered_set<unsigned int>& RandomSelector::select(Grid& grid)
+    std::unordered_set<GridIndex>& RandomSelector::select(Grid& grid)
     {
         m_selection.clear();
 

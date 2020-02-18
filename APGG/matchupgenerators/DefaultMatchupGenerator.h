@@ -9,7 +9,7 @@ namespace APGG {
     class DefaultMatchupGenerator : public MatchupGenerator
     {
     protected:
-        std::vector<unsigned int> gridKeys;
+        std::vector<GridIndex> gridKeys;
         int numberOfGroups;
     public:
         void generateGroups(Grid& grid);

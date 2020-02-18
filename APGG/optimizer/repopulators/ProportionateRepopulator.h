@@ -7,7 +7,7 @@ namespace APGG {
     class ProportionateRepupoluator : public Repopulator
     {
     public:
-        void repopulate(Grid& grid, std::unordered_set<unsigned int>& selection);
+        void repopulate(Grid& grid, std::unordered_set<GridIndex>& selection);
 		void configure(Config& config);
     };
 

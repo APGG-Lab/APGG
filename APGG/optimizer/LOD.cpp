@@ -2,7 +2,7 @@
 
 namespace APGG {
 
-    void LOD::LOD2(Grid& grid, const std::unordered_set<unsigned int>& selection)
+    void LOD::LOD2(Grid& grid, const std::unordered_set<GridIndex>& selection)
     {
         for (const unsigned int& index : selection) {
 

@@ -8,6 +8,8 @@
 #include "../Configurable.h"
 namespace APGG {
 
+    typedef uint16_t GridIndex;
+
     class Grid : public Configurable
     {
     protected:
@@ -28,10 +30,10 @@ namespace APGG {
         unsigned int size() const;
         std::vector<Organism>& getData();
         unsigned int getGeneration() const;
-        Organism& operator[](unsigned int index);
+        Organism& operator[](const GridIndex index);
         std::pair<float, float> getMinMaxPayoff();
-        unsigned int getRandomOrganismIndex();
-        unsigned int getRandomOrganismIndex(const std::unordered_set<unsigned int>& blacklist);
+        GridIndex getRandomOrganismIndex();
+        GridIndex getRandomOrganismIndex(const std::unordered_set<GridIndex>& blacklist);
 
         unsigned int getID();
 

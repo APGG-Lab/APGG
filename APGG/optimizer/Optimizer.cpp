@@ -5,7 +5,7 @@ namespace APGG {
 
     void Optimizer::optmize(Grid& grid, LOD& lod)
     {
-		std::unordered_set<unsigned int>& selection = m_selector->select(grid);
+		std::unordered_set<GridIndex>& selection = m_selector->select(grid);
 
 		lod.LOD2(grid, selection);
 

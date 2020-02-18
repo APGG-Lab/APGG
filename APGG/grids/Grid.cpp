@@ -50,7 +50,7 @@ namespace APGG {
         return m_generation;
     }
 
-	Organism& Grid::operator[](unsigned int index)
+	Organism& Grid::operator[](const GridIndex index)
     {
         return m_grid[index];
 	}
@@ -65,15 +65,15 @@ namespace APGG {
        return std::make_pair(minmax.first->m_payoff, minmax.second->m_payoff);
    }
 
-   unsigned int Grid::getRandomOrganismIndex()
+   GridIndex Grid::getRandomOrganismIndex()
    {
-       unsigned int rand = getRandomNumber() % m_grid.size();
+       GridIndex rand = static_cast<GridIndex>(getRandomNumber() % m_grid.size());
        return rand;
    }
 
-   unsigned int Grid::getRandomOrganismIndex(const std::unordered_set<unsigned int>& blacklist)
+   GridIndex Grid::getRandomOrganismIndex(const std::unordered_set<GridIndex>& blacklist)
    {
-       unsigned int rand = getRandomOrganismIndex();
+       GridIndex rand = getRandomOrganismIndex();
        while (blacklist.find(rand) != blacklist.end()) {
            rand = getRandomOrganismIndex();
        }
@@ -103,7 +103,7 @@ namespace APGG {
 
     Organism& Grid::getTopOrganism()
     {
-        std::vector<unsigned int> gridKeys;
+        std::vector<GridIndex> gridKeys;
         //Fill vector with grid key numbers and shuffle them
         gridKeys.resize(m_grid.size()); // vector with 1024 uints.
 
