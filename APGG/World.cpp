@@ -61,7 +61,7 @@ namespace APGG {
 
         std::unique_ptr<LODArchiver> lodArchiver = std::make_unique<LODArchiver>();
         lodArchiver->configure(config);
-
+        lodArchiver->open();
   //      {
 
   //      }
@@ -136,7 +136,7 @@ namespace APGG {
 
 //#ifdef __DEBUG
 //        //Only draw slow debug messages when in DEBUG mode
-  //      printStatus();
+        printStatus();
 //#endif // __DEBUG
 
     }
@@ -151,7 +151,6 @@ namespace APGG {
             m_lod->wipe(organism);
         }
 
-        m_grid.wipe();
     //    m_lod->wipe();
      //   m_grid.wipe();
 
