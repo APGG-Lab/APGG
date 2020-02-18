@@ -58,30 +58,11 @@ namespace APGG {
         m_lodArchiver.configure(config);
         m_lodArchiver.open();
 
-  //      {
-
-  //      }
-
-        {
-        }
-
-  
-  //      {
-
-
-  //          lodArchiver->open();
-  //          m_lod->setGrid(m_grid);
-  //          m_lod->setArchiver(lodArchiver);
-
-  //      }
-
-		//{
-		//	ConfigArchiver configarchiver = ConfigArchiver();
-		//	configarchiver.configure(config);
-		//	configarchiver.open();
-		//	configarchiver.archive(config);
-		//	configarchiver.close();
-		//}
+        ConfigArchiver configArchiver;
+        configArchiver.configure(config);
+        configArchiver.open();
+        configArchiver.archive(config);
+        configArchiver.close();
 
         {
             //Show timedelta for init
@@ -101,7 +82,6 @@ namespace APGG {
             std::cout << ss.str() ;
         }
 
-		//m_archiveData = stoi(config.getValue("archiveData"));
 
     }
 
@@ -144,7 +124,6 @@ namespace APGG {
         }
 
         m_grid.getData().clear();
-     //   m_lod->cleanup(m_grid);
 
         m_archiver.close();
         m_lodArchiver.close();

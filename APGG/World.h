@@ -10,7 +10,7 @@
 #include "payoffcalculators/DefaultPayoffCalculator.h"
 #include "archivers/SimpleArchiver.h"
 #include "archivers/LODArchiver.h"
-//#include "archivers/ConfigArchiver.h"
+#include "archivers/ConfigArchiver.h"
 #include "optimizer/Optimizer.h"
 
 typedef std::chrono::steady_clock HighResClock;
@@ -45,6 +45,7 @@ namespace APGG {
         DefaultPayOffCalculator m_payoffCalculator;
         SimpleArchiver m_archiver;
         LODArchiver m_lodArchiver;
+        ConfigArchiver m_configArchiver;
         Optimizer m_optimizer;
         LOD m_lod;
         Grid m_grid;
