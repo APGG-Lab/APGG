@@ -23,7 +23,7 @@ namespace APGG {
         m_fileHandle /*<< organism->ID << ";" */
                     /* << organism->m_generation << ";" */
                      << organism->m_payoff << ";"
-                     << organism->m_faction << ";"
+                     << static_cast<unsigned int>(organism->m_faction) << ";"
                      << ((organism->m_cooperated) ? 1 : 0) << ";" 
                      << ((organism->m_moralist) ? 1 : 0) << ";" 
                      << organism->m_children.size() << ";" 
