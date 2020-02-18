@@ -12,7 +12,7 @@ namespace APGG {
         std::vector<unsigned int> gridKeys;
         int numberOfGroups;
     public:
-        void generateGroups();
+        void generateGroups(Grid& grid);
         void configure(Config& config);
     };
 

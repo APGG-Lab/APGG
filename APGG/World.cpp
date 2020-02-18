@@ -47,7 +47,6 @@ namespace APGG {
         m_grid.configure(config);
 
         //Setup the matchup/group generator
-        m_matchupGenerator.setGrid(&m_grid);
         m_matchupGenerator.configure(config);
 
         //Setup the payoff calculator
@@ -114,7 +113,7 @@ namespace APGG {
 
     void World::Tick()
     {
-        m_matchupGenerator.generateGroups();
+        m_matchupGenerator.generateGroups(m_grid);
 
         std::vector<Group>& groups = m_matchupGenerator.getGroups();
 

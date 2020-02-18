@@ -5,10 +5,7 @@ namespace APGG {
     {
         setGroupSize(stoul(config.getValue("groupSize", "10")));
     }
-    void MatchupGenerator::setGrid(Grid* grid)
-    {
-        m_grid = grid;
-    }
+
     void MatchupGenerator::setGroupSize(const unsigned int size)
     {
         m_groupSize = size;

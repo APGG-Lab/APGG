@@ -3,7 +3,7 @@
 
 namespace APGG {
 
-    void DefaultMatchupGenerator::generateGroups()
+    void DefaultMatchupGenerator::generateGroups(Grid& grid)
     {
         
         std::shuffle(gridKeys.begin(), gridKeys.end(), std::mt19937());
@@ -33,8 +33,11 @@ namespace APGG {
     void DefaultMatchupGenerator::configure(Config& config)
     {
         MatchupGenerator::configure(config);
+
+        int size = stoi(config.getValue("width")) * stoi(config.getValue("height"));
+
         //Fill vector with grid key numbers and shuffle them
-        gridKeys.resize(m_grid->size()); // vector with 1024 uints.
+        gridKeys.resize(size); // vector with 1024 uints.
         std::iota(std::begin(gridKeys), std::end(gridKeys), 0); // Fill with 0, 1, ..., 99.
 
 
