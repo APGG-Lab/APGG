@@ -119,9 +119,11 @@ namespace APGG {
 
         m_lod.logTop(m_grid, m_lodArchiver);
 
-        for (Organism& oragnism : m_grid.getData()) {
-            m_lod.wipe(oragnism);
-        }
+     //   for (Organism& oragnism : m_grid.getData()) {
+     //       m_lod.wipe(oragnism);
+     //   }
+
+        m_lod.cleanup(m_grid);
 
         m_grid.getData().clear();
 

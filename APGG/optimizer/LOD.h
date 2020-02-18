@@ -12,6 +12,7 @@ namespace APGG {
 	class LOD
 	{
 	private:
+        std::list<Organism*> m_pool;
 	public:
 		void LOD2(Grid& grid, const std::unordered_set<unsigned int>& selection);
 		void createLODCopy2(Grid& grid, Organism& organism);

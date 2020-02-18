@@ -26,7 +26,16 @@ namespace APGG {
 
     void LOD::createLODCopy2(Grid& grid, Organism& organism)
     {
-        Organism* organismCopy = new Organism();
+        Organism* organismCopy = nullptr;
+
+        if (!m_pool.empty()) {
+            organismCopy = m_pool.front();
+            m_pool.pop_front();
+        }
+        else {
+            organismCopy = new Organism();
+        }
+
 
         organism.copyTo(organismCopy); //Copy all values to the new organism
 
@@ -85,7 +94,7 @@ namespace APGG {
 
                 parent = organismPtr->m_parent;
 
-                delete organismPtr;
+                m_pool.push_back(organismPtr);
 
                 if (parent != nullptr) {
                     parent->removeChild(organismPtr);
@@ -108,6 +117,9 @@ namespace APGG {
 
     void LOD::cleanup(Grid& grid)
     {
+        for (Organism* organism : m_pool) {
+            delete organism;
+        }
 
         for (Organism& organism : grid.getData()) {
             Organism* parent = nullptr;
