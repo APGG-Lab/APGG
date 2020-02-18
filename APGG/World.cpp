@@ -117,7 +117,7 @@ namespace APGG {
 
         for (Group& group : groups) {
             for (const unsigned int& index : group.data()) {
-                Faction faction = m_grid[index].assignFaction();
+                Faction& faction = m_grid[index].assignFaction();
                 group.increaseFactionCount(faction);
             }
 

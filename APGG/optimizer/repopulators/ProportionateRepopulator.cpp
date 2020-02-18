@@ -26,15 +26,11 @@ namespace APGG {
 
             Organism& deadOrganism = grid[deadOrganismIndex];
 
-            if (!deadOrganism.m_children2.empty() || deadOrganism.m_parent2 != nullptr) {
-                int test = 0;
-            }
-
-            deadOrganism.clearChildren2();
+            deadOrganism.clearChildren();
 
             //LOD STUFF
-            grid[parentOrganismIndex].addChild2(&deadOrganism);
-            deadOrganism.m_parent2 = &grid[parentOrganismIndex];
+            grid[parentOrganismIndex].addChild(&deadOrganism);
+            deadOrganism.m_parent = &grid[parentOrganismIndex];
 
             //  deadOrganism.get().m_parent = rParent.get().getPtr();
             // deadOrganism.get().m_parent->addChild(ptr);

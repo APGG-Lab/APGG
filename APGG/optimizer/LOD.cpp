@@ -39,7 +39,7 @@ namespace APGG {
 
             Organism& organism = grid[index];
 
-            if (!organism.m_children2.empty()) {
+            if (!organism.m_children.empty()) {
                 // Organism has children. Create a copy of the organism
                 // and change the Pointers of the parent and the children 
                 // to point to the new copy of the organism
@@ -94,33 +94,27 @@ namespace APGG {
     {
         Organism* organismCopy = new Organism();
 
-        if (organism.m_parent2 != nullptr) {
-            int test = 0;
-        }
-
-    //    m_organismPtr.insert(organismCopy);
-
-        organism.copyTo2(organismCopy); //Copy all values to the new organism
+        organism.copyTo(organismCopy); //Copy all values to the new organism
 
         // Only root nodes shoudln't have a parent. IF should be true
         // in 99% of the time
-        if (organism.m_parent2 != nullptr) { 
+        if (organism.m_parent != nullptr) { 
             // Replace the original organism with the new copy.
             // Therefore we've to replace the organism in the parent
             // organsim as well
-            organismCopy->m_parent2->removeChild2(&organism);
-            organismCopy->m_parent2->addChild2(organismCopy);
+            organismCopy->m_parent->removeChild(&organism);
+            organismCopy->m_parent->addChild(organismCopy);
         }
 
-        for (Organism* child : organism.m_children2) {
+        for (Organism* child : organism.m_children) {
             // We also have to change the parent of the children 
             // with the new copy
-            child->m_parent2 = organismCopy;
+            child->m_parent = organismCopy;
         }
 
         //Cleanup the organism
-        organism.m_parent2 = nullptr;
-        organism.clearChildren2();
+        organism.m_parent = nullptr;
+        organism.clearChildren();
 #ifdef __DEBUG1
         organism.ID = -1;
 #endif
@@ -165,24 +159,15 @@ namespace APGG {
             Organism* parent = nullptr;
             Organism* organismPtr = &organism;
 
-            if (organism.m_status != Status::Original) {
-                int test = 0;
-            }
-            
-            if (!organismPtr->m_children2.empty()) {
-                //@todo: delete
-                return;
-            }
-
-            if (organismPtr->m_parent2 == nullptr) {
+            if (organismPtr->m_parent == nullptr) {
                 //First iteration is always alive
                 //Organism doesn't have a parent => nothing to do
                 return;
             }
 
-            parent = organismPtr->m_parent2;
-            parent->removeChild2(organismPtr);
-            organismPtr->m_parent2 = nullptr;
+            parent = organismPtr->m_parent;
+            parent->removeChild(organismPtr);
+            organismPtr->m_parent = nullptr;
 
 
             organismPtr = parent;
@@ -190,19 +175,19 @@ namespace APGG {
 
             // Use loop instead of a recursive function, because a recursive
             // function can crash the software, when the tree is too high
-            while (organismPtr->m_children2.empty()) {  //Loop through until we find a organism with a child
+            while (organismPtr->m_children.empty()) {  //Loop through until we find a organism with a child
 
                 if (organismPtr->m_status == Status::Original) {
                     return;
                 }
 
-                parent = organismPtr->m_parent2;
+                parent = organismPtr->m_parent;
 
            //     m_organismPtr.erase(organismPtr);
                 delete organismPtr;
 
                 if (parent != nullptr) {
-                    parent->removeChild2(organismPtr);
+                    parent->removeChild(organismPtr);
                     organismPtr = parent;
                 }
                 else {
@@ -211,55 +196,6 @@ namespace APGG {
             }
     }
 
-    void LOD::removeAndCleanupChildLists3(Organism& organism)
-    {
-
-
-        Organism* parent = nullptr;
-        Organism* organismPtr = &organism;
-
-
-
-        if (organismPtr->m_parent2 != nullptr) {
-            organismPtr->m_parent2->removeChild2(organismPtr);
-            organismPtr = organismPtr->m_parent2;
-        }
-
-        // Use loop instead of a recursive function, because a recursive
-        // function can crash the software, when the tree is too high
-        while (organismPtr->m_children2.empty()) {  //Loop through until we find a organism with a child
-
-
-
-            parent = organismPtr->m_parent2;
-
-            if (parent != nullptr) {
-                parent->removeChild2(organismPtr);
-
-            }
-
-
-            if (organismPtr->m_status == Status::Copy) {
-
-
-
-                //Only root elements have a nullptr as m_parent
-               // DEBUG_MSG("LOD Cleanup: found root organism " + organism->getDebugString());
-               // return;
-
-                //Remove organismPtr from child/parent tree
-              //  m_organismPtr.erase(organismPtr);
-                delete organismPtr;
-
-
-
-            }
-            if (parent != nullptr) {
-                //Swap actual organism with parent organism
-                organismPtr = parent;
-            }
-        }
-    }
 
     void LOD::validate(const pOrganism& organism) {
         ////Something is terribly wrong if you see these messages in your console

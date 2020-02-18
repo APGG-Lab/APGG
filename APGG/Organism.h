@@ -30,10 +30,11 @@ namespace APGG {
     class Organism
     {
     public:
+        Organism() = default;
         std::array<Genome, nrGenomes> m_genomes;
 
-        Organism* m_parent2 = nullptr;
-        std::list<Organism*> m_children2;
+        Organism* m_parent = nullptr;
+        std::list<Organism*> m_children;
 #ifdef DEBUG_EXTREME
         //Custom destructor for extreme debugging
         ~Organism();
@@ -50,28 +51,20 @@ namespace APGG {
         //@todo startvalue?
         float m_payoff = 0;
         Status m_status = Status::Original;
+        Faction m_faction;
 
         bool assignProfession(const float cooperationValue);
         bool assignMorals(const float moralValue);
-        Faction assignFaction();
+        Faction& assignFaction();
         Faction getFaction();
         float getNormalizedPayoff(const float min, const float max);
 
         void setPayoff(const float payoff);
-		void copyTo(pOrganism& copyOrganism);
-		void copyTo2(Organism* copyOrganism);
-       // pOrganism getPtr() { return shared_from_this(); };
-
+		void copyTo(Organism* copyOrganism);
 
         void clearChildren();
-        void removeChild(const pOrganism& organism);
-        void addChild(const pOrganism& organism);
-
-        void clearChildren2();
-        void removeChild2(Organism* organsim);
-        void addChild2(Organism* organism);
-
-        std::string getDebugString();
+        void removeChild(Organism* organsim);
+        void addChild(Organism* organism);
     };
 
 

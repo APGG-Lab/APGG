@@ -37,26 +37,26 @@ namespace APGG {
             Organism* parent = nullptr;
             Organism* organismPtr = &organism;
 
-            if (!organismPtr->m_children2.empty()) {
+            if (!organismPtr->m_children.empty()) {
                 return;
             }
 
-            if (organismPtr->m_parent2 != nullptr) {
+            if (organismPtr->m_parent != nullptr) {
                 int test = 0;
-                organismPtr->m_parent2->removeChild2(organismPtr);
-                parent = organismPtr->m_parent2;
-                organismPtr->m_parent2 = nullptr;
+                organismPtr->m_parent->removeChild(organismPtr);
+                parent = organismPtr->m_parent;
+                organismPtr->m_parent = nullptr;
                 organismPtr = parent;
                 parent = nullptr;
             }
 
             // Use loop instead of a recursive function, because a recursive
             // function can crash the software, when the tree is too high
-            while (organismPtr->m_children2.empty()) {  //Loop through until we find a organism with a child
+            while (organismPtr->m_children.empty()) {  //Loop through until we find a organism with a child
 
-                parent = organismPtr->m_parent2;
+                parent = organismPtr->m_parent;
 
-                organismPtr->m_parent2 = nullptr;
+                organismPtr->m_parent = nullptr;
 
                 if (organismPtr->m_status == Status::Copy) {
                  //   m_organismPtr.erase(organismPtr);
@@ -64,7 +64,7 @@ namespace APGG {
                 }
 
                 if (parent != nullptr) {
-                    parent->removeChild2(organismPtr);
+                    parent->removeChild(organismPtr);
                     organismPtr = parent;
                 }
                 else {
