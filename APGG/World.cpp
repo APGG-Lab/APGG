@@ -50,15 +50,14 @@ namespace APGG {
         //Setup the payoff calculator
         m_payoffCalculator.configure(config);
 
-      //  m_optimizer.setGrid(&m_grid);
         m_optimizer.configure(config);
 
        	m_archiver.configure(config);
         m_archiver.open();
 
-        std::unique_ptr<LODArchiver> lodArchiver = std::make_unique<LODArchiver>();
-        lodArchiver->configure(config);
-        lodArchiver->open();
+        m_lodArchiver.configure(config);
+        m_lodArchiver.open();
+
   //      {
 
   //      }
@@ -71,12 +70,9 @@ namespace APGG {
 
 
   //          lodArchiver->open();
-            m_lod = std::make_shared<LOD>();
-            m_lod->setArchiver(lodArchiver);
   //          m_lod->setGrid(m_grid);
   //          m_lod->setArchiver(lodArchiver);
 
-            m_optimizer.setLOD(m_lod);
   //      }
 
 		//{
@@ -141,41 +137,29 @@ namespace APGG {
     void World::Fini()
     {
 
-     //   m_grid.sortByFitness();
-       // m_lod->logIterative2(&m_grid.getTopOrganism());
-        m_lod->logTop(m_grid);
-        for (Organism& organism : m_grid.getData()) {
-            m_lod->wipe(organism);
+        m_lod.logTop(m_grid, m_lodArchiver);
+
+        for (Organism& oragnism : m_grid.getData()) {
+            m_lod.wipe(oragnism);
         }
 
-    //    m_lod->wipe();
-     //   m_grid.wipe();
+        m_grid.getData().clear();
+     //   m_lod->cleanup(m_grid);
+
+        m_archiver.close();
+        m_lodArchiver.close();
 
         std::cout << "Fini";
-     /*   m_lod->logTop();
-
-        m_grid->wipe();
+    
 
         fsec fs = m_clock_now - m_clock_start;
         ms timeDelta = std::chrono::duration_cast<ms>(fs);
         std::cout << "[APGG] Fini (took " << timeDelta.count() << " ms)" << std::endl;
-        ;*/
-        m_archiver.close();
     }
 
     void World::Evolve()
     {
-        m_optimizer.optmize(m_grid);
+        m_optimizer.optmize(m_grid, m_lod);
         m_grid.setGeneration(m_generation++);
-
-      /*  m_grid->rebuildCache();
-
-		;*/
     }
-
-	void World::printLOD(const pOrganism& organism)
-	{
-		
-	}
-
 }

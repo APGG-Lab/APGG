@@ -3,31 +3,11 @@
 namespace APGG {
 
 
-    void Optimizer::setGrid(Grid* grid)
-    {
-        m_grid = grid;
-    }
-
-    void Optimizer::setSelector(const std::shared_ptr<Selector> & selector)
-    {
-        m_selector = selector;
-    }
-
-    void Optimizer::setRepopulator(const std::shared_ptr<Repopulator> & repopulator)
-    {
-        m_repopulator = repopulator;
-    }
-
-    void Optimizer::setMutator(const std::shared_ptr<Mutator>& mutator)
-    {
-        m_mutator = mutator;
-    }
-
-    void Optimizer::optmize(Grid& grid)
+    void Optimizer::optmize(Grid& grid, LOD& lod)
     {
 		std::unordered_set<unsigned int>& selection = m_selector->select(grid);
 
-		m_lod->LOD2(grid, selection);
+		lod.LOD2(grid, selection);
 
         m_repopulator->repopulate(grid, selection);
 
@@ -65,7 +45,7 @@ namespace APGG {
 			break;
 		default:
 		case SelectorType::Random:
-			m_selector = std::make_shared<RandomSelector>();
+			m_selector = std::make_unique<RandomSelector>();
 			break;
 		}
 		m_selector->configure(config);
@@ -77,7 +57,7 @@ namespace APGG {
 			break;
 		default:
 		case RepopulatorType::Proportionate:
-			m_repopulator = std::make_shared<ProportionateRepupoluator>();
+			m_repopulator = std::make_unique<ProportionateRepupoluator>();
 			break;
 		}
 		m_repopulator->configure(config);
@@ -85,24 +65,15 @@ namespace APGG {
 
 		switch (mutatorType) {
 		case MutatorType::Random:
-			m_mutator = std::make_shared<RandomMutator>();
+			m_mutator = std::make_unique<RandomMutator>();
 			break;
 		default:
 		case MutatorType::Threshold:
-			m_mutator = std::make_shared<RandomMutator>();
+			m_mutator = std::make_unique<RandomMutator>();
 
 		//	m_mutator = std::make_shared<ThresholdMutator>();
 			break;
 		}
 		m_mutator->configure(config);
 	}
-
-	void Optimizer::setLOD(const std::shared_ptr<LOD>& lod) {
-		m_lod = lod;
-	}
-
-
-    Optimizer::Optimizer()
-    {
-    }
 }

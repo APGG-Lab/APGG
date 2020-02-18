@@ -85,7 +85,6 @@ namespace APGG {
 
                 parent = organismPtr->m_parent;
 
-           //     m_organismPtr.erase(organismPtr);
                 delete organismPtr;
 
                 if (parent != nullptr) {
@@ -98,21 +97,55 @@ namespace APGG {
             }
     }
 
-    void LOD::logTop(Grid& grid) {
+    void LOD::logTop(Grid& grid, LODArchiver& archiver) {
         Organism* organism =& grid.getTopOrganism();
 
         while (organism->m_parent != nullptr) {
-            m_archiver->archive(organism);
+            archiver.archive(organism);
             organism = organism->m_parent;
         }
     }
 
     void LOD::cleanup(Grid& grid)
     {
-    }
 
-    void LOD::setArchiver(std::unique_ptr<LODArchiver>& archiver) {
-        m_archiver = std::move(archiver);
-    }
+        for (Organism& organism : grid.getData()) {
+            Organism* parent = nullptr;
+            Organism* organismPtr = &organism;
 
+            if (!organismPtr->m_children.empty()) {
+                continue;
+            }
+
+            if (organismPtr->m_parent != nullptr) {
+                int test = 0;
+                organismPtr->m_parent->removeChild(organismPtr);
+                parent = organismPtr->m_parent;
+                organismPtr->m_parent = nullptr;
+                organismPtr = parent;
+                parent = nullptr;
+            }
+
+            // Use loop instead of a recursive function, because a recursive
+            // function can crash the software, when the tree is too high
+            while (organismPtr->m_children.empty()) {  //Loop through until we find a organism with a child
+
+                parent = organismPtr->m_parent;
+
+                organismPtr->m_parent = nullptr;
+
+                if (organismPtr->m_status == Status::Copy) {
+                    delete organismPtr;
+                }
+
+                if (parent != nullptr) {
+                    parent->removeChild(organismPtr);
+                    organismPtr = parent;
+                }
+                else {
+                    break;
+                }
+            }
+        }
+    }
 }

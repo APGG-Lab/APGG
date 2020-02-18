@@ -2,25 +2,22 @@
 #include <vector>
 #include <list>
 #include <unordered_set>
+#include "../Configurable.h"
 
 #include "../Organism.h"
 #include "../grids/Grid.h"
 #include "../archivers/Archiver.h"
 #include "../archivers/LODArchiver.h"
-
 namespace APGG {
 	class LOD
 	{
 	private:
-        std::unique_ptr<LODArchiver> m_archiver;
 	public:
-        void setArchiver(std::unique_ptr<LODArchiver>& archiver);
 		void LOD2(Grid& grid, const std::unordered_set<unsigned int>& selection);
 		void createLODCopy2(Grid& grid, Organism& organism);
         void removeAndCleanupChildLists2(Organism& organism);
-        void validate(const pOrganism& organism);
 
-        void logTop(Grid& grid);
+        void logTop(Grid& grid, LODArchiver& archiver);
         void cleanup(Grid& grid);
 		void wipe(Organism& organism) {
 

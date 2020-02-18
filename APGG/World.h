@@ -44,16 +44,17 @@ namespace APGG {
         DefaultMatchupGenerator m_matchupGenerator;
         DefaultPayOffCalculator m_payoffCalculator;
         SimpleArchiver m_archiver;
+        LODArchiver m_lodArchiver;
         Optimizer m_optimizer;
-        std::shared_ptr<LOD> m_lod;
+        LOD m_lod;
+        Grid m_grid;
+
     public:
         void Init(Config & config);
         void Tick();
         void Fini();
 
         void Evolve();
-		void printLOD(const pOrganism& organism);
-        Grid m_grid;
         unsigned int m_generation = 0;
     };
 
