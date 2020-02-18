@@ -26,17 +26,10 @@ namespace APGG {
 
             Organism& deadOrganism = grid[deadOrganismIndex];
 
-            deadOrganism.clearChildren();
 
             //LOD STUFF
             grid[parentOrganismIndex].addChild(&deadOrganism);
             deadOrganism.m_parent = &grid[parentOrganismIndex];
-
-            //  deadOrganism.get().m_parent = rParent.get().getPtr();
-            // deadOrganism.get().m_parent->addChild(ptr);
-            //  deadOrganism.m_parent = grid[parentOrganismIndex]
-            //  ptr.reset();
-
 
             //Normal Generation Stuff
             deadOrganism.m_genomes = grid[parentOrganismIndex].m_genomes;
