@@ -94,6 +94,12 @@ namespace APGG {
     {
         Organism* organismCopy = new Organism();
 
+        if (organism.m_parent2 != nullptr) {
+            int test = 0;
+        }
+
+    //    m_organismPtr.insert(organismCopy);
+
         organism.copyTo2(organismCopy); //Copy all values to the new organism
         organismCopy->m_generation = grid.getGeneration();
 
@@ -105,9 +111,6 @@ namespace APGG {
             // organsim as well
             organismCopy->m_parent2->removeChild2(&organism);
             organismCopy->m_parent2->addChild2(organismCopy);
-        }
-        else if(organism.ID > 1024) {
-            int test = 0;
         }
 
         for (Organism* child : organism.m_children2) {
@@ -162,37 +165,100 @@ namespace APGG {
             Organism* parent = nullptr;
             Organism* organismPtr = &organism;
 
+            if (organism.m_status != 0) {
+                int test = 0;
+            }
+            
+            if (!organismPtr->m_children2.empty()) {
+                //@todo: delete
+                return;
+            }
+
+            if (organismPtr->m_parent2 == nullptr) {
+                //First iteration is always alive
+                //Organism doesn't have a parent => nothing to do
+                return;
+            }
+
+            parent = organismPtr->m_parent2;
+            parent->removeChild2(organismPtr);
+            organismPtr->m_parent2 = nullptr;
+
+
+            organismPtr = parent;
+
+
             // Use loop instead of a recursive function, because a recursive
             // function can crash the software, when the tree is too high
             while (organismPtr->m_children2.empty()) {  //Loop through until we find a organism with a child
 
-                if (organismPtr->m_parent2 == nullptr) {
-                    //Only root elements have a nullptr as m_parent
-                    DEBUG_MSG("LOD Cleanup: found root organism " + organism->getDebugString());
+                if (organismPtr->m_status == STATUS_ORIGINAL) {
                     return;
                 }
 
-                //Remove organismPtr from child/parent tree
                 parent = organismPtr->m_parent2;
+
+           //     m_organismPtr.erase(organismPtr);
+                delete organismPtr;
+
+                if (parent != nullptr) {
+                    parent->removeChild2(organismPtr);
+                    organismPtr = parent;
+                }
+                else {
+                    break;
+                }
+            }
+    }
+
+    void LOD::removeAndCleanupChildLists3(Organism& organism)
+    {
+
+
+        Organism* parent = nullptr;
+        Organism* organismPtr = &organism;
+
+
+
+        if (organismPtr->m_parent2 != nullptr) {
+            organismPtr->m_parent2->removeChild2(organismPtr);
+            organismPtr = organismPtr->m_parent2;
+        }
+
+        // Use loop instead of a recursive function, because a recursive
+        // function can crash the software, when the tree is too high
+        while (organismPtr->m_children2.empty()) {  //Loop through until we find a organism with a child
+
+
+
+            parent = organismPtr->m_parent2;
+
+            if (parent != nullptr) {
                 parent->removeChild2(organismPtr);
-                organismPtr->m_parent2 == nullptr;
-
-                //Parent element is still in grid. We can't remove it. Stop loop here!
-                if (organismPtr->m_parent2->m_status != STATUS_CLONE) {
-                    return;
-                }
-                
-                // Organism is a clone (only true for the second iteration of this loop
-                // first iteration is always an organism on the grid.
-                // If it's a copy, we have to remove it, to avoid a fast growing memory leak
-                if (organismPtr->m_status == STATUS_CLONE) {
-                    delete organismPtr;
-                }
-
-                //Swap actual organism with parent organism
-                organismPtr = parent;
 
             }
+
+
+            if (organismPtr->m_status == STATUS_CLONE) {
+
+
+
+                //Only root elements have a nullptr as m_parent
+               // DEBUG_MSG("LOD Cleanup: found root organism " + organism->getDebugString());
+               // return;
+
+                //Remove organismPtr from child/parent tree
+              //  m_organismPtr.erase(organismPtr);
+                delete organismPtr;
+
+
+
+            }
+            if (parent != nullptr) {
+                //Swap actual organism with parent organism
+                organismPtr = parent;
+            }
+        }
     }
 
     void LOD::validate(const pOrganism& organism) {
@@ -241,7 +307,11 @@ namespace APGG {
         while (organism->m_parent2 != nullptr) {
             organisms.push_back(organism);
             organism = organism->m_parent2;
-            std::cout << organism->ID << std::endl;
+            std::cout << organism->ID;
+            if (organism->m_status > 0) {
+                std::cout << " (Clone)";
+            }
+            std::cout << std::endl;
         }
 
         std::cout << organisms.size() << std::endl;

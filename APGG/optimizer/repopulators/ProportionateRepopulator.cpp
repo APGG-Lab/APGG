@@ -26,6 +26,10 @@ namespace APGG {
 
             Organism& deadOrganism = grid[deadOrganismIndex];
 
+            if (!deadOrganism.m_children2.empty() || deadOrganism.m_parent2 != nullptr) {
+                int test = 0;
+            }
+
             deadOrganism.clearChildren2();
 
             //LOD STUFF
@@ -45,7 +49,7 @@ namespace APGG {
             deadOrganism.m_generation = grid.getGeneration();
 
             //Assign new ID
-          //  deadOrganism.ID = grid.getID();
+            deadOrganism.ID = grid.getID();
 
 
             DEBUG_MSG("Repopulator: created offspring " + deadOrganism.getDebugString());

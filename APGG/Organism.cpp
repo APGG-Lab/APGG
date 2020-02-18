@@ -123,6 +123,14 @@ namespace APGG {
 
     void Organism::removeChild2(Organism* organsim)
     {
+        bool found = false;
+        for (auto* child : m_children2) {
+            if (child == organsim) found = true;
+        }
+        if (found == false) {
+            int test = 0;
+        }
+
         m_children2.remove(organsim);
     }
 

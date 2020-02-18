@@ -138,8 +138,18 @@ namespace APGG {
 
     void World::Fini()
     {
-        m_grid.sortByFitness();
+     //   m_grid.sortByFitness();
         m_lod->logIterative2(&m_grid[0]);
+        for (Organism& organism : m_grid.getData()) {
+            m_lod->wipe(organism);
+        }
+
+        m_grid.wipe();
+    //    m_lod->wipe();
+     //   m_grid.wipe();
+        while (true) {
+            int test = 0;
+        }
         std::cout << "Fini";
      /*   m_lod->logTop();
 

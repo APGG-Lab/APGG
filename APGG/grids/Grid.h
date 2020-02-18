@@ -58,7 +58,9 @@ namespace APGG {
     //   
     //    unsigned int getGeneration() const { return m_generation; };
     //    
-    //    void wipe() {
+        void wipe() {
+            m_grid.clear();
+        }
     //        m_gridCache.clear();
     //        std::list<pOrganism> myList;
 
