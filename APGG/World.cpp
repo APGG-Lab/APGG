@@ -56,11 +56,14 @@ namespace APGG {
       //  m_optimizer.setGrid(&m_grid);
         m_optimizer.configure(config);
 
+       	m_archiver.configure(config);
+        m_archiver.open();
 
+        std::unique_ptr<LODArchiver> lodArchiver = std::make_unique<LODArchiver>();
+        lodArchiver->configure(config);
 
   //      {
-		//	m_archiver.configure(config);
-  //          m_archiver.open();
+
   //      }
 
         {
@@ -68,11 +71,11 @@ namespace APGG {
 
   
   //      {
-  //          std::unique_ptr<LODArchiver> lodArchiver = std::make_unique<LODArchiver>();
-		//	lodArchiver->configure(config);
+
 
   //          lodArchiver->open();
             m_lod = std::make_shared<LOD>();
+            m_lod->setArchiver(lodArchiver);
   //          m_lod->setGrid(m_grid);
   //          m_lod->setArchiver(lodArchiver);
 
@@ -115,6 +118,8 @@ namespace APGG {
 
         std::vector<Group>& groups = m_matchupGenerator.getGroups();
 
+        
+
         for (Group& group : groups) {
             for (const unsigned int& index : group.data()) {
                 Faction& faction = m_grid[index].assignFaction();
@@ -126,21 +131,22 @@ namespace APGG {
             m_payoffCalculator.applyPayoff(m_grid, group);
         }
 
-//        if (m_archiveData) {
-//            m_archiver.archive(m_generation, m_count[FACTION_COOPERATOR], m_count[FACTION_DEFECTOR], m_count[FACTION_MORALIST], m_count[FACTION_IMMORALIST]);
-//        }
-//
+        m_archiver.archive(m_generation, m_grid.getFactionCount());
+
+
 //#ifdef __DEBUG
 //        //Only draw slow debug messages when in DEBUG mode
-        printStatus();
+  //      printStatus();
 //#endif // __DEBUG
 
     }
 
     void World::Fini()
     {
+
      //   m_grid.sortByFitness();
-        m_lod->logIterative2(&m_grid[0]);
+       // m_lod->logIterative2(&m_grid.getTopOrganism());
+        m_lod->logTop(m_grid);
         for (Organism& organism : m_grid.getData()) {
             m_lod->wipe(organism);
         }
@@ -148,9 +154,7 @@ namespace APGG {
         m_grid.wipe();
     //    m_lod->wipe();
      //   m_grid.wipe();
-        while (true) {
-            int test = 0;
-        }
+
         std::cout << "Fini";
      /*   m_lod->logTop();
 
@@ -159,7 +163,8 @@ namespace APGG {
         fsec fs = m_clock_now - m_clock_start;
         ms timeDelta = std::chrono::duration_cast<ms>(fs);
         std::cout << "[APGG] Fini (took " << timeDelta.count() << " ms)" << std::endl;
-        m_archiver.close();*/
+        ;*/
+        m_archiver.close();
     }
 
     void World::Evolve()

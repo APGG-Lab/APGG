@@ -236,36 +236,22 @@ namespace APGG {
         }*/
     }
 
-    void LOD::logIterative2(Organism* organism)
-    {
-#ifdef __DEBUG1
-        std::vector<Organism*> organisms;
 
-        while (organism->m_parent2 != nullptr) {
-            organisms.push_back(organism);
-            organism = organism->m_parent2;
-            std::cout << organism->ID;
-            if (organism->m_status > 0) {
-                std::cout << " (Clone)";
-            }
-            std::cout << std::endl;
+    void LOD::logTop(Grid& grid) {
+        Organism* organism =& grid.getTopOrganism();
+
+        while (organism->m_parent != nullptr) {
+            m_archiver->archive(organism);
+            organism = organism->m_parent;
         }
-
-        std::cout << organisms.size() << std::endl;
-
-        int test = 0;
-#endif
-
     }
 
-    void LOD::logTop() {
-       /* m_grid->sortByFitness();
-        pOrganism topOragnism = m_grid->data()[0].get().getPtr();
-        logIterative(topOragnism);*/
+    void LOD::cleanup(Grid& grid)
+    {
     }
 
     void LOD::setArchiver(std::unique_ptr<LODArchiver>& archiver) {
-        //m_archiver = std::move(archiver);
+        m_archiver = std::move(archiver);
     }
 
 }

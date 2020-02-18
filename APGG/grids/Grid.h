@@ -38,6 +38,8 @@ namespace APGG {
 
         unsigned int getID();
 
+        std::array<unsigned int, 4> getFactionCount();
+
         void test() { m_grid[0].setPayoff(1000); }
         //void Grid::configure(Config& config)
 //{
@@ -50,6 +52,7 @@ namespace APGG {
     //    void data(const std::vector<pOrganism> data);
     //    void rebuildCache();
         void sortByFitness();
+        Organism& getTopOrganism();
     //    unsigned int getWidth() const;
     //    unsigned int getHeight() const;
 

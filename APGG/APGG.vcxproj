@@ -177,6 +177,9 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="archivers\Archiver.cpp" />
+    <ClCompile Include="archivers\LODArchiver.cpp" />
+    <ClCompile Include="archivers\SimpleArchiver.cpp" />
     <ClCompile Include="Config.cpp" />
     <ClCompile Include="ConfigParserCSV.cpp" />
     <ClCompile Include="Genome.cpp" />
@@ -200,6 +203,9 @@
     <ClCompile Include="World.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="archivers\Archiver.h" />
+    <ClInclude Include="archivers\LODArchiver.h" />
+    <ClInclude Include="archivers\SimpleArchiver.h" />
     <ClInclude Include="Config.h" />
     <ClInclude Include="ConfigParserCSV.h" />
     <ClInclude Include="Configurable.h" />

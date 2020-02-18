@@ -89,6 +89,8 @@ namespace APGG {
 			break;
 		default:
 		case MutatorType::Threshold:
+			m_mutator = std::make_shared<RandomMutator>();
+
 		//	m_mutator = std::make_shared<ThresholdMutator>();
 			break;
 		}

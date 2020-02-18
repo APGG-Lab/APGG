@@ -16,7 +16,7 @@ namespace APGG {
 	//	std::unordered_set<Organism*> m_organismPtr;
         void logRecursive(const pOrganism& organism);
         void logIterative(pOrganism& organism);
-       // std::unique_ptr<LODArchiver> m_archiver;
+        std::unique_ptr<LODArchiver> m_archiver;
 	public:
         void setArchiver(std::unique_ptr<LODArchiver>& archiver);
 		void setGrid(const std::shared_ptr<Grid>& grid);
@@ -26,11 +26,10 @@ namespace APGG {
 		void createLODCopy2(Grid& grid, Organism& organism);
         void removeAndCleanupChildLists(pOrganism& organism);
         void removeAndCleanupChildLists2(Organism& organism);
-        void removeAndCleanupChildLists3(Organism& organism);
         void validate(const pOrganism& organism);
-		void logIterative2(Organism* organism);
 
-        void logTop();
+        void logTop(Grid& grid);
+        void cleanup(Grid& grid);
 		void wipe(Organism& organism) {
 
 

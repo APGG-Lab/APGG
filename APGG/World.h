@@ -8,8 +8,8 @@
 #include "grids/DefaultGrid.h"
 #include "matchupgenerators/DefaultMatchupGenerator.h"
 #include "payoffcalculators/DefaultPayoffCalculator.h"
-//#include "archivers/SimpleArchiver.h"
-//#include "archivers/LODArchiver.h"
+#include "archivers/SimpleArchiver.h"
+#include "archivers/LODArchiver.h"
 //#include "archivers/ConfigArchiver.h"
 #include "optimizer/Optimizer.h"
 
@@ -43,7 +43,7 @@ namespace APGG {
 
         DefaultMatchupGenerator m_matchupGenerator;
         DefaultPayOffCalculator m_payoffCalculator;
-      //  SimpleArchiver m_archiver;
+        SimpleArchiver m_archiver;
         Optimizer m_optimizer;
         std::shared_ptr<LOD> m_lod;
     public:

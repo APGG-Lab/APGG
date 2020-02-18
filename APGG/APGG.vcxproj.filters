@@ -78,6 +78,15 @@
     <ClCompile Include="optimizer\LOD.cpp">
       <Filter>Quelldateien</Filter>
     </ClCompile>
+    <ClCompile Include="archivers\Archiver.cpp">
+      <Filter>Quelldateien</Filter>
+    </ClCompile>
+    <ClCompile Include="archivers\SimpleArchiver.cpp">
+      <Filter>Quelldateien</Filter>
+    </ClCompile>
+    <ClCompile Include="archivers\LODArchiver.cpp">
+      <Filter>Quelldateien</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Genome.h">
@@ -144,6 +153,15 @@
       <Filter>Headerdateien</Filter>
     </ClInclude>
     <ClInclude Include="optimizer\LOD.h">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
+    <ClInclude Include="archivers\Archiver.h">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
+    <ClInclude Include="archivers\SimpleArchiver.h">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
+    <ClInclude Include="archivers\LODArchiver.h">
       <Filter>Headerdateien</Filter>
     </ClInclude>
   </ItemGroup>

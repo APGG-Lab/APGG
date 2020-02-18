@@ -1,5 +1,6 @@
 #pragma once
 #include <string>
+#include "../Organism.h"
 #include "Archiver.h"
 
 namespace APGG {
@@ -8,7 +9,7 @@ namespace APGG {
     public:
         SimpleArchiver();
         SimpleArchiver(const std::string& folderName, const std::string& fileSuffix);
-        void archive(const int generation, const int nCooperators, const int nDefectors, const int nMoralists, const int Immoralist);
+        void archive(const int generation, const std::array<unsigned int, Faction::Count> counter);
         void archive(const std::string& line);
 		void configure(Config& config);
     };

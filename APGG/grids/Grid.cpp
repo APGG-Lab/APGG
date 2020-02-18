@@ -107,6 +107,15 @@ namespace APGG {
        return m_IDCounter++;
    }
 
+   std::array<unsigned int, 4> Grid::getFactionCount()
+   {
+       std::array<unsigned int, Faction::Count> counter = { };
+       for (Organism& organism : m_grid) {
+           counter[organism.getFaction()]++;
+       }
+       return counter;
+   }
+
  //   pOrganism& Grid::getOrganism(const unsigned int x, const unsigned int y)
  //   {
  //       //assert(x < width&&"X out of bounds!");
@@ -147,6 +156,19 @@ namespace APGG {
         std::sort(m_grid.begin(), m_grid.end(), [](const Organism &a, const Organism &b) {
             return a.m_payoff > b.m_payoff;
         });
+    }
+
+    Organism& Grid::getTopOrganism()
+    {
+        std::vector<unsigned int> gridKeys;
+        //Fill vector with grid key numbers and shuffle them
+        gridKeys.resize(m_grid.size()); // vector with 1024 uints.
+
+        std::sort(gridKeys.begin(), gridKeys.end(), [this](const unsigned int& a1, const unsigned int& a2) {
+            return m_grid[a1].m_payoff > m_grid[a2].m_payoff;
+            });
+
+        return m_grid[gridKeys[0]];
     }
 
 	//unsigned int Grid::getWidth() const

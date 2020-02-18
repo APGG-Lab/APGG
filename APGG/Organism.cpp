@@ -44,8 +44,7 @@ namespace APGG {
 
     Faction Organism::getFaction()
     {
-        //@todo: remove
-        return Faction();
+        return m_faction;
     }
 
     void Organism::setPayoff(const float payoff)
