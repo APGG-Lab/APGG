@@ -84,6 +84,9 @@
     <ClCompile Include="archivers\ConfigArchiver.cpp">
       <Filter>Quelldateien</Filter>
     </ClCompile>
+    <ClCompile Include="grids\SpatialGrid.cpp">
+      <Filter>Quelldateien</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Genome.h">
@@ -156,6 +159,9 @@
       <Filter>Headerdateien</Filter>
     </ClInclude>
     <ClInclude Include="archivers\ConfigArchiver.h">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
+    <ClInclude Include="grids\SpatialGrid.h">
       <Filter>Headerdateien</Filter>
     </ClInclude>
   </ItemGroup>

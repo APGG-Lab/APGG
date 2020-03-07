@@ -6,6 +6,7 @@
 #include <sstream>
 #include <cstdlib>
 #include "grids/DefaultGrid.h"
+#include "grids/SpatialGrid.h"
 #include "payoffcalculators/DefaultPayoffCalculator.h"
 #include "archivers/SimpleArchiver.h"
 #include "archivers/LODArchiver.h"
@@ -47,7 +48,7 @@ namespace APGG {
         ConfigArchiver m_configArchiver;
         Optimizer m_optimizer;
         LOD m_lod;
-        DefaultGrid m_grid;
+        SpatialGrid m_grid;
 
     public:
         void Init(Config & config);

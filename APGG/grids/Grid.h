@@ -10,8 +10,6 @@
 
 namespace APGG {
 
-    typedef uint16_t GridIndex;
-
     class Grid : public Configurable
     {
     protected:

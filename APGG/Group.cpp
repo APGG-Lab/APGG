@@ -10,17 +10,22 @@ namespace APGG {
         m_group.resize(size);
     }
 
-    std::vector<unsigned int>::iterator Group::begin()
+    std::vector<GridIndex>::iterator Group::begin()
     {
         return m_group.begin();
     }
 
-    std::vector<unsigned int>& Group::data()
+    std::vector<GridIndex>& Group::data()
     {
         return m_group;
     }
 
-    unsigned int Group::size()
+    GridIndex& Group::operator[](const unsigned int index)
+	{
+        return m_group[index];
+	}
+
+	unsigned int Group::size()
     {
         return static_cast<unsigned int>(m_group.size());
     }

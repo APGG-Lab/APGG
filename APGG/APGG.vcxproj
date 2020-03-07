@@ -186,6 +186,7 @@
     <ClCompile Include="Genome.cpp" />
     <ClCompile Include="grids\DefaultGrid.cpp" />
     <ClCompile Include="grids\Grid.cpp" />
+    <ClCompile Include="grids\SpatialGrid.cpp" />
     <ClCompile Include="Group.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="optimizer\LOD.cpp" />
@@ -212,6 +213,7 @@
     <ClInclude Include="Genome.h" />
     <ClInclude Include="grids\DefaultGrid.h" />
     <ClInclude Include="grids\Grid.h" />
+    <ClInclude Include="grids\SpatialGrid.h" />
     <ClInclude Include="Group.h" />
     <ClInclude Include="optimizer\LOD.h" />
     <ClInclude Include="optimizer\mutators\Mutator.h" />
