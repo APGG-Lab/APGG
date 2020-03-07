@@ -6,7 +6,6 @@
 #include <sstream>
 #include <cstdlib>
 #include "grids/DefaultGrid.h"
-#include "matchupgenerators/DefaultMatchupGenerator.h"
 #include "payoffcalculators/DefaultPayoffCalculator.h"
 #include "archivers/SimpleArchiver.h"
 #include "archivers/LODArchiver.h"
@@ -41,14 +40,14 @@ namespace APGG {
 
         std::array<unsigned int, 4> m_count;
 
-        DefaultMatchupGenerator m_matchupGenerator;
+        //DefaultMatchupGenerator m_matchupGenerator;
         DefaultPayOffCalculator m_payoffCalculator;
         SimpleArchiver m_archiver;
         LODArchiver m_lodArchiver;
         ConfigArchiver m_configArchiver;
         Optimizer m_optimizer;
         LOD m_lod;
-        Grid m_grid;
+        DefaultGrid m_grid;
 
     public:
         void Init(Config & config);

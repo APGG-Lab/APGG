@@ -39,12 +39,6 @@
     <ClCompile Include="ConfigParserCSV.cpp">
       <Filter>Quelldateien</Filter>
     </ClCompile>
-    <ClCompile Include="matchupgenerators\DefaultMatchupGenerator.cpp">
-      <Filter>Quelldateien</Filter>
-    </ClCompile>
-    <ClCompile Include="matchupgenerators\MatchupGenerator.cpp">
-      <Filter>Quelldateien</Filter>
-    </ClCompile>
     <ClCompile Include="Group.cpp">
       <Filter>Quelldateien</Filter>
     </ClCompile>
@@ -117,12 +111,6 @@
       <Filter>Headerdateien</Filter>
     </ClInclude>
     <ClInclude Include="Configurable.h">
-      <Filter>Headerdateien</Filter>
-    </ClInclude>
-    <ClInclude Include="matchupgenerators\DefaultMatchupGenerator.h">
-      <Filter>Headerdateien</Filter>
-    </ClInclude>
-    <ClInclude Include="matchupgenerators\MatchupGenerator.h">
       <Filter>Headerdateien</Filter>
     </ClInclude>
     <ClInclude Include="Group.h">

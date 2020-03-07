@@ -31,23 +31,4 @@ namespace APGG {
     {
         m_allowPayoffBelowZero = status;
     }
-
-    void PayOffCalculator::setCounters(const std::array<unsigned int, 4>& counter)
-    {
-        m_counter = counter;
-    }
-
-    void PayOffCalculator::calculateCosts(const int groupSize)
-    {
-        //Precalculate costs, fines and payoffs
-
-        int nPunished = m_counter[Faction::Defector] + m_counter[Faction::Moralist];
-        m_punishmentCost = m_punishmentCostBase * nPunished;
-
-        int nMoralists = m_counter[Faction::Moralist] + m_counter[Faction::Immoralist];
-        m_punishmentFine = m_punishmentFineBase * nMoralists;
-
-        int nCooperators = m_counter[Faction::Cooperator] + m_counter[Faction::Moralist];
-        m_payoff = m_synergyFactor * nCooperators / groupSize;
-    }
 }

@@ -41,11 +41,10 @@ namespace APGG {
         std::fill(std::begin(m_count), std::end(m_count), 0);
 
         //Setup the grid
-        m_grid = Grid();
         m_grid.configure(config);
 
         //Setup the matchup/group generator
-        m_matchupGenerator.configure(config);
+        //m_matchupGenerator.configure(config);
 
         //Setup the payoff calculator
         m_payoffCalculator.configure(config);
@@ -87,9 +86,10 @@ namespace APGG {
 
     void World::Tick()
     {
-        m_matchupGenerator.generateGroups(m_grid);
+        //m_matchupGenerator.generateGroups(m_grid);
+        m_grid.generateGroups();
 
-        std::vector<Group>& groups = m_matchupGenerator.getGroups();
+        std::vector<Group>& groups = m_grid.getGroups();
 
         
 
@@ -99,8 +99,6 @@ namespace APGG {
                 group.increaseFactionCount(faction);
             }
 
-            m_payoffCalculator.setCounters(group.getFactionCounter());
-            m_payoffCalculator.calculateCosts(group.size());
             m_payoffCalculator.applyPayoff(m_grid, group);
         }
 

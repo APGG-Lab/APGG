@@ -114,6 +114,11 @@ namespace APGG {
         return m_grid[gridKeys[0]];
     }
 
+    std::vector<Group>& Grid::getGroups()
+    {
+        return m_groups;
+    }
+
 	//unsigned int Grid::getWidth() const
 	//{
 	//	return m_width;

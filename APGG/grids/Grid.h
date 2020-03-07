@@ -6,6 +6,8 @@
 
 #include "../Organism.h"
 #include "../Configurable.h"
+#include "../Group.h"
+
 namespace APGG {
 
     typedef uint16_t GridIndex;
@@ -23,9 +25,12 @@ namespace APGG {
         //ID of the organism
         unsigned int m_IDCounter = 0;
 
+        unsigned int m_groupSize;
+        std::vector<Group> m_groups;
+
     public:
         Grid();
-        void configure(Config& config);
+        virtual void configure(Config& config) = 0;
         void setGeneration(const unsigned int generation);
         unsigned int size() const;
         std::vector<Organism>& getData();
@@ -40,7 +45,8 @@ namespace APGG {
         std::array<unsigned int, 4> getFactionCount();
         void sortByFitness();
         Organism& getTopOrganism();
-    //    unsigned int getWidth() const;
-    //    unsigned int getHeight() const;
+    
+        std::vector<Group>& getGroups();
+        virtual void generateGroups() = 0;
     };
 }
