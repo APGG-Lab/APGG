@@ -195,6 +195,7 @@
     <ClCompile Include="optimizer\Optimizer.cpp" />
     <ClCompile Include="optimizer\repopulators\ProportionateRepopulator.cpp" />
     <ClCompile Include="optimizer\repopulators\Repopulator.cpp" />
+    <ClCompile Include="optimizer\selectors\EliteSelector.cpp" />
     <ClCompile Include="optimizer\selectors\RandomSelector.cpp" />
     <ClCompile Include="optimizer\selectors\Selector.cpp" />
     <ClCompile Include="Organism.cpp" />
@@ -221,6 +222,7 @@
     <ClInclude Include="optimizer\Optimizer.h" />
     <ClInclude Include="optimizer\repopulators\ProportionateRepopulator.h" />
     <ClInclude Include="optimizer\repopulators\Repopulator.h" />
+    <ClInclude Include="optimizer\selectors\EliteSelector.h" />
     <ClInclude Include="optimizer\selectors\RandomSelector.h" />
     <ClInclude Include="optimizer\selectors\Selector.h" />
     <ClInclude Include="Organism.h" />

@@ -87,6 +87,9 @@
     <ClCompile Include="grids\SpatialGrid.cpp">
       <Filter>Quelldateien</Filter>
     </ClCompile>
+    <ClCompile Include="optimizer\selectors\EliteSelector.cpp">
+      <Filter>Quelldateien</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Genome.h">
@@ -162,6 +165,9 @@
       <Filter>Headerdateien</Filter>
     </ClInclude>
     <ClInclude Include="grids\SpatialGrid.h">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
+    <ClInclude Include="optimizer\selectors\EliteSelector.h">
       <Filter>Headerdateien</Filter>
     </ClInclude>
   </ItemGroup>

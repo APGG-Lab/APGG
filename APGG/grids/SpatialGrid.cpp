@@ -65,12 +65,12 @@ namespace APGG {
         m_groupSize = 5;
 
         //Fill vector with grid key numbers and shuffle them
-        gridKeys.resize(m_totalSize); // vector with 1024 uints.
-        std::iota(std::begin(gridKeys), std::end(gridKeys), 0); // Fill with 0, 1, ..., 99.
+        m_gridKeys.resize(m_totalSize); // vector with 1024 uints.
+        std::iota(std::begin(m_gridKeys), std::end(m_gridKeys), 0); // Fill with 0, 1, ..., 99.
 
 
         //determine number of groups
-        numberOfGroups = (gridKeys.size() - 1) / m_groupSize + 1;
+        numberOfGroups = (m_gridKeys.size() - 1) / m_groupSize + 1;
 
         m_groups.resize(m_totalSize);
 

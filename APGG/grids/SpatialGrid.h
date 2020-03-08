@@ -11,7 +11,6 @@ namespace APGG {
 	class SpatialGrid : public Grid
 	{
 	protected:
-		std::vector<GridIndex> gridKeys;
 		int numberOfGroups;
 		bool m_built = false;
 		GridIndex wrap(int x, int y);

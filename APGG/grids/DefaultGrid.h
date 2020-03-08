@@ -11,7 +11,6 @@ namespace APGG {
 	class DefaultGrid : public Grid
 	{
 	protected:
-		std::vector<GridIndex> gridKeys;
 		int numberOfGroups;
 
 	public:

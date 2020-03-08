@@ -6,28 +6,9 @@ namespace APGG {
     {
     }
 
+
     void Grid::configure(Config& config)
     {
-        m_width = stoi(config.getValue("width"));
-	    m_height = stoi(config.getValue("height"));
-        m_totalSize = m_width * m_height;
-
-        if (m_grid.size() % stoi(config.getValue("groupSize")) != 0) {
-            std::cerr << std::endl << "[APGG Error] invalid group size. Gridsize (height*width) % Groupsize must be 0";
-            std::cin.get();
-            std::quick_exit(1);
-        };
-
-	    m_grid.reserve(m_totalSize);
-	    for (unsigned int i = 0; i < m_width * m_height; i++)
-	    {
-            Organism organism;
-#ifdef __DEBUG1
-		    organism.ID = m_IDCounter++;
-		    organism.m_generation = m_generation;
-#endif
-		    m_grid.emplace_back(std::move(organism));
-	    }
     }
 
     void Grid::setGeneration(const unsigned int generation)
@@ -94,29 +75,53 @@ namespace APGG {
        return counter;
    }
 
-    void Grid::sortByFitness()
+    std::vector<GridIndex> Grid::sortByFitness(const bool desc)
     {
-        std::sort(m_grid.begin(), m_grid.end(), [](const Organism &a, const Organism &b) {
-            return a.m_payoff > b.m_payoff;
-        });
+        //Avoid sorting the original one, because we may need the exact position
+        std::vector<GridIndex> gridKeyCopy = m_gridKeys;
+
+        if (!desc) {
+            //Low to High
+            std::sort(gridKeyCopy.begin(), gridKeyCopy.end(), [this](const GridIndex& a, const GridIndex& b) {
+                return m_grid[a].m_payoff < m_grid[b].m_payoff;
+                });
+        }
+        else {
+            //High to Low
+            std::sort(gridKeyCopy.begin(), gridKeyCopy.end(), [this](const GridIndex& a, const GridIndex& b) {
+                return m_grid[a].m_payoff > m_grid[b].m_payoff;
+                });
+        }
+
+
+        return gridKeyCopy;
     }
 
     Organism& Grid::getTopOrganism()
     {
-        std::vector<GridIndex> gridKeys;
+        std::vector<GridIndex> m_gridKeys;
         //Fill vector with grid key numbers and shuffle them
-        gridKeys.resize(m_grid.size()); // vector with 1024 uints.
+        m_gridKeys.resize(m_grid.size()); // vector with 1024 uints.
 
-        std::sort(gridKeys.begin(), gridKeys.end(), [this](const unsigned int& a1, const unsigned int& a2) {
+        std::sort(m_gridKeys.begin(), m_gridKeys.end(), [this](const unsigned int& a1, const unsigned int& a2) {
             return m_grid[a1].m_payoff > m_grid[a2].m_payoff;
             });
 
-        return m_grid[gridKeys[0]];
+        return m_grid[m_gridKeys[0]];
     }
 
     std::vector<Group>& Grid::getGroups()
     {
         return m_groups;
+    }
+
+    std::vector<GridIndex>& Grid::getGridKeys()
+    {
+        return m_gridKeys;
+    }
+
+    void Grid::generateGroups()
+    {
     }
 
 	//unsigned int Grid::getWidth() const

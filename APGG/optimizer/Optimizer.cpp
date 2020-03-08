@@ -41,7 +41,7 @@ namespace APGG {
 
 		switch (selectorType) {
 		case SelectorType::Elite:
-			//m_selector = std::make_shared<EliteSelector>();
+			m_selector = std::make_unique<EliteSelector>();
 			break;
 		default:
 		case SelectorType::Random:

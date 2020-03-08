@@ -19,6 +19,7 @@ namespace APGG {
         unsigned int m_generation = 0;
 
         std::vector<Organism> m_grid;
+        std::vector<GridIndex> m_gridKeys;
 
         //ID of the organism
         unsigned int m_IDCounter = 0;
@@ -28,7 +29,9 @@ namespace APGG {
 
     public:
         Grid();
-        virtual void configure(Config& config) = 0;
+
+        //Empty implementation to avoid errors when we use the base class
+        virtual void configure(Config& config);
         void setGeneration(const unsigned int generation);
         unsigned int size() const;
         std::vector<Organism>& getData();
@@ -41,10 +44,13 @@ namespace APGG {
         unsigned int getID();
 
         std::array<unsigned int, 4> getFactionCount();
-        void sortByFitness();
+        std::vector<GridIndex> sortByFitness(const bool desc = false);
         Organism& getTopOrganism();
     
         std::vector<Group>& getGroups();
-        virtual void generateGroups() = 0;
+        std::vector<GridIndex>& getGridKeys();
+
+        //Empty implementation to avoid errors when we use the base class
+        virtual void generateGroups();
     };
 }
