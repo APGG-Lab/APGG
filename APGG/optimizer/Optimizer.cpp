@@ -51,15 +51,16 @@ namespace APGG {
 		m_selector->configure(config);
 	
 	
-		switch (repopulatorType) {
-		case RepopulatorType::Random:
-		//	m_repopulator = std::make_shared<RandomRepopulator>();
-			break;
-		default:
-		case RepopulatorType::Proportionate:
-			m_repopulator = std::make_unique<ProportionateRepupoluator>();
-			break;
-		}
+		//switch (repopulatorType) {
+		//case RepopulatorType::Random:
+		////	m_repopulator = std::make_shared<RandomRepopulator>();
+		//	break;
+		//default:
+		//case RepopulatorType::Proportionate:
+		//	m_repopulator = std::make_unique<ProportionateRepupoluator>();
+		//	break;
+		//}
+		m_repopulator = std::make_unique<SpatialRepopulator>();
 		m_repopulator->configure(config);
 	
 
