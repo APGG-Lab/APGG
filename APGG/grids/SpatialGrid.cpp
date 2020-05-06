@@ -7,16 +7,16 @@ namespace APGG {
     {
 
         if (x < 0) {
-            x = m_width - 1;
+            x = static_cast<int>(m_width) - 1;
         }
-        else if (x >= m_width) {
+        else if (x >= static_cast<int>(m_width)) {
             x = 0;
         }
 
         if (y < 0) {
-            y = m_height - 1;
+            y = static_cast<int>(m_height) - 1;
         }
-        else if (y >= m_height) {
+        else if (y >= static_cast<int>(m_height)) {
             y = 0;
         }
 
@@ -29,8 +29,8 @@ namespace APGG {
             return;
         }
 
-        for (int y = 0; y < m_height; y++) {
-            for (int x = 0; x < m_width; x++) {
+        for (int y = 0; y < static_cast<int>(m_height); y++) {
+            for (int x = 0; x < static_cast<int>(m_width); x++) {
                 const GridIndex index = (m_width * y) + x;
 
                 //Group group;
@@ -70,7 +70,7 @@ namespace APGG {
 
 
         //determine number of groups
-        numberOfGroups = (m_gridKeys.size() - 1) / m_groupSize + 1;
+        numberOfGroups = (static_cast<int>(m_gridKeys.size()) - 1) / m_groupSize + 1;
 
         m_groups.resize(m_totalSize);
 

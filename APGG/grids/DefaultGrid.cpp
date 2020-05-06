@@ -62,7 +62,7 @@ namespace APGG {
 
 
         //determine number of groups
-        numberOfGroups = (m_gridKeys.size() - 1) / m_groupSize + 1;
+        numberOfGroups = (static_cast<int>(m_gridKeys.size()) - 1) / m_groupSize + 1;
 
         m_groups.resize(numberOfGroups);
 
