@@ -11,9 +11,9 @@ namespace APGG {
     {
     public:
         DefaultPayOffCalculator();
-        void calculateCosts(const int groupSize);
-        void applyPayoff(rOrganism& organism);
-        void applyPayoff(Group& group);
+        void calculateCosts(Group& group);
+        void applyPayoff(Organism& organism);
+        void applyPayoff(Grid& grid, Group& group);
 		void configure(Config& config);
     };
 

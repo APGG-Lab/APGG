@@ -34,63 +34,63 @@ int main() {
 	auto configs = ConfigParserCSV::parseConfigs("configs.csv");
     std::cout << "[APGG Init] loading " << configs.size() << " experiments" << std::endl;
 
+	RunExperiment(configs[0]);
 
+	//using namespace std::chrono_literals;
+	////TODO: make configurable
+	//unsigned int concurentNumberThreads = 1;
+	//if (concurentNumberThreads > configs.size())
+	//{
+	//	concurentNumberThreads = configs.size();
+	//}
 
-	using namespace std::chrono_literals;
-	//TODO: make configurable
-	unsigned int concurentNumberThreads = 16;
-	if (concurentNumberThreads > configs.size())
-	{
-		concurentNumberThreads = configs.size();
-	}
+	//std::vector<std::future<void>> threadFutures;
 
-	std::vector<std::future<void>> threadFutures;
+	//for (int i = 0; i < concurentNumberThreads; i++)
+	//{
+	//	threadFutures.push_back(std::async(std::launch::async, RunExperiment, configs[i]));
+	//}
 
-	for (int i = 0; i < concurentNumberThreads; i++)
-	{
-		threadFutures.push_back(std::async(std::launch::async, RunExperiment, configs[i]));
-	}
+	//unsigned int nextThread = concurentNumberThreads;
+	//unsigned int numberTasks = configs.size();
+	//bool remainingTasks = numberTasks > concurentNumberThreads;
 
-	unsigned int nextThread = concurentNumberThreads;
-	unsigned int numberTasks = configs.size();
-	bool remainingTasks = numberTasks > concurentNumberThreads;
+	//while (remainingTasks)
+	//{
+	//	for (auto& future : threadFutures)
+	//	{
+	//		if (future.wait_for(0ms) == std::future_status::ready)
+	//		{
+	//			//start new thread in case there is still work to be done
+	//			if (nextThread < (numberTasks))
+	//			{
+	//				future = std::async(std::launch::async, RunExperiment, configs[nextThread]);
+	//				nextThread++;
+	//			}
+	//			else
+	//			{
+	//				remainingTasks = false;
+	//				break;
+	//			}
 
-	while (remainingTasks)
-	{
-		for (auto& future : threadFutures)
-		{
-			if (future.wait_for(0ms) == std::future_status::ready)
-			{
-				//start new thread in case there is still work to be done
-				if (nextThread < (numberTasks))
-				{
-					future = std::async(std::launch::async, RunExperiment, configs[nextThread]);
-					nextThread++;
-				}
-				else
-				{
-					remainingTasks = false;
-					break;
-				}
+	//		}
+	//	}
+	//}
 
-			}
-		}
-	}
-
-	//wait for all threads to be finished before the main thread closes
-	bool allThreadsFinished = false;
-	while (!allThreadsFinished)
-	{
-		allThreadsFinished = true;
-		for (auto& future : threadFutures)
-		{
-			if (future.wait_for(0ms) != std::future_status::ready)
-			{
-				allThreadsFinished = false;
-				break;
-			}
-		}
-	}
+	////wait for all threads to be finished before the main thread closes
+	//bool allThreadsFinished = false;
+	//while (!allThreadsFinished)
+	//{
+	//	allThreadsFinished = true;
+	//	for (auto& future : threadFutures)
+	//	{
+	//		if (future.wait_for(0ms) != std::future_status::ready)
+	//		{
+	//			allThreadsFinished = false;
+	//			break;
+	//		}
+	//	}
+	//}
 
 	getchar();
 	return 0;

@@ -4,11 +4,11 @@
 #include "../Group.h"
 #include "../Organism.h"
 #include "../Configurable.h"
-
+#include "../grids/Grid.h"
 namespace APGG {
 
     constexpr unsigned int nPayOffTypes = 1;
-    enum PayOffTypes { PAYOFF_DEFAULT };
+    enum PayOffTypes { f };
 
     class PayOffCalculator : public Configurable
     {
@@ -22,7 +22,6 @@ namespace APGG {
         float m_punishmentCost;
         float m_punishmentFine;
         float m_payoff;
-        std::array<unsigned int, 4> m_counter;
     public:
         PayOffCalculator();
 
@@ -31,11 +30,10 @@ namespace APGG {
         void setPunishmentBaseFine(const float factor);
         void setCooperationCost(const float cost);
         void allowPayoffBelowZero(const bool status);
-        //@todo find better name
-        void setCounters(const std::array<unsigned int, 4>& counter);
-        virtual void calculateCosts(const int groupSize) = 0;
-        virtual void applyPayoff(rOrganism& organism) = 0;
-        virtual void applyPayoff(Group& group) = 0;
+
+        virtual void calculateCosts(Group& group) = 0;
+        virtual void applyPayoff(Organism& organism) = 0;
+        virtual void applyPayoff(Grid& grid, Group& group) = 0;
     };
 
 }

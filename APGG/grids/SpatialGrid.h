@@ -8,11 +8,12 @@
 
 
 namespace APGG {
-	class DefaultGrid : public Grid
+	class SpatialGrid : public Grid
 	{
 	protected:
 		int numberOfGroups;
-
+		bool m_built = false;
+		GridIndex wrap(int x, int y);
 	public:
 		
 		void generateGroups();

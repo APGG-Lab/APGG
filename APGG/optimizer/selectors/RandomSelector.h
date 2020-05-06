@@ -1,6 +1,6 @@
 #pragma once
 #include "Selector.h"
-
+#include <unordered_set>
 namespace APGG {
 
     class RandomSelector : public Selector
@@ -8,7 +8,7 @@ namespace APGG {
     public:
         RandomSelector();
         RandomSelector(const unsigned int eliminationCount);
-        std::vector<rOrganism> select(std::shared_ptr<Grid>& grid);
+        std::unordered_set<GridIndex>& select(Grid& grid);
 		void configure(Config& config);
     };
 

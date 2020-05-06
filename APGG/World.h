@@ -1,11 +1,12 @@
 #pragma once
 #include <iostream>
+#include <iomanip> //setFill for init output
 #include <chrono>
 #include <ctime>
 #include <sstream>
 #include <cstdlib>
 #include "grids/DefaultGrid.h"
-#include "matchupgenerators/DefaultMatchupGenerator.h"
+#include "grids/SpatialGrid.h"
 #include "payoffcalculators/DefaultPayoffCalculator.h"
 #include "archivers/SimpleArchiver.h"
 #include "archivers/LODArchiver.h"
@@ -30,29 +31,31 @@ namespace APGG {
         std::chrono::time_point<std::chrono::steady_clock> m_clock_last;
         void printStatus();
         void printInitMessage();
-        int m_exponent; ///Exponential logging (0-10,10,20,30,100,200,300,1000,2000,3000,....)
 
-		unsigned int m_consoleOutExponent;
+//#ifdef __DEBUG
+        unsigned int m_exponent = 10; ///Exponential logging (0-10,10,20,30,100,200,300,1000,2000,3000,....)
+//#endif // !__DEBUG
+
+
 		bool m_archiveData;
-		bool m_showAllGenerations;
 
         std::array<unsigned int, 4> m_count;
 
-        DefaultMatchupGenerator m_matchupGenerator;
+        //DefaultMatchupGenerator m_matchupGenerator;
         DefaultPayOffCalculator m_payoffCalculator;
         SimpleArchiver m_archiver;
+        LODArchiver m_lodArchiver;
+        ConfigArchiver m_configArchiver;
         Optimizer m_optimizer;
-        std::shared_ptr<LOD> m_lod;
-    public:
-        World();
+        LOD m_lod;
+        SpatialGrid m_grid;
 
+    public:
         void Init(Config & config);
         void Tick();
         void Fini();
 
         void Evolve();
-		void printLOD(const pOrganism& organism);
-        std::shared_ptr<Grid> m_grid;
         unsigned int m_generation = 0;
     };
 

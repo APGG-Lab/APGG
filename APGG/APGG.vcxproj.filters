@@ -30,19 +30,22 @@
     <ClCompile Include="Config.cpp">
       <Filter>Quelldateien</Filter>
     </ClCompile>
+    <ClCompile Include="grids\Grid.cpp">
+      <Filter>Quelldateien</Filter>
+    </ClCompile>
+    <ClCompile Include="grids\DefaultGrid.cpp">
+      <Filter>Quelldateien</Filter>
+    </ClCompile>
+    <ClCompile Include="ConfigParserCSV.cpp">
+      <Filter>Quelldateien</Filter>
+    </ClCompile>
     <ClCompile Include="Group.cpp">
       <Filter>Quelldateien</Filter>
     </ClCompile>
-    <ClCompile Include="optimizer\repopulators\RandomRepopulator.cpp">
+    <ClCompile Include="payoffcalculators\PayOffCalculator.cpp">
       <Filter>Quelldateien</Filter>
     </ClCompile>
-    <ClCompile Include="optimizer\repopulators\Repopulator.cpp">
-      <Filter>Quelldateien</Filter>
-    </ClCompile>
-    <ClCompile Include="optimizer\selectors\EliteSelector.cpp">
-      <Filter>Quelldateien</Filter>
-    </ClCompile>
-    <ClCompile Include="optimizer\selectors\Selector.cpp">
+    <ClCompile Include="payoffcalculators\DefaultPayoffCalculator.cpp">
       <Filter>Quelldateien</Filter>
     </ClCompile>
     <ClCompile Include="optimizer\Optimizer.cpp">
@@ -51,28 +54,22 @@
     <ClCompile Include="optimizer\selectors\RandomSelector.cpp">
       <Filter>Quelldateien</Filter>
     </ClCompile>
+    <ClCompile Include="optimizer\selectors\Selector.cpp">
+      <Filter>Quelldateien</Filter>
+    </ClCompile>
+    <ClCompile Include="optimizer\repopulators\Repopulator.cpp">
+      <Filter>Quelldateien</Filter>
+    </ClCompile>
     <ClCompile Include="optimizer\repopulators\ProportionateRepopulator.cpp">
-      <Filter>Quelldateien</Filter>
-    </ClCompile>
-    <ClCompile Include="optimizer\LOD.cpp">
-      <Filter>Quelldateien</Filter>
-    </ClCompile>
-    <ClCompile Include="optimizer\mutators\Mutator.cpp">
       <Filter>Quelldateien</Filter>
     </ClCompile>
     <ClCompile Include="optimizer\mutators\RandomMutator.cpp">
       <Filter>Quelldateien</Filter>
     </ClCompile>
-    <ClCompile Include="optimizer\mutators\ThresholdMutator.cpp">
+    <ClCompile Include="optimizer\mutators\Mutator.cpp">
       <Filter>Quelldateien</Filter>
     </ClCompile>
-    <ClCompile Include="matchupgenerators\MatchupGenerator.cpp">
-      <Filter>Quelldateien</Filter>
-    </ClCompile>
-    <ClCompile Include="payoffcalculators\PayOffCalculator.cpp">
-      <Filter>Quelldateien</Filter>
-    </ClCompile>
-    <ClCompile Include="grids\Grid.cpp">
+    <ClCompile Include="optimizer\LOD.cpp">
       <Filter>Quelldateien</Filter>
     </ClCompile>
     <ClCompile Include="archivers\Archiver.cpp">
@@ -81,22 +78,24 @@
     <ClCompile Include="archivers\SimpleArchiver.cpp">
       <Filter>Quelldateien</Filter>
     </ClCompile>
-    <ClCompile Include="archivers\ConfigArchiver.cpp">
-      <Filter>Quelldateien</Filter>
-    </ClCompile>
     <ClCompile Include="archivers\LODArchiver.cpp">
       <Filter>Quelldateien</Filter>
     </ClCompile>
-    <ClCompile Include="payoffcalculators\DefaultPayoffCalculator.cpp">
+    <ClCompile Include="archivers\ConfigArchiver.cpp">
       <Filter>Quelldateien</Filter>
     </ClCompile>
-    <ClCompile Include="matchupgenerators\DefaultMatchupGenerator.cpp">
+    <ClCompile Include="grids\SpatialGrid.cpp">
       <Filter>Quelldateien</Filter>
     </ClCompile>
-    <ClCompile Include="grids\DefaultGrid.cpp">
+    <ClCompile Include="optimizer\selectors\EliteSelector.cpp">
       <Filter>Quelldateien</Filter>
     </ClCompile>
-    <ClCompile Include="ConfigParserCSV.cpp">
+    <ClCompile Include="optimizer\repopulators\SpatialRepopulator.cpp">
+      <Filter>Quelldateien</Filter>
+    </ClCompile>
+    <ClCompile Include="optimizer\mutators\ThresholdMutator.cpp">
+      <Filter>Quelldateien</Filter>
+    <ClCompile Include="optimizer\repopulators\RandomRepopulator.cpp">
       <Filter>Quelldateien</Filter>
     </ClCompile>
   </ItemGroup>
@@ -116,67 +115,7 @@
     <ClInclude Include="Config.h">
       <Filter>Headerdateien</Filter>
     </ClInclude>
-    <ClInclude Include="Group.h">
-      <Filter>Headerdateien</Filter>
-    </ClInclude>
-    <ClInclude Include="optimizer\repopulators\RandomRepopulator.h">
-      <Filter>Headerdateien</Filter>
-    </ClInclude>
-    <ClInclude Include="optimizer\repopulators\Repopulator.h">
-      <Filter>Headerdateien</Filter>
-    </ClInclude>
-    <ClInclude Include="optimizer\selectors\EliteSelector.h">
-      <Filter>Headerdateien</Filter>
-    </ClInclude>
-    <ClInclude Include="optimizer\selectors\Selector.h">
-      <Filter>Headerdateien</Filter>
-    </ClInclude>
-    <ClInclude Include="optimizer\Optimizer.h">
-      <Filter>Headerdateien</Filter>
-    </ClInclude>
-    <ClInclude Include="optimizer\selectors\RandomSelector.h">
-      <Filter>Headerdateien</Filter>
-    </ClInclude>
-    <ClInclude Include="optimizer\repopulators\ProportionateRepopulator.h">
-      <Filter>Headerdateien</Filter>
-    </ClInclude>
-    <ClInclude Include="optimizer\LOD.h">
-      <Filter>Headerdateien</Filter>
-    </ClInclude>
-    <ClInclude Include="optimizer\mutators\Mutator.h">
-      <Filter>Headerdateien</Filter>
-    </ClInclude>
-    <ClInclude Include="optimizer\mutators\RandomMutator.h">
-      <Filter>Headerdateien</Filter>
-    </ClInclude>
-    <ClInclude Include="optimizer\mutators\ThresholdMutator.h">
-      <Filter>Headerdateien</Filter>
-    </ClInclude>
-    <ClInclude Include="matchupgenerators\MatchupGenerator.h">
-      <Filter>Headerdateien</Filter>
-    </ClInclude>
-    <ClInclude Include="payoffcalculators\PayOffCalculator.h">
-      <Filter>Headerdateien</Filter>
-    </ClInclude>
     <ClInclude Include="grids\Grid.h">
-      <Filter>Headerdateien</Filter>
-    </ClInclude>
-    <ClInclude Include="archivers\Archiver.h">
-      <Filter>Headerdateien</Filter>
-    </ClInclude>
-    <ClInclude Include="archivers\SimpleArchiver.h">
-      <Filter>Headerdateien</Filter>
-    </ClInclude>
-    <ClInclude Include="archivers\ConfigArchiver.h">
-      <Filter>Headerdateien</Filter>
-    </ClInclude>
-    <ClInclude Include="archivers\LODArchiver.h">
-      <Filter>Headerdateien</Filter>
-    </ClInclude>
-    <ClInclude Include="payoffcalculators\DefaultPayoffCalculator.h">
-      <Filter>Headerdateien</Filter>
-    </ClInclude>
-    <ClInclude Include="matchupgenerators\DefaultMatchupGenerator.h">
       <Filter>Headerdateien</Filter>
     </ClInclude>
     <ClInclude Include="grids\DefaultGrid.h">
@@ -186,6 +125,66 @@
       <Filter>Headerdateien</Filter>
     </ClInclude>
     <ClInclude Include="Configurable.h">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
+    <ClInclude Include="Group.h">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
+    <ClInclude Include="payoffcalculators\PayOffCalculator.h">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
+    <ClInclude Include="payoffcalculators\DefaultPayoffCalculator.h">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
+    <ClInclude Include="optimizer\Optimizer.h">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
+    <ClInclude Include="optimizer\selectors\RandomSelector.h">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
+    <ClInclude Include="optimizer\selectors\Selector.h">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
+    <ClInclude Include="optimizer\repopulators\Repopulator.h">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
+    <ClInclude Include="optimizer\repopulators\ProportionateRepopulator.h">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
+    <ClInclude Include="optimizer\mutators\RandomMutator.h">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
+    <ClInclude Include="optimizer\mutators\Mutator.h">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
+    <ClInclude Include="optimizer\LOD.h">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
+    <ClInclude Include="archivers\Archiver.h">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
+    <ClInclude Include="archivers\SimpleArchiver.h">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
+    <ClInclude Include="archivers\LODArchiver.h">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
+    <ClInclude Include="archivers\ConfigArchiver.h">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
+    <ClInclude Include="grids\SpatialGrid.h">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
+    <ClInclude Include="optimizer\selectors\EliteSelector.h">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
+    <ClInclude Include="optimizer\repopulators\SpatialRepopulator.h">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
+    <ClInclude Include="optimizer\mutators\ThresholdMutator.h">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
+    <ClInclude Include="optimizer\repopulators\RandomRepopulator.h">
       <Filter>Headerdateien</Filter>
     </ClInclude>
   </ItemGroup>

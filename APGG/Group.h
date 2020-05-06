@@ -1,21 +1,28 @@
 #pragma once
 #include "Organism.h"
-#include <numeric>
 
 namespace APGG {
+
+    //TODO: move to definitions.h
+    typedef uint16_t GridIndex;
+
 
     class Group
     {
     private:
-        std::vector<rOrganism> m_group;
-        std::array<unsigned int, 4> m_count;
+        std::vector<GridIndex> m_group;
+        std::array<unsigned int, Faction::Count> m_count;
     public:
-        Group(const unsigned int size);
-        void add(const rOrganism organism);
-        std::vector<rOrganism> data() const;
-        void data(const std::vector<rOrganism> data);
+        void resize(const unsigned int size);
+        std::vector<GridIndex>::iterator begin();
+        std::vector<GridIndex>& data();
+
+        GridIndex& operator[](const unsigned int index);
         unsigned int size();
-        ~Group();
+
+        std::array<unsigned int, Faction::Count>& getFactionCounter();
+        void increaseFactionCount(const Faction faction);
+        void clearFactionCount();
     };
 
 }

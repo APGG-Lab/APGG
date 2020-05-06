@@ -1,36 +1,48 @@
 #include "Group.h"
+#include "Group.h"
+#include "Group.h"
+#include "Group.h"
 
 namespace APGG {
 
-
-    Group::~Group()
+    void Group::resize(const unsigned int size)
     {
+        m_group.resize(size);
     }
 
-    Group::Group(const unsigned int size)
+    std::vector<GridIndex>::iterator Group::begin()
     {
-        m_group.reserve(size);
+        return m_group.begin();
     }
 
-    void Group::add(const rOrganism organism)
-    {
-        m_group.push_back(organism);
-    }
-
-    std::vector<rOrganism> Group::data() const
+    std::vector<GridIndex>& Group::data()
     {
         return m_group;
     }
 
-    void Group::data(const std::vector<rOrganism> data)
-    {
-        m_group = data;
-    }
+    GridIndex& Group::operator[](const unsigned int index)
+	{
+        return m_group[index];
+	}
 
-
-    unsigned int Group::size()
+	unsigned int Group::size()
     {
         return static_cast<unsigned int>(m_group.size());
+    }
+
+    std::array<unsigned int, Faction::Count>& Group::getFactionCounter()
+    {
+        return m_count;
+    }
+
+    void Group::increaseFactionCount(const Faction faction)
+    {
+        m_count[faction]++;
+    }
+
+    void Group::clearFactionCount()
+    {
+        std::fill(std::begin(m_count), std::end(m_count), 0);
     }
 
 }

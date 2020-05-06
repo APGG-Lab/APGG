@@ -2,48 +2,49 @@
 
 namespace APGG {
 
-    void ProportionateRepupoluator::repopulate(std::shared_ptr<Grid>& grid, std::vector<rOrganism>& selection)
+    void ProportionateRepupoluator::repopulate(Grid& grid, std::unordered_set<GridIndex>& selection)
     {
-        float min = grid->getMinPayoff();
-        float max = grid->getMaxPayoff();
+        auto minMaxPayoff = grid.getMinMaxPayoff();
 
-        rOrganism rParent = grid->getRandomOrganism(selection);
+        unsigned int parentOrganismIndex = grid.getRandomOrganismIndex(selection);
 
-        for (rOrganism& deadOrganism : selection)
-        {
-			float payoff = std::numeric_limits<float>::min();
-			
-			while (payoff <= getRandomFloat()) {
-                rParent = grid->getRandomOrganism(selection);
+        for (const unsigned int deadOrganismIndex : selection) {
+            float payoff = std::numeric_limits<float>::min();
 
-                if (min == max || payoff == 0) {
+            while (payoff <= getRandomFloat()) {
+                parentOrganismIndex = grid.getRandomOrganismIndex(selection);
+
+                payoff = grid[parentOrganismIndex].getNormalizedPayoff(minMaxPayoff.first, minMaxPayoff.second);
+
+                if (minMaxPayoff.first == minMaxPayoff.second || payoff == 0) {
                     //Min == Max => Difference equals 0
+                    //Avoid infinite loop
                     break;
                 }
-
-				payoff = rParent.get().getNormalizedPayoff(min, max);
-			}
-
-            pOrganism ptr = deadOrganism.get().getPtr();
-
-            deadOrganism.get().m_parent = rParent.get().getPtr();
-            deadOrganism.get().m_parent->addChild(ptr);
-            ptr.reset();
+            }
 
 
-			//Copy genomes && reset organism
-            deadOrganism.get().m_genomes = rParent.get().m_genomes;
-            deadOrganism.get().m_status = STATUS_ORIGINAL;
-            deadOrganism.get().m_mutated = false;
-            deadOrganism.get().clearChildren();
-            deadOrganism.get().m_generation = grid->getGeneration();
-
-			//Assign new ID
-			deadOrganism.get().ID = grid->getID();
+            Organism& deadOrganism = grid[deadOrganismIndex];
 
 
-            DEBUG_MSG("Repopulator: created offspring " + deadOrganism.get().getDebugString());
-            DEBUG_MSG("Repopulator: from parent " + rParent.get().getDebugString());
+            //LOD STUFF
+            grid[parentOrganismIndex].addChild(&deadOrganism);
+            deadOrganism.m_parent = &grid[parentOrganismIndex];
+
+            //Normal Generation Stuff
+            deadOrganism.m_genomes = grid[parentOrganismIndex].m_genomes;
+            deadOrganism.m_status = Status::Original;
+            deadOrganism.m_payoff = 0.0f;
+
+#ifdef __DEBUG1
+            deadOrganism.m_generation = grid.getGeneration();
+            //Assign new ID
+            deadOrganism.ID = grid.getID();
+#endif
+
+
+            DEBUG_MSG("Repopulator: created offspring " + deadOrganism.getDebugString());
+            DEBUG_MSG("Repopulator: from parent " + grid[parentOrganismIndex].getDebugString());
         }
     }
 	void ProportionateRepupoluator::configure(Config& config)

@@ -7,10 +7,8 @@ namespace APGG {
     class EliteSelector : public Selector
     {
     public:
-        EliteSelector();
-        EliteSelector(const unsigned int eliminationCount);
-        std::vector<rOrganism> select(std::shared_ptr<Grid>& grid);
-		void configure(Config& config);
+        std::unordered_set<GridIndex>& select(Grid& grid);
+		void configure(Config& config) override;
     };
 
 }

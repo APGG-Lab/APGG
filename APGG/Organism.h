@@ -19,53 +19,52 @@ namespace APGG {
     constexpr unsigned int nrGenomes = 2;
 
     enum GenomeNames { GENOME_COOPERATION = 0, GENOME_MORALS, GENOME_HISTORY1, GENOME_HISTORY2, GENOME_HISTORY3 };
-    enum Faction { FACTION_COOPERATOR = 0, FACTION_DEFECTOR, FACTION_MORALIST, FACTION_IMMORALIST };
-	enum Status { STATUS_ORIGINAL, STATUS_CLONE, STATUS_OFFSPRING, STATUS_DELETED };
+    enum Faction : uint8_t { Cooperator = 0, Defector, Moralist, Immoralist, Count };
+	enum class Status : bool { Original = false, Copy = true };
 	enum ParentStatus { PARENT_ORIGINAL, PARENT_MODIFIED };
 
 	class Organism;
 	typedef std::shared_ptr<Organism> pOrganism;
 	typedef std::reference_wrapper<Organism> rOrganism;
 
-    class Organism : public std::enable_shared_from_this<Organism>
+    class Organism
     {
     public:
+        Organism() = default;
         std::array<Genome, nrGenomes> m_genomes;
-		std::list<pOrganism> m_children;
-		pOrganism m_parent = nullptr;
 
+        Organism* m_parent = nullptr;
+        std::list<Organism*> m_children;
 #ifdef DEBUG_EXTREME
         //Custom destructor for extreme debugging
         ~Organism();
 #endif
 
+#ifdef __DEBUG
         unsigned int ID;
+        unsigned int m_generation;
+#endif //__DEBUG
+
         bool m_cooperated;
         bool m_moralist;
-        Faction m_faction;
-		unsigned int m_generation;
 
         //@todo startvalue?
         float m_payoff = 0;
-		int m_status = STATUS_ORIGINAL;
-        bool m_mutated = false;
+        Status m_status = Status::Original;
+        Faction m_faction;
 
         bool assignProfession(const float cooperationValue);
         bool assignMorals(const float moralValue);
-        Faction assignFaction();
+        Faction& assignFaction();
         Faction getFaction();
         float getNormalizedPayoff(const float min, const float max);
 
         void setPayoff(const float payoff);
-		void copyTo(pOrganism& copyOrganism);
-        pOrganism getPtr() { return shared_from_this(); };
-
+		void copyTo(Organism* copyOrganism);
 
         void clearChildren();
-        void removeChild(const pOrganism& organism);
-        void addChild(const pOrganism& organism);
-
-        std::string getDebugString();
+        void removeChild(Organism* organsim);
+        void addChild(Organism* organism);
     };
 
 
