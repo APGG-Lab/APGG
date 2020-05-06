@@ -43,7 +43,7 @@ namespace APGG {
 #ifdef __DEBUG
         unsigned int ID;
         unsigned int m_generation;
-#endif __DEBUG
+#endif //__DEBUG
 
         bool m_cooperated;
         bool m_moralist;
