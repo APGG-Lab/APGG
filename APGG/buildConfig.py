@@ -12,11 +12,11 @@ def main():
         'synergyFactor' : 1,
         'punishmentcost' : 0.0,
         'punishmentfine' : 0.0,
-        'gridtype' : Grid['Default'],
-        'payofftype' : PayoffCalculator['Default'],
-        'selectortype' : Selector['Random'],
-        'repopulationtype' : Repopulator['Proportionate'],
-        'mutatortype' : Mutator['Random'],
+        'gridType' : Grid['Default'],
+        'payoffType' : PayoffCalculator['Default'],
+        'selectorType' : Selector['Random'],
+        'repopulationType' : Repopulator['Proportionate'],
+        'mutatorType' : Mutator['Random'],
         'mutationRate' : 0.01,
         'folderName' : 'fig6-exp',
         'logSuffix': 'test1_r1',
@@ -25,7 +25,7 @@ def main():
     }
 
     addIteration('synergyFactor', 0, 6, 0.5) #From, To, StepSize
-    addIteration('mutatortype', Mutator['Random'], Mutator['RandomThreshold'], 1) #From, To, StepSize
+    addIteration('mutatorType', Mutator['Random'], Mutator['RandomThreshold'], 1) #From, To, StepSize
 
     buildConfig("configs.csv", num_experiments, baseEntry)
 
@@ -53,6 +53,7 @@ def buildConfig(configName, num_experiments, baseEntry):
     csvData = [] #CSV-Data Array
     num_experiments_counter = 0
 
+    csvData.append(list(baseEntry.keys()))
     recursiveIteration(0, baseEntry.copy(), csvData, num_experiments)
 
     writeConfig(configName, csvData)
