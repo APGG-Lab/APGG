@@ -8,6 +8,7 @@
 #include "selectors/EliteSelector.h"
 #include "repopulators/RandomRepopulator.h"
 #include "repopulators/ProportionateRepopulator.h"
+#include "repopulators/SpatialRepopulator.h"
 #include "selectors/RandomSelector.h"
 
 #include "mutators/Mutator.h"

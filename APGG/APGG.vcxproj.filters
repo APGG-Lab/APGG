@@ -90,9 +90,11 @@
     <ClCompile Include="optimizer\selectors\EliteSelector.cpp">
       <Filter>Quelldateien</Filter>
     </ClCompile>
-    <ClCompile Include="optimizer\mutators\ThresholdMutator.cpp">
+    <ClCompile Include="optimizer\repopulators\SpatialRepopulator.cpp">
       <Filter>Quelldateien</Filter>
     </ClCompile>
+    <ClCompile Include="optimizer\mutators\ThresholdMutator.cpp">
+      <Filter>Quelldateien</Filter>
     <ClCompile Include="optimizer\repopulators\RandomRepopulator.cpp">
       <Filter>Quelldateien</Filter>
     </ClCompile>
@@ -174,6 +176,9 @@
       <Filter>Headerdateien</Filter>
     </ClInclude>
     <ClInclude Include="optimizer\selectors\EliteSelector.h">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
+    <ClInclude Include="optimizer\repopulators\SpatialRepopulator.h">
       <Filter>Headerdateien</Filter>
     </ClInclude>
     <ClInclude Include="optimizer\mutators\ThresholdMutator.h">
