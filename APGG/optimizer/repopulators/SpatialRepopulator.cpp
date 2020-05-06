@@ -4,7 +4,6 @@ namespace APGG {
 
     void SpatialRepopulator::repopulate(Grid& grid, std::unordered_set<GridIndex>& selection)
     {
-        auto fitnessRanking = grid.sortByFitness();
 
         for (const GridIndex deadOrganismIndex : selection) {
 
@@ -14,42 +13,28 @@ namespace APGG {
             //TODO: replace this with a vector for radius repopulation?
             GridIndex neighbors[4] = { wrap(x - 1, y), wrap(x + 1, y), wrap(x, y - 1), wrap(x, y + 1) };
 
-            GridIndex parentOrganismIndex;
-            
-            //this is expected to find the fittest parentOrganismIndex at some point
-            for (GridIndex organismIndex : fitnessRanking)
+            GridIndex parentIndex = neighbors[0];
+            if (grid[parentIndex].m_payoff < grid[neighbors[1]].m_payoff)
             {
-                if (neighbors[0] == organismIndex)
-                {
-                    parentOrganismIndex = organismIndex;
-                    break;
-                }
-                if (neighbors[1] == organismIndex)
-                {
-                    parentOrganismIndex = organismIndex;
-                    break;
-                }
-                if (neighbors[2] == organismIndex)
-                {
-                    parentOrganismIndex = organismIndex;
-                    break;
-                }
-                if (neighbors[3] == organismIndex)
-                {
-                    parentOrganismIndex = organismIndex;
-                    break;
-                }
+                parentIndex = neighbors[1];
+            }
+            if (grid[parentIndex].m_payoff < grid[neighbors[2]].m_payoff)
+            {
+                parentIndex = neighbors[2];
+            }
+            if (grid[parentIndex].m_payoff < grid[neighbors[3]].m_payoff)
+            {
+                parentIndex = neighbors[3];
             }
 
             Organism& deadOrganism = grid[deadOrganismIndex];
 
-
             //LOD STUFF
-            grid[parentOrganismIndex].addChild(&deadOrganism);
-            deadOrganism.m_parent = &grid[parentOrganismIndex];
+            grid[parentIndex].addChild(&deadOrganism);
+            deadOrganism.m_parent = &grid[parentIndex];
 
             //Normal Generation Stuff
-            deadOrganism.m_genomes = grid[parentOrganismIndex].m_genomes;
+            deadOrganism.m_genomes = grid[parentIndex].m_genomes;
             deadOrganism.m_status = Status::Original;
 
 #ifdef __DEBUG1
@@ -60,7 +45,7 @@ namespace APGG {
 
 
             DEBUG_MSG("Repopulator: created offspring " + deadOrganism.getDebugString());
-            DEBUG_MSG("Repopulator: from parent " + grid[parentOrganismIndex].getDebugString());
+            DEBUG_MSG("Repopulator: from parent " + grid[parentIndex].getDebugString());
         }
     }
 
