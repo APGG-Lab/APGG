@@ -192,8 +192,10 @@
     <ClCompile Include="optimizer\LOD.cpp" />
     <ClCompile Include="optimizer\mutators\Mutator.cpp" />
     <ClCompile Include="optimizer\mutators\RandomMutator.cpp" />
+    <ClCompile Include="optimizer\mutators\ThresholdMutator.cpp" />
     <ClCompile Include="optimizer\Optimizer.cpp" />
     <ClCompile Include="optimizer\repopulators\ProportionateRepopulator.cpp" />
+    <ClCompile Include="optimizer\repopulators\RandomRepopulator.cpp" />
     <ClCompile Include="optimizer\repopulators\Repopulator.cpp" />
     <ClCompile Include="optimizer\repopulators\SpatialRepopulator.cpp" />
     <ClCompile Include="optimizer\selectors\EliteSelector.cpp" />
@@ -220,8 +222,10 @@
     <ClInclude Include="optimizer\LOD.h" />
     <ClInclude Include="optimizer\mutators\Mutator.h" />
     <ClInclude Include="optimizer\mutators\RandomMutator.h" />
+    <ClInclude Include="optimizer\mutators\ThresholdMutator.h" />
     <ClInclude Include="optimizer\Optimizer.h" />
     <ClInclude Include="optimizer\repopulators\ProportionateRepopulator.h" />
+    <ClInclude Include="optimizer\repopulators\RandomRepopulator.h" />
     <ClInclude Include="optimizer\repopulators\Repopulator.h" />
     <ClInclude Include="optimizer\repopulators\SpatialRepopulator.h" />
     <ClInclude Include="optimizer\selectors\EliteSelector.h" />

@@ -4,11 +4,9 @@ namespace APGG {
     class ThresholdMutator : public Mutator
     {
     protected:
-        float m_threshold = 0.2;
+        float m_threshold = 0.2f;
     public:
-
-        void setThreshold(const float threshold);
-        void mutate(const std::vector<rOrganism>& selection);
-		void configure(Config& config);
+        void mutate(Grid& grid, const std::unordered_set<GridIndex>& selection);
+        void configure(Config& config);
     };
 }

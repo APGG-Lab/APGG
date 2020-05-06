@@ -93,6 +93,11 @@
     <ClCompile Include="optimizer\repopulators\SpatialRepopulator.cpp">
       <Filter>Quelldateien</Filter>
     </ClCompile>
+    <ClCompile Include="optimizer\mutators\ThresholdMutator.cpp">
+      <Filter>Quelldateien</Filter>
+    <ClCompile Include="optimizer\repopulators\RandomRepopulator.cpp">
+      <Filter>Quelldateien</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Genome.h">
@@ -174,6 +179,12 @@
       <Filter>Headerdateien</Filter>
     </ClInclude>
     <ClInclude Include="optimizer\repopulators\SpatialRepopulator.h">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
+    <ClInclude Include="optimizer\mutators\ThresholdMutator.h">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
+    <ClInclude Include="optimizer\repopulators\RandomRepopulator.h">
       <Filter>Headerdateien</Filter>
     </ClInclude>
   </ItemGroup>

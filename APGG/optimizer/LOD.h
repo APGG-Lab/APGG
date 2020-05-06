@@ -31,7 +31,6 @@ namespace APGG {
             }
 
             if (organismPtr->m_parent != nullptr) {
-                int test = 0;
                 organismPtr->m_parent->removeChild(organismPtr);
                 parent = organismPtr->m_parent;
                 organismPtr->m_parent = nullptr;

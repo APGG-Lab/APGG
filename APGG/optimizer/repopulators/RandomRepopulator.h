@@ -7,8 +7,8 @@ namespace APGG {
         public Repopulator
     {
     public:
-        void repopulate(std::shared_ptr<Grid>& grid, std::vector<rOrganism>& selection);
-		void configure(Config& config);
+        void repopulate(Grid& grid, std::unordered_set<GridIndex>& selection);
+        void configure(Config& config);
     };
 
 }
