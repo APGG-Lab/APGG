@@ -1,13 +1,15 @@
 #include "RandomRepopulator.h"
 
 namespace APGG {
+    void repopulate(Grid& grid, std::unordered_set<GridIndex>& selection);
+    void configure(Config& config);
 
-    void RandomRepopulator::repopulate(std::shared_ptr<Grid>& grid, std::vector<rOrganism>& selection)
+    void RandomRepopulator::repopulate(Grid& grid, std::unordered_set<GridIndex>& selection)
     {
-        for (rOrganism& organism : selection) {
-            organism.get().m_genomes[0].shuffle();
-            organism.get().m_genomes[1].shuffle();
-            organism.get().m_payoff = 1.0f;
+        for (const GridIndex& index : selection) {
+            grid[index].m_genomes[0].shuffle();
+            grid[index].m_genomes[1].shuffle();
+            grid[index].m_payoff = 0.0f;
         }
     }
 	void RandomRepopulator::configure(Config& config)
