@@ -29,7 +29,7 @@ namespace APGG {
         float payoff = 0.f; //Individual payoff
         float poolAmount = 0.f; //Amount of individual payoff which goes to the group money pool
 
-        for (const unsigned int& index : group.data()) {
+        for (const GridIndex index : group.data()) {
             payoff = calculateIndividualPayoff(grid[index]);
 
             poolAmount = payoff * (1.0f - m_individualism);
@@ -40,7 +40,7 @@ namespace APGG {
         //Divide groupPayoff by number of group members and apply it to the individual payoff
         float groupPayoffPerMember = groupPayoffPool / static_cast<int>(group.data().size());
 
-        for (const unsigned int& index : group.data()) {
+        for (const GridIndex index : group.data()) {
             grid[index].m_payoff += groupPayoffPerMember;
         }
     }

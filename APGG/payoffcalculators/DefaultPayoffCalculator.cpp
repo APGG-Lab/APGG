@@ -26,12 +26,8 @@ namespace APGG {
     {
         calculateCosts(group);
 
-        float payoff = 0.f; //Individual payoff
-
-        for (const unsigned int& index : group.data()) {
-            payoff = calculateIndividualPayoff(grid[index]);
-
-            grid[index].m_payoff = payoff;
+        for (const GridIndex index : group.data()) {
+            grid[index].m_payoff = calculateIndividualPayoff(grid[index]);
         }
     }
 
