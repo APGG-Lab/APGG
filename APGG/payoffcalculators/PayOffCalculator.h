@@ -32,8 +32,8 @@ namespace APGG {
         void allowPayoffBelowZero(const bool status);
 
         virtual void calculateCosts(Group& group) = 0;
-        virtual void applyPayoff(Organism& organism) = 0;
         virtual void applyPayoff(Grid& grid, Group& group) = 0;
+        virtual float calculateIndividualPayoff(Organism& organism) = 0;
     };
 
 }

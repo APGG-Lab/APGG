@@ -7,14 +7,18 @@
 
 namespace APGG {
 
-    class DefaultPayOffCalculator : public PayOffCalculator
+    class GroupLevelPayoffCalculator : public PayOffCalculator
     {
+    private:
+        float m_individualism = 0.5f;
+        float m_groupPayoffPool = 0.0f;
     public:
-        DefaultPayOffCalculator();
+        GroupLevelPayoffCalculator();
         void calculateCosts(Group& group);
+        void applyPayoff(Organism& organism);
         void applyPayoff(Grid& grid, Group& group);
-		void configure(Config& config);
         float calculateIndividualPayoff(Organism& organism);
+		void configure(Config& config);
     };
 
 }

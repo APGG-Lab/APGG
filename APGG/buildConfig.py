@@ -14,6 +14,7 @@ def main():
         'punishmentfine' : 0.0,
         'gridType' : Grid['Default'],
         'payoffType' : PayoffCalculator['Default'],
+        'payoffIndividualism' : 0.5,
         'selectorType' : Selector['Random'],
         'repopulationType' : Repopulator['Proportionate'],
         'mutatorType' : Mutator['Random'],
