@@ -215,6 +215,7 @@
     <ClInclude Include="ConfigParserCSV.h" />
     <ClInclude Include="Configurable.h" />
     <ClInclude Include="Genome.h" />
+    <ClInclude Include="grids\GridComponent.h" />
     <ClInclude Include="grids\DefaultGrid.h" />
     <ClInclude Include="grids\Grid.h" />
     <ClInclude Include="grids\SpatialGrid.h" />

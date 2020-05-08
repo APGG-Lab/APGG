@@ -5,8 +5,7 @@
 #include <ctime>
 #include <sstream>
 #include <cstdlib>
-#include "grids/DefaultGrid.h"
-#include "grids/SpatialGrid.h"
+#include "grids/GridComponent.h"
 #include "payoffcalculators/DefaultPayoffCalculator.h"
 #include "archivers/SimpleArchiver.h"
 #include "archivers/LODArchiver.h"
@@ -36,19 +35,22 @@ namespace APGG {
         unsigned int m_exponent = 10; ///Exponential logging (0-10,10,20,30,100,200,300,1000,2000,3000,....)
 //#endif // !__DEBUG
 
-
 		bool m_archiveData;
 
         std::array<unsigned int, 4> m_count;
 
-        //DefaultMatchupGenerator m_matchupGenerator;
-        DefaultPayOffCalculator m_payoffCalculator;
+        std::unique_ptr<Grid> m_grid;
+        std::unique_ptr<PayOffCalculator> m_payoffCalculator;
+        //std::unique_ptr<Selector> m_selector;
+        //std::unique_ptr<Repopulator> m_repopulator;
+        //std::unique_ptr<Mutator> m_mutator;
+        Optimizer m_optimizer;
+
         SimpleArchiver m_archiver;
         LODArchiver m_lodArchiver;
         ConfigArchiver m_configArchiver;
-        Optimizer m_optimizer;
         LOD m_lod;
-        SpatialGrid m_grid;
+        
 
     public:
         void Init(Config & config);

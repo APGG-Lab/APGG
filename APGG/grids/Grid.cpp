@@ -36,6 +36,11 @@ namespace APGG {
         return m_grid[index];
 	}
 
+	Organism& Grid::get(const GridIndex index)
+	{
+        return m_grid[index];
+	}
+
    std::pair<float, float> Grid::getMinMaxPayoff()
    {
        auto minmax = std::minmax_element(std::begin(m_grid), std::end(m_grid),

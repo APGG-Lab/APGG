@@ -37,6 +37,7 @@ namespace APGG {
         std::vector<Organism>& getData();
         unsigned int getGeneration() const;
         Organism& operator[](const GridIndex index);
+        Organism& get(const GridIndex index);
         std::pair<float, float> getMinMaxPayoff();
         GridIndex getRandomOrganismIndex();
         GridIndex getRandomOrganismIndex(const std::unordered_set<GridIndex>& blacklist);

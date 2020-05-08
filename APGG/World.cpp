@@ -41,13 +41,15 @@ namespace APGG {
         std::fill(std::begin(m_count), std::end(m_count), 0);
 
         //Setup the grid
-        m_grid.configure(config);
+        m_grid = CreateGrid(config);
+        m_grid->configure(config);
 
         //Setup the matchup/group generator
         //m_matchupGenerator.configure(config);
 
         //Setup the payoff calculator
-        m_payoffCalculator.configure(config);
+        m_payoffCalculator = std::make_unique<DefaultPayOffCalculator>();
+        m_payoffCalculator->configure(config);
 
         m_optimizer.configure(config);
 
@@ -86,23 +88,22 @@ namespace APGG {
 
     void World::Tick()
     {
-        //m_matchupGenerator.generateGroups(m_grid);
-        m_grid.generateGroups();
+        m_grid->generateGroups();
 
-        std::vector<Group>& groups = m_grid.getGroups();
+        std::vector<Group>& groups = m_grid->getGroups();
 
         
 
         for (Group& group : groups) {
-            for (const unsigned int& index : group.data()) {
-                Faction& faction = m_grid[index].assignFaction();
+            for (const GridIndex& index : group.data()) {
+                Faction& faction = m_grid->get(index).assignFaction();
                 group.increaseFactionCount(faction);
             }
 
-            m_payoffCalculator.applyPayoff(m_grid, group);
+            m_payoffCalculator->applyPayoff(*m_grid, group);
         }
 
-        m_archiver.archive(m_generation, m_grid.getFactionCount());
+        m_archiver.archive(m_generation, m_grid->getFactionCount());
 
 
 //#ifdef __DEBUG
@@ -115,15 +116,15 @@ namespace APGG {
     void World::Fini()
     {
 
-        m_lod.logTop(m_grid, m_lodArchiver);
+        m_lod.logTop(*m_grid, m_lodArchiver);
 
      //   for (Organism& oragnism : m_grid.getData()) {
      //       m_lod.wipe(oragnism);
      //   }
 
-        m_lod.cleanup(m_grid);
+        m_lod.cleanup(*m_grid);
 
-        m_grid.getData().clear();
+        m_grid->getData().clear();
 
         m_archiver.close();
         m_lodArchiver.close();
@@ -138,7 +139,7 @@ namespace APGG {
 
     void World::Evolve()
     {
-        m_optimizer.optmize(m_grid, m_lod);
-        m_grid.setGeneration(m_generation++);
+        m_optimizer.optmize(*m_grid, m_lod);
+        m_grid->setGeneration(m_generation++);
     }
 }
