@@ -44,14 +44,21 @@ namespace APGG {
         m_grid = Grid::Create(config);
         m_grid->configure(config);
 
-        //Setup the matchup/group generator
-        //m_matchupGenerator.configure(config);
-
         //Setup the payoff calculator
-        m_payoffCalculator = std::make_unique<DefaultPayOffCalculator>();
+        m_payoffCalculator = PayOffCalculator::Create(config);
         m_payoffCalculator->configure(config);
 
-        m_optimizer.configure(config);
+        //Setup the mutator
+        m_mutator = Mutator::Create(config);
+        m_mutator->configure(config);
+
+        //Setup the selector
+        m_selector = Selector::Create(config);
+        m_selector->configure(config);
+
+        //Setup the repopulator
+        m_repopulator = Repopulator::Create(config);
+        m_repopulator->configure(config);
 
        	m_archiver.configure(config);
         m_archiver.open();
@@ -91,8 +98,6 @@ namespace APGG {
         m_grid->generateGroups();
 
         std::vector<Group>& groups = m_grid->getGroups();
-
-        
 
         for (Group& group : groups) {
             for (const GridIndex& index : group.data()) {
@@ -139,7 +144,16 @@ namespace APGG {
 
     void World::Evolve()
     {
-        m_optimizer.optmize(*m_grid, m_lod);
+
+        std::unordered_set<GridIndex>& selection = m_selector->select(*m_grid);
+
+        m_lod.LOD2(*m_grid, selection);
+
+        m_repopulator->repopulate(*m_grid, selection);
+
+        m_mutator->mutate(*m_grid, selection);
+
+
         m_grid->setGeneration(m_generation++);
     }
 }

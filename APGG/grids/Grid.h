@@ -30,8 +30,7 @@ namespace APGG {
     public:
         Grid();
 
-        //Empty implementation to avoid errors when we use the base class
-        virtual void configure(Config& config);
+        virtual void configure(Config& config) = 0;
         void setGeneration(const unsigned int generation);
         unsigned int size() const;
         std::vector<Organism>& getData();
@@ -51,8 +50,7 @@ namespace APGG {
         std::vector<Group>& getGroups();
         std::vector<GridIndex>& getGridKeys();
 
-        //Empty implementation to avoid errors when we use the base class
-        virtual void generateGroups();
+        virtual void generateGroups() = 0;
 
 
         static std::unique_ptr<Grid> Create(Config& config);

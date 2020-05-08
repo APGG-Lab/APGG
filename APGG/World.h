@@ -5,17 +5,21 @@
 #include <ctime>
 #include <sstream>
 #include <cstdlib>
+
 #include "grids/Grid.h"
-#include "payoffcalculators/DefaultPayoffCalculator.h"
+#include "payoffcalculators/PayoffCalculator.h"
+#include "mutators/Mutator.h"
+#include "selectors/Selector.h"
+#include "repopulators/Repopulator.h"
+
 #include "archivers/SimpleArchiver.h"
 #include "archivers/LODArchiver.h"
 #include "archivers/ConfigArchiver.h"
-#include "optimizer/Optimizer.h"
+#include "LOD.h"
 
 typedef std::chrono::steady_clock HighResClock;
 typedef std::chrono::milliseconds ms;
 typedef std::chrono::duration<double> fsec;
-
 
 #include <fstream>
 
@@ -41,10 +45,9 @@ namespace APGG {
 
         std::unique_ptr<Grid> m_grid;
         std::unique_ptr<PayOffCalculator> m_payoffCalculator;
-        //std::unique_ptr<Selector> m_selector;
-        //std::unique_ptr<Repopulator> m_repopulator;
-        //std::unique_ptr<Mutator> m_mutator;
-        Optimizer m_optimizer;
+        std::unique_ptr<Selector> m_selector;
+        std::unique_ptr<Repopulator> m_repopulator;
+        std::unique_ptr<Mutator> m_mutator;
 
         SimpleArchiver m_archiver;
         LODArchiver m_lodArchiver;

@@ -11,11 +11,6 @@ namespace APGG {
     {
     }
 
-
-    void Grid::configure(Config& config)
-    {
-    }
-
     void Grid::setGeneration(const unsigned int generation)
     {
         m_generation = generation;
@@ -130,10 +125,6 @@ namespace APGG {
         return m_gridKeys;
     }
 
-    void Grid::generateGroups()
-    {
-    }
-
 	std::unique_ptr<Grid> Grid::Create(Config& config)
 	{
         GridType gridType = static_cast<GridType>(stoul(config.getValue("gridType", "0")));
@@ -143,8 +134,6 @@ namespace APGG {
             std::cin.get();
             std::quick_exit(1);
         }
-
-        std::unique_ptr<Grid> grid;
 
         switch (gridType) {
         case GridType::Default:

@@ -2,12 +2,12 @@
 #include <vector>
 #include <list>
 #include <unordered_set>
-#include "../Configurable.h"
+#include "Configurable.h"
 
-#include "../Organism.h"
-#include "../grids/Grid.h"
-#include "../archivers/Archiver.h"
-#include "../archivers/LODArchiver.h"
+#include "Organism.h"
+#include "grids/Grid.h"
+#include "archivers/Archiver.h"
+#include "archivers/LODArchiver.h"
 namespace APGG {
 	class LOD
 	{
