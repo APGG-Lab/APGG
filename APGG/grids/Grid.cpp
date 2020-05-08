@@ -1,6 +1,11 @@
 #include "Grid.h"
 
+#include "DefaultGrid.h"
+#include "SpatialGrid.h"
+
 namespace APGG {
+
+    enum class GridType : unsigned long { Default = 0, Spatial, Count };
 
     Grid::Grid()
     {
@@ -128,6 +133,27 @@ namespace APGG {
     void Grid::generateGroups()
     {
     }
+
+	std::unique_ptr<Grid> Grid::Create(Config& config)
+	{
+        GridType gridType = static_cast<GridType>(stoul(config.getValue("gridType", "0")));
+
+        if (gridType >= GridType::Count) {
+            std::cerr << std::endl << "[APGG Error] invalid grid type. gridType must be < " << static_cast<int>(GridType::Count);
+            std::cin.get();
+            std::quick_exit(1);
+        }
+
+        std::unique_ptr<Grid> grid;
+
+        switch (gridType) {
+        case GridType::Default:
+            return std::make_unique<DefaultGrid>();
+        default:
+        case GridType::Spatial:
+            return std::make_unique<SpatialGrid>();
+        }
+	}
 
 	//unsigned int Grid::getWidth() const
 	//{

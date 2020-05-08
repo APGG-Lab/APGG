@@ -53,5 +53,8 @@ namespace APGG {
 
         //Empty implementation to avoid errors when we use the base class
         virtual void generateGroups();
+
+
+        static std::unique_ptr<Grid> Create(Config& config);
     };
 }

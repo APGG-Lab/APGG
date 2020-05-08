@@ -41,7 +41,7 @@ namespace APGG {
         std::fill(std::begin(m_count), std::end(m_count), 0);
 
         //Setup the grid
-        m_grid = CreateGrid(config);
+        m_grid = Grid::Create(config);
         m_grid->configure(config);
 
         //Setup the matchup/group generator

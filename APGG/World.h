@@ -5,7 +5,7 @@
 #include <ctime>
 #include <sstream>
 #include <cstdlib>
-#include "grids/GridComponent.h"
+#include "grids/Grid.h"
 #include "payoffcalculators/DefaultPayoffCalculator.h"
 #include "archivers/SimpleArchiver.h"
 #include "archivers/LODArchiver.h"
