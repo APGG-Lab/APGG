@@ -10,8 +10,8 @@ def main():
         'height' : 32,
         'cooperateCost' : 1,
         'synergyFactor' : 1,
-        'punishmentcost' : 0.0,
-        'punishmentfine' : 0.0,
+        'punishmentCost' : 0.0,
+        'punishmentFine' : 0.0,
         'gridType' : Grid['Default'],
         'payoffType' : PayoffCalculator['Default'],
         'selectorType' : Selector['Random'],
@@ -21,7 +21,7 @@ def main():
         'folderName' : 'fig6-exp',
         'logSuffix': 'test1_r1',
         'timeToFile' : 1,
-        'timeToFolder' : 0,
+        'timeToFolder' : 0
     }
 
     addIteration('synergyFactor', 0, 6, 0.5) #From, To, StepSize

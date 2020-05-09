@@ -26,21 +26,16 @@ namespace APGG {
 			<< "synergyFactor;" << config.getValue("synergyFactor") << std::endl
 			<< "punishmentCost;" << config.getValue("punishmentCost") << std::endl
 			<< "punishmentFine;" << config.getValue("punishmentFine") << std::endl
-			<< "matchupType;" << config.getValue("matchupType") << std::endl
 			<< "selectorType;" << config.getValue("selectorType") << std::endl
 			<< "repopulatorType;" << config.getValue("repopulationType") << std::endl
             << "gridType;" << config.getValue("gridType") << std::endl
             << "payoffType;" << config.getValue("payoffType") << std::endl
             << "mutatorType;" << config.getValue("mutatorType") << std::endl
 			<< "mutationRate;" << config.getValue("mutationRate") << "%" << std::endl
-			<< "showAllGenerations;" << config.getValue("showAllGenerations") << std::endl
-			<< "archiveData;" << config.getValue("archiveData") << std::endl
-			<< "visualize;" << config.getValue("visualize") << std::endl
 			<< "folderName;" << config.getValue("folderName") << std::endl
 			<< "logSuffix;" << config.getValue("logSuffix") << std::endl
 			<< "timeToFile;" << config.getValue("timeToFile") << std::endl
 			<< "timeToFolder;" << config.getValue("timeToFolder") << std::endl
-			<< "consoleOutExponent;" << config.getValue("consoleOutExponent");
     }
 
     void ConfigArchiver::archive(const std::string & line)
