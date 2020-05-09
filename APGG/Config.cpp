@@ -9,7 +9,7 @@ namespace APGG {
 		if (i == m_configMap.end())
 		{
 			//not found
-			std::cout << "[APGG Warning] You requested a non existing config key " + key + ". Using default: " + alternative << std::endl;
+			std::cout << "[APGG Warning] You requested a non existing config key \"" + key + "\". Using default: \"" + alternative << "\"" << std::endl;
 			return alternative;
 		}
 		else
