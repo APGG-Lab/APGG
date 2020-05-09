@@ -21,40 +21,43 @@ namespace APGG {
         m_payoff = m_synergyFactor * nCooperators / group.size();
     }
 
-    void DefaultPayOffCalculator::applyPayoff(Organism & organism)
-    {
-
-        organism.m_payoff += m_payoff;
-
-        if (organism.m_moralist) { //Subtract punishment costs from moralists/immoralists
-            organism.m_payoff -= m_punishmentCost;
-        };
-
-        if (!organism.m_cooperated) {//Substract punishment fine from defectors/immoralists
-            organism.m_payoff -= m_punishmentFine;
-        }
-        else {
-            organism.m_payoff -= m_cooperationCost; //Substract 1 from cooperators / moralists
-        }
-
-        if (!m_allowPayoffBelowZero && organism.m_payoff < 0) {
-            organism.m_payoff = 0;
-        }
-    }
 
     void DefaultPayOffCalculator::applyPayoff(Grid& grid, Group & group)
     {
         calculateCosts(group);
 
-        for (const unsigned int& index : group.data()) {
-            applyPayoff(grid[index]);
+        for (const GridIndex index : group.data()) {
+            grid[index].m_payoff = calculateIndividualPayoff(grid[index]);
         }
     }
+
 	void DefaultPayOffCalculator::configure(Config& config)
 	{
 		m_cooperationCost = std::stof(config.getValue("cooperateCost"));
 		m_synergyFactor = std::stof(config.getValue("synergyFactor"));
 		m_punishmentCostBase = std::stof(config.getValue("punishmentCost"));
 		m_punishmentFineBase = std::stof(config.getValue("punishmentFine"));
+	}
+	float DefaultPayOffCalculator::calculateIndividualPayoff(Organism& organism)
+	{
+
+        float payoff = 0;
+
+        if (organism.m_moralist) { //Subtract punishment costs from moralists/immoralists
+            payoff -= m_punishmentCost;
+        };
+
+        if (!organism.m_cooperated) {//Substract punishment fine from defectors/immoralists
+            payoff -= m_punishmentFine;
+        }
+        else {
+            payoff -= m_cooperationCost; //Substract 1 from cooperators / moralists
+        }
+
+        if (!m_allowPayoffBelowZero && m_payoff < 0) {
+            payoff = 0;
+        }
+
+        return payoff;
 	}
 }
