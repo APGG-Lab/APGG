@@ -11,7 +11,7 @@ INC_DIRS := $(shell find $(SRC_DIRS) -type d)
 INC_FLAGS := $(addprefix -I,$(INC_DIRS))
 
 CPPFLAGS ?= $(INC_FLAGS) -MMD -MP -std=c++17 -Wall
-LDFLAGS += -lstdc++ -lm -lstdc++fs
+LDFLAGS += -lstdc++ -lm -lstdc++fs -lpthread
 
 
 .PHONY: clean
