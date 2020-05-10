@@ -27,7 +27,7 @@ namespace APGG {
         calculateCosts(group);
 
         for (const GridIndex index : group.data()) {
-            grid[index].m_payoff = calculateIndividualPayoff(grid[index]);
+            grid[index].m_payoff += calculateIndividualPayoff(grid[index]);
         }
     }
 
@@ -41,7 +41,7 @@ namespace APGG {
 	float DefaultPayOffCalculator::calculateIndividualPayoff(Organism& organism)
 	{
 
-        float payoff = 0;
+        float payoff = m_payoff;
 
         if (organism.m_moralist) { //Subtract punishment costs from moralists/immoralists
             payoff -= m_punishmentCost;

@@ -94,6 +94,7 @@ namespace APGG {
         
 
         for (Group& group : groups) {
+            group.clearFactionCount();
             for (const unsigned int& index : group.data()) {
                 Faction& faction = m_grid[index].assignFaction();
                 group.increaseFactionCount(faction);
@@ -107,7 +108,7 @@ namespace APGG {
 
 //#ifdef __DEBUG
 //        //Only draw slow debug messages when in DEBUG mode
-        printStatus();
+ //       printStatus();
 //#endif // __DEBUG
 
     }

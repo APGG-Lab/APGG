@@ -48,7 +48,7 @@ namespace APGG {
         ConfigArchiver m_configArchiver;
         Optimizer m_optimizer;
         LOD m_lod;
-        SpatialGrid m_grid;
+        DefaultGrid m_grid;
 
     public:
         void Init(Config & config);

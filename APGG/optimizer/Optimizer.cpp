@@ -62,7 +62,7 @@ namespace APGG {
 		//	m_repopulator = std::make_unique<ProportionateRepupoluator>();
 		//	break;
 		//}
-		m_repopulator = std::make_unique<SpatialRepopulator>();
+		m_repopulator = std::make_unique<ProportionateRepupoluator>();
 		m_repopulator->configure(config);
 	
 

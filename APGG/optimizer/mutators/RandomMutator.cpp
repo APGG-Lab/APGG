@@ -16,5 +16,5 @@ void APGG::RandomMutator::mutate(Grid& grid, const std::unordered_set<GridIndex>
 
 void APGG::RandomMutator::configure(Config& config)
 {
-	m_mutationRate = stof(config.getValue("mutationRate"));
+	m_mutationRate = stof(config.getValue("mutationRate", "0.1"));
 }

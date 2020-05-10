@@ -1,9 +1,9 @@
 import os
-import sys
+import sys 
 import csv
 import matplotlib.pyplot as plt
 
-num_experiments = 30;
+num_experiments = 10;
 
 def main():
     print("Test")
@@ -18,7 +18,7 @@ def main():
     plt.show()
 
 def getSynergyFactor(fileName):
-    return (fileName[-10:])
+    return fileName #(fileName[-10:])
 
 def getFilteredFileList(folder, filter):
     fileList = []
@@ -58,7 +58,7 @@ def analyseScoreFiles(fileList):
         csvData.append(list(types.values()))
 
         print("Status: " + str(i));
-        i+=30
+        i+=num_experiments
 
     with open('../results.csv', 'a', newline='') as csvFile:
         writer = csv.writer(csvFile, delimiter=";")
@@ -76,14 +76,14 @@ def analyseLODFiles(fileList):
         for j in range(i, i+num_experiments):
             file = fileList[j]
             lastLine = getLastLineOfFileAsCSV(file)
-            types["c"] += float(lastLine[7])
-            types["d"] += float(lastLine[8])
+            types["c"] += float(lastLine[5])
+            types["d"] += float(lastLine[6])
         types["c"] /= num_experiments
         types["d"] /= num_experiments
         csvData.append(list(types.values()))
 
         print("Status: " + str(i));
-        i+=30
+        i+=num_experiments
 
     with open('../results_LOD.csv', 'a', newline='') as csvFile:
         writer = csv.writer(csvFile, delimiter=";")
@@ -92,7 +92,7 @@ def analyseLODFiles(fileList):
     return csvData
 
 def showScorePlot(y):
-    x = [1.0, 1.5, 2, 2.5, 3, 3.5, 4, 4.5, 5, 5.5, 6]
+    x = [0, 1.0, 2, 3, 4, 5, 6]
     labels = ['cooperate', 'defect', 'moralist', 'immoralist', 'fracPun', 'fracNonPun', 'fracCoop', 'fracNoCoop']
     plt.figure(1)
     plt.xticks(x, x)
@@ -103,7 +103,7 @@ def showScorePlot(y):
     plt.legend(labels)
 
 def showLODPlot(y):
-    x = [1.0, 1.5, 2, 2.5, 3, 3.5, 4, 4.5, 5, 5.5, 6]
+    x = [0, 1.0, 2, 3, 4, 5, 6]
     labels = ['pCoop', 'pMoral']
     plt.figure(2)
     plt.xticks(x, x)
