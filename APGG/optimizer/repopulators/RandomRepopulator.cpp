@@ -9,7 +9,6 @@ namespace APGG {
         for (const GridIndex& index : selection) {
             grid[index].m_genomes[0].shuffle();
             grid[index].m_genomes[1].shuffle();
-            grid[index].m_payoff = 0.0f;
         }
     }
 	void RandomRepopulator::configure(Config& config)

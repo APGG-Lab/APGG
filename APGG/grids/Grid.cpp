@@ -120,6 +120,13 @@ namespace APGG {
         return m_gridKeys;
     }
 
+    void Grid::resetPayoff(const float payoff)
+    {
+        for (Organism& organism : m_grid) {
+            organism.m_payoff = payoff;
+        }
+    }
+
     void Grid::generateGroups()
     {
     }

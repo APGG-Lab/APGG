@@ -34,7 +34,6 @@ namespace APGG {
             //Normal Generation Stuff
             deadOrganism.m_genomes = grid[parentOrganismIndex].m_genomes;
             deadOrganism.m_status = Status::Original;
-            deadOrganism.m_payoff = 0.0f;
 
 #ifdef __DEBUG1
             deadOrganism.m_generation = grid.getGeneration();

@@ -50,6 +50,8 @@ namespace APGG {
         std::vector<Group>& getGroups();
         std::vector<GridIndex>& getGridKeys();
 
+        void resetPayoff(const float payoff = 0);
+
         //Empty implementation to avoid errors when we use the base class
         virtual void generateGroups();
     };

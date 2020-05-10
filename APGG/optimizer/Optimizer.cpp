@@ -12,6 +12,8 @@ namespace APGG {
         m_repopulator->repopulate(grid, selection);
 
         m_mutator->mutate(grid, selection);
+
+		grid.resetPayoff();
     }
 
 	//TODO: make mutators, repopulators and selectors configurable too
