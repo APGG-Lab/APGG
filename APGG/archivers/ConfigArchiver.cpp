@@ -28,14 +28,14 @@ namespace APGG {
 			<< "punishmentFine;" << config.getValue("punishmentFine") << std::endl
 			<< "selectorType;" << config.getValue("selectorType") << std::endl
 			<< "repopulatorType;" << config.getValue("repopulationType") << std::endl
-            << "gridType;" << config.getValue("gridType") << std::endl
-            << "payoffType;" << config.getValue("payoffType") << std::endl
-            << "mutatorType;" << config.getValue("mutatorType") << std::endl
+			<< "gridType;" << config.getValue("gridType") << std::endl
+			<< "payoffType;" << config.getValue("payoffType") << std::endl
+			<< "mutatorType;" << config.getValue("mutatorType") << std::endl
 			<< "mutationRate;" << config.getValue("mutationRate") << "%" << std::endl
 			<< "folderName;" << config.getValue("folderName") << std::endl
 			<< "logSuffix;" << config.getValue("logSuffix") << std::endl
 			<< "timeToFile;" << config.getValue("timeToFile") << std::endl
-			<< "timeToFolder;" << config.getValue("timeToFolder") << std::endl
+			<< "timeToFolder;" << config.getValue("timeToFolder") << std::endl;
     }
 
     void ConfigArchiver::archive(const std::string & line)
