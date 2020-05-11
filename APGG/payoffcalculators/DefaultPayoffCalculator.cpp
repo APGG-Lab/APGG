@@ -54,7 +54,7 @@ namespace APGG {
             payoff -= m_cooperationCost; //Substract 1 from cooperators / moralists
         }
 
-        if (!m_allowPayoffBelowZero && m_payoff < 0) {
+        if (!m_allowPayoffBelowZero && payoff < 0) {
             payoff = 0;
         }
 
