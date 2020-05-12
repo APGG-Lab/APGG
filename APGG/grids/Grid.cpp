@@ -99,11 +99,9 @@ namespace APGG {
 
     Organism& Grid::getTopOrganism()
     {
-        std::vector<GridIndex> m_gridKeys;
-        //Fill vector with grid key numbers and shuffle them
-        m_gridKeys.resize(m_grid.size()); // vector with 1024 uints.
+        std::vector<GridIndex> gridKeys(m_gridKeys.begin(), m_gridKeys.end()); //Create copy of gridkeys
 
-        std::sort(m_gridKeys.begin(), m_gridKeys.end(), [this](const unsigned int& a1, const unsigned int& a2) {
+        std::sort(gridKeys.begin(), gridKeys.end(), [this](const GridIndex a1, const GridIndex a2) {
             return m_grid[a1].m_payoff > m_grid[a2].m_payoff;
             });
 
