@@ -86,12 +86,14 @@ namespace APGG {
 
     void World::Tick()
     {
+        m_grid.resetPayoff();
+
         //m_matchupGenerator.generateGroups(m_grid);
         m_grid.generateGroups();
 
         std::vector<Group>& groups = m_grid.getGroups();
 
-        
+
 
         for (Group& group : groups) {
             group.clearFactionCount();
@@ -108,7 +110,7 @@ namespace APGG {
 
 //#ifdef __DEBUG
 //        //Only draw slow debug messages when in DEBUG mode
- //       printStatus();
+        printStatus();
 //#endif // __DEBUG
 
     }
