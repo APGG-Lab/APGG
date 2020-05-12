@@ -4,35 +4,36 @@ namespace APGG {
 
     void ProportionateRepupoluator::repopulate(Grid& grid, std::unordered_set<GridIndex>& selection)
     {
-        auto minMaxPayoff = grid.getMinMaxPayoff();
+        const auto minMaxPayoff = grid.getMinMaxPayoff();
 
-        unsigned int parentOrganismIndex = grid.getRandomOrganismIndex(selection);
+        for (const GridIndex deadOrganismIndex : selection) {
+            GridIndex parentIndex;
 
-        for (const unsigned int deadOrganismIndex : selection) {
-            float payoff = std::numeric_limits<float>::min();
+            int i = 0;
+            float payoff = -10000.0f;
 
-            while (payoff <= getRandomFloat()) {
-                parentOrganismIndex = grid.getRandomOrganismIndex(selection);
+            do {
+                parentIndex = grid.getRandomOrganismIndex(selection);
+                payoff = grid[parentIndex].getNormalizedPayoff(minMaxPayoff.first, minMaxPayoff.second);
 
-                payoff = grid[parentOrganismIndex].getNormalizedPayoff(minMaxPayoff.first, minMaxPayoff.second);
-
-                if (minMaxPayoff.first == minMaxPayoff.second || payoff == 0) {
+                if (minMaxPayoff.first == minMaxPayoff.second) {
                     //Min == Max => Difference equals 0
                     //Avoid infinite loop
                     break;
                 }
-            }
 
+                //break when we get payoff >= rand or when we failed 3 times.
+            } while (payoff <= getRandomFloat() && i++ < 3); 
 
             Organism& deadOrganism = grid[deadOrganismIndex];
 
 
             //LOD STUFF
-            grid[parentOrganismIndex].addChild(&deadOrganism);
-            deadOrganism.m_parent = &grid[parentOrganismIndex];
+            grid[parentIndex].addChild(&deadOrganism);
+            deadOrganism.m_parent = &grid[parentIndex];
 
             //Normal Generation Stuff
-            deadOrganism.m_genomes = grid[parentOrganismIndex].m_genomes;
+            deadOrganism.m_genomes = grid[parentIndex].m_genomes;
             deadOrganism.m_status = Status::Original;
 
 #ifdef __DEBUG1
