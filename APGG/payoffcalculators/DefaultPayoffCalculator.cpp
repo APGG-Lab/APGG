@@ -28,6 +28,10 @@ namespace APGG {
 
         for (const GridIndex index : group.data()) {
             grid[index].m_payoff += calculateIndividualPayoff(grid[index]);
+
+            if (!m_allowPayoffBelowZero && grid[index].m_payoff < 0) {
+                grid[index].m_payoff = 0;
+            }
         }
     }
 
@@ -52,10 +56,6 @@ namespace APGG {
         }
         else {
             payoff -= m_cooperationCost; //Substract 1 from cooperators / moralists
-        }
-
-        if (!m_allowPayoffBelowZero && m_payoff < 0) {
-            payoff = 0;
         }
 
         return payoff;
