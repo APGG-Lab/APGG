@@ -35,7 +35,7 @@ namespace APGG {
         m_totalSize = m_width * m_height;
 
         if (m_grid.size() % stoi(config.getValue("groupSize")) != 0) {
-            std::cerr << std::endl << "[APGG Error] invalid group size. Gridsize (height*width) % Groupsize must be 0";
+            std::cerr << "\n[APGG Error] invalid group size. Gridsize (height*width) % Groupsize must be 0";
             std::cin.get();
             std::quick_exit(1);
         };

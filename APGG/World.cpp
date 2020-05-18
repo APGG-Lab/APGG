@@ -23,7 +23,7 @@ namespace APGG {
         //    << "\tD(%): " << m_count[FACTION_DEFECTOR] << "(" << m_count[FACTION_DEFECTOR] / size * 100 << ")"
          //   << "\tM(%): " << m_count[FACTION_MORALIST] << "(" << m_count[FACTION_MORALIST] / size * 100 << ")"
         //    << "\tI(%): " << m_count[FACTION_IMMORALIST] << "(" << m_count[FACTION_IMMORALIST] / size * 100 << ")"
-            << "\ttook: " << timeDelta.count() << " ms" << std::endl;
+            << "\ttook: " << timeDelta.count() << " ms\n";
 
         if (m_generation >= m_exponent * 10) {
             //Only increase the exponent, when m_generation reaches m_exponent
@@ -76,7 +76,7 @@ namespace APGG {
                 << "\t(Group " << config.getValue("folderName")
                 << " Exp:" << config.getValue("logSuffix")
                 << " Syn" << config.getValue("synergyFactor")
-                << ") [took " << timeDelta.count() << " ms]" << std::endl;
+                << ") [took " << timeDelta.count() << " ms]\n";
 
             std::cout << ss.str() ;
         }
@@ -136,7 +136,7 @@ namespace APGG {
 
         fsec fs = m_clock_now - m_clock_start;
         ms timeDelta = std::chrono::duration_cast<ms>(fs);
-        std::cout << "[APGG] Fini (took " << timeDelta.count() << " ms)" << std::endl;
+        std::cout << "[APGG] Fini (took " << timeDelta.count() << " ms)\n";
     }
 
     void World::Evolve()

@@ -18,17 +18,17 @@ namespace APGG {
             << counter[Faction::Cooperator] << ";" 
             << counter[Faction::Defector] << ";"
             << counter[Faction::Moralist] << ";" 
-            << counter[Faction::Immoralist] << std::endl;
+            << counter[Faction::Immoralist] << "\n";
     }
 
     void SimpleArchiver::archive(const std::string & line)
     {
-        m_fileHandle << line << std::endl;
+        m_fileHandle << line << "\n";
     }
 	void SimpleArchiver::configure(Config& config)
 	{
 		if (!stoi(config.getValue("timeToFile")) && stoi(config.getValue("timeToFolder"))) {
-			std::cerr << std::endl << "[APGG Warning] timeToFile disabled. You may overwrite your previous experiments";
+			std::cerr << "\n[APGG Warning] timeToFile disabled. You may overwrite your previous experiments";
 			std::cin.get();
 		}
 

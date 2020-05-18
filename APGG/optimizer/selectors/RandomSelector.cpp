@@ -29,12 +29,12 @@ namespace APGG {
         const unsigned int totalSize = width * height;
 
         if (m_eliminationCount / static_cast<float>(totalSize) >= 1.0) {
-            std::cerr << std::endl << "[APGG Error] EliminationCount >= size of grid";
+            std::cerr << "\n[APGG Error] EliminationCount >= size of grid";
             std::cin.get();
             std::quick_exit(1);
         }
         else if(m_eliminationCount / static_cast<float>(totalSize) > 0.9){
-            std::cout << "[APGG Warning] EliminationCount is 0.9% of the grid size. It can take a while to find a good organism" << std::endl;
+            std::cout << "[APGG Warning] EliminationCount is 0.9% of the grid size. It can take a while to find a good organism\n";
         }
 
         m_selection.reserve(m_eliminationCount);

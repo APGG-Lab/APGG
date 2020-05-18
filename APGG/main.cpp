@@ -27,7 +27,7 @@ void RunExperiment(Config config)
 
 int main(int argc, char * argv[]) {
 	auto configs = ConfigParserCSV::parseConfigs("configs.csv");
-    std::cout << "[APGG Init] loading " << configs.size() << " experiments" << std::endl;
+    std::cout << "[APGG Init] loading " << configs.size() << " experiments\n";
 
 	int threadCount = 1;
 	if (argc == 2) {
@@ -47,7 +47,7 @@ int main(int argc, char * argv[]) {
 		concurentNumberThreads = static_cast<unsigned int>(configs.size());
 	}
 
-	std::cout << "[APGG Init] Using " << std::to_string(concurentNumberThreads) << " threads" << std::endl;
+	std::cout << "[APGG Init] Using " << std::to_string(concurentNumberThreads) << " threads\n";
 
 	std::vector<std::future<void>> threadFutures;
 

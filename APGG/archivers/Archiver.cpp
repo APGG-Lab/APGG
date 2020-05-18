@@ -47,7 +47,7 @@ namespace APGG {
 
         if (!fs::is_directory(fullFolderName) || !fs::exists(fullFolderName)) { // Check if src folder exists
             fs::create_directory(fullFolderName); // create src folder
-            std::cout << "[Archiver] created folder: " << fullFolderName << std::endl;
+            std::cout << "[Archiver] created folder: " << fullFolderName << "\n";
         }
 
         std::string fullFileName = m_fileBaseName;
@@ -57,7 +57,7 @@ namespace APGG {
         fullFileName += ("_" + m_fileSuffix + ".csv");
 
         m_fileHandle.open(fullFolderName + fullFileName);
-        m_fileHandle << m_header << std::endl;
+        m_fileHandle << m_header << "\n";
 
         m_fullFileName = fullFolderName + fullFileName;
     }
@@ -69,7 +69,7 @@ namespace APGG {
 
     void Archiver::archive()
     {
-        m_fileHandle << "TEST" << std::endl;
+        m_fileHandle << "TEST\n";
     }
 
 

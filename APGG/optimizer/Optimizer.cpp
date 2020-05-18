@@ -22,19 +22,19 @@ namespace APGG {
 		MutatorType mutatorType = static_cast<MutatorType>(stoul(config.getValue("mutatorType")));
 
 		if (selectorType >= SelectorType::Count) {
-			std::cerr << std::endl << "[APGG Error] invalid selector type. selectorType must be < " << static_cast<int>(SelectorType::Count);
+			std::cerr << "\n[APGG Error] invalid selector type. selectorType must be < " << static_cast<int>(SelectorType::Count);
 			std::cin.get();
 			std::quick_exit(1);
 		}
 
 		if (repopulatorType >= RepopulatorType::Count) {
-			std::cerr << std::endl << "[APGG Error] invalid repopulator type. repopulatorType must be < " << static_cast<int>(RepopulatorType::Count);
+			std::cerr << "\n[APGG Error] invalid repopulator type. repopulatorType must be < " << static_cast<int>(RepopulatorType::Count);
 			std::cin.get();
 			std::quick_exit(1);
 		}
 
 		if (mutatorType >= MutatorType::Count) {
-			std::cerr << std::endl << "[APGG Error] invalid mutator type. mutatorType must be < " << static_cast<int>(MutatorType::Count);
+			std::cerr << "\n[APGG Error] invalid mutator type. mutatorType must be < " << static_cast<int>(MutatorType::Count);
 			std::cin.get();
 			std::quick_exit(1);
 		}
