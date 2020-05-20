@@ -1,7 +1,7 @@
 #include "ConfigParserCSV.h"
 
 namespace APGG {
-	std::vector<Config> ConfigParserCSV::parseConfigs(std::string filePath)
+	std::vector<Config> ConfigParserCSV::parseConfigs(const std::string& filePath)
 	{
 		std::vector<Config> outputConfigVector;
 		std::vector<std::string> configMapKeys;

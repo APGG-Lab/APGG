@@ -2,7 +2,7 @@
 
 namespace APGG {
 
-	std::string Config::getValue(std::string key, std::string alternative)
+	std::string Config::getValue(const std::string& key, const std::string& alternative)
 	{
 		std::unordered_map<std::string, std::string>::iterator i = m_configMap.find(key);
 

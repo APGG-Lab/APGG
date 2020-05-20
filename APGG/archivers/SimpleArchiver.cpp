@@ -12,7 +12,7 @@ namespace APGG {
         m_header = "generation;nCooperators;nDefectors;nMoralists;nImmoralists";
     }
 
-    void SimpleArchiver::archive(const int generation, const std::array<unsigned int, Faction::Count> counter)
+    void SimpleArchiver::archive(const int generation, const std::array<unsigned int, Faction::Count>& counter)
     {
         m_fileHandle << generation << ";" 
             << counter[Faction::Cooperator] << ";" 

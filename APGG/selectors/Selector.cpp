@@ -23,7 +23,7 @@ namespace APGG {
     }
 	std::unique_ptr<Selector> Selector::Create(Config& config)
     {
-        SelectorType selectorType = static_cast<SelectorType>(stoul(config.getValue("SelectorType", "0")));
+        SelectorType selectorType = static_cast<SelectorType>(stoul(config.getValue("selectorType", "0")));
 
         if (selectorType >= SelectorType::Count) {
             std::cerr << std::endl << "[APGG Error] invalid selector type. SelectorType must be < " << static_cast<int>(SelectorType::Count);

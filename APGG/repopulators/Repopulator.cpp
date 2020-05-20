@@ -10,7 +10,7 @@ namespace APGG
 
 	std::unique_ptr<Repopulator> Repopulator::Create(Config& config)
     {
-        RepopulatorType selectorType = static_cast<RepopulatorType>(stoul(config.getValue("RepopulatorType", "0")));
+        RepopulatorType selectorType = static_cast<RepopulatorType>(stoul(config.getValue("repopulationType", "0")));
 
         if (selectorType >= RepopulatorType::Count) {
             std::cerr << std::endl << "[APGG Error] invalid repopulator type. RepopulatorType must be < " << static_cast<int>(RepopulatorType::Count);

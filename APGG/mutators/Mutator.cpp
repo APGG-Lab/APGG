@@ -14,7 +14,7 @@ namespace APGG
 
 	std::unique_ptr<Mutator> Mutator::Create(Config& config)
     {
-        MutatorType selectorType = static_cast<MutatorType>(stoul(config.getValue("MutatorType", "0")));
+        MutatorType selectorType = static_cast<MutatorType>(stoul(config.getValue("mutatorType", "0")));
 
         if (selectorType >= MutatorType::Count) {
             std::cerr << std::endl << "[APGG Error] invalid mutator type. MutatorType must be < " << static_cast<int>(MutatorType::Count);

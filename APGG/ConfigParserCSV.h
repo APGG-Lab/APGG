@@ -12,7 +12,7 @@ namespace APGG {
 	class ConfigParserCSV
 	{
 	public:
-		static std::vector<Config> parseConfigs(std::string filePath);
+		static std::vector<Config> parseConfigs(const std::string& filePath);
 	};
 }
 

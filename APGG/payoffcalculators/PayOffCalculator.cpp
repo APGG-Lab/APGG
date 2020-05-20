@@ -37,7 +37,7 @@ namespace APGG {
 
 	std::unique_ptr<PayOffCalculator> PayOffCalculator::Create(Config& config)
 	{
-        PayOffCalculatorType payOffCalculatorType = static_cast<PayOffCalculatorType>(stoul(config.getValue("PayOffCalculatorType", "0")));
+        PayOffCalculatorType payOffCalculatorType = static_cast<PayOffCalculatorType>(stoul(config.getValue("payoffType", "0")));
 
         if (payOffCalculatorType >= PayOffCalculatorType::Count) {
             std::cerr << std::endl << "[APGG Error] invalid grid type. PayOffCalculatorType must be < " << static_cast<int>(PayOffCalculatorType::Count);
