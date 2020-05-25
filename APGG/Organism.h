@@ -15,10 +15,7 @@
 
 
 namespace APGG {
-
-    constexpr unsigned int nrGenomes = 2;
-
-    enum GenomeNames { GENOME_COOPERATION = 0, GENOME_MORALS, GENOME_HISTORY1, GENOME_HISTORY2, GENOME_HISTORY3 };
+    enum GenomeNames { GENOME_COOPERATION = 0, GENOME_MORALS, GENOME_EXTRA1, GENOME_EXTRA2, GENOME_EXTRA3 };
     enum Faction : uint8_t { Cooperator = 0, Defector, Moralist, Immoralist, Count };
 	enum class Status : bool { Original = false, Copy = true };
 	enum ParentStatus { PARENT_ORIGINAL, PARENT_MODIFIED };
@@ -30,8 +27,8 @@ namespace APGG {
     class Organism
     {
     public:
-        Organism() = default;
-        std::array<Genome, nrGenomes> m_genomes;
+        Organism(const uint8_t numberOfGenomes);
+        std::vector<Genome> m_genomes;
 
         Organism* m_parent = nullptr;
         std::list<Organism*> m_children;
@@ -66,7 +63,4 @@ namespace APGG {
         void removeChild(Organism* organsim);
         void addChild(Organism* organism);
     };
-
-
-
 }

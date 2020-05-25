@@ -1,7 +1,13 @@
 #include "Organism.h"
 
 namespace APGG {
+    Organism::Organism(const uint8_t numberOfGenomes)
+    {
+        m_genomes.resize(numberOfGenomes);
+    }
+
 #ifdef DEBUG_EXTREME
+    
     Organism::~Organism()
     {
         if (m_status == STATUS_ORIGINAL) {

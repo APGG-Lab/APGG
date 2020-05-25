@@ -40,13 +40,14 @@ namespace APGG {
         m_clock_start = m_clock_now = m_clock_last = HighResClock::now();
         std::fill(std::begin(m_count), std::end(m_count), 0);
 
-        //Setup the grid
-        m_grid = Grid::Create(config);
-        m_grid->configure(config);
-
         //Setup the payoff calculator
         m_payoffCalculator = PayOffCalculator::Create(config);
         m_payoffCalculator->configure(config);
+
+        //Setup the grid
+        m_grid = Grid::Create(config);
+        m_grid->setGenomeNumber(m_payoffCalculator->getGenomeNumber());
+        m_grid->configure(config);
 
         //Setup the mutator
         m_mutator = Mutator::Create(config);

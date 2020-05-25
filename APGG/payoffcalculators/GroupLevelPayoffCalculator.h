@@ -19,6 +19,8 @@ namespace APGG {
         void applyPayoff(Grid& grid, Group& group);
         float calculateIndividualPayoff(Organism& organism);
 		void configure(Config& config);
+
+        uint8_t getGenomeNumber() const override;
     };
 
 }

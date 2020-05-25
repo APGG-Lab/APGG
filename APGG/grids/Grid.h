@@ -27,8 +27,12 @@ namespace APGG {
         unsigned int m_groupSize;
         std::vector<Group> m_groups;
 
+        uint8_t m_genomeNumber = 0;
+
     public:
         Grid();
+
+        void setGenomeNumber(const uint8_t genomeNumber);
 
         virtual void configure(Config& config) = 0;
         void setGeneration(const unsigned int generation);

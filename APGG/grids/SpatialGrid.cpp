@@ -54,7 +54,7 @@ namespace APGG {
         m_grid.reserve(m_totalSize);
         for (unsigned int i = 0; i < m_width * m_height; i++)
         {
-            Organism organism;
+            Organism organism(m_genomeNumber);
 #ifdef __DEBUG1
             organism.ID = m_IDCounter++;
             organism.m_generation = m_generation;

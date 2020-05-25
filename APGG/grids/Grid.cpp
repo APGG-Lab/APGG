@@ -11,6 +11,11 @@ namespace APGG {
     {
     }
 
+    void Grid::setGenomeNumber(const uint8_t genomeNumber)
+    {
+        m_genomeNumber = genomeNumber;
+    }
+
     void Grid::setGeneration(const unsigned int generation)
     {
         m_generation = generation;

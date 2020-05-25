@@ -77,4 +77,8 @@ namespace APGG {
 		m_punishmentFineBase = std::stof(config.getValue("punishmentFine"));
         m_individualism = std::stof(config.getValue("payoffIndividualism"));
 	}
+    uint8_t GroupLevelPayoffCalculator::getGenomeNumber() const
+    {
+        return 2;
+    }
 }

@@ -22,8 +22,11 @@ namespace APGG {
         float m_punishmentCost;
         float m_punishmentFine;
         float m_payoff;
+
     public:
         PayOffCalculator();
+
+        virtual uint8_t getGenomeNumber() const = 0;
 
         void setSynergyFactor(const float factor);
         void setPunishmentBaseCost(const float cost);

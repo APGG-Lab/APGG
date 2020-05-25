@@ -1,11 +1,11 @@
-#include "DefaultPayoffCalculator.h"
+#include "AsymmetricPayoffCalculator.h"
 
 namespace APGG {
 
 
-    DefaultPayOffCalculator::DefaultPayOffCalculator(){}
+    AsymmetricPayOffCalculator::AsymmetricPayOffCalculator(){}
 
-    void DefaultPayOffCalculator::calculateCosts(Group& group)
+    void AsymmetricPayOffCalculator::calculateCosts(Group& group)
     {
         std::array<unsigned int, Faction::Count> counter = group.getFactionCounter();
 
@@ -22,7 +22,7 @@ namespace APGG {
     }
 
 
-    void DefaultPayOffCalculator::applyPayoff(Grid& grid, Group & group)
+    void AsymmetricPayOffCalculator::applyPayoff(Grid& grid, Group & group)
     {
         calculateCosts(group);
 
@@ -35,14 +35,15 @@ namespace APGG {
         }
     }
 
-	void DefaultPayOffCalculator::configure(Config& config)
+	void AsymmetricPayOffCalculator::configure(Config& config)
 	{
 		m_cooperationCost = std::stof(config.getValue("cooperateCost"));
 		m_synergyFactor = std::stof(config.getValue("synergyFactor"));
 		m_punishmentCostBase = std::stof(config.getValue("punishmentCost"));
 		m_punishmentFineBase = std::stof(config.getValue("punishmentFine"));
 	}
-	float DefaultPayOffCalculator::calculateIndividualPayoff(Organism& organism)
+
+	float AsymmetricPayOffCalculator::calculateIndividualPayoff(Organism& organism)
 	{
 
         float payoff = m_payoff;
@@ -60,8 +61,8 @@ namespace APGG {
 
         return payoff;
 	}
-	uint8_t DefaultPayOffCalculator::getGenomeNumber() const
-	{
-		return 2;
-	}
+    uint8_t AsymmetricPayOffCalculator::getGenomeNumber() const
+    {
+        return 3;
+    }
 }

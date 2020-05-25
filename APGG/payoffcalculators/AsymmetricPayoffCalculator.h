@@ -7,10 +7,10 @@
 
 namespace APGG {
 
-    class DefaultPayOffCalculator : public PayOffCalculator
+    class AsymmetricPayOffCalculator : public PayOffCalculator
     {
     public:
-        DefaultPayOffCalculator();
+        AsymmetricPayOffCalculator();
         void calculateCosts(Group& group);
         void applyPayoff(Grid& grid, Group& group);
 		void configure(Config& config);

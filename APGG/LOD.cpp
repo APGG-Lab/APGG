@@ -33,7 +33,7 @@ namespace APGG {
             m_pool.pop_front();
         }
         else {
-            organismCopy = new Organism();
+            organismCopy = new Organism(organism.m_genomes.size());
         }
 
 
