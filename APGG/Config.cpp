@@ -2,14 +2,14 @@
 
 namespace APGG {
 
-	std::string Config::getValue(std::string key, std::string alternative)
+	std::string Config::getValue(const std::string& key, const std::string& alternative)
 	{
 		std::unordered_map<std::string, std::string>::iterator i = m_configMap.find(key);
 
 		if (i == m_configMap.end())
 		{
 			//not found
-			std::cout << "[APGG Warning] You requested a non existing config key \"" + key + "\". Using default: \"" + alternative << "\"" << std::endl;
+			std::cout << "[APGG Warning] You requested a non existing config key \"" + key + "\". Using default: \"" + alternative << "\"\n";
 			return alternative;
 		}
 		else

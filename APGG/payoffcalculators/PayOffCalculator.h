@@ -33,6 +33,8 @@ namespace APGG {
 
         virtual void calculateCosts(Group& group) = 0;
         virtual void applyPayoff(Grid& grid, Group& group) = 0;
+
+        static std::unique_ptr<PayOffCalculator> Create(Config& config);
         virtual float calculateIndividualPayoff(Organism& organism) = 0;
     };
 

@@ -29,12 +29,12 @@ namespace APGG {
                      << organism->m_children.size() << ";" 
                      << organism->m_genomes[GENOME_COOPERATION].getValue() << ";" 
                      << organism->m_genomes[GENOME_MORALS].getValue()
-                     << std::endl;
+                     << "\n";
     }
 
     void LODArchiver::archive(const std::string & line)
     {
-        m_fileHandle << line << std::endl;
+        m_fileHandle << line << "\n";
     }
 	void LODArchiver::configure(Config& config)
 	{

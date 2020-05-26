@@ -7,7 +7,7 @@
 #include "Genome.h"
 
 #ifdef DEBUG_EXTREME
-#define DEBUG_MSG(str) do { std::cout << "[APGG DEBUG] " << str << std::endl; } while( false )
+#define DEBUG_MSG(str) do { std::cout << "[APGG DEBUG] " << str << "\n"; } while( false )
 #else
 #define DEBUG_MSG(str) do { } while ( false )
 #endif

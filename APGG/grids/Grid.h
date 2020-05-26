@@ -30,13 +30,13 @@ namespace APGG {
     public:
         Grid();
 
-        //Empty implementation to avoid errors when we use the base class
-        virtual void configure(Config& config);
+        virtual void configure(Config& config) = 0;
         void setGeneration(const unsigned int generation);
         unsigned int size() const;
         std::vector<Organism>& getData();
         unsigned int getGeneration() const;
         Organism& operator[](const GridIndex index);
+        Organism& get(const GridIndex index);
         std::pair<float, float> getMinMaxPayoff();
         GridIndex getRandomOrganismIndex();
         GridIndex getRandomOrganismIndex(const std::unordered_set<GridIndex>& blacklist);
@@ -46,7 +46,7 @@ namespace APGG {
         std::array<unsigned int, 4> getFactionCount();
         std::vector<GridIndex> sortByFitness(const bool desc = false);
         Organism& getTopOrganism();
-    
+
         std::vector<Group>& getGroups();
         std::vector<GridIndex>& getGridKeys();
 
@@ -54,5 +54,7 @@ namespace APGG {
 
         //Empty implementation to avoid errors when we use the base class
         virtual void generateGroups();
+
+        static std::unique_ptr<Grid> Create(Config& config);
     };
 }

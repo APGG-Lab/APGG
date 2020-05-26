@@ -17,30 +17,30 @@ namespace APGG {
     void ConfigArchiver::archive(Config& config)
     {
 		m_fileHandle
-			<< "numGenerations;" << config.getValue("numGenerations") << std::endl
-			<< "eliminationCount;" << config.getValue("eliminationCount") << std::endl
-			<< "groupSize;" << config.getValue("groupSize") << std::endl
-			<< "width;" << config.getValue("width") << std::endl
-			<< "height;" << config.getValue("height") << std::endl
-			<< "cooperateCost;" << config.getValue("cooperateCost") << std::endl
-			<< "synergyFactor;" << config.getValue("synergyFactor") << std::endl
-			<< "punishmentCost;" << config.getValue("punishmentCost") << std::endl
-			<< "punishmentFine;" << config.getValue("punishmentFine") << std::endl
-			<< "selectorType;" << config.getValue("selectorType") << std::endl
-			<< "repopulatorType;" << config.getValue("repopulationType") << std::endl
-			<< "gridType;" << config.getValue("gridType") << std::endl
-			<< "payoffType;" << config.getValue("payoffType") << std::endl
-			<< "mutatorType;" << config.getValue("mutatorType") << std::endl
-			<< "mutationRate;" << config.getValue("mutationRate") << "%" << std::endl
-			<< "folderName;" << config.getValue("folderName") << std::endl
-			<< "logSuffix;" << config.getValue("logSuffix") << std::endl
-			<< "timeToFile;" << config.getValue("timeToFile") << std::endl
-			<< "timeToFolder;" << config.getValue("timeToFolder") << std::endl;
+			<< "numGenerations;" << config.getValue("numGenerations") << "\n"
+			<< "eliminationCount;" << config.getValue("eliminationCount") << "\n"
+			<< "groupSize;" << config.getValue("groupSize") << "\n"
+			<< "width;" << config.getValue("width") << "\n"
+			<< "height;" << config.getValue("height") << "\n"
+			<< "cooperateCost;" << config.getValue("cooperateCost") << "\n"
+			<< "synergyFactor;" << config.getValue("synergyFactor") << "\n"
+			<< "punishmentCost;" << config.getValue("punishmentCost") << "\n"
+			<< "punishmentFine;" << config.getValue("punishmentFine") << "\n"
+			<< "selectorType;" << config.getValue("selectorType") << "\n"
+			<< "repopulatorType;" << config.getValue("repopulationType") << "\n"
+			<< "gridType;" << config.getValue("gridType") << "\n"
+			<< "payoffType;" << config.getValue("payoffType") << "\n"
+			<< "mutatorType;" << config.getValue("mutatorType") << "\n"
+			<< "mutationRate;" << config.getValue("mutationRate") << "%" << "\n"
+			<< "folderName;" << config.getValue("folderName") << "\n"
+			<< "logSuffix;" << config.getValue("logSuffix") << "\n"
+			<< "timeToFile;" << config.getValue("timeToFile") << "\n"
+			<< "timeToFolder;" << config.getValue("timeToFolder") << "\n";
     }
 
     void ConfigArchiver::archive(const std::string & line)
     {
-        m_fileHandle << line << std::endl;
+        m_fileHandle << line << "\n";
     }
 	void ConfigArchiver::configure(Config& config)
 	{

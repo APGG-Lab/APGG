@@ -9,7 +9,7 @@ namespace APGG {
 	class Config
 	{
 	public:
-		std::string getValue(std::string key, std::string alternative = "");
+		std::string getValue(const std::string& key, const std::string& alternative = "");
 		std::unordered_map<std::string, std::string>& getMapReference();
 		Config();
 		Config(const unsigned int id);
