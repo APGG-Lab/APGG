@@ -1,42 +1,42 @@
 import csv
 
 def main():
-    num_experiments = 30 #How often do you want to repeat the experiment
+    num_experiments = 10 #How often do you want to repeat the experiment
     baseEntry = {
-        'numGenerations' :  450000,
+        'numGenerations' :  100000,
         'eliminationCount' : 100,
-        'groupSize' : 8,
-        'width' : 32,
-        'height' : 32,
-        'cooperateCost' : 1,
-        'synergyFactor' : 1,
-        'punishmentCost' : 0.0,
-        'punishmentFine' : 0.0,
+        'groupSize' : 5,
+        'width' : 40,
+        'height' : 25,
+        'cooperateCost' : 1.0,
+        'synergyFactor' : 3.0,
+        'punishmentCost' : 0.2,
+        'punishmentFine' : 0.8,
         'gridType' : Grid['Default'],
-        'payoffType' : PayoffCalculator['Default'],
+        'payoffType' : PayoffCalculator['Group'],
         'payoffIndividualism' : 0.5,
         'selectorType' : Selector['Random'],
         'repopulationType' : Repopulator['Proportionate'],
         'mutatorType' : Mutator['Random'],
         'mutationRate' : 0.01,
-        'folderName' : 'fig6-exp',
-        'logSuffix': 'test1_r1',
+        'folderName' : 'individualism-exp',
+        'logSuffix': 'test1_',
         'timeToFile' : 1,
         'timeToFolder' : 0
     }
 
-    addIteration('synergyFactor', 0, 6, 0.5) #From, To, StepSize
-    addIteration('mutatorType', Mutator['Random'], Mutator['RandomThreshold'], 1) #From, To, StepSize
+    addIteration('synergyFactor', 3.0, 6.0, 0.5) #From, To, StepSize
+    addIteration('payoffIndividualism', 0.0, 1.0, 0.2) #From, To, StepSize
 
     buildConfig("configs.csv", num_experiments, baseEntry)
 
 #=======================================================
 
 Grid = {'Default': 0, 'Spatial' : 1}
-PayoffCalculator = {'Default' : 0, 'Sptatial': 1}
+PayoffCalculator = {'Default' : 0, 'Group': 1}
 Selector = {'Elite' : 0, 'Random' : 1}
 Mutator = {'Random' : 0, 'RandomThreshold': 1}
-Repopulator = {'Proportionate' : 0, 'Random' : 1, 'Spatial' : 2}
+Repopulator = { 'Random' : 0, 'Proportionate' : 1, 'Spatial' : 2}
 
 
 def addIteration(index, startVal, endVal, stepSize):
