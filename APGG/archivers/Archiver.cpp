@@ -51,10 +51,13 @@ namespace APGG {
         }
 
         std::string fullFileName = m_fileBaseName;
+        fullFileName += ("_" + m_fileSuffix);
+
         if (m_appendTimestampToFile) {
             fullFileName += ("_" + getTimestamp());
         }
-        fullFileName += ("_" + m_fileSuffix + ".csv");
+
+        fullFileName += ".csv";
 
         m_fileHandle.open(fullFolderName + fullFileName);
         m_fileHandle << m_header << "\n";
