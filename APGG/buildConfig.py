@@ -33,7 +33,7 @@ def main():
 #=======================================================
 
 Grid = {'Default': 0, 'Spatial' : 1}
-PayoffCalculator = {'Default' : 0, 'Group': 1}
+PayoffCalculator = {'Default' : 0, 'Group': 1, 'Asymmetric': 2 }
 Selector = {'Elite' : 0, 'Random' : 1}
 Mutator = {'Random' : 0, 'RandomThreshold': 1}
 Repopulator = { 'Random' : 0, 'Proportionate' : 1, 'Spatial' : 2}
