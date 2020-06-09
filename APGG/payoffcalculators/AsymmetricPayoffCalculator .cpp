@@ -39,9 +39,9 @@ namespace APGG {
         }
 
         for (unsigned int i = 0; i < group.size(); i++) {
-            const unsigned int numerator = m_groupRanks[i];
-            //const unsigned int numerator = i + 1; //In case ranks are not bound to the position (Focal can be any rank) use this
-            const float share = numerator / m_denominator;
+           // const unsigned int numerator = m_groupRanks[i];
+            const unsigned int numerator = i + 1; //In case ranks are not bound to the position (Focal can be any rank) use this
+            const float share = groupPayoffPool * (numerator / m_denominator);
             const GridIndex index = group[i];
 
             grid[index].m_payoff += share;
