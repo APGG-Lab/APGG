@@ -1,10 +1,10 @@
 #include "PayOffCalculator.h"
 
 #include "DefaultPayoffCalculator.h"
-
+#include "GroupLevelPayoffCalculator.h"
 namespace APGG {
 
-    enum class PayOffCalculatorType : unsigned long { Default = 0, Count };
+    enum class PayOffCalculatorType : unsigned long { Default = 0, Group, Count };
 
     PayOffCalculator::PayOffCalculator() : m_synergyFactor(1), m_punishmentCostBase(1.0f), m_punishmentFineBase(1.0f), m_allowPayoffBelowZero(false)
     {
@@ -40,7 +40,7 @@ namespace APGG {
         PayOffCalculatorType payOffCalculatorType = static_cast<PayOffCalculatorType>(stoul(config.getValue("payoffType", "0")));
 
         if (payOffCalculatorType >= PayOffCalculatorType::Count) {
-            std::cerr << std::endl << "[APGG Error] invalid grid type. PayOffCalculatorType must be < " << static_cast<int>(PayOffCalculatorType::Count);
+            std::cerr << std::endl << "[APGG Error] invalid payoffcalculator type. PayOffCalculatorType must be < " << static_cast<int>(PayOffCalculatorType::Count);
             std::cin.get();
             std::quick_exit(1);
         }
@@ -48,6 +48,10 @@ namespace APGG {
         switch (payOffCalculatorType) {
         case PayOffCalculatorType::Default:
             return std::make_unique<DefaultPayOffCalculator>();
+        case PayOffCalculatorType::Group:
+            return std::make_unique<GroupLevelPayoffCalculator>();
+        default:
+            std::cerr << std::endl << "[APGG Error] Payoffcalculator isn't defined in PayOffCalculator::Create switch case statement" << std::endl;
         }
 	}
 }
