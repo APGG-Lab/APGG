@@ -23,7 +23,7 @@ namespace APGG {
                 }
 
                 //break when we get payoff >= rand or when we failed 3 times.
-            } while (payoff <= getRandomFloat() && i++ < 3); 
+            } while (payoff <= getRandomFloat() && i++ < 25); 
 
             Organism& deadOrganism = grid[deadOrganismIndex];
 

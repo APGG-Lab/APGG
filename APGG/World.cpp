@@ -102,6 +102,7 @@ namespace APGG {
         std::vector<Group>& groups = m_grid->getGroups();
 
         for (Group& group : groups) {
+            group.clearFactionCount();
             for (const GridIndex& index : group.data()) {
                 Faction& faction = m_grid->get(index).assignFaction();
                 group.increaseFactionCount(faction);
@@ -115,7 +116,7 @@ namespace APGG {
 
 //#ifdef __DEBUG
 //        //Only draw slow debug messages when in DEBUG mode
-        printStatus();
+  //      printStatus();
 //#endif // __DEBUG
 
     }
