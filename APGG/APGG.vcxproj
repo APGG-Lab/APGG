@@ -95,7 +95,30 @@
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
-  <PropertyGroup />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <OutDir>$(SolutionDir)build/</OutDir>
+    <TargetName>$(ProjectName)_$(Platform)_$(Configuration)</TargetName>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug_Extreme|Win32'">
+    <OutDir>$(SolutionDir)build/</OutDir>
+    <TargetName>$(ProjectName)_$(Platform)_$(Configuration)</TargetName>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <OutDir>$(SolutionDir)build/</OutDir>
+    <TargetName>$(ProjectName)_$(Platform)_$(Configuration)</TargetName>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <OutDir>$(SolutionDir)build/</OutDir>
+    <TargetName>$(ProjectName)_$(Platform)_$(Configuration)</TargetName>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug_Extreme|x64'">
+    <OutDir>$(SolutionDir)build/</OutDir>
+    <TargetName>$(ProjectName)_$(Platform)_$(Configuration)</TargetName>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <OutDir>$(SolutionDir)build/</OutDir>
+    <TargetName>$(ProjectName)_$(Platform)_$(Configuration)</TargetName>
+  </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
@@ -205,7 +228,7 @@
     <ClCompile Include="Organism.cpp" />
     <ClCompile Include="payoffcalculators\DefaultPayoffCalculator.cpp" />
     <ClCompile Include="payoffcalculators\GroupLevelPayoffCalculator.cpp" />
-    <ClCompile Include="payoffcalculators\PayOffCalculator.cpp" />
+    <ClCompile Include="payoffcalculators\PayoffCalculator.cpp" />
     <ClCompile Include="World.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -236,7 +259,7 @@
     <ClInclude Include="Organism.h" />
     <ClInclude Include="payoffcalculators\DefaultPayoffCalculator.h" />
     <ClInclude Include="payoffcalculators\GroupLevelPayoffCalculator.h" />
-    <ClInclude Include="payoffcalculators\PayOffCalculator.h" />
+    <ClInclude Include="payoffcalculators\PayoffCalculator.h" />
     <ClInclude Include="random.h" />
     <ClInclude Include="World.h" />
   </ItemGroup>

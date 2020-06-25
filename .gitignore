@@ -351,3 +351,8 @@ healthchecksdb
 MigrationBackup/
 /APGG/Score.csv
 /APGG/experiments/*
+/build/*.exe
+/build/*.iobj
+/build/*.ipdb
+/build/*.pdb
+/build/experiments/**/

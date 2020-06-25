@@ -3,11 +3,11 @@
 #include "../Group.h"
 #include "../Organism.h"
 
-#include "PayOffCalculator.h"
+#include "PayoffCalculator.h"
 
 namespace APGG {
 
-    class GroupLevelPayoffCalculator : public PayOffCalculator
+    class GroupLevelPayoffCalculator : public PayoffCalculator
     {
     private:
         float m_individualism = 0.5f;

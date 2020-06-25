@@ -44,7 +44,8 @@ namespace APGG {
    std::pair<float, float> Grid::getMinMaxPayoff()
    {
        auto minmax = std::minmax_element(std::begin(m_grid), std::end(m_grid),
-           [](const Organism& s1, const Organism& s2) {
+           [](const Organism& s1, const Organism& s2) 
+           {
                return s1.m_payoff < s2.m_payoff;
            });
 
@@ -60,7 +61,8 @@ namespace APGG {
    GridIndex Grid::getRandomOrganismIndex(const std::unordered_set<GridIndex>& blacklist)
    {
        GridIndex rand = getRandomOrganismIndex();
-       while (blacklist.find(rand) != blacklist.end()) {
+       while (blacklist.find(rand) != blacklist.end()) 
+       {
            rand = getRandomOrganismIndex();
        }
        return rand;
@@ -74,7 +76,8 @@ namespace APGG {
    std::array<unsigned int, 4> Grid::getFactionCount()
    {
        std::array<unsigned int, Faction::Count> counter = { };
-       for (Organism& organism : m_grid) {
+       for (Organism& organism : m_grid) 
+       {
            counter[organism.getFaction()]++;
        }
        return counter;
@@ -85,15 +88,19 @@ namespace APGG {
         //Avoid sorting the original one, because we may need the exact position
         std::vector<GridIndex> gridKeyCopy = m_gridKeys;
 
-        if (!desc) {
+        if (!desc) 
+        {
             //Low to High
-            std::sort(gridKeyCopy.begin(), gridKeyCopy.end(), [this](const GridIndex& a, const GridIndex& b) {
+            std::sort(gridKeyCopy.begin(), gridKeyCopy.end(), [this](const GridIndex& a, const GridIndex& b) 
+                {
                 return m_grid[a].m_payoff < m_grid[b].m_payoff;
                 });
         }
-        else {
+        else 
+        {
             //High to Low
-            std::sort(gridKeyCopy.begin(), gridKeyCopy.end(), [this](const GridIndex& a, const GridIndex& b) {
+            std::sort(gridKeyCopy.begin(), gridKeyCopy.end(), [this](const GridIndex& a, const GridIndex& b) 
+                {
                 return m_grid[a].m_payoff > m_grid[b].m_payoff;
                 });
         }
@@ -106,7 +113,8 @@ namespace APGG {
     {
         std::vector<GridIndex> gridKeys(m_gridKeys.begin(), m_gridKeys.end()); //Create copy of gridkeys
 
-        std::sort(gridKeys.begin(), gridKeys.end(), [this](const GridIndex a1, const GridIndex a2) {
+        std::sort(gridKeys.begin(), gridKeys.end(), [this](const GridIndex a1, const GridIndex a2) 
+            {
             return m_grid[a1].m_payoff > m_grid[a2].m_payoff;
             });
 
@@ -125,7 +133,8 @@ namespace APGG {
 
     void Grid::resetPayoff(const float payoff)
     {
-        for (Organism& organism : m_grid) {
+        for (Organism& organism : m_grid) 
+        {
             organism.m_payoff = payoff;
         }
     }
@@ -138,28 +147,22 @@ namespace APGG {
 	{
         GridType gridType = static_cast<GridType>(stoul(config.getValue("gridType", "0")));
 
-        if (gridType >= GridType::Count) {
+        if (gridType >= GridType::Count) 
+        {
             std::cerr << std::endl << "[APGG Error] invalid grid type. gridType must be < " << static_cast<int>(GridType::Count);
             std::cin.get();
             std::quick_exit(1);
         }
 
-        switch (gridType) {
+        switch (gridType) 
+        {
         case GridType::Default:
             return std::make_unique<DefaultGrid>();
-        default:
         case GridType::Spatial:
             return std::make_unique<SpatialGrid>();
+        default:
+            std::cerr << std::endl << "[APGG Error] Grid isn't defined in Grid::Create switch case statement" << std::endl;
+            std::cin.get();
+            std::quick_exit(1);
         }
 	}
-
-	//unsigned int Grid::getWidth() const
-	//{
-	//	return m_width;
-	//}
-
-    //unsigned int Grid::getHeight() const
-    //{
-    //	return m_height;
-    //}
-}

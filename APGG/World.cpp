@@ -8,7 +8,8 @@ namespace APGG {
 //#ifdef __DEGBUG
 
 
-        if (m_generation %m_exponent != 0) {
+        if (m_generation %m_exponent != 0) 
+        {
             return;
         }
 
@@ -25,7 +26,8 @@ namespace APGG {
         //    << "\tI(%): " << m_count[FACTION_IMMORALIST] << "(" << m_count[FACTION_IMMORALIST] / size * 100 << ")"
             << "\ttook: " << timeDelta.count() << " ms\n";
 
-        if (m_generation >= m_exponent * 10) {
+        if (m_generation >= m_exponent * 10) 
+        {
             //Only increase the exponent, when m_generation reaches m_exponent
             //otherwise we'll print only at 1,10,100,1000,...
 
@@ -45,7 +47,7 @@ namespace APGG {
         m_grid->configure(config);
 
         //Setup the payoff calculator
-        m_payoffCalculator = PayOffCalculator::Create(config);
+        m_payoffCalculator = PayoffCalculator::Create(config);
         m_payoffCalculator->configure(config);
 
         //Setup the mutator
@@ -101,9 +103,11 @@ namespace APGG {
 
         std::vector<Group>& groups = m_grid->getGroups();
 
-        for (Group& group : groups) {
+        for (Group& group : groups) 
+        {
             group.clearFactionCount();
-            for (const GridIndex& index : group.data()) {
+            for (const GridIndex& index : group.data()) 
+            {
                 Faction& faction = m_grid->get(index).assignFaction();
                 group.increaseFactionCount(faction);
             }
@@ -125,11 +129,7 @@ namespace APGG {
     {
 
         m_lod.logTop(*m_grid, m_lodArchiver);
-
-     //   for (Organism& oragnism : m_grid.getData()) {
-     //       m_lod.wipe(oragnism);
-     //   }
-
+        
         m_lod.cleanup(*m_grid);
 
         m_grid->getData().clear();
@@ -150,7 +150,7 @@ namespace APGG {
 
         std::unordered_set<GridIndex>& selection = m_selector->select(*m_grid);
 
-        m_lod.LOD2(*m_grid, selection);
+        m_lod.createLOD(*m_grid, selection);
 
         m_repopulator->repopulate(*m_grid, selection);
 

@@ -18,20 +18,23 @@ namespace APGG {
 			return outputConfigVector;
 		std::istringstream keyLine(line);
 
-		while (std::getline(keyLine, word, ';')) {
+		while (std::getline(keyLine, word, ';')) 
+		{
 			configMapKeys.emplace_back(word);
 		}
 
 		unsigned int experiment_counter = 0;
 
 		//parse config data rows
-		while (std::getline(fin, line)) {
+		while (std::getline(fin, line)) 
+		{
 			std::istringstream configDataLine(line);
 
 			Config config(experiment_counter++);
 			unsigned int rowIndex = 0;
 
-			while (rowIndex < configMapKeys.size() && std::getline(configDataLine, word, ';')) {
+			while (rowIndex < configMapKeys.size() && std::getline(configDataLine, word, ';')) 
+			{
 				config.getMapReference().insert(std::make_pair(configMapKeys[rowIndex], word));
 				rowIndex++;
 			}

@@ -6,7 +6,8 @@ namespace APGG {
 
     void RandomRepopulator::repopulate(Grid& grid, std::unordered_set<GridIndex>& selection)
     {
-        for (const GridIndex& index : selection) {
+        for (const GridIndex& index : selection) 
+        {
             grid[index].m_genomes[0].shuffle();
             grid[index].m_genomes[1].shuffle();
         }

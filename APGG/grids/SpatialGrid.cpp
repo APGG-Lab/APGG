@@ -6,17 +6,21 @@ namespace APGG {
     GridIndex SpatialGrid::wrap(int x,  int y)
     {
 
-        if (x < 0) {
+        if (x < 0) 
+        {
             x = static_cast<int>(m_width) - 1;
         }
-        else if (x >= static_cast<int>(m_width)) {
+        else if (x >= static_cast<int>(m_width)) 
+        {
             x = 0;
         }
 
-        if (y < 0) {
+        if (y < 0) 
+        {
             y = static_cast<int>(m_height) - 1;
         }
-        else if (y >= static_cast<int>(m_height)) {
+        else if (y >= static_cast<int>(m_height)) 
+        {
             y = 0;
         }
 
@@ -25,12 +29,15 @@ namespace APGG {
 
     void SpatialGrid::generateGroups()
 	{
-        if (m_built) {
+        if (m_built) 
+        {
             return;
         }
 
-        for (int y = 0; y < static_cast<int>(m_height); y++) {
-            for (int x = 0; x < static_cast<int>(m_width); x++) {
+        for (int y = 0; y < static_cast<int>(m_height); y++) 
+        {
+            for (int x = 0; x < static_cast<int>(m_width); x++) 
+            {
                 const GridIndex index = (m_width * y) + x;
 
                 //Group group;
@@ -74,7 +81,8 @@ namespace APGG {
 
         m_groups.resize(m_totalSize);
 
-        for (int i = 0; i < numberOfGroups; ++i) {
+        for (int i = 0; i < numberOfGroups; ++i) 
+        {
             // allocate memory for the sub vector
             m_groups[i].resize(5);
         }

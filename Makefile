@@ -1,6 +1,6 @@
 TARGET_EXEC ?= apgg_release
 
-BUILD_DIR ?= ./bin
+BUILD_DIR ?= ./build
 SRC_DIRS ?= ./APGG
 
 SRCS := $(shell find $(SRC_DIRS) -name *.cpp -or -name *.c -or -name *.s)

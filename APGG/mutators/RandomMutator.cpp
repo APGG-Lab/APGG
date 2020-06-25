@@ -2,8 +2,10 @@
 
 void APGG::RandomMutator::mutate(Grid& grid, const std::unordered_set<GridIndex>& selection)
 {
-    for (const unsigned int& index : selection) {
-        if (m_mutationRate < getRandomFloat()) {
+    for (const unsigned int& index : selection) 
+    {
+        if (m_mutationRate < getRandomFloat()) 
+        {
             continue;
         }
 

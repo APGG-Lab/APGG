@@ -44,7 +44,7 @@ namespace APGG {
         std::array<unsigned int, 4> m_count;
 
         std::unique_ptr<Grid> m_grid;
-        std::unique_ptr<PayOffCalculator> m_payoffCalculator;
+        std::unique_ptr<PayoffCalculator> m_payoffCalculator;
         std::unique_ptr<Selector> m_selector;
         std::unique_ptr<Repopulator> m_repopulator;
         std::unique_ptr<Mutator> m_mutator;

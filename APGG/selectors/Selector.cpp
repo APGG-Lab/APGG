@@ -25,17 +25,23 @@ namespace APGG {
     {
         SelectorType selectorType = static_cast<SelectorType>(stoul(config.getValue("selectorType", "0")));
 
-        if (selectorType >= SelectorType::Count) {
+        if (selectorType >= SelectorType::Count) 
+        {
             std::cerr << std::endl << "[APGG Error] invalid selector type. SelectorType must be < " << static_cast<int>(SelectorType::Count);
             std::cin.get();
             std::quick_exit(1);
         }
 
-        switch (selectorType) {
+        switch (selectorType) 
+        {
         case SelectorType::Elite:
             return std::make_unique<EliteSelector>();
         case SelectorType::Random:
             return std::make_unique<RandomSelector>();
+        default:
+            std::cerr << std::endl << "[APGG Error] Selector isn't defined in Selector::Create switch case statement" << std::endl;
+            std::cin.get();
+            std::quick_exit(1);
         }
     }
 }

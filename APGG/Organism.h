@@ -45,13 +45,13 @@ namespace APGG {
         unsigned int m_generation;
 #endif //__DEBUG
 
-        bool m_cooperated;
-        bool m_moralist;
-
         //@todo startvalue?
         float m_payoff = 0;
         Status m_status = Status::Original;
         Faction m_faction;
+
+        bool m_cooperator;
+        bool m_moralist;
 
         bool assignProfession(const float cooperationValue);
         bool assignMorals(const float moralValue);
