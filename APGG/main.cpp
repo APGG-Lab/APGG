@@ -25,14 +25,17 @@ void RunExperiment(Config config)
 	myCoolWorld.Fini();
 }
 
-int main(int argc, char * argv[]) {
+int main(int argc, char * argv[]) 
+{
 	auto configs = ConfigParserCSV::parseConfigs("configs.csv");
     std::cout << "[APGG Init] loading " << configs.size() << " experiments\n";
 
 	int threadCount = 1;
-	if (argc == 2) {
+	if (argc == 2) 
+	{
 		threadCount = std::stoi(argv[1]);
-		if (threadCount < 1) {
+		if (threadCount < 1) 
+		{
 			std::cout << "[APGG Error] Invalid number of threads. Threadcount must be >=1 (actual value: " << std::to_string(threadCount) << ")";
 			std::cin.get();
 			std::quick_exit(1);

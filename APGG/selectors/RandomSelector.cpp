@@ -14,7 +14,8 @@ namespace APGG {
     {
         m_selection.clear();
 
-        while (m_selection.size() < m_eliminationCount) {
+        while (m_selection.size() < m_eliminationCount) 
+        {
             m_selection.emplace(grid.getRandomOrganismIndex(m_selection));
         }
 
@@ -28,7 +29,8 @@ namespace APGG {
         const unsigned int height = stoul(config.getValue("height"));
         const unsigned int totalSize = width * height;
 
-        if (m_eliminationCount / static_cast<float>(totalSize) >= 1.0) {
+        if (m_eliminationCount / static_cast<float>(totalSize) >= 1.0) 
+        {
             std::cerr << "\n[APGG Error] EliminationCount >= size of grid";
             std::cin.get();
             std::quick_exit(1);

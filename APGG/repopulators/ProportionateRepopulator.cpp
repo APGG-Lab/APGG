@@ -6,7 +6,8 @@ namespace APGG {
     {
         const auto minMaxPayoff = grid.getMinMaxPayoff();
 
-        for (const GridIndex deadOrganismIndex : selection) {
+        for (const GridIndex deadOrganismIndex : selection) 
+        {
             GridIndex parentIndex;
 
             int i = 0;
@@ -16,7 +17,8 @@ namespace APGG {
                 parentIndex = grid.getRandomOrganismIndex(selection);
                 payoff = grid[parentIndex].getNormalizedPayoff(minMaxPayoff.first, minMaxPayoff.second);
 
-                if (minMaxPayoff.first == minMaxPayoff.second) {
+                if (minMaxPayoff.first == minMaxPayoff.second) 
+                {
                     //Min == Max => Difference equals 0
                     //Avoid infinite loop
                     break;

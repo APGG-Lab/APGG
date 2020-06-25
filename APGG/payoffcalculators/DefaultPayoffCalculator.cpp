@@ -26,10 +26,12 @@ namespace APGG {
     {
         calculateCosts(group);
 
-        for (const GridIndex index : group.data()) {
+        for (const GridIndex index : group.data()) 
+        {
             grid[index].m_payoff += calculateIndividualPayoff(grid[index]);
 
-            if (!m_allowPayoffBelowZero && grid[index].m_payoff < 0) {
+            if (!m_allowPayoffBelowZero && grid[index].m_payoff < 0) 
+            {
                 grid[index].m_payoff = 0;
             }
         }
@@ -47,14 +49,17 @@ namespace APGG {
 
         float payoff = m_payoff;
 
-        if (organism.m_moralist) { //Subtract punishment costs from moralists/immoralists
+        if (organism.m_moralist) 
+        { //Subtract punishment costs from moralists/immoralists
             payoff -= m_punishmentCost;
         };
 
-        if (!organism.m_cooperator) {//Substract punishment fine from defectors/immoralists
+        if (!organism.m_cooperator) //Substract punishment fine from defectors/immoralists
+        {
             payoff -= m_punishmentFine;
         }
-        else {
+        else 
+        {
             payoff -= m_cooperationCost; //Substract 1 from cooperators / moralists
         }
 

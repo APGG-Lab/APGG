@@ -20,17 +20,20 @@ namespace APGG {
 
         void logTop(Grid& grid, LODArchiver& archiver);
         void cleanup(Grid& grid);
-		void wipe(Organism& organism) {
+		void wipe(Organism& organism) 
+        {
 
 
             Organism* parent = nullptr;
             Organism* organismPtr = &organism;
 
-            if (!organismPtr->m_children.empty()) {
+            if (!organismPtr->m_children.empty()) 
+            {
                 return;
             }
 
-            if (organismPtr->m_parent != nullptr) {
+            if (organismPtr->m_parent != nullptr) 
+            {
                 organismPtr->m_parent->removeChild(organismPtr);
                 parent = organismPtr->m_parent;
                 organismPtr->m_parent = nullptr;
@@ -40,21 +43,25 @@ namespace APGG {
 
             // Use loop instead of a recursive function, because a recursive
             // function can crash the software, when the tree is too high
-            while (organismPtr->m_children.empty()) {  //Loop through until we find a organism with a child
+            while (organismPtr->m_children.empty()) 
+            {  //Loop through until we find a organism with a child
 
                 parent = organismPtr->m_parent;
 
                 organismPtr->m_parent = nullptr;
 
-                if (organismPtr->m_status == Status::Copy) {
+                if (organismPtr->m_status == Status::Copy) 
+                {
                     delete organismPtr;
                 }
 
-                if (parent != nullptr) {
+                if (parent != nullptr) 
+                {
                     parent->removeChild(organismPtr);
                     organismPtr = parent;
                 }
-                else {
+                else 
+                {
                     break;
                 }
             }

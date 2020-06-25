@@ -16,13 +16,15 @@ namespace APGG
     {
         MutatorType selectorType = static_cast<MutatorType>(stoul(config.getValue("mutatorType", "0")));
 
-        if (selectorType >= MutatorType::Count) {
+        if (selectorType >= MutatorType::Count) 
+        {
             std::cerr << std::endl << "[APGG Error] invalid mutator type. MutatorType must be < " << static_cast<int>(MutatorType::Count);
             std::cin.get();
             std::quick_exit(1);
         }
 
-        switch (selectorType) {
+        switch (selectorType) 
+        {
         case MutatorType::Random:
             return std::make_unique<RandomMutator>();
         case MutatorType::Threshold:

@@ -39,13 +39,15 @@ namespace APGG {
 	{
         PayoffCalculatorType payOffCalculatorType = static_cast<PayoffCalculatorType>(stoul(config.getValue("payoffType", "0")));
 
-        if (payOffCalculatorType >= PayoffCalculatorType::Count) {
+        if (payOffCalculatorType >= PayoffCalculatorType::Count) 
+        {
             std::cerr << std::endl << "[APGG Error] invalid payoffcalculator type. PayoffCalculatorType must be < " << static_cast<int>(PayoffCalculatorType::Count);
             std::cin.get();
             std::quick_exit(1);
         }
 
-        switch (payOffCalculatorType) {
+        switch (payOffCalculatorType) 
+        {
         case PayoffCalculatorType::Default:
             return std::make_unique<DefaultPayoffCalculator>();
         case PayoffCalculatorType::Group:

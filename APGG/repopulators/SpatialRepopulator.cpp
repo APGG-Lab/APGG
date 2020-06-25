@@ -5,7 +5,8 @@ namespace APGG {
     void SpatialRepopulator::repopulate(Grid& grid, std::unordered_set<GridIndex>& selection)
     {
 
-        for (const GridIndex deadOrganismIndex : selection) {
+        for (const GridIndex deadOrganismIndex : selection) 
+        {
 
             unsigned int y = deadOrganismIndex / m_width;
             unsigned int x = deadOrganismIndex - (m_width * y);
@@ -58,17 +59,21 @@ namespace APGG {
 
     GridIndex SpatialRepopulator::wrap(int x, int y)
     {
-        if (x < 0) {
+        if (x < 0) 
+        {
             x = m_width - 1;
         }
-        else if (x >= m_width) {
+        else if (x >= m_width) 
+        {
             x = 0;
         }
 
-        if (y < 0) {
+        if (y < 0) 
+        {
             y = m_height - 1;
         }
-        else if (y >= m_height) {
+        else if (y >= m_height) 
+        {
             y = 0;
         }
 

@@ -27,7 +27,8 @@ namespace APGG {
     }
 	void SimpleArchiver::configure(Config& config)
 	{
-		if (!stoi(config.getValue("timeToFile")) && stoi(config.getValue("timeToFolder"))) {
+		if (!stoi(config.getValue("timeToFile")) && stoi(config.getValue("timeToFolder"))) 
+        {
 			std::cerr << "\n[APGG Warning] timeToFile disabled. You may overwrite your previous experiments";
 			std::cin.get();
 		}

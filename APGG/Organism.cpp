@@ -4,13 +4,16 @@ namespace APGG {
 #ifdef DEBUG_EXTREME
     Organism::~Organism()
     {
-        if (m_status == STATUS_ORIGINAL) {
+        if (m_status == STATUS_ORIGINAL) 
+        {
             DEBUG_MSG("Organism Destructor original: " + getDebugString());
         }
-        else if (m_status == STATUS_DELETED) {
+        else if (m_status == STATUS_DELETED) 
+        {
             DEBUG_MSG("Organism Destructor deleted: " + getDebugString());
         }
-        else {
+        else 
+        {
             DEBUG_MSG("Organism Destructor Copy: " + getDebugString());
         }
     }
@@ -51,7 +54,8 @@ namespace APGG {
     {
         m_payoff = payoff;
 
-        if (m_payoff < 0) {
+        if (m_payoff < 0) 
+        {
             m_payoff = 0;
         }
     }
@@ -72,7 +76,8 @@ namespace APGG {
         copyOrganism->m_parent = m_parent;
         copyOrganism->m_children = m_children;
        // copyOrganism->m_genomes = m_genomes;
-        for (size_t i = 0; i < m_genomes.size(); i++) {
+        for (size_t i = 0; i < m_genomes.size(); i++) 
+        {
             copyOrganism->m_genomes[i].setValue(m_genomes[i].getValue());
         }
     }
