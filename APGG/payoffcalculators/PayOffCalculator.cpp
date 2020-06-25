@@ -2,6 +2,8 @@
 
 #include "DefaultPayoffCalculator.h"
 #include "GroupLevelPayoffCalculator.h"
+#include "AsymmetricPayoffCalculator .h"
+
 namespace APGG {
 
     enum class PayoffCalculatorType : unsigned long { Default = 0, Group, Count };
@@ -52,6 +54,8 @@ namespace APGG {
             return std::make_unique<DefaultPayoffCalculator>();
         case PayoffCalculatorType::Group:
             return std::make_unique<GroupLevelPayoffCalculator>();
+        case PayOffCalculatorType::Asymmetric:
+            return std::make_unique<AsymmetricPayoffCalculator>();
         default:
             std::cerr << std::endl << "[APGG Error] Payoffcalculator isn't defined in PayoffCalculator::Create switch case statement" << std::endl;
             std::cin.get();
