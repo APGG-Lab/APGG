@@ -3,9 +3,9 @@
 namespace APGG {
 
 
-    DefaultPayOffCalculator::DefaultPayOffCalculator(){}
+    DefaultPayoffCalculator::DefaultPayoffCalculator(){}
 
-    void DefaultPayOffCalculator::calculateCosts(Group& group)
+    void DefaultPayoffCalculator::calculateCosts(Group& group)
     {
         std::array<unsigned int, Faction::Count> counter = group.getFactionCounter();
 
@@ -22,7 +22,7 @@ namespace APGG {
     }
 
 
-    void DefaultPayOffCalculator::applyPayoff(Grid& grid, Group & group)
+    void DefaultPayoffCalculator::applyPayoff(Grid& grid, Group & group)
     {
         calculateCosts(group);
 
@@ -35,14 +35,14 @@ namespace APGG {
         }
     }
 
-	void DefaultPayOffCalculator::configure(Config& config)
+	void DefaultPayoffCalculator::configure(Config& config)
 	{
 		m_cooperationCost = std::stof(config.getValue("cooperateCost"));
 		m_synergyFactor = std::stof(config.getValue("synergyFactor"));
 		m_punishmentCostBase = std::stof(config.getValue("punishmentCost"));
 		m_punishmentFineBase = std::stof(config.getValue("punishmentFine"));
 	}
-	float DefaultPayOffCalculator::calculateIndividualPayoff(Organism& organism)
+	float DefaultPayoffCalculator::calculateIndividualPayoff(Organism& organism)
 	{
 
         float payoff = m_payoff;
@@ -51,7 +51,7 @@ namespace APGG {
             payoff -= m_punishmentCost;
         };
 
-        if (!organism.m_cooperated) {//Substract punishment fine from defectors/immoralists
+        if (!organism.m_cooperator) {//Substract punishment fine from defectors/immoralists
             payoff -= m_punishmentFine;
         }
         else {

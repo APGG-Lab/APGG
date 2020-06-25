@@ -25,6 +25,10 @@ namespace APGG
             return std::make_unique<ProportionateRepupoluator>();
         case RepopulatorType::Spatial:
             return std::make_unique<SpatialRepopulator>();
+        default:
+            std::cerr << std::endl << "[APGG Error] Repopulator isn't defined in Repopulator::Create switch case statement" << std::endl;
+            std::cin.get();
+            std::quick_exit(1);
         }
     }
 }

@@ -1,57 +1,59 @@
-#include "PayOffCalculator.h"
+#include "PayoffCalculator.h"
 
 #include "DefaultPayoffCalculator.h"
 #include "GroupLevelPayoffCalculator.h"
 namespace APGG {
 
-    enum class PayOffCalculatorType : unsigned long { Default = 0, Group, Count };
+    enum class PayoffCalculatorType : unsigned long { Default = 0, Group, Count };
 
-    PayOffCalculator::PayOffCalculator() : m_synergyFactor(1), m_punishmentCostBase(1.0f), m_punishmentFineBase(1.0f), m_allowPayoffBelowZero(false)
+    PayoffCalculator::PayoffCalculator() : m_synergyFactor(1), m_punishmentCostBase(1.0f), m_punishmentFineBase(1.0f), m_allowPayoffBelowZero(false)
     {
     }
 
-    void PayOffCalculator::setSynergyFactor(const float factor)
+    void PayoffCalculator::setSynergyFactor(const float factor)
     {
         m_synergyFactor = factor;
     }
 
-    void PayOffCalculator::setPunishmentBaseCost(const float cost)
+    void PayoffCalculator::setPunishmentBaseCost(const float cost)
     {
         m_punishmentCostBase = cost;
     }
 
-    void PayOffCalculator::setPunishmentBaseFine(const float fine)
+    void PayoffCalculator::setPunishmentBaseFine(const float fine)
     {
         m_punishmentFineBase = fine;
     }
 
-    void PayOffCalculator::setCooperationCost(const float cost)
+    void PayoffCalculator::setCooperationCost(const float cost)
     {
         m_cooperationCost = cost;
     }
 
-    void PayOffCalculator::allowPayoffBelowZero(const bool status)
+    void PayoffCalculator::allowPayoffBelowZero(const bool status)
     {
         m_allowPayoffBelowZero = status;
     }
 
-	std::unique_ptr<PayOffCalculator> PayOffCalculator::Create(Config& config)
+	std::unique_ptr<PayoffCalculator> PayoffCalculator::Create(Config& config)
 	{
-        PayOffCalculatorType payOffCalculatorType = static_cast<PayOffCalculatorType>(stoul(config.getValue("payoffType", "0")));
+        PayoffCalculatorType payOffCalculatorType = static_cast<PayoffCalculatorType>(stoul(config.getValue("payoffType", "0")));
 
-        if (payOffCalculatorType >= PayOffCalculatorType::Count) {
-            std::cerr << std::endl << "[APGG Error] invalid payoffcalculator type. PayOffCalculatorType must be < " << static_cast<int>(PayOffCalculatorType::Count);
+        if (payOffCalculatorType >= PayoffCalculatorType::Count) {
+            std::cerr << std::endl << "[APGG Error] invalid payoffcalculator type. PayoffCalculatorType must be < " << static_cast<int>(PayoffCalculatorType::Count);
             std::cin.get();
             std::quick_exit(1);
         }
 
         switch (payOffCalculatorType) {
-        case PayOffCalculatorType::Default:
-            return std::make_unique<DefaultPayOffCalculator>();
-        case PayOffCalculatorType::Group:
+        case PayoffCalculatorType::Default:
+            return std::make_unique<DefaultPayoffCalculator>();
+        case PayoffCalculatorType::Group:
             return std::make_unique<GroupLevelPayoffCalculator>();
         default:
-            std::cerr << std::endl << "[APGG Error] Payoffcalculator isn't defined in PayOffCalculator::Create switch case statement" << std::endl;
+            std::cerr << std::endl << "[APGG Error] Payoffcalculator isn't defined in PayoffCalculator::Create switch case statement" << std::endl;
+            std::cin.get();
+            std::quick_exit(1);
         }
 	}
 }

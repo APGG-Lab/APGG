@@ -36,6 +36,10 @@ namespace APGG {
             return std::make_unique<EliteSelector>();
         case SelectorType::Random:
             return std::make_unique<RandomSelector>();
+        default:
+            std::cerr << std::endl << "[APGG Error] Selector isn't defined in Selector::Create switch case statement" << std::endl;
+            std::cin.get();
+            std::quick_exit(1);
         }
     }
 }

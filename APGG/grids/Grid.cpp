@@ -147,19 +147,11 @@ namespace APGG {
         switch (gridType) {
         case GridType::Default:
             return std::make_unique<DefaultGrid>();
-        default:
         case GridType::Spatial:
             return std::make_unique<SpatialGrid>();
+        default:
+            std::cerr << std::endl << "[APGG Error] Grid isn't defined in Grid::Create switch case statement" << std::endl;
+            std::cin.get();
+            std::quick_exit(1);
         }
 	}
-
-	//unsigned int Grid::getWidth() const
-	//{
-	//	return m_width;
-	//}
-
-    //unsigned int Grid::getHeight() const
-    //{
-    //	return m_height;
-    //}
-}

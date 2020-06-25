@@ -27,6 +27,10 @@ namespace APGG
             return std::make_unique<RandomMutator>();
         case MutatorType::Threshold:
             return std::make_unique<ThresholdMutator>();
+        default:
+            std::cerr << std::endl << "[APGG Error] Mutator isn't defined in Mutator::Create switch case statement" << std::endl;
+            std::cin.get();
+            std::quick_exit(1);
         }
     }
 }

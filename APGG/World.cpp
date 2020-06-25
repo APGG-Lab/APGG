@@ -45,7 +45,7 @@ namespace APGG {
         m_grid->configure(config);
 
         //Setup the payoff calculator
-        m_payoffCalculator = PayOffCalculator::Create(config);
+        m_payoffCalculator = PayoffCalculator::Create(config);
         m_payoffCalculator->configure(config);
 
         //Setup the mutator
@@ -125,11 +125,7 @@ namespace APGG {
     {
 
         m_lod.logTop(*m_grid, m_lodArchiver);
-
-     //   for (Organism& oragnism : m_grid.getData()) {
-     //       m_lod.wipe(oragnism);
-     //   }
-
+        
         m_lod.cleanup(*m_grid);
 
         m_grid->getData().clear();
@@ -150,7 +146,7 @@ namespace APGG {
 
         std::unordered_set<GridIndex>& selection = m_selector->select(*m_grid);
 
-        m_lod.LOD2(*m_grid, selection);
+        m_lod.createLOD(*m_grid, selection);
 
         m_repopulator->repopulate(*m_grid, selection);
 

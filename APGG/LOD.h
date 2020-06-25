@@ -14,9 +14,9 @@ namespace APGG {
 	private:
         std::list<Organism*> m_pool;
 	public:
-		void LOD2(Grid& grid, const std::unordered_set<GridIndex>& selection);
-		void createLODCopy2(Grid& grid, Organism& organism);
-        void removeAndCleanupChildLists2(Organism& organism);
+		void createLOD(Grid& grid, const std::unordered_set<GridIndex>& selection);
+		void createLODCopy(Grid& grid, Organism& organism);
+        void removeAndCleanupChildLists(Organism& organism);
 
         void logTop(Grid& grid, LODArchiver& archiver);
         void cleanup(Grid& grid);

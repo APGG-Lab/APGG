@@ -18,8 +18,8 @@ namespace APGG {
 
     bool Organism::assignProfession(const float cooperationValue)
     {
-        m_cooperated = m_genomes[GENOME_COOPERATION].getValue() >= cooperationValue;
-        return m_cooperated;
+        m_cooperator = m_genomes[GENOME_COOPERATION].getValue() >= cooperationValue;
+        return m_cooperator;
     }
 
     bool Organism::assignMorals(const float moralValue)
@@ -34,9 +34,9 @@ namespace APGG {
         assignMorals(getRandomFloat());
 
 
-        if (m_cooperated && !m_moralist) m_faction = Faction::Cooperator;
-        else if (m_cooperated && m_moralist) m_faction = Faction::Moralist;
-        else if (!m_cooperated && !m_moralist) m_faction = Faction::Defector;
+        if (m_cooperator && !m_moralist) m_faction = Faction::Cooperator;
+        else if (m_cooperator && m_moralist) m_faction = Faction::Moralist;
+        else if (!m_cooperator && !m_moralist) m_faction = Faction::Defector;
         else m_faction = Faction::Immoralist;
 
         return m_faction;
@@ -58,7 +58,7 @@ namespace APGG {
 
     void Organism::copyTo(Organism* copyOrganism)
     {
-        copyOrganism->m_cooperated = m_cooperated;
+        copyOrganism->m_cooperator = m_cooperator;
       //  copyOrganism->m_faction = m_faction;
         //copyOrganism->m_genomes = m_genomes;
         copyOrganism->m_moralist = m_moralist;

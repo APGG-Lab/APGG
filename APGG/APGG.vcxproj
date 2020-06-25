@@ -227,7 +227,7 @@
     <ClCompile Include="Organism.cpp" />
     <ClCompile Include="payoffcalculators\DefaultPayoffCalculator.cpp" />
     <ClCompile Include="payoffcalculators\GroupLevelPayoffCalculator.cpp" />
-    <ClCompile Include="payoffcalculators\PayOffCalculator.cpp" />
+    <ClCompile Include="payoffcalculators\PayoffCalculator.cpp" />
     <ClCompile Include="World.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -257,7 +257,7 @@
     <ClInclude Include="Organism.h" />
     <ClInclude Include="payoffcalculators\DefaultPayoffCalculator.h" />
     <ClInclude Include="payoffcalculators\GroupLevelPayoffCalculator.h" />
-    <ClInclude Include="payoffcalculators\PayOffCalculator.h" />
+    <ClInclude Include="payoffcalculators\PayoffCalculator.h" />
     <ClInclude Include="random.h" />
     <ClInclude Include="World.h" />
   </ItemGroup>

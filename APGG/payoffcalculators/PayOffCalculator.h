@@ -7,10 +7,10 @@
 #include "../grids/Grid.h"
 namespace APGG {
 
-    constexpr unsigned int nPayOffTypes = 1;
-    enum PayOffTypes { f };
+    constexpr unsigned int nPayoffTypes = 1;
+    enum PayoffTypes { f };
 
-    class PayOffCalculator : public Configurable
+    class PayoffCalculator : public Configurable
     {
     protected:
         float m_synergyFactor;
@@ -23,7 +23,7 @@ namespace APGG {
         float m_punishmentFine;
         float m_payoff;
     public:
-        PayOffCalculator();
+        PayoffCalculator();
 
         void setSynergyFactor(const float factor);
         void setPunishmentBaseCost(const float cost);
@@ -34,7 +34,7 @@ namespace APGG {
         virtual void calculateCosts(Group& group) = 0;
         virtual void applyPayoff(Grid& grid, Group& group) = 0;
 
-        static std::unique_ptr<PayOffCalculator> Create(Config& config);
+        static std::unique_ptr<PayoffCalculator> Create(Config& config);
         virtual float calculateIndividualPayoff(Organism& organism) = 0;
     };
 

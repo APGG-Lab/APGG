@@ -2,7 +2,7 @@
 
 namespace APGG {
 
-    void LOD::LOD2(Grid& grid, const std::unordered_set<GridIndex>& selection)
+    void LOD::createLOD(Grid& grid, const std::unordered_set<GridIndex>& selection)
     {
         for (const unsigned int& index : selection) {
 
@@ -13,18 +13,18 @@ namespace APGG {
                 // and change the Pointers of the parent and the children 
                 // to point to the new copy of the organism
 
-                createLODCopy2(grid, organism);
+                createLODCopy(grid, organism);
             }
             else {
                 // Organsim doesn't have children. The tree reached a dead end.
                 // Go upwards and remove all dead parents recursively
 
-                removeAndCleanupChildLists2(organism);
+                removeAndCleanupChildLists(organism);
             }
         }
     }
 
-    void LOD::createLODCopy2(Grid& grid, Organism& organism)
+    void LOD::createLODCopy(Grid& grid, Organism& organism)
     {
         Organism* organismCopy = nullptr;
 
@@ -64,7 +64,7 @@ namespace APGG {
     }
 
 
-    void LOD::removeAndCleanupChildLists2(Organism& organism)
+    void LOD::removeAndCleanupChildLists(Organism& organism)
     {
 
             Organism* parent = nullptr;

@@ -45,7 +45,7 @@ namespace APGG {
         unsigned int m_generation;
 #endif //__DEBUG
 
-        bool m_cooperated;
+        bool m_cooperator;
         bool m_moralist;
 
         //@todo startvalue?
