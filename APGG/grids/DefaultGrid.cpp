@@ -9,7 +9,8 @@ namespace APGG {
 
         // each iteration of this loop process next set of n elements
         // and store it in a vector at i'th index in vec
-        for (int i = 0; i < numberOfGroups; ++i) {
+        for (int i = 0; i < numberOfGroups; ++i) 
+        {
             // get range for next set of n elements
             auto start_itr = std::next(m_gridKeys.cbegin(), i * m_groupSize);
             auto end_itr = std::next(m_gridKeys.cbegin(), i * m_groupSize + m_groupSize);
@@ -19,7 +20,8 @@ namespace APGG {
 
             // code to handle the last sub-vector as it might
             // contain less elements (unused, because totalSize%groupSize = 0)
-            //    if (i * m_groupSize + m_groupSize > m_gridKeys.size()) {
+            //    if (i * m_groupSize + m_groupSize > m_gridKeys.size()) 
+            //{
             //       end_itr = m_gridKeys.end();
             //       m_groupsNew[i].reserve(m_gridKeys.size() - i * m_groupSize);
             //    }
@@ -34,7 +36,8 @@ namespace APGG {
         m_height = stoi(config.getValue("height"));
         m_totalSize = m_width * m_height;
 
-        if (m_grid.size() % stoi(config.getValue("groupSize")) != 0) {
+        if (m_grid.size() % stoi(config.getValue("groupSize")) != 0) 
+        {
             std::cerr << "\n[APGG Error] invalid group size. Gridsize (height*width) % Groupsize must be 0";
             std::cin.get();
             std::quick_exit(1);
@@ -66,7 +69,8 @@ namespace APGG {
 
         m_groups.resize(numberOfGroups);
 
-        for (int i = 0; i < numberOfGroups; ++i) {
+        for (int i = 0; i < numberOfGroups; ++i) 
+        {
             // allocate memory for the sub vector
             m_groups[i].resize(m_groupSize);
         }

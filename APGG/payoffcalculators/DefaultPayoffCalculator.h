@@ -3,14 +3,14 @@
 #include "../Group.h"
 #include "../Organism.h"
 
-#include "PayOffCalculator.h"
+#include "PayoffCalculator.h"
 
 namespace APGG {
 
-    class DefaultPayOffCalculator : public PayOffCalculator
+    class DefaultPayoffCalculator : public PayoffCalculator
     {
     public:
-        DefaultPayOffCalculator();
+        DefaultPayoffCalculator();
         void calculateCosts(Group& group);
         void applyPayoff(Grid& grid, Group& group);
 		void configure(Config& config);

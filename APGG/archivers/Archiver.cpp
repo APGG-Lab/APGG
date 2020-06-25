@@ -40,12 +40,14 @@ namespace APGG {
     void Archiver::open()
     {
         std::string fullFolderName = "experiments/" + m_folderName;
-        if (m_appendTimestampToFolder) {
+        if (m_appendTimestampToFolder) 
+        {
             fullFolderName += ("_" + getTimestamp());
         }
         fullFolderName += "/";
 
-        if (!fs::is_directory(fullFolderName) || !fs::exists(fullFolderName)) { // Check if src folder exists
+        if (!fs::is_directory(fullFolderName) || !fs::exists(fullFolderName)) 
+        { // Check if src folder exists
             fs::create_directory(fullFolderName); // create src folder
             std::cout << "[Archiver] created folder: " << fullFolderName << "\n";
         }
@@ -53,7 +55,8 @@ namespace APGG {
         std::string fullFileName = m_fileBaseName;
         fullFileName += ("_" + m_fileSuffix);
 
-        if (m_appendTimestampToFile) {
+        if (m_appendTimestampToFile) 
+        {
             fullFileName += ("_" + getTimestamp());
         }
 
