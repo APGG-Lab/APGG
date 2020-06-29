@@ -1,23 +1,39 @@
 import os
 import sys 
 import csv
+import pandas as pd
+import numpy as np
 import matplotlib.pyplot as plt
 
+#number of experiments
 num_experiments = 10;
 
 def main():
-    print("Test")
-    score_fileList = getFilteredFileList('./', 'score')
-    result = analyseScoreFiles(score_fileList)
-    showScorePlot(result)
+    if len(sys.argv) != 2:
+        print("Argument 1 missing")
+        input()
 
+    folderName = sys.argv[1]
 
-    lod_fileList = getFilteredFileList('./', 'LOD')
-    result = analyseLODFiles(lod_fileList)
-    showLODPlot(result)
+   # print("Test")
+    score_fileList = getFilteredFileList(folderName, 'score')
+    df_array = getDataframeArray(score_fileList)
+    result_df = analyseScore(df_array)
+    showScorePlot(result_df)
+
+    lod_fileList = getFilteredFileList(folderName, 'LOD')
+    df_array = getDataframeArray(lod_fileList)
+    result_df = analyseLOD(df_array)
+    showLODPlot(result_df)
+
     plt.show()
 
-def getSynergyFactor(fileName):
+
+
+#Extracts a key from a file for sorting (e.g. synergyfactor)
+#This part shouldn't be relevant, if you have files which will use the
+#following schema : [score|LOD]_prefix-key1-key2_exp0_timestamp.csv
+def getSortingKey(fileName):
     return fileName #(fileName[-10:])
 
 def getFilteredFileList(folder, filter):
@@ -25,100 +41,95 @@ def getFilteredFileList(folder, filter):
     for root, directories, files in os.walk(folder):
         for file in files:
             if filter in file:
-                fileList.append(file)
+                fileList.append(folder + "/" + file)
 
-    return sorted(fileList, key = getSynergyFactor)
+    print("Found " + str(len(fileList)) + " " + filter + " files")
+    return np.array(sorted(fileList, key = getSortingKey))
 
-def analyseScoreFiles(fileList):
+def getDataframeArray(fileList):
     i = 0;
-    csvData = []
-    types = {"c": 0, "d" : 0, "m" : 0, "i" : 0, 'np': 0, 'p': 0, 'coop': 0, 'nocoop' : 0}
-    csvData.append(list(types.values()))
+    k = 0; #chunk counter for logprints
+    num_chunks = len(fileList)/num_experiments;
+    df_collection = []
+
+    print("\tSplitting files in " + str(num_chunks) + " chunks a " + str(num_experiments) + " files")
+
+
     while(i < len(fileList)):
-        types = {"c": 0, "d" : 0, "m" : 0, "i" : 0, 'np': 0, 'p': 0, 'coop': 0, 'nocoop' : 0}
+        df_collection_chunk = []
         for j in range(i, i+num_experiments):
-            file = fileList[j]
-            lastLine = getLastLineOfFileAsCSV(file)
-            types["c"] += int(lastLine[1])
-            types["d"] += int(lastLine[2])
-            types["m"] += int(lastLine[3])
-            types["i"] += int(lastLine[4])
-        types["np"] = types["c"] + types["d"]
-        types["p"] = types["m"] + types["i"]
-        types["coop"] = types["c"] + types["m"]
-        types["nocoop"] = types["d"] + types["i"]
-        types["c"] /= num_experiments
-        types["d"] /= num_experiments
-        types["m"] /= num_experiments
-        types["i"] /= num_experiments
-        types["np"] /= num_experiments
-        types["p"] /= num_experiments
-        types["coop"] /= num_experiments
-        types["nocoop"] /= num_experiments
-        csvData.append(list(types.values()))
+            df = getLastLineOfCSV(fileList[j])
+            df_collection_chunk.append(df)
 
-        print("Status: " + str(i));
+        df_result = pd.concat(df_collection_chunk) #collection which holds num_experiments rows
+        df_collection.append(df_result) #array which holds combined data_frames
+
         i+=num_experiments
+        k+=1
+        print("\tGenerate dataframes for chunk " + str(k) + " of " + str(num_chunks))
 
-    with open('../results.csv', 'a', newline='') as csvFile:
-        writer = csv.writer(csvFile, delimiter=";")
-        writer.writerows(csvData)
-        csvFile.close()
-    return csvData
+    return df_collection
 
-def analyseLODFiles(fileList):
-    i = 0;
-    csvData = []
-    types = {"c": 0, "d" : 0,}
-    csvData.append(list(types.values()))
-    while(i < len(fileList)):
-        types = {"c": 0, "d" : 0}
-        for j in range(i, i+num_experiments):
-            file = fileList[j]
-            lastLine = getLastLineOfFileAsCSV(file)
-            types["c"] += float(lastLine[5])
-            types["d"] += float(lastLine[6])
-        types["c"] /= num_experiments
-        types["d"] /= num_experiments
-        csvData.append(list(types.values()))
+def analyseScore(df_array):    
+    avgDFs = []
 
-        print("Status: " + str(i));
-        i+=num_experiments
+    print("\tConvert dataframes and generate AVG values");
 
-    with open('../results_LOD.csv', 'a', newline='') as csvFile:
-        writer = csv.writer(csvFile, delimiter=";")
-        writer.writerows(csvData)
-        csvFile.close()
-    return csvData
+    for df in df_array:
+        df = df.drop(columns=['generation']) #Drop generation
 
-def showScorePlot(y):
-    x = [0, 1.0, 2, 3, 4, 5, 6]
-    labels = ['cooperate', 'defect', 'moralist', 'immoralist', 'fracPun', 'fracNonPun', 'fracCoop', 'fracNoCoop']
+        #create meta columns
+        df['nCooperation'] = df['nCooperators'] + df['nMoralists']
+        df['nPunishment'] = df['nMoralists'] + df['nImmoralists']
+        df['nNoCooperation'] = df['nDefectors'] +  df['nImmoralists']
+        df['nNoPunishment'] = df['nCooperators'] + df['nDefectors']
+
+        avgDF = round(df.mean())
+        avgDFs.append(avgDF)
+
+    df_result = pd.concat(avgDFs, axis=1).transpose()
+    return df_result
+
+def analyseLOD(df_array):
+    avgDFs = []
+
+    print("\tConvert dataframes and generate AVG values");
+
+    for df in df_array:
+        
+        df = df.drop(columns=['payoff', 'faction', 'cooperated', 'moralist','nChildren']) #Drop unused values
+
+        avgDF = df.mean()
+        avgDFs.append(avgDF)
+
+    df_result = pd.concat(avgDFs, axis=1).transpose()
+    return df_result
+
+def showScorePlot(df):
+    x = [1, 2, 3, 4, 5, 6]
+    labels = df.columns.values
     plt.figure(1)
     plt.xticks(x, x)
     plt.xlabel("R")
     plt.ylabel("Num Agents")
-    plt.plot(x, y)
+    plt.plot(x, df)
     # call method plt.legend
     plt.legend(labels)
 
-def showLODPlot(y):
-    x = [0, 1.0, 2, 3, 4, 5, 6]
-    labels = ['pCoop', 'pMoral']
+def showLODPlot(df):
+    x = [1, 2, 3, 4, 5, 6]
+    labels = df.columns.values
     plt.figure(2)
     plt.xticks(x, x)
     plt.xlabel("R")
     plt.ylabel("Percent")
-    plt.plot(x, y)
+    plt.plot(x, df)
     # call method plt.legend
     plt.legend(labels)
 
-def getLastLineOfFileAsCSV(file):
-    fileHandle = open(os.path.join('./', file), "r")
-    lineList = fileHandle.readlines()
-    fileHandle.close()
-    lastLine = lineList[len(lineList)-1];
-    columns = lastLine.split(';')
-    return columns
+
+def getLastLineOfCSV(file):
+    df = pd.read_csv(file, header=0, sep = ";")
+    return df[-1:]
 
 main()
