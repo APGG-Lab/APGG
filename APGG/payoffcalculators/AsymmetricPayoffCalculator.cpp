@@ -1,4 +1,4 @@
-#include "AsymmetricPayoffCalculator .h"
+#include "AsymmetricPayoffCalculator.h"
 
 namespace APGG {
 
@@ -65,7 +65,7 @@ namespace APGG {
             payoff -= m_punishmentCost;
         };
 
-        if (!organism.m_cooperated) {//Substract punishment fine from defectors/immoralists
+        if (!organism.m_cooperator) {//Substract punishment fine from defectors/immoralists
             payoff -= m_punishmentFine;
         }
         else {

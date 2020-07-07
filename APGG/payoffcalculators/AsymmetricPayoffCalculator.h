@@ -3,11 +3,11 @@
 #include "../Group.h"
 #include "../Organism.h"
 
-#include "PayOffCalculator.h"
+#include "PayoffCalculator.h"
 
 namespace APGG {
 
-    class AsymmetricPayoffCalculator : public PayOffCalculator
+    class AsymmetricPayoffCalculator : public PayoffCalculator
     {
     private:
         float m_denominator;
