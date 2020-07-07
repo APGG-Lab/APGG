@@ -3,7 +3,7 @@ TARGET_EXEC ?= apgg_release
 BUILD_DIR ?= ./build
 SRC_DIRS ?= ./APGG
 
-CXX = g++-9 #If g++-9 is not your default, use this
+#CXX = g++-9 #If g++-9 is not your default, use this
 
 SRCS := $(shell find $(SRC_DIRS) -name *.cpp -or -name *.c -or -name *.s)
 OBJS := $(SRCS:%=$(BUILD_DIR)/%.o)
