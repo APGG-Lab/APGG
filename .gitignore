@@ -356,3 +356,5 @@ MigrationBackup/
 /build/*.ipdb
 /build/*.pdb
 /build/experiments/**/
+/build/APGG/
+/build/apgg_release
