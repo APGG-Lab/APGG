@@ -1,6 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug_Extreme|Win32">
+      <Configuration>Debug_Extreme</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug_Extreme|x64">
+      <Configuration>Debug_Extreme</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
     <ProjectConfiguration Include="Debug|Win32">
       <Configuration>Debug</Configuration>
       <Platform>Win32</Platform>
@@ -22,32 +30,44 @@
     <VCProjectVersion>15.0</VCProjectVersion>
     <ProjectGuid>{C371D6A9-3A5F-4E59-BEF8-266CA7F84001}</ProjectGuid>
     <RootNamespace>APGG</RootNamespace>
-    <WindowsTargetPlatformVersion>10.0.17763.0</WindowsTargetPlatformVersion>
+    <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
-    <PlatformToolset>v141</PlatformToolset>
+    <PlatformToolset>v142</PlatformToolset>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug_Extreme|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v142</PlatformToolset>
     <CharacterSet>MultiByte</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
-    <PlatformToolset>v141</PlatformToolset>
+    <PlatformToolset>v142</PlatformToolset>
     <WholeProgramOptimization>true</WholeProgramOptimization>
     <CharacterSet>MultiByte</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
-    <PlatformToolset>v141</PlatformToolset>
+    <PlatformToolset>v142</PlatformToolset>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug_Extreme|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v142</PlatformToolset>
     <CharacterSet>MultiByte</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
-    <PlatformToolset>v141</PlatformToolset>
+    <PlatformToolset>v142</PlatformToolset>
     <WholeProgramOptimization>true</WholeProgramOptimization>
     <CharacterSet>MultiByte</CharacterSet>
   </PropertyGroup>
@@ -59,17 +79,46 @@
   <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
   </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug_Extreme|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
   <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
   </ImportGroup>
   <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
   </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug_Extreme|x64'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
   <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
-  <PropertyGroup />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <OutDir>$(SolutionDir)build/</OutDir>
+    <TargetName>$(ProjectName)_$(Platform)_$(Configuration)</TargetName>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug_Extreme|Win32'">
+    <OutDir>$(SolutionDir)build/</OutDir>
+    <TargetName>$(ProjectName)_$(Platform)_$(Configuration)</TargetName>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <OutDir>$(SolutionDir)build/</OutDir>
+    <TargetName>$(ProjectName)_$(Platform)_$(Configuration)</TargetName>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <OutDir>$(SolutionDir)build/</OutDir>
+    <TargetName>$(ProjectName)_$(Platform)_$(Configuration)</TargetName>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug_Extreme|x64'">
+    <OutDir>$(SolutionDir)build/</OutDir>
+    <TargetName>$(ProjectName)_$(Platform)_$(Configuration)</TargetName>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <OutDir>$(SolutionDir)build/</OutDir>
+    <TargetName>$(ProjectName)_$(Platform)_$(Configuration)</TargetName>
+  </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
@@ -81,6 +130,18 @@
       <LanguageStandard>stdcpp17</LanguageStandard>
     </ClCompile>
   </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug_Extreme|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <SDLCheck>true</SDLCheck>
+      <ConformanceMode>true</ConformanceMode>
+      <FloatingPointModel>Fast</FloatingPointModel>
+      <OpenMPSupport>false</OpenMPSupport>
+      <LanguageStandard>stdcpp17</LanguageStandard>
+      <PreprocessorDefinitions>DEBUG_EXTREME;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+  </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
@@ -90,6 +151,18 @@
       <FloatingPointModel>Fast</FloatingPointModel>
       <OpenMPSupport>false</OpenMPSupport>
       <LanguageStandard>stdcpp17</LanguageStandard>
+    </ClCompile>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug_Extreme|x64'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <SDLCheck>true</SDLCheck>
+      <ConformanceMode>true</ConformanceMode>
+      <FloatingPointModel>Fast</FloatingPointModel>
+      <OpenMPSupport>false</OpenMPSupport>
+      <LanguageStandard>stdcpp17</LanguageStandard>
+      <PreprocessorDefinitions>DEBUG_EXTREME;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -120,6 +193,7 @@
       <FloatingPointModel>Fast</FloatingPointModel>
       <OpenMPSupport>false</OpenMPSupport>
       <LanguageStandard>stdcpp17</LanguageStandard>
+      <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
     </ClCompile>
     <Link>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
@@ -127,43 +201,66 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="Archiver.cpp" />
+    <ClCompile Include="archivers\Archiver.cpp" />
+    <ClCompile Include="archivers\ConfigArchiver.cpp" />
+    <ClCompile Include="archivers\LODArchiver.cpp" />
+    <ClCompile Include="archivers\SimpleArchiver.cpp" />
     <ClCompile Include="Config.cpp" />
+    <ClCompile Include="ConfigParserCSV.cpp" />
     <ClCompile Include="Genome.cpp" />
-    <ClCompile Include="Grid.cpp" />
+    <ClCompile Include="grids\DefaultGrid.cpp" />
+    <ClCompile Include="grids\Grid.cpp" />
+    <ClCompile Include="grids\SpatialGrid.cpp" />
     <ClCompile Include="Group.cpp" />
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="MatchupGenerator.cpp" />
-    <ClCompile Include="optimizer\Optimizer.cpp" />
-    <ClCompile Include="optimizer\repopulators\ProportionateRepopulator.cpp" />
-    <ClCompile Include="optimizer\repopulators\RandomRepopulator.cpp" />
-    <ClCompile Include="optimizer\repopulators\Repopulator.cpp" />
-    <ClCompile Include="optimizer\selectors\EliteSelector.cpp" />
-    <ClCompile Include="optimizer\selectors\RandomSelector.cpp" />
-    <ClCompile Include="optimizer\selectors\Selector.cpp" />
+    <ClCompile Include="LOD.cpp" />
+    <ClCompile Include="mutators\Mutator.cpp" />
+    <ClCompile Include="mutators\RandomMutator.cpp" />
+    <ClCompile Include="mutators\ThresholdMutator.cpp" />
+    <ClCompile Include="payoffcalculators\AsymmetricPayoffCalculator .cpp" />
+    <ClCompile Include="repopulators\ProportionateRepopulator.cpp" />
+    <ClCompile Include="repopulators\RandomRepopulator.cpp" />
+    <ClCompile Include="repopulators\Repopulator.cpp" />
+    <ClCompile Include="repopulators\SpatialRepopulator.cpp" />
+    <ClCompile Include="selectors\EliteSelector.cpp" />
+    <ClCompile Include="selectors\RandomSelector.cpp" />
+    <ClCompile Include="selectors\Selector.cpp" />
     <ClCompile Include="Organism.cpp" />
-    <ClCompile Include="PayOffCalculator.cpp" />
-    <ClCompile Include="SimpleArchiver.cpp" />
+    <ClCompile Include="payoffcalculators\DefaultPayoffCalculator.cpp" />
+    <ClCompile Include="payoffcalculators\GroupLevelPayoffCalculator.cpp" />
+    <ClCompile Include="payoffcalculators\PayoffCalculator.cpp" />
     <ClCompile Include="World.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Archiver.h" />
+    <ClInclude Include="archivers\Archiver.h" />
+    <ClInclude Include="archivers\ConfigArchiver.h" />
+    <ClInclude Include="archivers\LODArchiver.h" />
+    <ClInclude Include="archivers\SimpleArchiver.h" />
     <ClInclude Include="Config.h" />
+    <ClInclude Include="ConfigParserCSV.h" />
+    <ClInclude Include="Configurable.h" />
     <ClInclude Include="Genome.h" />
-    <ClInclude Include="Grid.h" />
+    <ClInclude Include="grids\DefaultGrid.h" />
+    <ClInclude Include="grids\Grid.h" />
+    <ClInclude Include="grids\SpatialGrid.h" />
     <ClInclude Include="Group.h" />
-    <ClInclude Include="MatchupGenerator.h" />
-    <ClInclude Include="optimizer\Optimizer.h" />
-    <ClInclude Include="optimizer\repopulators\ProportionateRepopulator.h" />
-    <ClInclude Include="optimizer\repopulators\RandomRepopulator.h" />
-    <ClInclude Include="optimizer\repopulators\Repopulator.h" />
-    <ClInclude Include="optimizer\selectors\EliteSelector.h" />
-    <ClInclude Include="optimizer\selectors\RandomSelector.h" />
-    <ClInclude Include="optimizer\selectors\Selector.h" />
+    <ClInclude Include="LOD.h" />
+    <ClInclude Include="mutators\Mutator.h" />
+    <ClInclude Include="mutators\RandomMutator.h" />
+    <ClInclude Include="mutators\ThresholdMutator.h" />
+    <ClInclude Include="payoffcalculators\AsymmetricPayoffCalculator .h" />
+    <ClInclude Include="repopulators\ProportionateRepopulator.h" />
+    <ClInclude Include="repopulators\RandomRepopulator.h" />
+    <ClInclude Include="repopulators\Repopulator.h" />
+    <ClInclude Include="repopulators\SpatialRepopulator.h" />
+    <ClInclude Include="selectors\EliteSelector.h" />
+    <ClInclude Include="selectors\RandomSelector.h" />
+    <ClInclude Include="selectors\Selector.h" />
     <ClInclude Include="Organism.h" />
-    <ClInclude Include="PayOffCalculator.h" />
+    <ClInclude Include="payoffcalculators\DefaultPayoffCalculator.h" />
+    <ClInclude Include="payoffcalculators\GroupLevelPayoffCalculator.h" />
+    <ClInclude Include="payoffcalculators\PayoffCalculator.h" />
     <ClInclude Include="random.h" />
-    <ClInclude Include="SimpleArchiver.h" />
     <ClInclude Include="World.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

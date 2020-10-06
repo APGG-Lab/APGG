@@ -1,109 +1,105 @@
 #include <iostream>
 #include <string>
-#include <sstream>
-#include <fstream>
+#include <thread>
+#include <vector>
+#include <future>
+#include <algorithm>
 
 #include "World.h"
+#include "ConfigParserCSV.h"
 
 using namespace APGG;
 
-template <size_t ColumnNumber> std::vector<std::array<std::string, ColumnNumber>> parseCSV(std::string filePath)
+void RunExperiment(Config config)
 {
-	std::vector<std::array<std::string, ColumnNumber>> output;
+	World myCoolWorld;
+	myCoolWorld.Init(config);
 
-	// File pointer 
-	std::ifstream fin;
-
-	// Open an existing file 
-	fin.open(filePath);
-
-	// Read the Data from the file 
-	// as String Vector 
-	std::vector<std::string> row;
-	std::string line, word;
-
-	// Skip the first line, which details the content of the columns
+	while (myCoolWorld.m_generation < static_cast<unsigned int>(stoi(config.getValue("numGenerations", "10"))))
 	{
-		std::getline(fin, line);
+
+		myCoolWorld.Tick();
+		myCoolWorld.Evolve();
 	}
 
-	if (!fin.is_open())
-	{
-		// error message system here 
-		return output;
-	}
-
-	while (std::getline(fin, line)) {
-
-		std::array<std::string, ColumnNumber> row;
-		row.fill("");
-
-		// used for breaking words 
-		std::istringstream ss(line);
-
-		int i = 0;
-		// getline only continues if there is still something to parse
-		while (i < ColumnNumber && std::getline(ss, word, ';')) {
-			//std::cout << word << std::endl;
-
-			// is this inefficent? should the getline write into the array index immediatley?
-			row[i] = word;
-			i++;
-		}
-
-		output.push_back(std::move(row));
-	}
-
-	return output;
+	myCoolWorld.Fini();
 }
 
-int main() {
-	auto configs = parseCSV<20>("configs.csv");
-    std::cout << "[APGG Init] loading " << configs.size() << " experiments" << std::endl;
+int main(int argc, char * argv[]) 
+{
+	auto configs = ConfigParserCSV::parseConfigs("configs.csv");
+    std::cout << "[APGG Init] loading " << configs.size() << " experiments\n";
 
-	for (auto config : configs)
+	int threadCount = 1;
+	if (argc == 2) 
 	{
-        int i = 0;
-        Config::getInstance().numGenerations = stoi(config[i++]);
-		Config::getInstance().eliminationCount = stoi(config[i++]);
-		Config::getInstance().groupSize = stoi(config[i++]);
-		Config::getInstance().width = stoi(config[i++]);
-		Config::getInstance().height = stoi(config[i++]);
-		Config::getInstance().cooperateCost = stoi(config[i++]);
-		Config::getInstance().synergyFactor = stoi(config[i++]);
-		Config::getInstance().punishmentCost = stoi(config[i++]);
-		Config::getInstance().punishmentFine = stoi(config[i++]);
-		Config::getInstance().matchupType = stoi(config[i++]);
-        Config::getInstance().selectorType = stoi(config[i++]);
-        Config::getInstance().repopulatorType = stoi(config[i++]);
-		Config::getInstance().showAllGenerations = stoi(config[i++]);
-		Config::getInstance().archiveData = stoi(config[i++]);
-		Config::getInstance().visualize = stoi(config[i++]);
-        Config::getInstance().folderName = config[i++];
-        Config::getInstance().logSuffix = config[i++];
-        Config::getInstance().timeToFile = stoi(config[i++]);
-        Config::getInstance().timeToFolder = stoi(config[i++]);
-        Config::getInstance().consoleOutExponent = stoi(config[i++]);
-
-		World myCoolWorld;
-		myCoolWorld.Init();
-
-		while (myCoolWorld.m_generation < stoi(config[0]))
+		threadCount = std::stoi(argv[1]);
+		if (threadCount < 1) 
 		{
-
-			myCoolWorld.Tick();
-			myCoolWorld.Evolve();
+			std::cout << "[APGG Error] Invalid number of threads. Threadcount must be >=1 (actual value: " << std::to_string(threadCount) << ")";
+			std::cin.get();
+			std::quick_exit(1);
 		}
-
-		myCoolWorld.Fini();
-
-        if (configs.size() == 1 && Config::getInstance().visualize && false) {
-            //todo find better way to open the python script automatically
-            system("python3 Visualize.py");
-        }
-		
 	}
-	getchar();
+
+	using namespace std::chrono_literals;
+	//TODO: make configurable
+	unsigned int concurentNumberThreads = static_cast<unsigned int>(threadCount);
+	if (concurentNumberThreads > static_cast<unsigned int>(configs.size()))
+	{
+		concurentNumberThreads = static_cast<unsigned int>(configs.size());
+	}
+
+	std::cout << "[APGG Init] Using " << std::to_string(concurentNumberThreads) << " threads\n";
+
+	std::vector<std::future<void>> threadFutures;
+
+	for (unsigned int i = 0; i < concurentNumberThreads; i++)
+	{
+		threadFutures.push_back(std::async(std::launch::async, RunExperiment, configs[i]));
+	}
+
+	unsigned int nextThread = concurentNumberThreads;
+	unsigned int numberTasks = static_cast<unsigned int>(configs.size());
+	bool remainingTasks = numberTasks > concurentNumberThreads;
+
+	while (remainingTasks)
+	{
+		for (auto& future : threadFutures)
+		{
+			if (future.wait_for(0ms) == std::future_status::ready)
+			{
+				//start new thread in case there is still work to be done
+				if (nextThread < (numberTasks))
+				{
+					future = std::async(std::launch::async, RunExperiment, configs[nextThread]);
+					nextThread++;
+				}
+				else
+				{
+					remainingTasks = false;
+					break;
+				}
+
+			}
+		}
+	}
+
+	//wait for all threads to be finished before the main thread closes
+	bool allThreadsFinished = false;
+	while (!allThreadsFinished)
+	{
+		allThreadsFinished = true;
+		for (auto& future : threadFutures)
+		{
+			if (future.wait_for(0ms) != std::future_status::ready)
+			{
+				allThreadsFinished = false;
+				break;
+			}
+		}
+	}
+
 	return 0;
 }
 

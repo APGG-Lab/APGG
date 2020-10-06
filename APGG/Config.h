@@ -1,43 +1,21 @@
 #pragma once
+#include <array>
 #include <string>
+#include <unordered_map>
+#include <iostream>
+
 namespace APGG {
 
-    class Config
-    {
-    public:
-        // singleton
-        static Config& getInstance();
-        Config(Config const&) = delete;
-        void operator=(Config const&) = delete;
-
-        unsigned int numGenerations = 1000;
-        unsigned int eliminationCount = 20;
-        unsigned int groupSize = 1;
-        unsigned int width = 32;
-        unsigned int height = 32;
-
-        unsigned int cooperateCost = 1;
-        unsigned int synergyFactor = 1;
-        unsigned int punishmentCost = 1;
-        unsigned int punishmentFine = 2;
-
-        unsigned int matchupType = 0;
-        unsigned int selectorType = 0;
-        unsigned int repopulatorType = 0;
-
-
-        bool showAllGenerations = 0;
-        bool archiveData = 1;
-        bool visualize = 1;
-
-        std::string folderName = "";
-        std::string logSuffix = "";
-        bool timeToFile = 0;
-        bool timeToFolder = 0;
-
-        unsigned int consoleOutExponent = 10;
-
-    private:
-        Config();
-    };
+	class Config
+	{
+	public:
+		std::string getValue(const std::string& key, const std::string& alternative = "");
+		std::unordered_map<std::string, std::string>& getMapReference();
+		Config();
+		Config(const unsigned int id);
+		unsigned int getID() const;
+	private:
+		unsigned int m_id = 0;
+		std::unordered_map<std::string, std::string> m_configMap;
+	};
 }

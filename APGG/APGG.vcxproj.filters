@@ -1,129 +1,66 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <Filter Include="Quelldateien">
-      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
-      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
-    </Filter>
-    <Filter Include="Headerdateien">
-      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
-      <Extensions>h;hh;hpp;hxx;hm;inl;inc;ipp;xsd</Extensions>
-    </Filter>
-    <Filter Include="Ressourcendateien">
-      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
-      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
-    </Filter>
+    <ClCompile Include="archivers\Archiver.cpp" />
+    <ClCompile Include="archivers\ConfigArchiver.cpp" />
+    <ClCompile Include="archivers\LODArchiver.cpp" />
+    <ClCompile Include="archivers\SimpleArchiver.cpp" />
+    <ClCompile Include="Config.cpp" />
+    <ClCompile Include="ConfigParserCSV.cpp" />
+    <ClCompile Include="Genome.cpp" />
+    <ClCompile Include="grids\DefaultGrid.cpp" />
+    <ClCompile Include="grids\Grid.cpp" />
+    <ClCompile Include="grids\SpatialGrid.cpp" />
+    <ClCompile Include="Group.cpp" />
+    <ClCompile Include="main.cpp" />
+    <ClCompile Include="Organism.cpp" />
+    <ClCompile Include="payoffcalculators\DefaultPayoffCalculator.cpp" />
+    <ClCompile Include="payoffcalculators\PayOffCalculator.cpp" />
+    <ClCompile Include="World.cpp" />
+    <ClCompile Include="payoffcalculators\GroupLevelPayoffCalculator.cpp" />
+    <ClCompile Include="mutators\Mutator.cpp" />
+    <ClCompile Include="mutators\RandomMutator.cpp" />
+    <ClCompile Include="mutators\ThresholdMutator.cpp" />
+    <ClCompile Include="repopulators\ProportionateRepopulator.cpp" />
+    <ClCompile Include="repopulators\RandomRepopulator.cpp" />
+    <ClCompile Include="repopulators\Repopulator.cpp" />
+    <ClCompile Include="repopulators\SpatialRepopulator.cpp" />
+    <ClCompile Include="selectors\EliteSelector.cpp" />
+    <ClCompile Include="selectors\RandomSelector.cpp" />
+    <ClCompile Include="selectors\Selector.cpp" />
+    <ClCompile Include="LOD.cpp" />
+    <ClCompile Include="payoffcalculators\AsymmetricPayoffCalculator .cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="main.cpp">
-      <Filter>Quelldateien</Filter>
-    </ClCompile>
-    <ClCompile Include="Genome.cpp">
-      <Filter>Quelldateien</Filter>
-    </ClCompile>
-    <ClCompile Include="Organism.cpp">
-      <Filter>Quelldateien</Filter>
-    </ClCompile>
-    <ClCompile Include="Grid.cpp">
-      <Filter>Quelldateien</Filter>
-    </ClCompile>
-    <ClCompile Include="World.cpp">
-      <Filter>Quelldateien</Filter>
-    </ClCompile>
-    <ClCompile Include="Config.cpp">
-      <Filter>Quelldateien</Filter>
-    </ClCompile>
-    <ClCompile Include="Archiver.cpp">
-      <Filter>Quelldateien</Filter>
-    </ClCompile>
-    <ClCompile Include="MatchupGenerator.cpp">
-      <Filter>Quelldateien</Filter>
-    </ClCompile>
-    <ClCompile Include="Group.cpp">
-      <Filter>Quelldateien</Filter>
-    </ClCompile>
-    <ClCompile Include="PayOffCalculator.cpp">
-      <Filter>Quelldateien</Filter>
-    </ClCompile>
-    <ClCompile Include="optimizer\repopulators\RandomRepopulator.cpp">
-      <Filter>Quelldateien</Filter>
-    </ClCompile>
-    <ClCompile Include="optimizer\repopulators\Repopulator.cpp">
-      <Filter>Quelldateien</Filter>
-    </ClCompile>
-    <ClCompile Include="optimizer\selectors\EliteSelector.cpp">
-      <Filter>Quelldateien</Filter>
-    </ClCompile>
-    <ClCompile Include="optimizer\selectors\Selector.cpp">
-      <Filter>Quelldateien</Filter>
-    </ClCompile>
-    <ClCompile Include="optimizer\Optimizer.cpp">
-      <Filter>Quelldateien</Filter>
-    </ClCompile>
-    <ClCompile Include="SimpleArchiver.cpp">
-      <Filter>Quelldateien</Filter>
-    </ClCompile>
-    <ClCompile Include="optimizer\selectors\RandomSelector.cpp">
-      <Filter>Quelldateien</Filter>
-    </ClCompile>
-    <ClCompile Include="optimizer\repopulators\ProportionateRepopulator.cpp">
-      <Filter>Quelldateien</Filter>
-    </ClCompile>
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="Genome.h">
-      <Filter>Headerdateien</Filter>
-    </ClInclude>
-    <ClInclude Include="Organism.h">
-      <Filter>Headerdateien</Filter>
-    </ClInclude>
-    <ClInclude Include="Grid.h">
-      <Filter>Headerdateien</Filter>
-    </ClInclude>
-    <ClInclude Include="World.h">
-      <Filter>Headerdateien</Filter>
-    </ClInclude>
-    <ClInclude Include="random.h">
-      <Filter>Headerdateien</Filter>
-    </ClInclude>
-    <ClInclude Include="Config.h">
-      <Filter>Headerdateien</Filter>
-    </ClInclude>
-    <ClInclude Include="Archiver.h">
-      <Filter>Headerdateien</Filter>
-    </ClInclude>
-    <ClInclude Include="MatchupGenerator.h">
-      <Filter>Headerdateien</Filter>
-    </ClInclude>
-    <ClInclude Include="Group.h">
-      <Filter>Headerdateien</Filter>
-    </ClInclude>
-    <ClInclude Include="PayOffCalculator.h">
-      <Filter>Headerdateien</Filter>
-    </ClInclude>
-    <ClInclude Include="optimizer\repopulators\RandomRepopulator.h">
-      <Filter>Headerdateien</Filter>
-    </ClInclude>
-    <ClInclude Include="optimizer\repopulators\Repopulator.h">
-      <Filter>Headerdateien</Filter>
-    </ClInclude>
-    <ClInclude Include="optimizer\selectors\EliteSelector.h">
-      <Filter>Headerdateien</Filter>
-    </ClInclude>
-    <ClInclude Include="optimizer\selectors\Selector.h">
-      <Filter>Headerdateien</Filter>
-    </ClInclude>
-    <ClInclude Include="optimizer\Optimizer.h">
-      <Filter>Headerdateien</Filter>
-    </ClInclude>
-    <ClInclude Include="SimpleArchiver.h">
-      <Filter>Headerdateien</Filter>
-    </ClInclude>
-    <ClInclude Include="optimizer\selectors\RandomSelector.h">
-      <Filter>Headerdateien</Filter>
-    </ClInclude>
-    <ClInclude Include="optimizer\repopulators\ProportionateRepopulator.h">
-      <Filter>Headerdateien</Filter>
-    </ClInclude>
+    <ClInclude Include="archivers\Archiver.h" />
+    <ClInclude Include="archivers\ConfigArchiver.h" />
+    <ClInclude Include="archivers\LODArchiver.h" />
+    <ClInclude Include="archivers\SimpleArchiver.h" />
+    <ClInclude Include="Config.h" />
+    <ClInclude Include="ConfigParserCSV.h" />
+    <ClInclude Include="Configurable.h" />
+    <ClInclude Include="Genome.h" />
+    <ClInclude Include="grids\DefaultGrid.h" />
+    <ClInclude Include="grids\Grid.h" />
+    <ClInclude Include="grids\SpatialGrid.h" />
+    <ClInclude Include="Group.h" />
+    <ClInclude Include="Organism.h" />
+    <ClInclude Include="payoffcalculators\DefaultPayoffCalculator.h" />
+    <ClInclude Include="payoffcalculators\PayOffCalculator.h" />
+    <ClInclude Include="random.h" />
+    <ClInclude Include="World.h" />
+    <ClInclude Include="payoffcalculators\GroupLevelPayoffCalculator.h" />
+    <ClInclude Include="mutators\Mutator.h" />
+    <ClInclude Include="mutators\RandomMutator.h" />
+    <ClInclude Include="mutators\ThresholdMutator.h" />
+    <ClInclude Include="repopulators\ProportionateRepopulator.h" />
+    <ClInclude Include="repopulators\RandomRepopulator.h" />
+    <ClInclude Include="repopulators\Repopulator.h" />
+    <ClInclude Include="repopulators\SpatialRepopulator.h" />
+    <ClInclude Include="selectors\EliteSelector.h" />
+    <ClInclude Include="selectors\RandomSelector.h" />
+    <ClInclude Include="selectors\Selector.h" />
+    <ClInclude Include="LOD.h" />
+    <ClInclude Include="payoffcalculators\AsymmetricPayoffCalculator .h" />
   </ItemGroup>
 </Project>
