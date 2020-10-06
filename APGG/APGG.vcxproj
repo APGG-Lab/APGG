@@ -217,7 +217,7 @@
     <ClCompile Include="mutators\Mutator.cpp" />
     <ClCompile Include="mutators\RandomMutator.cpp" />
     <ClCompile Include="mutators\ThresholdMutator.cpp" />
-    <ClCompile Include="payoffcalculators\AsymmetricPayoffCalculator .cpp" />
+    <ClCompile Include="payoffcalculators\AsymmetricPayoffCalculator.cpp" />
     <ClCompile Include="repopulators\ProportionateRepopulator.cpp" />
     <ClCompile Include="repopulators\RandomRepopulator.cpp" />
     <ClCompile Include="repopulators\Repopulator.cpp" />
@@ -249,6 +249,7 @@
     <ClInclude Include="mutators\RandomMutator.h" />
     <ClInclude Include="mutators\ThresholdMutator.h" />
     <ClInclude Include="payoffcalculators\AsymmetricPayoffCalculator .h" />
+    <ClInclude Include="payoffcalculators\AsymmetricPayoffCalculator.h" />
     <ClInclude Include="repopulators\ProportionateRepopulator.h" />
     <ClInclude Include="repopulators\RandomRepopulator.h" />
     <ClInclude Include="repopulators\Repopulator.h" />

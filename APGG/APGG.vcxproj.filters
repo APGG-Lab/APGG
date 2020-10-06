@@ -29,7 +29,7 @@
     <ClCompile Include="selectors\RandomSelector.cpp" />
     <ClCompile Include="selectors\Selector.cpp" />
     <ClCompile Include="LOD.cpp" />
-    <ClCompile Include="payoffcalculators\AsymmetricPayoffCalculator .cpp" />
+    <ClCompile Include="payoffcalculators\AsymmetricPayoffCalculator.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="archivers\Archiver.h" />
@@ -62,5 +62,6 @@
     <ClInclude Include="selectors\Selector.h" />
     <ClInclude Include="LOD.h" />
     <ClInclude Include="payoffcalculators\AsymmetricPayoffCalculator .h" />
+    <ClInclude Include="payoffcalculators\AsymmetricPayoffCalculator.h" />
   </ItemGroup>
 </Project>
