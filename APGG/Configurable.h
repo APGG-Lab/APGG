@@ -7,5 +7,6 @@ namespace APGG {
 	{
 	public:
 		virtual void configure(Config& config) = 0;
+		virtual ~Configurable() = default;
 	};
 }
