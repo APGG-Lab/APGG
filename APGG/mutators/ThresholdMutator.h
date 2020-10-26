@@ -6,7 +6,7 @@ namespace APGG {
     protected:
         float m_threshold = 0.2f;
     public:
-        void mutate(Grid& grid, const std::unordered_set<GridIndex>& selection);
-        void configure(Config& config);
+        void mutate(Grid& grid, const std::unordered_set<GridIndex>& selection) override;
+        void configure(Config& config) override;
     };
 }

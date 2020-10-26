@@ -16,7 +16,7 @@ namespace APGG {
 		GridIndex wrap(int x, int y);
 	public:
 		
-		void generateGroups();
+		void generateGroups() override;
 
 		void configure(Config& config) override;
 	};

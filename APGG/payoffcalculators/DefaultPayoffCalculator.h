@@ -11,10 +11,10 @@ namespace APGG {
     {
     public:
         DefaultPayoffCalculator();
-        void calculateCosts(Group& group);
-        void applyPayoff(Grid& grid, Group& group);
-		void configure(Config& config);
-        float calculateIndividualPayoff(Organism& organism);
+        void calculateCosts(Group& group) override;
+        void applyPayoff(Grid& grid, Group& group) override;
+		void configure(Config& config) override;
+        float calculateIndividualPayoff(Organism& organism) override;
     };
 
 }

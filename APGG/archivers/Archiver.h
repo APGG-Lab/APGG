@@ -45,8 +45,6 @@ namespace APGG {
         void applyTimestampToFolder(const bool& status);
         std::string getFullFilename() const;
         ~Archiver();
-
-		virtual void configure(Config& config) = 0;
     };
 
 }

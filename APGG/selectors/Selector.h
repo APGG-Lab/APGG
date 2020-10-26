@@ -16,8 +16,6 @@ namespace APGG
         Selector(const unsigned int count);
         void setEliminationCount(const unsigned int count);
         virtual std::unordered_set<GridIndex>& select(Grid& grid) = 0;
-		virtual void configure(Config& config) = 0;
-
         static std::unique_ptr<Selector> Create(Config& config);
     };
 }

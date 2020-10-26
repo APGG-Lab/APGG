@@ -9,7 +9,6 @@ namespace APGG
     {
     public:
         virtual void repopulate(Grid& grid, std::unordered_set<GridIndex>& selection) = 0;
-		virtual void configure(Config& config) = 0;
 
         static std::unique_ptr<Repopulator> Create(Config& config);
     };

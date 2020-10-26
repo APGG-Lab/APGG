@@ -14,11 +14,11 @@ namespace APGG {
         float m_groupPayoffPool = 0.0f;
     public:
         GroupLevelPayoffCalculator();
-        void calculateCosts(Group& group);
+        void calculateCosts(Group& group) override;
         void applyPayoff(Organism& organism);
-        void applyPayoff(Grid& grid, Group& group);
-        float calculateIndividualPayoff(Organism& organism);
-		void configure(Config& config);
+        void applyPayoff(Grid& grid, Group& group) override;
+        float calculateIndividualPayoff(Organism& organism) override;
+		void configure(Config& config) override;
     };
 
 }

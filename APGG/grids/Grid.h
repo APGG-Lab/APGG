@@ -30,7 +30,6 @@ namespace APGG {
     public:
         Grid();
 
-        virtual void configure(Config& config) = 0;
         void setGeneration(const unsigned int generation);
         unsigned int size() const;
         std::vector<Organism>& getData();

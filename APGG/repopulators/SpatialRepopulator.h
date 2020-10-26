@@ -7,8 +7,8 @@ namespace APGG {
         public Repopulator
     {
     public:
-        void repopulate(Grid& grid, std::unordered_set<GridIndex>& selection);
-        void configure(Config& config);
+        void repopulate(Grid& grid, std::unordered_set<GridIndex>& selection) override;
+        void configure(Config& config) override;
 
     protected:
         unsigned int m_width = 0;

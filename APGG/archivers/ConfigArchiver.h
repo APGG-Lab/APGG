@@ -11,7 +11,7 @@ namespace APGG {
 		ConfigArchiver(const std::string& folderName, const std::string& fileSuffix);
         void archive(Config& config);
         void archive(const std::string& line);
-		void configure(Config& config);
+		void configure(Config& config) override;
     };
 
 }
