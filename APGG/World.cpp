@@ -2,6 +2,9 @@
 
 
 namespace APGG {
+    World::World() {
+
+    }
 
     void World::printStatus()
     {

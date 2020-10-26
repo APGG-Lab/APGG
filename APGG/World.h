@@ -39,7 +39,7 @@ namespace APGG {
         unsigned int m_exponent = 10; ///Exponential logging (0-10,10,20,30,100,200,300,1000,2000,3000,....)
 //#endif // !__DEBUG
 
-		bool m_archiveData;
+		bool m_archiveData = true;
 
         std::array<unsigned int, 4> m_count;
 
@@ -56,6 +56,7 @@ namespace APGG {
         
 
     public:
+        World();
         void Init(Config & config);
         void Tick();
         void Fini();
