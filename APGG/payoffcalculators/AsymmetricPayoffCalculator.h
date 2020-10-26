@@ -10,7 +10,7 @@ namespace APGG {
     class AsymmetricPayoffCalculator : public PayoffCalculator
     {
     private:
-        float m_denominator;
+        float m_denominator = 0;
         const std::array<unsigned int, 5> m_groupRanks = {
             5,
           4,1,3,

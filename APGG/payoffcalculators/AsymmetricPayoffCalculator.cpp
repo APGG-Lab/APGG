@@ -27,11 +27,9 @@ namespace APGG {
         calculateCosts(group);
 
         float groupPayoffPool = 0.f; //Group money pool
-        float payoff = 0.f; //Individual payoff
-        float poolAmount = 0.f; //Amount of individual payoff which goes to the group money pool
 
         for (const GridIndex index : group.data()) {
-            payoff = calculateIndividualPayoff(grid[index]);
+            float payoff = calculateIndividualPayoff(grid[index]);
 
             if (payoff > 0) { //only add positive numbers to the pool
                 groupPayoffPool += payoff;

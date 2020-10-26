@@ -13,15 +13,15 @@ namespace APGG {
     class PayoffCalculator : public Configurable
     {
     protected:
-        float m_synergyFactor;
-        float m_punishmentCostBase;
-        float m_punishmentFineBase;
-        float m_cooperationCost;
-        bool m_allowPayoffBelowZero;
+        float m_synergyFactor = 1.0f;
+        float m_punishmentCostBase = 1.0f;
+        float m_punishmentFineBase = 1.0f;
+        float m_cooperationCost = 1.0f;
+        bool m_allowPayoffBelowZero = false;
 
-        float m_punishmentCost;
-        float m_punishmentFine;
-        float m_payoff;
+        float m_punishmentCost = 0.0f;
+        float m_punishmentFine = 0.0f;
+        float m_payoff = 0.0f;
     public:
         PayoffCalculator();
 

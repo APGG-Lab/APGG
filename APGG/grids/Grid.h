@@ -24,7 +24,7 @@ namespace APGG {
         //ID of the organism
         unsigned int m_IDCounter = 0;
 
-        unsigned int m_groupSize;
+        unsigned int m_groupSize = 0;
         std::vector<Group> m_groups;
 
     public:
