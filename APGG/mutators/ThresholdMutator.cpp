@@ -17,7 +17,7 @@ void APGG::ThresholdMutator::mutate(Grid& grid, const std::unordered_set<GridInd
 
             //base - thres   <=   randomFloat   <= base + thres
             //genomeMinValue <=   randomFloat   <= genomeMaxValue
-            if (genomeBaseValue - m_threshold >= randomFloat && genomeBaseValue + m_threshold <= randomFloat) 
+            if (genomeBaseValue - m_threshold <= randomFloat && genomeBaseValue + m_threshold >= randomFloat) 
             {
                 grid[index].m_genomes[i].setValue(randomFloat);
             }
