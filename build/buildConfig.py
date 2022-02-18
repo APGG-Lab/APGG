@@ -1,4 +1,7 @@
 import csv
+import itertools
+import numpy
+import os
 
 def main():
     num_experiments = 10 #How often do you want to repeat the experiment
@@ -19,16 +22,18 @@ def main():
         'repopulationType' : Repopulator['Proportionate'],
         'mutatorType' : Mutator['Random'],
         'mutationRate' : 0.01,
-        'folderName' : 'individualism-exp',
+        'folderName' : 'test',
         'logSuffix': 'test1_',
         'timeToFile' : 1,
         'timeToFolder' : 0
     }
 
-    addIteration('synergyFactor', 3.0, 6.0, 0.5) #From, To, StepSize
-    addIteration('payoffIndividualism', 0.0, 1.0, 0.2) #From, To, StepSize
+    addIteration('synergyFactor', 1.5, 7.0, 0.125) #From, To, StepSize
+    addIteration('mutationRate', 0.01, 0.02, 0.01) #From, To, StepSize
 
     buildConfig("configs.csv", num_experiments, baseEntry)
+
+    simpleConfig(baseEntry)
 
 #=======================================================
 
@@ -38,6 +43,8 @@ Selector = {'Elite' : 0, 'Random' : 1}
 Mutator = {'Random' : 0, 'RandomThreshold': 1}
 Repopulator = { 'Random' : 0, 'Proportionate' : 1, 'Spatial' : 2}
 
+iterations = []
+iterationValues = []
 
 def addIteration(index, startVal, endVal, stepSize):
     """Adds iteration to array of iterations"""
@@ -46,7 +53,6 @@ def addIteration(index, startVal, endVal, stepSize):
     iterations.append(iteration)
     return iteration
 
-iterations = []
 
 def buildConfig(configName, num_experiments, baseEntry):
     """Generates a config and writes it to configName"""
@@ -60,12 +66,16 @@ def buildConfig(configName, num_experiments, baseEntry):
     writeConfig(configName, csvData)
     print("Wrote " + str(len(csvData)) + " experiments to \"" + configName + "\"")
 
+
 def recursiveIteration(iterationIndex, baseEntry, csvData, num_experiments):
     """Generates experiments recursively"""
-
     if iterationIndex >= len(iterations): #reached end of iterations
         for i in range(num_experiments):
             experimentCopy = baseEntry.copy()
+
+            if experimentCopy["logSuffix"] not in iterationValues:
+                iterationValues.append(experimentCopy["logSuffix"])
+
             experimentCopy['logSuffix'] += "-exp" + str(i)
             csvData.append(list(experimentCopy.values()))
             print(experimentCopy['logSuffix'])
@@ -88,6 +98,17 @@ def writeConfig(name, data):
         writer = csv.writer(csvFile, delimiter=";", )
         writer.writerows(data)
         csvFile.close()
+
+def simpleConfig(base):
+    baseConf = dict(base)
+    for i, iter in enumerate(iterationValues):
+        iterationValues[i] = iter.replace(baseConf["logSuffix"]+"-", "")
+    baseConf["iternames"] = iterationValues
+    baseConf["iters"] = iterations
+    if not(os.path.exists("./experiments/" + baseConf["folderName"])):
+        os.mkdir("./experiments/" + baseConf["folderName"])
+    numpy.save("./experiments/" + baseConf["folderName"] + "/setup.npy", baseConf)
+    print(baseConf)
 
 #Neat trick to define methods AFTER using them
 if __name__ == '__main__':
