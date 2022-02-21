@@ -105,19 +105,17 @@ def main():
     plt.xticks(xi, x)
     plt.xlabel(iterToPlotName)
     plt.ylabel("Num Agents")
-    plt.plot(nCooperation, marker="o")
-    plt.plot(nPunishment, marker="o")
-    plt.plot(nNoCooperation, marker="o")
-    plt.plot(nNoPunishment, marker="o")
-    plt.plot(nCooperators, marker="o")
-    plt.plot(nDefectors, marker="o")
-    plt.plot(nMoralists, marker="o")
-    plt.plot(nImmoralists, marker="o")
-
-    labels = df.columns.values
+    plt.plot(nCooperation, marker="o", label="nCooperation")
+    plt.plot(nPunishment, marker="o", label="nPunishment")
+    plt.plot(nNoCooperation, marker="o", label="nNoCooperation")
+    plt.plot(nNoPunishment, marker="o", label="nNoPunishment")
+    plt.plot(nCooperators, marker="o", label="nCooperators")
+    plt.plot(nDefectors, marker="o", label="nDefectors")
+    plt.plot(nMoralists, marker="o", label="nMoralists")
+    plt.plot(nImmoralists, marker="o", label="nImmoralists")
 
     # call method plt.legend
-    plt.legend(labels)
+    plt.legend()
     plt.show()
 
 
