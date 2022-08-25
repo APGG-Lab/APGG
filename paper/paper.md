@@ -30,7 +30,7 @@ affiliations:
    index: 3
  - name: BEACON Center for the Study of Evolution in Action, Michigan State University, USA
    index: 4
-date: 29 May 2022
+date: 25 August 2022
 bibliography: paper.bib
 
 # Optional fields if submitting to a AAS journal too, see this blog post:
