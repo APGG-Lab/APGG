@@ -15,8 +15,14 @@ Code for asymetric public goods games
 * Open the .sln project
 * Compile the "Release" Version
 
-## Usage
-* Edit the `configs.csv` file and adjust the settings
+## Getting started
+1. Adjust the values in the main function of buildConfig.py to whatever values are suitable for your experiment (see Config Setup or [Wiki entry](https://github.com/APGG-Lab/APGG/wiki/ConfigValues)). By adding addIteration calls you can specify entire ranges of values for a config value that the script writes for you automatically. With multiple calls to this function every possible permutation of all values ranges is written. All these experiment setups will be run in sequence.
+2. Run the buildConfig.py to generate the config.csv.
+3. Run the executable. 
+4. After the conclusion of the experiments in order to visualize the data first run combineExperiments.py on the generated folder.
+5. Run plot.py to get a chart of your data. Adjust as needed.
+
+## Config Setup
 
 | Config Key | Type (Limits) | Definition |
 | -------- | -------- | -------- |
