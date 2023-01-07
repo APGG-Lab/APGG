@@ -5,7 +5,7 @@
 Code for asymetric public goods games
 
 ## Installation
-* Download the release from the [Release section ](https://ips.hs-kempten.de/asymmetric-public-goods/apgg/releases)
+* Download the release from the [Release section ](https://github.com/APGG-Lab/APGG/tags)
 * Extract the .zip archive
 
 ## Installation from Source
