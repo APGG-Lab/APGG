@@ -50,9 +50,9 @@ This paper aims to explain the functionality and the structure of the framework,
 ![APGG Logo](img/logo300.png){ width=50% }  
 
 ## Introduction / Literature Review
-Public Good Games illustrate the tragedy of the commons [@hardin1968tragedy]. They have been intensively studied before, with an increasing interest in the asymmetric variant of the game [@mcginty2013public,@hintze2020inclusive]. Typically, game theoretical problems are solved using rigourous mathematical analysis, but that approach reaches its limits when it comes to the stochastic and random behavior of the evolutionary process [@adami2016evolutionary]. Consequently, computational models, such as this one, are used.
+Public Good Games illustrate the tragedy of the commons [@hardin1968tragedy]. They have been intensively studied before, with an increasing interest in the asymmetric variant of the game [@mcginty2013public],[@hintze2020inclusive]. Typically, game theoretical problems are solved using rigourous mathematical analysis, but that approach reaches its limits when it comes to the stochastic and random behavior of the evolutionary process [@adami2016evolutionary]. Consequently, computational models, such as this one, are used.
 
-One problem of using computational models in research, is their oftentimes limited expandability. APGG remedies this problem by providing a modular framework, that is designed to be easily extended [@bohm2017mabe,@richter2019evo].
+One problem of using computational models in research, is their oftentimes limited expandability. APGG remedies this problem by providing a modular framework, that is designed to be easily extended [@bohm2017mabe],[@richter2019evo].
 
 ## What is a Public Goods Game
 The tragedy of the commons describes an important social and economical phenomenon which pitches self interest against the interests of a group. Players in a Public Goods Game (PGG) can either contribute to a common pool (cooperate) or withhold their contribution (defect). The money collected in the pool is increased by a multiplicative synergy factor, and then equally distributed amongst the players. It becomes immediately clear that the defecting players will always receive the same as the cooperators, but end up having more money than the cooperators due to the amount they withheld before. The tragedy specifically describes the dilemma, that if all players would cooperate the total amount received by everyone would be higher, but the greed (or self interest) of the defectors prevents that favourable outcome.
@@ -64,7 +64,7 @@ Studying evolution in a biological systems is cumbersome, to say the least [@len
 
 ## Code Overview
 
-![A Figure Displaying the Class Structure of APGG](img/ClassStructure.png){ width=100% }  
+![A Figure Displaying the Class Structure of APGG](img/ClassStructure.png){ width=90% }  
 
 **World**: Encapsulates a single experiment. The World Class is divided into 4 methods, init, tick (plays the game), evolve and fini. The main loop (tick and evolve) is being run within the world class and controls the entire game, by calling all the relevant classes and methods. All other classes are being initialized within the world class. World has no subclasses and is used for every experiment.
 
@@ -73,7 +73,7 @@ Studying evolution in a biological systems is cumbersome, to say the least [@len
 
 **Organism**: The organisms in APGG are the class for the agents that participate in the evolutionary public goods games. Depending on the grid size, a fixed number of organisms will be spawned. Organisms contain a Genome which in turn holds the information that determines how agents act during the game. The Genomes are also used for the selection and repopulation process, as offspring will be derived from those Genomes by copying them. If users want to change how strategies are encoded this class should be modified. See Mutator for changing how Genomes are copied.
 
-**Archiver**: The Archiver Class is used to collect data during the runtime of the model. It has 2 subclasses. The SimpleArchiver, which will write the status of the current generation (number of cooperators, defectors) as well as the LODArchiver, which will print the whole Line of Descent (for the best organism and his ancestors) to a file at the end of each experiment. 
+**Archiver**: The Archiver Class is used to collect data during the runtime of the model. It has 2 subclasses. The SimpleArchiver, which will write the status of the current generation (number of cooperators, defectors) as well as the LODArchiver, which will print the whole Line of Descent (for the best organism and his ancestors) to a file at the end of each experiment.
 
 **Mutator**: The mutator is responsible for mutating the genome of organisms during the selection process. The chance for the organisms to mutate is set by the mutationRate parameter. If a random value between 0 and 1 exceeds the mutationRate, the genomes of the organism will be changed. Besides the normal (default) mutator, there is a threshold mutator, which will reassign the genome a new value within a specific range of the current value. Overloading this class allows users to implement other mutation schemes or modes.
 
