@@ -1,4 +1,4 @@
-# APGG (Asymetric public goods games)
+# APGG (Asymetric Public Goods Games)
 
 ![Logo](https://mirko.dev/apgg_logo_full.png)
 
