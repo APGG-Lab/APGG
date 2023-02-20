@@ -15,6 +15,8 @@ Code for asymetric public goods games
 * Open the .sln project
 * Compile the "Release" Version
 
+For more information, please refer to our [Wiki page.](https://github.com/APGG-Lab/APGG/wiki/Build-From-Scratch)
+
 ## Getting started
 1. Adjust the values in the main function of buildConfig.py to whatever values are suitable for your experiment (see Config Setup or [Wiki entry](https://github.com/APGG-Lab/APGG/wiki/ConfigValues)). By adding addIteration calls you can specify entire ranges of values for a config value that the script writes for you automatically. With multiple calls to this function every possible permutation of all values ranges is written. All these experiment setups will be run in sequence.
 2. Run the buildConfig.py to generate the config.csv.
@@ -23,6 +25,8 @@ Code for asymetric public goods games
 5. Run plot.py to get a chart of your data. Adjust as needed.
 
 ## Config Setup
+
+For more information on this topic, please refer to our Wiki pages on [Config Values](https://github.com/APGG-Lab/APGG/wiki/ConfigValues) and [CSV Batch Experiements](https://github.com/APGG-Lab/APGG/wiki/CSV-Batch-Experiments).
 
 | Config Key | Type (Limits) | Definition |
 | -------- | -------- | -------- |
@@ -52,7 +56,7 @@ Code for asymetric public goods games
 |consoleOutExponent | int  | Multiplicator for interval output |
 
 ## Help
-Visit our wiki for a more in depth documentation
+Visit our [Wiki](https://github.com/APGG-Lab/APGG/wiki) for a more in depth documentation
 
 ## Contributing
 Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
