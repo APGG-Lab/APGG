@@ -47,12 +47,12 @@ The Asymmetric Public Goods Game (APGG) C++ framework offers an easy to use envi
 Results are automatically saved in semantic and descriptive structures and can be easily visualized with the included Python scripts.
 This paper aims to explain the functionality and the structure of the framework, to show the workflow that APGG follows, to present the different modules that are available, and to show how APGG can be used to run experiments with public goods games on example scenarios.
 
-![APGG Logo](img/logo300.png){ width=50% }  
+![APGG Logo.\label{fig:Logo}](img/logo300.png){ width=50% }  
 
 ## Introduction / Literature Review
-Public Good Games illustrate the tragedy of the commons [@hardin1968tragedy]. They have been intensively studied before, with an increasing interest in the asymmetric variant of the game [@mcginty2013public],[@hintze2020inclusive]. Typically, game theoretical problems are solved using rigourous mathematical analysis, but that approach reaches its limits when it comes to the stochastic and random behavior of the evolutionary process [@adami2016evolutionary]. Consequently, computational models, such as this one, are used.
+Public Good Games illustrate the tragedy of the commons [@hardin1968tragedy]. They have been intensively studied before, with an increasing interest in the asymmetric variant of the game [@mcginty2013public; @hintze2020inclusive]. Typically, game theoretical problems are solved using rigourous mathematical analysis, but that approach reaches its limits when it comes to the stochastic and random behavior of the evolutionary process [@adami2016evolutionary]. Consequently, computational models, such as this one, are used.
 
-One problem of using computational models in research, is their oftentimes limited expandability. APGG remedies this problem by providing a modular framework, that is designed to be easily extended [@bohm2017mabe],[@richter2019evo].
+One problem of using computational models in research, is their oftentimes limited expandability. APGG remedies this problem by providing a modular framework, that is designed to be easily extended [@bohm2017mabe; @richter2019evo].
 
 ## What is a Public Goods Game
 The tragedy of the commons describes an important social and economical phenomenon which pitches self interest against the interests of a group. Players in a Public Goods Game (PGG) can either contribute to a common pool (cooperate) or withhold their contribution (defect). The money collected in the pool is increased by a multiplicative synergy factor, and then equally distributed amongst the players. It becomes immediately clear that the defecting players will always receive the same as the cooperators, but end up having more money than the cooperators due to the amount they withheld before. The tragedy specifically describes the dilemma, that if all players would cooperate the total amount received by everyone would be higher, but the greed (or self interest) of the defectors prevents that favourable outcome.
@@ -60,11 +60,11 @@ The tragedy of the commons describes an important social and economical phenomen
 The question is how to overcome the tragedy of the commons. In social societies, often institutions, regulations, and incentives are used [@fehr2002altruistic], [@hintze2020inclusive]. In the theoretical context, all of this becomes abstracted as costly punishment [@hardin1968tragedy]. This costly punishment has been shown to affect human behavior[@fehr2002altruistic] and can indeed lead to the evolution of cooperation [@hintze2015punishment]. Another option that alters the outcome towards cooperation could be asymmetric distribution of resources, as it can be found in many animal hierarchies. Hyenas for example have a steep dispotic index [@smith2007rank] while also cooperating with each other, supporting the idea of asymmetric payoffs potentially leading to cooperation.
 
 ## Statement of Need
-Studying evolution in a biological systems is cumbersome, to say the least [@lenski2017experimental]. Consequently, using computational models becomes a viable alternative. However, for new experiments to build on previous results, the modeling software needs to be extendable. This leads to a challenging problem. Future users will independently modify the software to suit their own needs, with no regard for other users. This could create an ever growing tree of alternative versions, that might not be compatible with each other. Here, a modular design approach is used, such that possible future users can define custom modules. However, those modules will remain interoperable, because interfaces are well defined.
+Studying evolution in a biological systems is cumbersome, to say the least [@lenski2017experimental]. Consequently, using computational models becomes a viable alternative. However, for new experiments to build on previous results, the modeling software needs to be extendable. This leads to a challenging problem. Future users will independently modify the software to suit their own needs, with no regard for other users. This could create an ever growing tree of alternative versions, that might not be compatible with each other. Here, a modular design (see \autoref{fig:Classes}) approach is used, such that possible future users can define custom modules. However, those modules will remain interoperable, because interfaces are well defined.
 
 ## Code Overview
 
-![A Figure Displaying the Class Structure of APGG](img/ClassStructure.png){ width=90% }  
+![A Figure Displaying the Class Structure of APGG.\label{fig:Classes}](img/ClassStructure.png){ width=90% }  
 
 **World**: Encapsulates a single experiment. The World Class is divided into 4 methods, init, tick (plays the game), evolve and fini. The main loop (tick and evolve) is being run within the world class and controls the entire game, by calling all the relevant classes and methods. All other classes are being initialized within the world class. World has no subclasses and is used for every experiment.
 
@@ -86,9 +86,9 @@ The itIsNotReallyAGroupLevelPayoffCalculator [@hintze2020inclusive] is a calcula
 
 ## Workflow
 
-![A Figure displaying the Workflow that APGG follows](img/flow300.png){ width=50% }  
+![A Figure displaying the Workflow that APGG follows.\label{fig:Workflow}](img/flow300.png){ width=50% }  
 
-APGG was designed to be an easy to use framework for making experiments with Public Goods Games available to a wide range of users. Hence, the workflow has been designed to not only please computer scientists but to also invite social and biological researchers with basic programming skills. To set up and configure an experiment or a set of them, all users have to do is edit a csv file in a spreadsheet software of their choice. To expand the framework by adding or changing modules only basic C++ programming knowledge is recommended.
+APGG was designed to be an easy to use framework for making experiments with Public Goods Games available to a wide range of users. Hence, the workflow \autoref{fig:Workflow} has been designed to not only please computer scientists but to also invite social and biological researchers with basic programming skills. To set up and configure an experiment or a set of them, all users have to do is edit a csv file in a spreadsheet software of their choice. To expand the framework by adding or changing modules only basic C++ programming knowledge is recommended.
 
 The computer model runs using the following steps:
 
@@ -109,14 +109,14 @@ The computer model runs using the following steps:
 
 **Table 1**: Parameters used to replicate Proof of Concept Experiments, where $r$ is the Synergy Factor, $\mu$ is the Mutation Rate, $\gamma$ is the Punishment Cost and $\beta$ is the Punishment Fine. The experiment was run for 500,000 generations with 100 replicates. The Random Mutator was picked, as was the Random Selector. The Repopulator the was used was the Proportionate Repopulator.
 
-To prove the concept of the software, and to verify its functionality, we repeated the experiment from the paper by Hintze and Adami (2015) [@hintze2015punishment], Figure 6, where the critical point to go from defection to cooperation dependent on synergy factor in the public goods game with punishment is computed and compared to the same game without punishment (see Figure 4). For each datapoint along the axis of the synergy factor 10 replicate experiments were run. The results are qualitatively the same, and the identical critical points and overall model behavior were observed.
+To prove the concept of the software, and to verify its functionality, we repeated the experiment from the paper by Hintze and Adami (2015) [@hintze2015punishment], Figure 6, where the critical point to go from defection to cooperation dependent on synergy factor in the public goods game with punishment is computed and compared to the same game without punishment (see \autoref{fig:Figure6}). For each datapoint along the axis of the synergy factor 10 replicate experiments were run. The results are qualitatively the same, and the identical critical points and overall model behavior were observed.
 
-![This Figure displays the same result as [@hintze2015punishment], therefore proving that APGG does work as intended.](img/Fig6hd.png){ width=100% }
+![This Figure displays the same result as [@hintze2015punishment], therefore proving that APGG does work as intended.\label{fig:Figure6}](img/Fig6hd.png){ width=100% }
 
 
 
 ## Conclusion
-After the initial development of the APGG software different groups of students performed additional experiments with ease, supporting the usability design goal. Extensions to other population structures like graphs were also attempted and proved to be easily achievable in practice, thus underlining the quality of the modular design of the tool. Further, we could accurately replicate already existing results from previous publications using our tool (see Figure 4). Lastly, we used our tool to conduct original research on another public goods game featuring asymmetric payoff redistribution [@hintze2020inclusive]. We look forward to further extending our software and hope other researchers will join our endeavor and benefit from our tool.
+After the initial development of the APGG software different groups of students performed additional experiments with ease, supporting the usability design goal. Extensions to other population structures like graphs were also attempted and proved to be easily achievable in practice, thus underlining the quality of the modular design of the tool. Further, we could accurately replicate already existing results from previous publications using our tool (see \autoref{fig:Figure6}). Lastly, we used our tool to conduct original research on another public goods game featuring asymmetric payoff redistribution [@hintze2020inclusive]. We look forward to further extending our software and hope other researchers will join our endeavor and benefit from our tool.
 
 ## Outlook
 Since APGG is written in a modular fashion, adding to and expanding on the existing code base should be easy to do, and therefore our tool allows anyone who wants to conduct experiments to write their specific use cases into APGG. Creating these extentions has already been tested [@hintze2020inclusive], and shown to work easily. Further additions can also be contributed to the github repository via pull requests. APGG will remain under further development for future experiments by Jochen Staudacher (Kempten University, Germany) and Arend Hintze (Dalarna University, Sweden).
