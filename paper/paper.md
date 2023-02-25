@@ -111,7 +111,7 @@ The computer model runs using the following steps:
 
 To prove the concept of the software, and to verify its functionality, we repeated the experiment from the paper by Hintze and Adami (2015) [@hintze2015punishment], Figure 6, where the critical point to go from defection to cooperation dependent on synergy factor in the public goods game with punishment is computed and compared to the same game without punishment (see \autoref{fig:Figure6}). For each datapoint along the axis of the synergy factor 10 replicate experiments were run. The results are qualitatively the same, and the identical critical points and overall model behavior were observed.
 
-![This Figure displays the same result as [@hintze2015punishment], therefore proving that APGG does work as intended.\label{fig:Figure6}](img/Fig6hd.png){ width=100% }
+![This Figure displays the same result as [@hintze2015punishment], therefore proving that APGG does work as intended.\label{fig:Figure6}](img/Figure6.png){ width=100% }
 
 
 
