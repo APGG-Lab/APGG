@@ -15,7 +15,6 @@ def main():
 
     folderName = sys.argv[1]
 
-   # print("Test")
     setup = np.load(folderName + "/setup.npy", allow_pickle=True).item()
     iters = setup["iters"]
 
@@ -62,18 +61,38 @@ def main():
             df = df.append(pd.read_csv(file, index_col=0, header=0, sep = ","))
 
     df.reset_index(drop=True, inplace=True)
-    generations = df["generation"] + 1
-    df['nCooperation'] = df['nCooperators'] + df['nMoralists']
-    df['nPunishment'] = df['nMoralists'] + df['nImmoralists']
-    df['nNoCooperation'] = df['nDefectors'] +  df['nImmoralists']
-    df['nNoPunishment'] = df['nCooperators'] + df['nDefectors']
+
+    print(df)
+    print(df['nMoralists'][0])
+
+    dfValues = pd.DataFrame()
+    dfErrors = pd.DataFrame()
+
+    print("df\n", df, df.shape)
+
+    dfValues = df.iloc[0::2,:].copy()
+    dfErrors = df.iloc[1::2,:].copy()
+    print("dfValues\n", dfValues, dfValues.shape)
+    print("dfErrors\n",  dfErrors,  dfErrors.shape)
+
+    dfValues.reset_index(drop=True, inplace=True)
+    generations = dfValues["generation"] + 1
 
 
-    for i, row in df.iterrows():
+    for i, row in dfValues.iterrows():
         if(searchString in row["setup"]):
-            df.at[i, "setup"] = row["setup"].strip(searchString).strip('-').strip(iterToPlotName)
+            dfValues.at[i, "setup"] = row["setup"].strip(searchString).strip('-').strip(iterToPlotName)
 
-    df = df.sort_values('setup')
+    for i, row in dfErrors.iterrows():
+        if(searchString in row["setup"]):
+            dfErrors.at[i, "setup"] = row["setup"].strip(searchString).strip('-').strip(iterToPlotName)
+
+
+    dfValues = dfValues.sort_values('setup')
+    dfErrors = dfErrors.sort_values('setup')
+
+    print("dfValues\n", dfValues, dfValues.shape)
+    print("dfErrors\n",  dfErrors,  dfErrors.shape)
 
 
     nCooperation = []
@@ -86,36 +105,71 @@ def main():
     nImmoralists = []
     x = []
 
-    for i, row in df.iterrows():
-        x.append(float(df.at[i, "setup"]))
-        nCooperation.append(float(df.at[i, "nCooperation"]))
-        nPunishment.append(float(df.at[i, "nPunishment"]))
-        nNoCooperation.append(float(df.at[i, "nNoCooperation"]))
-        nNoPunishment.append(float(df.at[i, "nNoPunishment"]))
-        nCooperators.append(float(df.at[i, "nCooperators"]))
-        nDefectors.append(float(df.at[i, "nDefectors"]))
-        nMoralists.append(float(df.at[i, "nMoralists"]))
-        nImmoralists.append(float(df.at[i, "nImmoralists"]))
+    for i, row in dfValues.iterrows():
+        x.append(float(dfValues.at[i, "setup"]))
+        nCooperation.append(float(dfValues.at[i, "nCooperation"]))
+        nPunishment.append(float(dfValues.at[i, "nPunishment"]))
+        nNoCooperation.append(float(dfValues.at[i, "nNoCooperation"]))
+        nNoPunishment.append(float(dfValues.at[i, "nNoPunishment"]))
+        nCooperators.append(float(dfValues.at[i, "nCooperators"]))
+        nDefectors.append(float(dfValues.at[i, "nDefectors"]))
+        nMoralists.append(float(dfValues.at[i, "nMoralists"]))
+        nImmoralists.append(float(dfValues.at[i, "nImmoralists"]))
+
+    nCooperationError = []
+    nPunishmentError = []
+    nNoCooperationError = []
+    nNoPunishmentError = []
+    nCooperatorsError = []
+    nDefectorsError = []
+    nMoralistsError = []
+    nImmoralistsError = []
+
+    for i, row in dfErrors.iterrows():
+        nCooperationError.append(float(dfErrors.at[i, "nCooperation"]))
+        nPunishmentError.append(float(dfErrors.at[i, "nPunishment"]))
+        nNoCooperationError.append(float(dfErrors.at[i, "nNoCooperation"]))
+        nNoPunishmentError.append(float(dfErrors.at[i, "nNoPunishment"]))
+        nCooperatorsError.append(float(dfErrors.at[i, "nCooperators"]))
+        nDefectorsError.append(float(dfErrors.at[i, "nDefectors"]))
+        nMoralistsError.append(float(dfErrors.at[i, "nMoralists"]))
+        nImmoralistsError.append(float(dfErrors.at[i, "nImmoralists"]))
+
 
     xi = []
     for i in range(len(x)):
         xi.append(i+1)
 
+    myListCoop = [x/1000 for x in nCooperation]
+    myListPunish = [x/1000 for x in nPunishment]
+    myListCoopError = [x/1000 for x in nCooperationError]
+    myListPunishError = [x/1000 for x in nPunishmentError]
+
+    combCoopPos = np.array(myListCoop) + np.array(myListCoopError)
+    combCoopNeg = np.array(myListCoop) - np.array(myListCoopError)
+    combPunishPos = np.array(myListPunish) + np.array(myListPunishError)
+    combPunishNeg = np.array(myListPunish) - np.array(myListPunishError)
+
     plt.figure(1)
     plt.xticks(xi, x)
     plt.xticks(rotation=90)
     plt.xlabel(iterToPlotName)
-    plt.ylabel("Percentile of Agents")
-    ax = plt.gca()
-    ax.set_ylim([0, 100])
-    plt.plot(nCooperation, label="nCooperation")
-    plt.plot(nPunishment, label="nPunishment")
-    plt.plot(nNoCooperation, label="nNoCooperation")
-    plt.plot(nNoPunishment, label="nNoPunishment")
-    plt.plot(nCooperators, label="nCooperators")
-    plt.plot(nDefectors, label="nDefectors")
-    plt.plot(nMoralists, label="nMoralists")
-    plt.plot(nImmoralists, label="nImmoralists")
+    plt.ylabel(r"$P_C$")
+    plt.ylim(0,1)
+    plt.twinx()
+    plt.ylim(0,1)
+    plt.ylabel(r"$P_P$")
+    plt.fill_between(range(len(myListCoop)), combCoopPos, combCoopNeg, alpha = 0.3, color = "k")
+    plt.fill_between(range(len(myListPunish)), combPunishPos, combPunishNeg, alpha = 0.3, color = "r")
+    plt.plot(myListCoop, label="Cooperators", color="black")
+    plt.plot(myListPunish, label="Punishers", color="red")
+    #plt.plot(nNoCooperation, label="nNoCooperation")
+    #plt.plot(nNoPunishment, label="nNoPunishment")
+    #plt.plot(nCooperators, label="nCooperators")
+    #plt.plot(nDefectors, label="nDefectors")
+    #plt.plot(nMoralists, label="nMoralists")
+    #plt.plot(nImmoralists, label="nImmoralists")
+
 
     # call method plt.legend
     plt.legend()
