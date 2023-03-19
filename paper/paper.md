@@ -86,7 +86,7 @@ The itIsNotReallyAGroupLevelPayoffCalculator [@hintze2020inclusive] is a calcula
 
 ## Workflow
 
-![A Figure displaying the Workflow that APGG follows.\label{fig:Workflow}](img/flow300.png){ width=50% }  
+![A Figure displaying the Workflow that APGG follows.\label{fig:Workflow}](img/flow300.png){ width=60% }  
 
 APGG was designed to be an easy to use framework for making experiments with Public Goods Games available to a wide range of users. Hence, the workflow \autoref{fig:Workflow} has been designed to not only please computer scientists but to also invite social and biological researchers with basic programming skills. To set up and configure an experiment or a set of them, all users have to do is edit a csv file in a spreadsheet software of their choice. To expand the framework by adding or changing modules only basic C++ programming knowledge is recommended.
 
