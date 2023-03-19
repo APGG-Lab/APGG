@@ -1,6 +1,9 @@
 #pragma once
 #include "Mutator.h"
 namespace APGG {
+    /**
+    * Basic implementation of the Mutator base class that modifies Genomes of Organisms randomly.
+    */
     class RandomMutator : public Mutator
     {
     public:

@@ -5,7 +5,9 @@
 
 namespace APGG {
 
-
+    /**
+    * Holds the genome information as a float, provides basic methods to modify and get it.
+    */
     class Genome
     {
     private:

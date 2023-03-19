@@ -6,6 +6,9 @@
 
 namespace APGG
 {
+    /**
+    * Base class for the mutators. Keeps a mutation rate (how likely an Organism is mutated).
+    */
     class Mutator : public Configurable
     {
     protected:

@@ -10,6 +10,10 @@
 
 namespace APGG {
 
+    /**
+    * Base class for the grids. Keeps all Organisms, Groups and helpful meta data about the Grid. Provides various
+    * access functins for the data.
+    */
     class Grid : public Configurable
     {
     protected:

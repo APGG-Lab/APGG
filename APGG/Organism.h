@@ -27,6 +27,11 @@ namespace APGG {
 	typedef std::shared_ptr<Organism> pOrganism;
 	typedef std::reference_wrapper<Organism> rOrganism;
 
+    /**
+    * Represents the agents in a simulation. Keeps and provides relation to the children of this agent
+    * that have been generated with this as a parent, it´s own parent and information about it´s own
+    * genomes as well as methods to simulate a step in the experiment relating to them.
+    */
     class Organism
     {
     public:
@@ -66,7 +71,4 @@ namespace APGG {
         void removeChild(Organism* organsim);
         void addChild(Organism* organism);
     };
-
-
-
 }

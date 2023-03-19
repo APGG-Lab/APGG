@@ -5,11 +5,13 @@
 #include <unordered_set>
 namespace APGG 
 {
+    /**
+    * Base class for the selectors. Keeps informaton about a selection and how many agents should be eliminated.
+    */
     class Selector : public Configurable
     {
     protected:
         std::unordered_set<GridIndex> m_selection;
-        //std::vector<unsigned int> m_selection2;
         unsigned int m_eliminationCount;
     public:
         Selector();

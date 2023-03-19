@@ -10,6 +10,9 @@ namespace APGG {
     constexpr unsigned int nPayoffTypes = 1;
     enum PayoffTypes { f };
 
+    /**
+    * Base class for the payoff calculators. Keeps data on various payoff related variables and methods to modify them. 
+    */
     class PayoffCalculator : public Configurable
     {
     protected:

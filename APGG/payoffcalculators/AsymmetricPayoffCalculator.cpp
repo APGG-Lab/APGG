@@ -52,9 +52,6 @@ namespace APGG {
                 grid[index].m_payoff = 0;
             }
         }
-
-
-
     }
 
     float AsymmetricPayoffCalculator ::calculateIndividualPayoff(Organism& organism)

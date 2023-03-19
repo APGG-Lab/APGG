@@ -7,6 +7,10 @@
 
 namespace APGG {
 
+    /**
+    * Basic implementation of the PayoffCalculator base class that calculates payoff for an entire group and sets it as the
+    * individual payoff of every Organism n the Group.
+    */
     class GroupLevelPayoffCalculator : public PayoffCalculator
     {
     private:

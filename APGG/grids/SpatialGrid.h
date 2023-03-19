@@ -8,6 +8,10 @@
 
 
 namespace APGG {
+	/**
+	* Basic implementation of the Grid base class that generates Groups based upon spatial relation within
+	* the Grid. 
+	*/
 	class SpatialGrid : public Grid
 	{
 	protected:

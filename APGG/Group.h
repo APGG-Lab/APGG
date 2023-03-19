@@ -6,7 +6,11 @@ namespace APGG {
     //TODO: move to definitions.h
     typedef uint16_t GridIndex;
 
-
+    /**
+    * Keeps information about a group of agents that interact with each other during an experiment. 
+    * Relation to agents is kept only as an index to the position in the grid to minimize memory and maximize performance. 
+    * Provides basic functions to access agents and modify their faction classification.
+    */
     class Group
     {
     private:

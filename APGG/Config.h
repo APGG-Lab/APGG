@@ -6,6 +6,10 @@
 
 namespace APGG {
 
+	/**
+	* Keeps data for the Configurable interface. Data entries are related to a string key and accessable through them. 
+	* Also holds and provides an id for the config to be able to see current configuration during execution.
+	*/
 	class Config
 	{
 	public:

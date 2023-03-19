@@ -3,7 +3,10 @@
 #include "../Organism.h"
 
 namespace APGG {
-
+    /**
+    * Basic implementation of the Archiver base class that writes the a line of descent into a file that includes
+    * a line for every Organism provided. 
+    */
     class LODArchiver : public Archiver
     {
     public:

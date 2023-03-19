@@ -25,7 +25,10 @@ typedef std::chrono::duration<double> fsec;
 
 namespace APGG {
 
-
+    /**
+    * This class holds everything about a configured experiment: Grid, PayoffCalculator,
+    * Selector, Repopulator, Mutator. It also provides the methods to run the simulation steps.
+    */
     class World
     {
     private:

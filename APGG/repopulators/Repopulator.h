@@ -5,6 +5,9 @@
 
 namespace APGG 
 {
+    /**
+    * Base class for the repopulators. 
+    */
     class Repopulator : public Configurable
     {
     public:

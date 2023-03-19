@@ -3,6 +3,9 @@
 
 namespace APGG {
 
+    /**
+    * Basic implementation of the Repopulator base class that repopulates eliminated Organisms with random parents.
+    */
     class RandomRepopulator :
         public Repopulator
     {

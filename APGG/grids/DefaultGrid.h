@@ -8,6 +8,9 @@
 
 
 namespace APGG {
+	/**
+	* Basic implementation of the Grid base class that generates Groups out of randomly chosen Organisms.
+	*/
 	class DefaultGrid : public Grid
 	{
 	protected:

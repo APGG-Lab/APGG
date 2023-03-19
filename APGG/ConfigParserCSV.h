@@ -9,6 +9,9 @@
 
 namespace APGG {
 
+	/**
+	* Basic csv parser that produces a usable Config for the Configurable interface.
+	*/
 	class ConfigParserCSV
 	{
 	public:

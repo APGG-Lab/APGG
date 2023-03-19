@@ -19,6 +19,10 @@ namespace fs = std::filesystem;
 
 namespace APGG {
 
+    /**
+    * Base class for the archivers (classes that write to files). Keeps meta data of to write files and provides basic
+    * functions for writing.
+    */
     class Archiver : public Configurable
     {
     protected:

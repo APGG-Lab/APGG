@@ -7,6 +7,10 @@
 
 namespace APGG {
 
+    /**
+    * Basic implementation of the PayoffCalculator base class that calculates individual payoff for every Organism
+    * in a Group based on the different factions within this group.
+    */
     class DefaultPayoffCalculator : public PayoffCalculator
     {
     public:

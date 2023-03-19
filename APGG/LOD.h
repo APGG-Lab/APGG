@@ -9,6 +9,11 @@
 #include "archivers/Archiver.h"
 #include "archivers/LODArchiver.h"
 namespace APGG {
+
+
+    /**
+    * Line of Decent. Provides helper functions to log the line of descent of organisms at the end of the experiment. 
+    */
 	class LOD
 	{
 	private:
