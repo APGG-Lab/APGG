@@ -120,7 +120,7 @@ After the initial development of the APGG software different groups of students 
 ## Outlook
 Since APGG is written in a modular fashion, adding to and expanding on the existing code base should be easy to do, and therefore our tool allows anyone who wants to conduct experiments to write their specific use cases into APGG. Creating these extentions has already been tested [@hintze2020inclusive], and shown to work easily. Further additions can also be contributed to the github repository via pull requests. APGG will remain under further development for future experiments by Jochen Staudacher (Kempten University, Germany) and Arend Hintze (Dalarna University, Sweden).
 
-##Acknowledgements
+## Acknowledgements
 The authors would like to thank Marcel Stimberg and Yanjie Zhou for their careful reviews which helped improved both our software and paper as well as Antonello Lobianco for some helpful comments and suggestions. We are indebted to Nikoleta Glynatsi for editing our paper and for always being there for our procedural questions.
 
 ## References
