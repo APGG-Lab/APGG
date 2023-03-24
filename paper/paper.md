@@ -33,7 +33,7 @@ affiliations:
  - name: Chonnam National University, South Korea
    index: 5
 
-date: 25 August 2022
+date: 25 March 2023
 bibliography: paper.bib
 
 # Optional fields if submitting to a AAS journal too, see this blog post:
@@ -50,9 +50,9 @@ This paper aims to explain the functionality and the structure of the framework,
 ![APGG Logo.\label{fig:Logo}](img/logo300.png){ width=50% }  
 
 ## Introduction / Literature Review
-Public Good Games illustrate the tragedy of the commons [@hardin1968tragedy]. They have been intensively studied before, with an increasing interest in the asymmetric variant of the game [@mcginty2013public; @hintze2020inclusive]. Typically, game theoretical problems are solved using rigourous mathematical analysis, but that approach reaches its limits when it comes to the stochastic and random behavior of the evolutionary process [@adami2016evolutionary]. Consequently, computational models, such as this one, are used.
+Public Good Games illustrate the tragedy of the commons, see Hardin (1968) [@hardin1968tragedy] for the standard reference which is both widely cited and still controversially discussed . They have been intensively studied before, with an increasing interest in the asymmetric variant of the game [@mcginty2013public; @hintze2020inclusive]. Typically, game theoretical problems are solved using rigourous mathematical analysis, but that approach reaches its limits when it comes to the stochastic and random behavior of the evolutionary process [@adami2016evolutionary]. Consequently, computational models, such as this one, are used.
 
-One problem of using computational models in research, is their oftentimes limited expandability. APGG remedies this problem by providing a modular framework, that is designed to be easily extended [@bohm2017mabe; @richter2019evo].
+One problem of using computational models in research, is their oftentimes limited expandability. APGG remedies this problem by providing a modular framework, that is designed to be easily extended in a vein similar to [@bohm2017mabe; @richter2019evo].
 
 ## What is a Public Goods Game
 The tragedy of the commons describes an important social and economical phenomenon which pitches self interest against the interests of a group. Players in a Public Goods Game (PGG) can either contribute to a common pool (cooperate) or withhold their contribution (defect). The money collected in the pool is increased by a multiplicative synergy factor, and then equally distributed amongst the players. It becomes immediately clear that the defecting players will always receive the same as the cooperators, but end up having more money than the cooperators due to the amount they withheld before. The tragedy specifically describes the dilemma, that if all players would cooperate the total amount received by everyone would be higher, but the greed (or self interest) of the defectors prevents that favourable outcome.
