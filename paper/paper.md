@@ -50,7 +50,7 @@ This paper aims to explain the functionality and the structure of the framework,
 ![APGG Logo.\label{fig:Logo}](img/logo300.png){ width=50% }  
 
 ## Introduction / Literature Review
-Public Good Games illustrate the tragedy of the commons, see Hardin (1968) [@hardin1968tragedy] for the standard reference which is both widely cited and still controversially discussed . They have been intensively studied before, with an increasing interest in the asymmetric variant of the game [@mcginty2013public; @hintze2020inclusive]. Typically, game theoretical problems are solved using rigourous mathematical analysis, but that approach reaches its limits when it comes to the stochastic and random behavior of the evolutionary process [@adami2016evolutionary]. Consequently, computational models, such as this one, are used.
+Public Good Games illustrate the tragedy of the commons, see [@hardin1968tragedy] for the standard reference which is both widely cited and still controversially discussed [@mildenberger2019tragedy]. They have been intensively studied before, with an increasing interest in the asymmetric variant of the game [@mcginty2013public; @hintze2020inclusive]. Typically, game theoretical problems are solved using rigourous mathematical analysis, but that approach reaches its limits when it comes to the stochastic and random behavior of the evolutionary process [@adami2016evolutionary]. Consequently, computational models, such as this one, are used.
 
 One problem of using computational models in research, is their oftentimes limited expandability. APGG remedies this problem by providing a modular framework, that is designed to be easily extended in a vein similar to [@bohm2017mabe; @richter2019evo].
 
