@@ -57,7 +57,7 @@ One problem of using computational models in research, is their oftentimes limit
 ## What is a Public Goods Game
 The tragedy of the commons describes an important social and economical phenomenon which pitches self interest against the interests of a group. Players in a Public Goods Game (PGG) can either contribute to a common pool (cooperate) or withhold their contribution (defect). The money collected in the pool is increased by a multiplicative synergy factor, and then equally distributed amongst the players. It becomes immediately clear that the defecting players will always receive the same as the cooperators, but end up having more money than the cooperators due to the amount they withheld before. The tragedy specifically describes the dilemma, that if all players would cooperate the total amount received by everyone would be higher, but the greed (or self interest) of the defectors prevents that favourable outcome.
 
-The question is how to overcome the tragedy of the commons. In social societies, often institutions, regulations, and incentives are used [@fehr2002altruistic], [@hintze2020inclusive]. In the theoretical context, all of this becomes abstracted as costly punishment [@hardin1968tragedy]. This costly punishment has been shown to affect human behavior[@fehr2002altruistic] and can indeed lead to the evolution of cooperation [@hintze2015punishment]. Another option that alters the outcome towards cooperation could be asymmetric distribution of resources, as it can be found in many animal hierarchies. Hyenas for example have a steep dispotic index [@smith2007rank] while also cooperating with each other, supporting the idea of asymmetric payoffs potentially leading to cooperation.
+The question is how to overcome the tragedy of the commons. In social societies, often institutions, regulations, and incentives are used [@fehr2002altruistic], [@hintze2020inclusive]. In the theoretical context, all of this becomes abstracted as costly punishment [@hardin1968tragedy]. This costly punishment has been shown to affect human behavior[@fehr2002altruistic] and can indeed lead to the evolution of cooperation [@hintze2015punishment]. Another option that alters the outcome towards cooperation could be asymmetric distribution of resources, as it can be found in many animal hierarchies. Hyenas for example have a steep despotic index [@smith2007rank] while also cooperating with each other, supporting the idea of asymmetric payoffs potentially leading to cooperation.
 
 ## Statement of Need
 Studying evolution in a biological systems is cumbersome, to say the least [@lenski2017experimental]. Consequently, using computational models becomes a viable alternative. However, for new experiments to build on previous results, the modeling software needs to be extendable. This leads to a challenging problem. Future users will independently modify the software to suit their own needs, with no regard for other users. This could create an ever growing tree of alternative versions, that might not be compatible with each other. Here, a modular design (see \autoref{fig:Classes}) approach is used, such that possible future users can define custom modules. However, those modules will remain interoperable, because interfaces are well defined.
@@ -82,7 +82,7 @@ Studying evolution in a biological systems is cumbersome, to say the least [@len
 
 The payoff calculation for the PGG with punishment is a two step process. In the first step, the base costs, fines and payoff are calculated. The second step calculates the individual payoff based on the organism's decision. Depending on its decision, the organism has to pay a punishment cost or a punishment fine out of its individual payoff. There are payoff calculators for different scenarios: Asymmetric Payoff calculator - a calculator, which calculates the payoff based on a spatial tier list. Everyone transfers his individual payoff into a group pool. After that, everyone gets his individual payoff out of this pool based on his rank in the group [@smith2007rank].
 
-The itIsNotReallyAGroupLevelPayoffCalculator [@hintze2020inclusive] is a calculator where everyone transfers a predefined part of his payoff into a group pool for group members to share rewards with each other. After everyone has paid into this pool, the pool will be split by the number of group members and the value will be added to the individual payoff.
+The GroupLevelPayoffCalculator [@hintze2020inclusive] is a calculator where everyone transfers a predefined part of his payoff into a group pool for group members to share rewards with each other. After everyone has paid into this pool, the pool will be split by the number of group members and the value will be added to the individual payoff.
 
 ## Workflow
 
@@ -97,7 +97,7 @@ The computer model runs using the following steps:
 3. generate all sets of players interacting in games during one generation
 4. evaluate all sets of games
 5. select those organisms who will reproduce based on their payoff
-6. repopulate the grid using the organisms idenfied in the previous step
+6. repopulate the grid using the organisms identified in the previous step
 7. go to step 2, until the total number of desired generations is reached
 8. save all data
 
@@ -111,7 +111,7 @@ The computer model runs using the following steps:
 
 To illustrate that the software is capable of reproducing scientific results, we repeated an experiment from Hintze and Adami (2015) [@hintze2015punishment]. In that experiment the synergy factor in the public goods game was varied and the outcome of evolution, given that factor, determined. When the synergy factor is low, we expect defectors to win, while cooperators should thrive when synergy is high. However, in this variant of the game, agents can also punish, and punishment can modulate the response of agents to the synergy factor. The expectation was, that punishment should allow agents to cooperate at lower synergy factors, and one should observe punishment to increase around this critical point. Interestingly, agents probabilities to cooperate and to punish evolved as expected, and punishment lowered the critica point, but the chance to defect went from 0.0 to 0.5 (drifting). Here we replicated that exact result (see \autoref{fig:Figure6}).
 
-![Evovled agent behavior (y-axes) in the public goods game with punishment for different synergy factors (x-axis). The evolved likelihood to cooperate (in black, left y-axis) and to punish (in red, right y-axis) is shown for 20 replicate experiments per tested synergy factor value. Shadows in red and black show the 95% confident intervalls respectively. The expected critical point for agents not being able to punish is at a synergy factor of 5.0, and here we find this critical point to be shifted to a lower level as expected. \label{fig:Figure6}](img/Figure6.png){ width=100% }
+![Evolved agent behavior (y-axes) in the public goods game with punishment for different synergy factors (x-axis). The evolved likelihood to cooperate (in black, left y-axis) and to punish (in red, right y-axis) is shown for 20 replicate experiments per tested synergy factor value. Shadows in red and black show the 95% confident intervalls respectively. The expected critical point for agents not being able to punish is at a synergy factor of 5.0, and here we find this critical point to be shifted to a lower level as expected. \label{fig:Figure6}](img/Figure6.png){ width=100% }
 
 
 ## Conclusion
@@ -119,5 +119,8 @@ After the initial development of the APGG software different groups of students 
 
 ## Outlook
 Since APGG is written in a modular fashion, adding to and expanding on the existing code base should be easy to do, and therefore our tool allows anyone who wants to conduct experiments to write their specific use cases into APGG. Creating these extentions has already been tested [@hintze2020inclusive], and shown to work easily. Further additions can also be contributed to the github repository via pull requests. APGG will remain under further development for future experiments by Jochen Staudacher (Kempten University, Germany) and Arend Hintze (Dalarna University, Sweden).
+
+##Acknowledgements
+The authors would like to thank Marcel Stimberg and Yanjie Zhou for their careful reviews which helped improved both our software and paper as well as Antonello Lobianco for some helpful comments and suggestions. We are indebted to Nikoleta Glynatsi for editing our paper and for always being there for our procedural questions.
 
 ## References
