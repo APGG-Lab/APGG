@@ -109,10 +109,10 @@ The computer model runs using the following steps:
 
 **Table 1**: Parameters used to replicate Proof of Concept Experiments, where $r$ is the Synergy Factor, $\mu$ is the Mutation Rate, $\gamma$ is the Punishment Cost and $\beta$ is the Punishment Fine. The experiment was run for 500,000 generations with 100 replicates. The Random Mutator was picked, as was the Random Selector. The Repopulator the was used was the Proportionate Repopulator.
 
-To prove the concept of the software, and to verify its functionality, we repeated the experiment from the paper by Hintze and Adami (2015) [@hintze2015punishment], Figure 6, where the critical point to go from defection to cooperation dependent on synergy factor in the public goods game with punishment is computed and compared to the same game without punishment (see \autoref{fig:Figure6}). For each datapoint along the axis of the synergy factor 10 replicate experiments were run. The results are qualitatively the same, and the identical critical points and overall model behavior were observed.
+To illustrate that the software is capable of reproducing scientific results, we repeated an experiment from Hintze and Adami (2015) [@hintze2015punishment]. In that experiment the synergy factor in the public goods game was varied and the outcome of evolution, given that factor, determined. When the synergy factor is low, we expect defectors to win, while cooperators should thrive when synergy is high. However, in this variant of the game, agents can also punish, and punishment can modulate the response of agents to the synergy factor. The expectation was, that punishment should allow agents to cooperate at lower synergy factors, and one should observe punishment to increase around this critical point. Interestingly, agents probabilities to cooperate and to punish evolved as expected, and punishment lowered the critica point, but the chance to defect went from 0.0 to 0.5 (drifting). Here we replicated that exact result (see \autoref{fig:Figure6}).
 
 ![This Figure displays the same result as [@hintze2015punishment], therefore proving that APGG does work as intended.\label{fig:Figure6}](img/Figure6.png){ width=100% }
-
+[Test]
 
 
 ## Conclusion
