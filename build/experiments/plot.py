@@ -138,7 +138,7 @@ def main():
 
     xi = []
     for i in range(len(x)):
-        xi.append(i+1)
+        xi.append(i)
 
     myListCoop = [x/1000 for x in nCooperation]
     myListPunish = [x/1000 for x in nPunishment]
