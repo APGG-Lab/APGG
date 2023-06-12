@@ -59,7 +59,10 @@ def buildConfig(configName, num_experiments, baseEntry):
     csvData = [] #CSV-Data Array
     num_experiments_counter = 0
 
-    csvData.append(list(baseEntry.keys()))
+    #trailing semicolon fix for linux
+    temp = list(baseEntry.keys())
+    temp.append("")
+    csvData.append(temp)
     recursiveIteration(0, baseEntry.copy(), csvData, num_experiments)
 
     writeConfig(configName, csvData)
