@@ -4,24 +4,24 @@ import numpy
 import os
 
 def main():
-    num_experiments = 10 #How often do you want to repeat the experiment
+    num_experiments = 100 #How often do you want to repeat the experiment
     baseEntry = {
         'numGenerations' :  100000,
         'eliminationCount' : 100,
         'groupSize' : 5,
-        'width' : 40,
-        'height' : 25,
+        'width' : 100,
+        'height' : 10,
         'cooperateCost' : 1.0,
         'synergyFactor' : 3.0,
         'punishmentCost' : 0.2,
         'punishmentFine' : 0.8,
         'gridType' : Grid['Default'],
         'payoffType' : PayoffCalculator['Group'],
-        'payoffIndividualism' : 0.5,
+        'payoffIndividualism' : 1.0,
         'selectorType' : Selector['Random'],
         'repopulationType' : Repopulator['Proportionate'],
         'mutatorType' : Mutator['Random'],
-        'mutationRate' : 0.01,
+        'mutationRate' : 0.02,
         'folderName' : 'test',
         'logSuffix': 'test1_',
         'timeToFile' : 1,
@@ -29,7 +29,6 @@ def main():
     }
 
     addIteration('synergyFactor', 1.5, 7.0, 0.125) #From, To, StepSize
-    addIteration('mutationRate', 0.01, 0.02, 0.01) #From, To, StepSize
 
     buildConfig("configs.csv", num_experiments, baseEntry)
 
