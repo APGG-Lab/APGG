@@ -110,9 +110,11 @@ The computer model runs using the following steps:
 To illustrate that the software is capable of reproducing scientific results, we first repeated an experiment from [@hintze2015punishment]. In that experiment the synergy factor in the public goods game was varied and the outcome of evolution, given that factor, determined. When the synergy factor is low, we expect defectors to win, while cooperators should thrive when synergy is high. However, in this variant of the game, agents can also punish, and punishment can modulate the response of agents to the synergy factor. The expectation was, that punishment should allow agents to cooperate at lower synergy factors, and one should observe punishment to increase around this critical point. Interestingly, agents' probabilities to cooperate and to punish evolved as expected, and punishment lowered the critical point, but the chance to punish went from 0.0 to 0.5 (drifting). \autoref{fig:Figure6} confirms both the phenomenon of drifting as well as the fact that at a synergy level of around $4$ there are hardly any defectors left. 
 
 Let us look at the shift of the critical point from 5.0 (without punishment) down to a lower level (with punishment) in a little more detail. The critical point is defined as the smallest synergy factor for which the payoff of a cooperator equals or exceeds the payoff of a defector. In [@hintze2015punishment] it was first observed that this critical point depends upon the density of punishers $\rho_{P}$ and in [@hintze2020inclusive] it was pointed out that in the absence of mutations the critical point can be expressed as
+\begin{linenomath*}
 \begin{align} \label{criticalPointWithP}
 r_{C} = i (1 - \beta \rho_{P}) (k+1) - i + 1  - (1- i) (\beta + \gamma) \rho_{P}
 \end{align}
+\begin{linenomath*}
 with $k+1$ standing for the group size.
 For example, for $\rho_{P}=0.4$ and our setting of parameters, expression (\ref{criticalPointWithP}) predicts $r_{C} = 1 \cdot (1 - 0.8 \cdot 0.4) \cdot 5 = 3.4$ without mutations. As expected we observe a transition from defection to cooperation for synergy factors between 2.5 and 4 in \autoref{fig:Figure6}.
 
