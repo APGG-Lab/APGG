@@ -113,7 +113,7 @@ When the synergy factor is low, we expect defectors to win, while cooperators sh
 However, in this variant of the game, agents can also punish, and punishment can modulate the response of agents to the synergy factor.
 The expectation was, that punishment should allow agents to cooperate at lower synergy factors, and one should observe punishment to increase around this critical point.
 Interestingly, agents' probabilities to cooperate and to punish evolved as expected, and punishment lowered the critical point, but the chance to punish went from 0.0 to 0.5 (drifting).
-\autoref{fig:Figure6} confirms both the phenomenon of drifting as well as the fact that at a synergy level of around $4$ there are hardly any defectors left. 
+\autoref{fig:Figure6} confirms both the phenomenon of drifting as well as the fact that at a synergy level of around 4.0 there are hardly any defectors left. 
 
 Let us look at the shift of the critical point from 5.0 (without punishment) down to a lower level (with punishment) in a little more detail.
 The critical point is defined as the smallest synergy factor for which the payoff of a cooperator equals or exceeds the payoff of a defector.
@@ -122,7 +122,7 @@ In [@hintze2015punishment] it was first observed that this critical point depend
 r_{C} = i (1 - \beta \rho_{P}) (k+1) - i + 1  - (1- i) (\beta + \gamma) \rho_{P}
 \end{align}
 with $k+1$ standing for the group size.
-For example, for $\rho_{P}=0.4$ and our setting of parameters, expression (\ref{criticalPointWithP}) predicts $r_{C} = 1 \cdot (1 - 0.8 \cdot 0.4) \cdot 5 = 3.4$ without mutations. As expected we observe a transition from defection to cooperation for synergy factors between 2.5 and 4 in \autoref{fig:Figure6}.
+For example, for $\rho_{P}=0.4$ and our setting of parameters, expression (\ref{criticalPointWithP}) predicts $r_{C} = 1 \cdot (1 - 0.8 \cdot 0.4) \cdot 5 = 3.4$ without mutations. As expected we observe a transition from defection to cooperation for synergy factors between 2.5 and 4.0 in \autoref{fig:Figure6}.
 
 ![Evolved agent behavior (y-axes) in the public goods game with punishment for different synergy factors (x-axis). The evolved likelihood to cooperate (in black, left y-axis) and to punish (in red, right y-axis) is shown for 100 replicate experiments per tested synergy factor value. Shadows in red and black show the 95% confidence intervals respectively. The expected critical point for agents not being able to punish is at a synergy factor of 5.0, and here we find this critical point to be shifted to a lower level as expected. \label{fig:Figure6}](img/Figure6.png){ width=100% }
 
