@@ -134,8 +134,8 @@ For example, for $\rho_{P}=0.4$ and our setting of parameters, expression (\ref{
 
 We also confirm a result from [@hintze2020inclusive]. Again, the synergy factor in the public goods game was varied and the outcome of evolution, given that factor, determined. In this variant of the game, there are neither fines nor costs for punishment.
 However, we impose a payoff individualism of $i=0.5$, meaning that players keep only half of their individual payoffs whereas the other half is transferred into a pool and then distributed evenly among the group members.
-Expression (\ref{criticalPointWithP}) predicts $r_{C} = 0.5 \cdot 5 - 0.5 + 1 = 3$ implying that as soon as the synergy factor exceeds 3 cooperators will benefit from a larger payoff than defectors.
-\autoref{fig:secondProof} confirms the shift of the critical point from 5.0 (classical public goods game, $i=1$) down to a synergy factor of 3 with a probability to cooperate of 0.5 for that case.
+Expression (\ref{criticalPointWithP}) predicts $r_{C} = 0.5 \cdot 5 - 0.5 + 1 = 3$ implying that as soon as the synergy factor exceeds 3.0 cooperators will benefit from a larger payoff than defectors.
+\autoref{fig:secondProof} confirms the shift of the critical point from 5.0 (classical public goods game, $i=1$) down to a synergy factor of 3.0 with a probability to cooperate of 0.5 for that case.
 It also displays the gradual transition from defection to cooperation in the presence of mutations reported in [@hintze2020inclusive], Figure 1.
 The probability to punish is drifting throughout the experiment as expected. 
 
