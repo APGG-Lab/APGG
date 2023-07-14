@@ -33,7 +33,7 @@ affiliations:
  - name: Chonnam National University, South Korea
    index: 5
 
-date: 25 March 2023
+date: 15 July 2023
 bibliography: paper.bib
 
 # Optional fields if submitting to a AAS journal too, see this blog post:
