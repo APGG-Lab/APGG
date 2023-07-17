@@ -69,12 +69,7 @@ def combine(iter, fileList):
         tempList = []
         for groups in df:
             if groups in roles:
-                mean = float(df[groups])
-                runnningAve = 0
-                for sample in dfDev[groups]:
-                    dataPointDev = pow(sample - mean, 2)
-                    runnningAve += dataPointDev
-                stdDev = np.sqrt(runnningAve / sampleSize)
+                stdDev = np.std(dfDev[groups].values)
                 stdErr = stdDev / np.sqrt(sampleSize)
                 dfTemp[groups] = [stdErr]
                 tempList.append(stdDev)
