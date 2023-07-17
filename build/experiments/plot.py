@@ -58,7 +58,7 @@ def main():
         if(i==0):
             df = pd.read_csv(file, index_col=0, header=0, sep = ",")
         else:
-            df = df._append(pd.read_csv(file, index_col=0, header=0, sep = ","))
+            df = pd.concat([df, pd.read_csv(file, index_col=0, header=0, sep = ",")])
 
     df.reset_index(drop=True, inplace=True)
 

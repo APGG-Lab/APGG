@@ -46,7 +46,7 @@ def combine(iter, fileList):
                     dfDev = pd.read_csv(file, header=0, sep = ";")[-1:]
                 else:
                     df = df.add(pd.read_csv(file, header=0, sep = ";")[-1:])
-                    dfDev = dfDev._append(pd.read_csv(file, header=0, sep = ";")[-1:])
+                    dfDev = pd.concat([dfDev, pd.read_csv(file, header=0, sep = ";")[-1:]])
 
         df['nCooperation'] = df['nCooperators'] + df['nMoralists']
         df['nPunishment'] = df['nMoralists'] + df['nImmoralists']
@@ -74,7 +74,7 @@ def combine(iter, fileList):
                 dfTemp[groups] = [stdErr]
                 tempList.append(stdDev)
         dfTemp["generation"] = [float(df["generation"])]
-        df = df._append(dfTemp)
+        df = pd.concat([df, dfTemp])
         df["setup"] = iteration
         data.append(df)
 
