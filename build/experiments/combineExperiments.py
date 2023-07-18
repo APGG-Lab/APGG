@@ -73,7 +73,7 @@ def combine(iter, fileList):
                 stdErr = stdDev / np.sqrt(sampleSize)
                 dfTemp[groups] = [stdErr]
                 tempList.append(stdDev)
-        dfTemp["generation"] = [float(df["generation"])]
+        dfTemp["generation"] = [float(df["generation"].iloc[0])]
         df = pd.concat([df, dfTemp])
         df["setup"] = iteration
         data.append(df)
