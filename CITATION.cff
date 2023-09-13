@@ -1,0 +1,47 @@
+cff-version: "1.2.0"
+authors:
+- family-names: Rosenthal
+  given-names: Mirko
+- family-names: Richter
+  given-names: David J.
+  orcid: "https://orcid.org/0000-0001-5413-6710"
+- family-names: Hübner
+  given-names: Falk
+- family-names: Staudacher
+  given-names: Jochen
+  orcid: "https://orcid.org/0000-0002-0619-4606"
+- family-names: Hintze
+  given-names: Arend
+  orcid: "https://orcid.org/0000-0002-4872-1961"
+doi: 10.5281/zenodo.8334926
+message: If you use this software, please cite our article in the
+  Journal of Open Source Software.
+preferred-citation:
+  authors:
+  - family-names: Rosenthal
+    given-names: Mirko
+  - family-names: Richter
+    given-names: David J.
+    orcid: "https://orcid.org/0000-0001-5413-6710"
+  - family-names: Hübner
+    given-names: Falk
+  - family-names: Staudacher
+    given-names: Jochen
+    orcid: "https://orcid.org/0000-0002-0619-4606"
+  - family-names: Hintze
+    given-names: Arend
+    orcid: "https://orcid.org/0000-0002-4872-1961"
+  date-published: 2023-09-13
+  doi: 10.21105/joss.04944
+  issn: 2475-9066
+  issue: 89
+  journal: Journal of Open Source Software
+  publisher:
+    name: Open Journals
+  start: 4944
+  title: APGG - A Modular C++ Framework for Asymmetric Public Goods
+    Games
+  type: article
+  url: "https://joss.theoj.org/papers/10.21105/joss.04944"
+  volume: 8
+title: APGG - A Modular C++ Framework for Asymmetric Public Goods Games
