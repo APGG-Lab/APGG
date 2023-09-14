@@ -1,8 +1,9 @@
-# APGG (Asymetric Public Goods Games)
+# APGG (Asymetric Public Goods Games) [![DOI](https://joss.theoj.org/papers/10.21105/joss.04944/status.svg)](https://doi.org/10.21105/joss.04944)
 
 ![Logo](https://mirko.dev/apgg_logo_full.png)
 
 APGG is a Framework that allows users to run, simulate and analyze Public Goods Games Experiments. APPG is written in a way that should allow users of all levels of experience to use, utalize and modify the Framework as desired.
+
 
 ## Installation
 * Download the release from the [Release section ](https://github.com/APGG-Lab/APGG/tags)
@@ -60,3 +61,24 @@ Visit our [Wiki](https://github.com/APGG-Lab/APGG/wiki) for a more in depth docu
 
 ## Contributing
 Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
+
+## Citation
+
+Plaintext
+```
+Rosenthal et al., (2023). APGG - A Modular C++ Framework for Asymmetric Public Goods Games. Journal of Open Source Software, 8(89), 4944, https://doi.org/10.21105/joss.04944
+```
+
+Bibtex
+```Bibtex
+@article{Rosenthal2023, doi = {10.21105/joss.04944},
+  url = {https://doi.org/10.21105/joss.04944},
+  year = {2023},
+  publisher = {The Open Journal},
+  volume = {8}, number = {89},
+  pages = {4944},
+  author = {Mirko Rosenthal and David J. Richter and Falk Hübner and Jochen Staudacher and Arend Hintze},
+  title = {APGG - A Modular C++ Framework for Asymmetric Public Goods Games},
+  journal = {Journal of Open Source Software}
+}
+```
